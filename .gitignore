@@ -5,7 +5,6 @@ dumps/
 hlink-client/hlink
 *.smdh
 *.3dsx
-*.der
 *.elf
 *.cia
 *.o
