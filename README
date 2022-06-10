@@ -41,3 +41,5 @@ Additionally you need a file called source/hsapi_auth.c with the following conte
  const char *hsapi_user = "<api-user>";
  const int hsapi_password_length = <password-length-int>;
  void hsapi_password(char *ret) { memcpy(ret, "<api-password>", hsapi_password_length); }
+An (obfuscated) password is provided.
+

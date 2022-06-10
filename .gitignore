@@ -10,8 +10,6 @@ hlink-client/hlink
 *.cia
 *.o
 
-source/hsapi_auth.c
-
 tags
 
 release/
