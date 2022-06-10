@@ -1,0 +1,3 @@
+[submodule "3rd/nnc"]
+	path = 3rd/nnc
+	url = https://github.com/MyPasswordIsWeak/nnc

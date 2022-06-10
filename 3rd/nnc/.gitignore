@@ -1,0 +1,8 @@
+nnc-test
+libnnc.a
+libnnc.so
+data/
+tags
+build/
+html/
+bin/

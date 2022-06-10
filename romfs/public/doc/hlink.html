@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>hLink documentation</title>
+		<meta charset="utf-8"/>
+	</head>
+	<style>
+		.table p /* label */ {
+			margin: 10px 0px 2px 0px;
+			padding: 0px;
+		}
+		.table table, tr, td {
+			border-collapse: collapse;
+			border: 1px solid black;
+			padding: 3px;
+		}
+		.table table:first-child {
+			border: 2px solid black !important;
+			color: yellow;
+		}
+
+		.note {
+			font-size: small;
+		}
+
+		#toc p {
+			padding: 1px;
+			margin: 0px;
+		}
+	</style>
+	<body>
+		<div id="toc">
+			<h2>Table of Contents</h2>
+			<ul>
+				<li><p><a href="#protocol">Protocol</a></p></li>
+				<li><p><a href="#tables">Tables</a></p></li>
+				<li><p><a href="#body-detail">Body Details</a></p></li>
+				<li><p><a href="#examples">Examples</a></p></li>
+				<li><p><a href="#ub">Undefined Behaviour</a></p></li>
+			</ul>
+		</div>
+
+		<hr/>
+
+		<div id="protocol">
+			<p>
+				The hLink protocol consists of a series of messages from the client to the server.
+				Each message is called a <em>transaction</em>.
+				A client transaction is identified by an action code, and a server transaction
+				is identified by a response code.
+			</p>
+
+			<p>
+				For all actions to succeed you require authentication. When the server receives a request from
+				a client for the first time it will ask the user if they want to allow the client
+				to connect or not. If the user accepts, all following requests from that client
+				will be automatically accepted. If the user declines all following requests will
+				be declined and return <code>untrusted</code>. If the user restarts the server
+				(by backing out of the hLink screen, and pressing on hLink again in the more menu)
+				all authentication data will be wiped and you will get a new chance to
+				authenticate.
+			</p>
+		</div>
+
+		<hr/>
+
+		<div id="tables">
+			<div class="table">
+				<p>Here is a table containing the binary client request format</p>
+				<p class="note">Note: all integers are network byte order (big endian)</p>
+				<table>
+					<tr>
+						<td>name</td>
+						<td>type/size</td>
+						<td>description</td>
+					</tr>
+					<tr>
+						<td>magic</td>
+						<td>char[]/3 bytes</td>
+						<td>always "HTL"</td>
+					</tr>
+					<tr>
+						<td>action</td>
+						<td><a href="#action-table">enum action</a>/1 byte</td>
+						<td>the action the client wants to perform</td>
+					</tr>
+					<tr>
+						<td>size</td>
+						<td>uint32_t/4 bytes</td>
+						<td>size of the body</td>
+					</tr>
+					<tr>
+						<td>body</td>
+						<td>???/???</td>
+						<td>additional data for the action. may be empty. size/type depend on the action</td>
+					</tr>
+				</table>
+			</div>
+
+			<div class="table">
+				<p>Here is a table containing the binary server response format</p>
+				<p class="note">Note: all integers are network byte order (big endian)</p>
+				<table>
+					<tr>
+						<td>name</td>
+						<td>type/size</td>
+						<td>description</td>
+					</tr>
+					<tr>
+						<td>magic</td>
+						<td>char[]/3 bytes</td>
+						<td>always "HTL"</td>
+					</tr>
+					<tr>
+						<td>action</td>
+						<td><a href="#response-table">enum response</a>/1 byte</td>
+						<td>the action the client wants to perform</td>
+					</tr>
+					<tr>
+						<td>size</td>
+						<td>uint32_t/4 bytes</td>
+						<td>size of the body</td>
+					</tr>
+					<tr>
+						<td>body</td>
+						<td>???/???</td>
+						<td>data as a response to the action. may be empty. size/type depend on the response</td>
+					</tr>
+				</table>
+			</div>
+
+			<div class="table" id="action-table">
+				<p>Here is a table containing all action codes</p>
+				<table>
+					<tr>
+						<td>name</td>
+						<td>integer</td>
+						<td>description</td>
+					</tr>
+					<tr>
+						<td>add_queue</td>
+						<td>0</td>
+						<td>adds a hShop ID to the 3hs queue</td>
+					</tr>
+					<tr>
+						<td>install_id</td>
+						<td>1</td>
+						<td>immediately installs a title from a hShop ID (stub)</td>
+					</tr>
+					<tr>
+						<td>install_url</td>
+						<td>2</td>
+						<td>immediately installs a title from an url (stub)</td>
+					</tr>
+					<tr>
+						<td>install_data</td>
+						<td>3</td>
+						<td>immediately installs a title from data given over the link (stub)</td>
+					</tr>
+					<tr>
+						<td>nothing</td>
+						<td>4</td>
+						<td>does exactly nothing. used for authenticating the client</td>
+					</tr>
+					<tr>
+						<td>launch</td>
+						<td>5</td>
+						<td>launches a title id</td>
+					</tr>
+				</table>
+			</div>
+
+			<div class="table" id="response-table">
+				<p>Here is a table containing all response codes</p>
+				<table>
+					<tr>
+						<td>name</td>
+						<td>integer</td>
+						<td>description</td>
+					</tr>
+					<tr>
+						<td>accept</td>
+						<td>0</td>
+						<td>the server accepts the connection. only returned by <em>nothing</em></td>
+					</tr>
+					<tr>
+						<td>busy</td>
+						<td>1</td>
+						<td>the server is busy with another request</td>
+					</tr>
+					<tr>
+						<td>untrusted</td>
+						<td>2</td>
+						<td>the client isn't authenticated</td>
+					</tr>
+					<tr>
+						<td>error</td>
+						<td>3</td>
+						<td>there was an error handling the request.</td>
+					</tr>
+					<tr>
+						<td>success</td>
+						<td>4</td>
+						<td>generic success response</td>
+					</tr>
+					<tr>
+						<td>notfound</td>
+						<td>5</td>
+						<td>generic not found response</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+		<hr/>
+
+		<div id="body-detail">
+
+			<p>
+				As mentioned in <a href="#tables">the tables</a> some actions/responses have a body.
+				in this section all actions/responses that use a body will be documented.
+			</p>
+
+			<h3>Actions</h3>
+			<h4>add_queue</h4>
+			<p>
+				The <em>add_queue</em> action passes hShop IDs in the body.
+				the IDs are an array of <code>uint64_t</code>'s (8 bytes each) in big endian.
+				the <em>size</em> field in the header should be <code>total_ids * 8</code>.
+			</p>
+
+			<h4>launch</h4>
+			<p>
+				The <em>launch</em> action passes a tid (<code>uint64_t</code>) in the body.
+				the body size must be <code>sizeof(uint64_t)</code> which is <code>8</code>
+			</p>
+
+			<h3>Responses</h3>
+			<h4>error</h4>
+			<p>
+				This response simply contains an error string, the length of the string is in
+				the <em>size</em> field in the header.
+			</p>
+
+		</div>
+
+		<hr/>
+
+		<div id="examples">
+			<p>Examples:</p>
+			<p>Asking server for authentication</p>
+			<pre>
+/* request */
+	0x48 0x4C 0x54                          /* magic ("HLT") */
+	0x04                                    /* action code (<em>nothing</em>) */
+	0x00 0x00 0x00 0x00                     /* size (0 bytes) */
+/* response (authentication successfull) */
+	0x48 0x4C 0x54                          /* magic ("HLT") */
+	0x00                                    /* response code (<em>accept</em>) */
+	0x00 0x00 0x00 0x00                     /* size (0 bytes) */
+/* response (authentication failed) */
+	0x48 0x4C 0x54                          /* magic ("HLT") */
+	0x02                                    /* response code (<em>untrusted</em>) */
+	0x00 0x00 0x00 0x00                     /* size (0 bytes) */
+			</pre>
+
+			<p>Sending 2 hShop IDs to add to the queue</p>
+			<pre>
+/* request */
+	0x48 0x4C 0x54                          /* magic ("HLT") */
+	0x00                                    /* action code (<em>add_queue</em>) */
+	0x00 0x00 0x00 0x10                     /* size (16 bytes) */
+/* body */
+	0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x66 /* ID 1 (id=102) */
+	0x00 0x00 0x00 0x00 0x00 0x00 0xCB 0x00 /* ID 2 (id=3248) */
+			</pre>
+		</div>
+		See also: /hlink-client/ in the 3hs source tarball for a reference implementation
+		<hr/>
+
+		<div id="ub">
+		  <blockquote><q>You, not the hshop developers, are left to enforce the rules of an abstract computational machine, and when you inevitably fail, it's your fault.</q></blockquote>
+			<p>As all good protocols the hLink protocol also includes undefined behaviour.
+				Here follows a list of undefined bevahiour for clients:</p>
+			<ul>
+				<li>Sending invalid hShop IDs</li>
+				<li>Having a <em>size</em> dividable by 8 that is greater than <code>total_ids * 8</code></li>
+			</ul>
+		</div>
+	</body>
+	<a href="/index.html">Back to home</a>
+</html>

@@ -1,0 +1,109 @@
+
+v1.2.1 "cotidie morimur":
+ - Fix functionality of "find all missing"
+ - Fix issue where a large queue could not be installed
+ - Add ability to reset settings by pressing R on startup or R in settings
+ - Add text showing which game error belongs to in queue error replay
+ - Add ability to download & install while in sleep mode
+ - Add ability to directly install themes to the SD card
+ - Add ability to sort titles
+ - Add Hungarian translation
+ - Add Polish translation
+ - Add Japanese translation
+ - Add Russian translation
+ - Add Spearglish (Old English) translation
+
+v1.2.0 "cotidie morimur":
+ - Make text wrapping not use hyphens
+ - Make long texts in lists scroll horizontally
+ - Fix issue where text search query data would get cut off
+ - Fix "base game missing" message for system title DLC & updates
+ - Fix some wrapping issues on Korean systems
+ - Fix Romanian not being detected
+ - Fix common occurence of the "server didn't return status 200" error
+ - Add French (Canada) translation
+ - Add (partial) Italian translation
+ - Add Portuguese translation
+ - Add Korean translation
+ - Add Greek translation
+ - Add searching using a title ID
+ - Add searching using a legacy search query
+ - Add toggles in settings menu to replace value true/false
+ - Add ability to add an item to the queue from extended meta
+
+v1.1.0 "aeraria":
+ - fix issue where NAND titles wouldn't be reinstallable
+ - add Romanian translation
+ - add French translation
+
+v1.0.1 "aeraria":
+ - additionally to initial release:
+ - hotfix arm11 after title installation
+
+v1.0.0 "aeraria":
+ - update for new hsite v3 api
+ - re-add light theme & make it the default
+ - add log spliting: logs get split into multiple files sorted on age
+ - add a download speed and ETA field while installing titles
+ - add random title button
+ - add log uploading
+ - improve utf8 handling
+ - remove find_missing prompt in favor of automatic adding
+ - fix issue where categories weren't sorted as on website
+ - fix issue where closing the app from home would freeze the system
+ - fix issue where spamming toggle on a "true"/"false" setting would crash the system
+ - fix issue where cursor wouldn't appear if second to last title was removed in queue
+ - fix issue where find_missing never did anything
+ - fix issue where seed was never installed
+ - fix issue where free space indicator wasn't being updated after installing a title
+
+v0.2.1:
+ - fixed net indicator going partly hidden when in a long list
+ - add clarification after clicking on find missing
+ - fix bug where clearing logs would crash 3hs
+ - fix bug where selecting games will prompt to install the base game
+
+v0.2.0:
+ - implemented resuming downloads
+ - fix easter egg not working
+ - fix bug where single line panic message wouldn't show
+ - add find missing dlc/updates feature
+ - add translations
+ - add proxy support
+ - add sprites for battery
+ - add a loading animation
+ - major speed improvements
+ - add luma locale emulator support
+ - extended meta is now lazily loaded
+ - 3hs will now ask for extra content after installing a game
+ - 3hs will now warn if you're trying to install a dlc/update for a game which you
+   don't have installed
+ - add logs menu for clearing logs
+ - add network status indicator
+ - fix issue where 3hs would crash if WiFi was not available
+ - fix issue where 3hs wouldn't work if time & date was wrong
+ - fix issue where extended meta wasn't showing in search
+ - fix issue where 3hs was unable to load a title name if the name contained any
+   complex characters
+
+v0.1.6:
+ - added extended meta screen
+ - fix cdn not working
+
+v0.1.5:
+ - fixed buttons being blank
+
+v0.1.4:
+ - fixed issue decoding utf16 and scrolling if text didn't overflow in texts and generally improved the look of it
+ - fixed crash that would occur if you attempted to add a title to the queue or when you try to install a title
+
+v0.1.3:
+ - fixed bug that crashed 3hs on launch
+
+v0.1.2:
+ - fixed spelling mistakes in help menu and settings menu
+ - fixed crash that would occur if initial index fetch failed, now it shows an error message
+ - fixed issue where the action description would not load when searching
+ - made the screen redraw less often while installing, hopefully increasing install speeds
+ - 3hs now imports seeds for titles after installation if a seed is available
+

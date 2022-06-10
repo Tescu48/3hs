@@ -1,0 +1,25 @@
+romfs/gfx/
+build/
+dumps/
+
+hlink-client/hlink
+*.smdh
+*.3dsx
+*.der
+*.elf
+*.cia
+*.o
+
+source/hsapi_auth.c
+
+tags
+
+release/
+devids.json
+
+TODO
+scripts/
+
+# VSCode
+.vscode/
+*.lst

@@ -1,0 +1,43 @@
+        = = 3hs = =
+
+Blobfrii 3ds client for erista's hShop.
+3hs is licensed under GPLv3 (see: LICENSE).
+
+  = = Special thanks to = =
+
+The developers of nlohmann::json (license MIT, see: LICENSE.nlohann-json.TXT), of which their library is bundled,
+Ghost, who made me rethink some obfuscation,
+everyone in the hShop discord channel, for giving me motivation by insisting a 3ds client is too hard to make,
+Coin, for his inspiring lua hShop client,
+and Cremè, for making some nice art.
+
+      = = Building = =
+
+Requirements:
+ - devkitarm
+ - libctru
+ - citro2d
+ - citro3d
+
+Run `make` for a debug build and `make RELEASE=1 cia` for a release cia build.
+
+Other variables used in the building process:
+ - VERSION=version-int
+ - DEVICE_ID=device-id-int
+ - HS_DEBUG_SERVER="debug-server"
+ - HS_UPDATE_BASE="update-url"
+ - HS_BASE_LOC="api-url"
+ - HS_CDN_BASE="cdn-url"
+ - HS_SITE_LOC="hsite-url"
+
+To successfully build you need
+  HS_UPDATE_BASE && (HS_DEBUG_SERVER || (HS_BASE_LOC && HS_CDN_BASE && HS_SITE_LOC))
+
+You may also need a file called 'hscert.der', which is a DER certificate to be used for https connections
+ - If this feature is used you need the runtime dependency xxd too.
+
+Additionally you need a file called source/hsapi_auth.c with the following contents
+ #include <string.h>
+ const char *hsapi_user = "<api-user>";
+ const int hsapi_password_length = <password-length-int>;
+ void hsapi_password(char *ret) { memcpy(ret, "<api-password>", hsapi_password_length); }

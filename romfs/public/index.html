@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>hLink</title>
+	</head>
+	<body>
+		<!-- add_queue -->
+		<div>
+			Add a hShop id to the queue
+			<form action="/add-queue.tpl">
+				<input type="text" name="id" placeholder="Enter a hShop ID"/>
+				<input type="submit"/>
+			</form>
+		</div>
+		<!-- launch -->
+		<div>
+			Launch a title <a href="/launch-adv.tpl">(click for advanced selection)</a>
+			<form action="/launch.tpl">
+				<input type="text" name="tid" placeholder="Enter a title id"/>
+				<input type="submit"/>
+			</form>
+		</div>
+		<!-- sleep -->
+		<div>
+			Sleep the 3ds system
+			<form action="/sleep.tpl">
+				<input type="submit"/>
+			</form>
+		</div>
+		<!-- Documentation links -->
+		<div style="position: fixed; bottom: 10px;">
+			<a href="doc/hlink.html">The hLink protocol documentation</a>
+			|
+			<a href="doc/3hs-template-language.html">The 3hs template language documentation</a>
+		</div>
+	</body>
+</html>
