@@ -5,7 +5,7 @@ Română
 Se încarcă...
 
 - luma_not_installed
-O versiune de sistem nesuportată a fost detetcată.
+O versiune de sistem nesuportată a fost detectată.
 
 - install_luma
 3hs nu poate fi folosit pe acest sistem.
@@ -29,7 +29,7 @@ Apăsați UI_GLYPH_B pentru a vă întoarce.
 Versiune
 
 - prodcode
-Cod de Produs
+Cod Produs
 
 - size
 Mărime
@@ -303,7 +303,7 @@ Registre
 Încărcați registre
 
 - clear_logs
-ştergeți registre
+Ştergeți registre
 
 - found_missing
 S-au găsit %1 titluri care lipsesc
