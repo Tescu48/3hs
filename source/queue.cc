@@ -70,17 +70,19 @@ void queue_process(size_t index)
 
 void queue_process_all()
 {
+	bool hasLock = R_SUCCEEDED(ctr::lockNDM());
+
 	struct errvec {
 		Result res;
 		hsapi::FullTitle *meta;
 	};
 	std::vector<errvec> errs;
-	bool needsPatching = false;
-	enum InstallerWarning {
-	  WARN_NONE  = 0,
+	enum PostProcFlag {
+		NONE       = 0,
 		WARN_THEME = 1,
 		WARN_FILE  = 2,
-	}; int warnings = WARN_NONE;
+		SET_PATCH  = 4,
+	}; int procflag = NONE;
 	for(hsapi::FullTitle& meta : g_queue)
 	{
 		ilog("Processing title with id=%llu", meta.id);
@@ -94,17 +96,18 @@ void queue_process_all()
 		}
 		else
 		{
-			needsPatching |= luma::set_locale(meta.tid);
+			if(luma::set_locale(meta.tid))
+				procflag |= SET_PATCH;
 			if(meta.cat == THEMES_CATEGORY)
-				warnings |= WARN_THEME;
-			else if(meta.flags & (hsapi::TitleFlag::installer))
-				warnings |= WARN_FILE;
+				procflag |= WARN_THEME;
+			else if(meta.flags & hsapi::TitleFlag::installer)
+				procflag |= WARN_FILE;
 		}
 	}
 
-	if(needsPatching) luma::maybe_set_gamepatching();
-	if(warnings & WARN_THEME) ui::notice(STRING(theme_installed));
-	if(warnings & WARN_FILE) ui::notice(STRING(file_installed));
+	if(procflag & SET_PATCH) luma::maybe_set_gamepatching();
+	if(procflag & WARN_THEME) ui::notice(STRING(theme_installed));
+	if(procflag & WARN_FILE) ui::notice(STRING(file_installed));
 
 	if(errs.size() != 0)
 	{
@@ -116,6 +119,7 @@ void queue_process_all()
 		}
 	}
 
+	if(hasLock) ctr::unlockNDM();
 	/* TODO: Only clear successful installs */
 	queue_clear();
 }

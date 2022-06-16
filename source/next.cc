@@ -217,13 +217,19 @@ hsapi::hid next::sel_gam(std::vector<hsapi::Title>& titles, size_t *cursor)
 		.connect(ui::ButtonCallback::kdown, [list, &dir, &sortm, &titles, meta](u32) -> bool {
 			ui::RenderQueue::global()->render_and_then([list, &dir, &sortm, &titles, meta]() -> void {
 				sortm = settings_sort_switch();
+#if 0
 				hsapi::hid curId = titles[list->get_pos()].id;
+#endif
 				std::sort(titles.begin(), titles.end(), get_sort_callback(dir, sortm));
 				list->update();
+#if 0
 				auto it = std::find(titles.begin(), titles.end(), curId);
 				panic_assert(it != titles.end(), "failed to find previously selected title");
 				list->set_pos(it - titles.begin());
 				meta->set_title(*it);
+#endif
+				list->set_pos(0);
+				meta->set_title(titles[0]);
 			});
 			return true;
 		}).add_to(queue);
@@ -232,13 +238,19 @@ hsapi::hid next::sel_gam(std::vector<hsapi::Title>& titles, size_t *cursor)
 		.connect(ui::ButtonCallback::kdown, [list, &dir, &sortm, &titles, meta](u32) -> bool {
 			ui::RenderQueue::global()->render_and_then([list, &dir, &sortm, &titles, meta]() -> void {
 				dir = dir == SortDirection::asc ? SortDirection::desc : SortDirection::asc;
+#if 0
 				hsapi::hid curId = titles[list->get_pos()].id;
+#endif
 				std::sort(titles.begin(), titles.end(), get_sort_callback(dir, sortm));
 				list->update();
+#if 0
 				auto it = std::find(titles.begin(), titles.end(), curId);
 				panic_assert(it != titles.end(), "failed to find previously selected title");
 				list->set_pos(it - titles.begin());
 				meta->set_title(*it);
+#endif
+				list->set_pos(0);
+				meta->set_title(titles[0]);
 			});
 			return true;
 		}).add_to(queue);

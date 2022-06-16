@@ -27,6 +27,7 @@
 #include "util.hh"
 #include "seed.hh"
 #include "ctr.hh"
+#include "log.hh"
 
 static void make_queue(ui::RenderQueue& queue, ui::ProgressBar **bar)
 {
@@ -136,20 +137,31 @@ start_install:
 			goto start_install;
 	}
 
-	if(R_SUCCEEDED(res)) res = add_seed(meta.tid);
-	if(R_FAILED(res))
+	if(R_SUCCEEDED(res))
+	{
+		res = add_seed(meta.tid);
+		finalize_install(meta.tid, interactive);
+		if(interactive)
+		{
+			if(meta.cat == THEMES_CATEGORY)
+				ui::notice(STRING(theme_installed));
+			else if(meta.flags & hsapi::TitleFlag::installer)
+				ui::notice(STRING(file_installed));
+		}
+
+		ui::LED::Pattern pattern;                                   /* GREEN */
+		ui::LED::Solid(&pattern, UI_LED_MAKE_ANIMATION(0, 0xFF, 0), 0x00, 0xFF, 0x00);
+		ui::LED::SetSleepPattern(&pattern);
+	}
+	else
 	{
 		error_container err = get_error(res);
 		report_error(err, "User was installing (" + ctr::tid_to_str(meta.tid) + ") (" + std::to_string(meta.id) + ")");
 		if(interactive) handle_error(err);
-	}
-	else finalize_install(meta.tid, interactive);
-	if(interactive && (meta.flags & hsapi::TitleFlag::installer))
-	{
-		if(meta.cat == THEMES_CATEGORY)
-			ui::notice(STRING(theme_installed));
-		else
-			ui::notice(STRING(file_installed));
+
+		ui::LED::Pattern pattern;                                   /* RED */
+		ui::LED::Solid(&pattern, UI_LED_MAKE_ANIMATION(0, 0xFF, 0), 0xFF, 0x00, 0x00);
+		ui::LED::SetSleepPattern(&pattern);
 	}
 
 	set_focus(focus);

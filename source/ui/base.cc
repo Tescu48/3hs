@@ -20,6 +20,7 @@
 #include "settings.hh"
 #include "i18n.hh"
 #include "log.hh"
+#include "ctr.hh"
 
 /* internal constants */
 #define SPRITESHEET_PATH "romfs:/gfx/next.t3x"
@@ -36,8 +37,26 @@ static bool g_inRender = false;
 
 static ui::SlotManager slotmgr { nullptr };
 
+enum LEDFlags_V {
+	LED_NONE          = 0,
+	LED_RESET_SLEEP   = 1,
+};
+static u8 LEDFlags = LED_NONE;
 
 /* helpers */
+
+static inline Result shell_is_open(bool *is_open)
+{
+	Result res;
+	u8 state;
+	if(R_FAILED(res = PTMU_GetShellState(&state)))
+	{
+		elog("PTMU_GetShellState() failed: %08lX", res);
+		state = 0; /* just assume it's closed... */
+	}
+	*is_open = state == 1;
+	return res;
+}
 
 static inline float center_pos(float max, float width)
 {
@@ -212,12 +231,29 @@ bool ui::RenderQueue::render_frame(const ui::Keys& keys)
 		::exit(0); /* finish */
 	if(g_inRender)
 	{
+		elog("illegal double render");
 		C3D_FrameEnd(0); /* we first need to finish because panic() will render */
 		g_inRender = false;
 		panic("illegal double render");
 	}
 
-	C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
+	bool isOpen;
+	if(R_SUCCEEDED(shell_is_open(&isOpen)) && isOpen)
+	{
+		if(LEDFlags & LED_RESET_SLEEP)
+		{
+			ui::LED::ResetPattern();
+			LEDFlags = LED_NONE;
+		}
+	}
+	/* not rendering if the shell is closed */
+	else return true;
+
+	if(!C3D_FrameBegin(C3D_FRAME_SYNCDRAW))
+	{
+		elog("failed to start frame");
+		return true; /* failed to start frame, let's just ignore this frame */
+	}
 	g_inRender = true;
 
 	C2D_TargetClear(g_top, slotmgr.get(0));
@@ -533,7 +569,6 @@ bool ui::Text::render(const ui::Keys& keys)
 		}
 		else if(this->doScroll)
 		{
-
 			C2D_DrawText(&this->lines[i], C2D_WithColor, this->sctx.rx,
 				this->y + (this->lineHeight * i), this->z, this->xsiz, this->ysiz, this->slots.get(1));
 		}
@@ -827,9 +862,16 @@ bool ui::Button::render(const ui::Keys& keys)
 	if(this->showBg) C2D_DrawRectSolid(this->x, this->y, 0.1f, this->w, this->h, this->slots.get(1));
 	this->widget->render(keys);
 
-	if(keys.touch.px >= this->x && keys.touch.px <= this->ox &&
-			keys.touch.py >= this->y && keys.touch.py <= this->oy)
-		return this->on_click();
+	if(this->state == ST_PREVHELD)
+	{
+		this->state = ((keys.kDown | keys.kHeld) & KEY_TOUCH)
+			? ST_PREVHELD : ST_NONE;
+	}
+
+	if(this->state != ST_PREVHELD)
+		if(keys.touch.px >= this->x && keys.touch.px <= this->ox &&
+				keys.touch.py >= this->y && keys.touch.py <= this->oy)
+			return this->on_click();
 
 	return true;
 }
@@ -945,5 +987,50 @@ bool ui::Toggle::render(const ui::Keys& keys)
 	C2D_DrawRectSolid(SLIDER_X(this), SLIDER_Y(this), this->z, SLIDER_WIDTH(this), SLIDER_HEIGHT(this), this->slots.get(2));
 
 	return true;
+}
+
+void ui::LED::Solid(ui::LED::Pattern *info, u32 animation, u8 r, u8 g, u8 b)
+{
+	info->animation = animation;
+	memset(info->red_pattern,   r, 32);
+	memset(info->green_pattern, g, 32);
+	memset(info->blue_pattern,  b, 32);
+}
+
+Result ui::LED::SetPattern(ui::LED::Pattern *info)
+{
+	if(!get_settings()->allowLEDChange)
+		return 0; /* no-op is success */
+
+	Result res;
+	u32 *cmdbuf = getThreadCommandBuffer();
+
+	cmdbuf[0] = 0x08010640; // https://www.3dbrew.org/wiki/PTMSYSM:SetInfoLEDPattern
+	cmdbuf[1] = info->animation;
+	memcpy(&cmdbuf[2],  info->red_pattern,   32);
+	memcpy(&cmdbuf[10], info->green_pattern, 32);
+	memcpy(&cmdbuf[18], info->blue_pattern , 32);
+
+	if(R_FAILED(res = svcSendSyncRequest(*ptmSysmGetSessionHandle())))
+		return res;
+	return (Result) cmdbuf[1];
+}
+
+Result ui::LED::SetSleepPattern(ui::LED::Pattern *info)
+{
+	bool isOpen;
+	if(R_FAILED(shell_is_open(&isOpen)) || isOpen)
+		return 0; /* no-op is success */
+	Result res;
+	if(R_SUCCEEDED(res = ui::LED::SetPattern(info)))
+		LEDFlags |= LED_RESET_SLEEP;
+	return res;
+}
+
+Result ui::LED::ResetPattern()
+{
+	ui::LED::Pattern info;
+	memset(&info, 0, sizeof(info));
+	return ui::LED::SetPattern(&info);
 }
 

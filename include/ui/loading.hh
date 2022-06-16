@@ -48,9 +48,7 @@ namespace ui
 		};
 	}
 
-	/* draw `queue` while running `callback`. callback is ran on the same thread as the caller of the function. */
-	void loading(ui::RenderQueue& queue, std::function<void()> callback);
-	/* run a loading animation (class Spinner) while running `callback` */
+	/* run a loading animation (class Spinner) while running `callback`. callback is ran on the same thread as the caller of the function.*/
 	void loading(std::function<void()> callback);
  	/**
 	 * use `$t' as a placeholder for the seconds left until the end of the timeout

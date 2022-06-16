@@ -73,10 +73,15 @@ bool hsapi::global_init()
 
 static Result basereq(const std::string& url, std::string& data, HTTPC_RequestMethod reqmeth = HTTPC_METHOD_GET, const char *postdata = nullptr, u32 postdata_len = 0)
 {
+	u32 dled = 0, status = 0, totalSize = 0;
+	std::string redir;
+	char buffer[4096];
 	httpcContext ctx;
 	Result res = OK;
+	char *password;
+	ui::Keys k;
 
-#define TRY(expr) do { res = (expr); if(R_FAILED(res)) { httpcCancelConnection(&ctx); httpcCloseContext(&ctx); return res; } } while(0)
+#define TRY(expr) if(R_FAILED(res = ( expr ) )) goto out
 	if(R_FAILED(res = httpcOpenContext(&ctx, reqmeth, url.c_str(), 0)))
 		return res;
 	TRY(httpcSetSSLOpt(&ctx, SSLCOPT_DisableVerify));
@@ -84,7 +89,7 @@ static Result basereq(const std::string& url, std::string& data, HTTPC_RequestMe
 	TRY(httpcAddRequestHeaderField(&ctx, "Connection", "Keep-Alive"));
 	TRY(httpcAddRequestHeaderField(&ctx, "User-Agent", USER_AGENT));
 	TRY(httpcAddRequestHeaderField(&ctx, "X-Auth-User", hsapi_user));
-/*TRY(httpcAddRequestHeaderField(&ctx, "X-Auth-Password", password));*/char*password=(char*)malloc(hsapi_password_length+1);hsapi_password(password);password[hsapi_password_length]=0;TRY(httpcAddRequestHeaderField(&ctx,"X-Auth-Password",password));memset(password,0,hsapi_password_length);free(password);
+/*TRY(httpcAddRequestHeaderField(&ctx, "X-Auth-Password", password));*/password=(char*)malloc(hsapi_password_length+1);hsapi_password(password);password[hsapi_password_length]=0;TRY(httpcAddRequestHeaderField(&ctx,"X-Auth-Password",password));memset(password,0,hsapi_password_length);free(password);
 	if(hscert_der_len && url.find("https") == 0) // only use certs on https
 		TRY(httpcAddTrustedRootCA(&ctx, hscert_der, hscert_der_len));
 	if(postdata && postdata_len != 0)
@@ -94,16 +99,14 @@ static Result basereq(const std::string& url, std::string& data, HTTPC_RequestMe
 
 	TRY(httpcBeginRequest(&ctx));
 
-	u32 status = 0;
 	TRY(httpcGetResponseStatusCode(&ctx, &status));
 	vlog("API status code on %s: %lu", url.c_str(), status);
 
 	// Do we want to redirect?
 	if(status / 100 == 3)
 	{
-		char newurl[2048];
-		TRY(httpcGetResponseHeader(&ctx, "location", newurl, 2048));
-		std::string redir(newurl);
+		TRY(httpcGetResponseHeader(&ctx, "location", buffer, sizeof(buffer)));
+		redir = buffer;
 
 		vlog("Redirected to %s", redir.c_str());
 		httpcCancelConnection(&ctx);
@@ -118,49 +121,39 @@ static Result basereq(const std::string& url, std::string& data, HTTPC_RequestMe
 		// We _may_ require a different 3hs version
 		if(status == 400)
 		{
-			char minver[2048] = {0};
 			/* we can assume it doesn't have the header if this fails */
-			if(R_SUCCEEDED(httpcGetResponseHeader(&ctx, "x-minimum", minver, 2048)))
+			if(R_SUCCEEDED(httpcGetResponseHeader(&ctx, "x-minimum", buffer, sizeof(buffer))))
 			{
 				httpcCancelConnection(&ctx);
 				httpcCloseContext(&ctx);
-				panic(PSTRING(min_constraint, VVERSION, minver));
+				panic(PSTRING(min_constraint, VVERSION, buffer));
 			}
 		}
 #endif
-
-		httpcCancelConnection(&ctx);
-		httpcCloseContext(&ctx);
-		return status == 413 ? APPERR_TOO_LARGE : APPERR_NON200;
+		res = status == 413 ? APPERR_TOO_LARGE : APPERR_NON200;
+		goto out;
 	}
 
-	u32 totalSize = 0;
 	TRY(httpcGetDownloadSizeState(&ctx, nullptr, &totalSize));
 	if(totalSize != 0) data.reserve(totalSize);
 
-	char buffer[4096];
-	u32 dled = 0;
-
 	do {
 		res = httpcDownloadData(&ctx, (unsigned char *) buffer, sizeof(buffer), &dled);
-		ui::Keys k = ui::RenderQueue::get_keys();
+		k = ui::RenderQueue::get_keys();
 		if(R_SUCCEEDED(res) && ((k.kDown | k.kHeld) & (KEY_B | KEY_START)))
 			res = APPERR_CANCELLED;
 		// Other type of fail
 		if(R_FAILED(res) && res != (Result) HTTPC_RESULTCODE_DOWNLOADPENDING)
-		{
-			/* httpcCloseContext() seems to hang if you don't cancel before
-			 * calling it */
-			httpcCancelConnection(&ctx);
-			httpcCloseContext(&ctx);
-			return res;
-		}
+			goto out;
 		data += std::string(buffer, dled);
 	} while(res == (Result) HTTPC_RESULTCODE_DOWNLOADPENDING);
 
 	vlog("API data gotten:\n%s", data.c_str());
+
+out:
+	httpcCancelConnection(&ctx);
 	httpcCloseContext(&ctx);
-	return OK;
+	return res;
 #undef TRY
 }
 

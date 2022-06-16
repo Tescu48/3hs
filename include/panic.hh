@@ -31,18 +31,16 @@
 	#define PANIC_FILENAME (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__)
 #endif
 #define panic_if_err_3ds(result) do { Result res = (result); if(R_FAILED(res)) panic(res); } while(0)
-
-#ifndef NDEBUG
-# define panic_assert(cond, msg) if(!(cond)) panic("Assertion failed\n" #cond "\n" msg)
-#else
-# define panic_assert(...) (void)
-#endif
+#define panic_assert(cond, msg) if(!(cond)) panic("Assertion failed\n" #cond "\n" msg)
+#define panic_if(cond, msg) if((cond)) panic("Reverse assertion failed\n" #cond "\n" msg)
 
 void handle_error(const error_container& err, const std::string *label = nullptr);
 
 [[noreturn]] void panic_impl(const std::string& caller, const std::string& msg);
 [[noreturn]] void panic_impl(const std::string& caller, Result res);
 [[noreturn]] void panic_impl(const std::string& caller);
+
+void gfx_was_init();
 
 Result init_services(bool& isLuma);
 void exit_services();

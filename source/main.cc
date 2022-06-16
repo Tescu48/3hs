@@ -41,6 +41,7 @@
 #include "seed.hh"
 #include "util.hh"
 #include "log.hh"
+#include "ctr.hh"
 
 
 #ifndef RELEASE
@@ -102,14 +103,6 @@ private:
 };
 #endif
 
-static void deinit_all()
-{
-	hsapi::global_deinit();
-	ui::exit();
-	exit_services();
-	log_exit();
-}
-
 int main(int argc, char* argv[])
 {
 	((void) argc);
@@ -118,6 +111,7 @@ int main(int argc, char* argv[])
 
 	ensure_settings(); /* log_init() uses settings ... */
 	log_init();
+	atexit(log_exit);
 #ifdef RELEASE
 	#define EV
 #else
@@ -128,19 +122,17 @@ int main(int argc, char* argv[])
 	log_settings();
 
 	bool isLuma = false;
-	if(R_FAILED(res = init_services(isLuma)))
-	{
-		flog("init_services() failed, this should **never** happen (0x%08lX)", res);
-		log_exit();
-		exit(0);
-	}
-	if(!ui::init())
-	{
-		flog("ui::init() failed, this should **never** happen");
-		exit_services();
-		log_exit();
-		exit(0);
-	}
+	res = init_services(isLuma);
+	panic_assert(R_SUCCEEDED(res),
+		"init_services() failed, this should **never** happen (0x" + pad8code(res) + ")");
+	atexit(exit_services);
+	panic_assert(ui::init(), "ui::init() failed, this should **never** happen");
+	atexit(ui::exit);
+	gfx_was_init();
+
+	if(R_SUCCEEDED(res = ctr::lockNDM()))
+		atexit(ctr::unlockNDM);
+	else elog("failed to lock NDM: %08lX", res);
 
 	hidScanInput();
 	if((hidKeysDown() | hidKeysHeld()) & KEY_R)
@@ -165,9 +157,6 @@ int main(int argc, char* argv[])
 			.add_to(queue);
 
 		queue.render_finite_button(KEY_START | KEY_B);
-		ui::exit();
-		exit_services();
-		log_exit();
 		exit(0);
 	}
 #endif
@@ -178,7 +167,7 @@ int main(int argc, char* argv[])
 	osSetSpeedupEnable(true); // speedup for n3dses
 
 	/* new ui setup */
-	ui::builder<ui::Text>(ui::Screen::top, "") /* text is not immediately set */
+	ui::builder<ui::Text>(ui::Screen::top) /* text is not immediately set */
 		.x(ui::layout::center_x)
 		.y(4.0f)
 		.tag(ui::tag::action)
@@ -279,7 +268,6 @@ int main(int argc, char* argv[])
 	ui::builder<ui::NetIndicator>(ui::Screen::top)
 		.add_to(ui::RenderQueue::global());
 
-
 	// DRM Check
 #ifdef DEVICE_ID
 	u32 devid = 0;
@@ -296,13 +284,9 @@ int main(int argc, char* argv[])
 	if(!hsapi::global_init())
 	{
 		flog("hsapi::global_init() failed");
-		ui::exit();
-		exit_services();
-		log_exit();
 		panic(STRING(fail_init_networking));
 	}
-
-	atexit(deinit_all);
+	atexit(hsapi::global_deinit);
 
 #ifdef RELEASE
 	// If we updated ...

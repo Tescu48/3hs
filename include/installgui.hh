@@ -29,6 +29,12 @@
 
 #define THEMES_CATEGORY "themes"
 
+/* Notes about interactive = false
+ *  - Caller displays error
+ *  - Caller sets locale
+ *  - Caller warns for theme/file installer
+ *  - Caller does an un/lock
+ */
 
 namespace install
 {

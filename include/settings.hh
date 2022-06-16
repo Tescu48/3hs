@@ -74,6 +74,7 @@ typedef struct Settings
 	u8 maxExtraLogs = 3;
 	SortMethod defaultSortMethod = SortMethod::alpha;
 	SortDirection defaultSortDirection = SortDirection::asc;
+	bool allowLEDChange = true;
 } Settings;
 
 

@@ -56,6 +56,8 @@ typedef struct cia_net_data
 	ITC itc = ITC::normal;
 	// Buffer. allocated on heap for extra storage
 	u8 *buffer = nullptr;
+	// amount of data in the buffer
+	u32 bufferSize = 0;
 	// Tells second thread to wake up
 	Handle eventHandle;
 	// Type of action
@@ -65,9 +67,9 @@ typedef struct cia_net_data
 
 static Result i_install_net_cia(std::string url, cia_net_data *data, size_t from, httpcContext *pctx)
 {
-	u32 status = 0, dled = from, remaining, dlnext, written;
+	u32 status = 0, dled = 0, remaining, dlnext, written, rdl;
 	Result res = 0;
-#define CHECKRET(expr) do { if(R_FAILED(res = ( expr ) )) goto err; } while(0)
+#define CHECKRET(expr) if(R_FAILED(res = ( expr ) )) goto err
 
 	/* configure */
 	if(R_FAILED(res = httpcOpenContext(pctx, HTTPC_METHOD_GET, url.c_str(), 0)))
@@ -141,31 +143,47 @@ static Result i_install_net_cia(std::string url, cia_net_data *data, size_t from
 	svcSignalEvent(data->eventHandle);
 
 	// Install.
-	remaining = data->totalSize - from;
-	dlnext = BUFSIZE > remaining ? remaining : BUFSIZE;
+	panic_assert(data->totalSize > from, "invalid download start position");
+	remaining = data->totalSize - from - data->bufferSize;
+	dlnext = remaining < BUFSIZE ? remaining : BUFSIZE;
+	if(dlnext == 0) goto immediate_install;
 	written = 0;
 
 	while(data->index != data->totalSize)
 	{
-		res = httpcReceiveDataTimeout(pctx, data->buffer, dlnext, 30000000000L);
+		dlog("receiving data, dlnext=%lu, progress is (session:%lu)%lu/%lu", dlnext, dled, data->index, data->totalSize);
+		panic_if(dlnext > BUFSIZE, "dlnext is invalid");
+		rdl = dled;
+		res = httpcReceiveDataTimeout(pctx, &data->buffer[data->bufferSize], dlnext, 30000000000L);
+immediate_install:
 		vlog("httpcReceiveDataTimeout(): 0x%08lX", res);
 		if((R_FAILED(res) && res != (Result) HTTPC_RESULTCODE_DOWNLOADPENDING) || R_FAILED(res = httpcGetDownloadSizeState(pctx, &dled, nullptr)))
 		{
-			dlog("aborted http connection due to error: %08lX.", res);
+			elog("aborted http connection due to error: %08lX.", res);
 			goto err;
 		}
+		rdl = dled - rdl;
+		if(rdl != dlnext)
+		{
+			data->bufferSize = rdl;
+			dlnext -= data->bufferSize;
+			ilog("only a chunk was downloaded, retrying");
+			continue;
+		}
+		data->bufferSize = 0;
 
 #define CHK_EXIT \
 		if(data->itc == ITC::exit) \
 		{ \
 			dlog("aborted http connection due to ITC::exit"); \
+			res = APPERR_CANCELLED; \
 			goto err; \
 		}
 		CHK_EXIT
 		dlog("Writing to cia handle, size=%lu,index=%lu,totalSize=%lu", dlnext, data->index, data->totalSize);
-		/* we don't need to add the FS_WRITE_FLUSH flag because AM just ignores write flags... */
 		if(data->type == ActionType::install)
 		{
+			/* we don't need to add the FS_WRITE_FLUSH flag because AM just ignores write flags... */
 			if(R_FAILED(res = FSFILE_Write(data->cia, &written, data->index, data->buffer, dlnext, 0)))
 				goto err;
 		}
@@ -176,18 +194,19 @@ static Result i_install_net_cia(std::string url, cia_net_data *data, size_t from
 		CHK_EXIT
 #undef CHK_EXIT
 
-		dlnext = BUFSIZE > remaining ? remaining : BUFSIZE;
+		dlnext = remaining < BUFSIZE ? remaining : BUFSIZE;
 		svcSignalEvent(data->eventHandle);
 	}
 
 out:
+	httpcCancelConnection(pctx);
 	httpcCloseContext(pctx);
-	data->itc = ITC::exit;
+	if(data->index == data->totalSize)
+		data->itc = ITC::exit;
 	svcSignalEvent(data->eventHandle);
 	return res;
 #undef CHECKRET
 err:
-	httpcCloseContext(pctx);
 	goto out;
 }
 
@@ -207,11 +226,11 @@ static void i_install_loop_thread_cb(Result& res, get_url_func get_url, cia_net_
 	}
 
 	// install loop
-	while(true)
+	while(data.itc != ITC::exit)
 	{
 		url = get_url(res);
 		if(R_SUCCEEDED(res))
-			res = i_install_net_cia(url, &data, data.index, &hctx);
+			res = i_install_net_cia(url, &data, data.index + data.bufferSize, &hctx);
 
 		if(R_FAILED(res)) { elog("Failed in install loop. ErrCode=0x%08lX", res); }
 		if(R_MODULE(res) == RM_HTTP)
@@ -271,6 +290,7 @@ static Result i_install_resume_loop(get_url_func get_url, prog_func prog, cia_ne
 		{
 			if(data->itc == ITC::exit)
 				break;
+			/* we want to actually cancel the handle so lets not exit() here already */
 			if(!aptMainLoop()) break;
 			if(data->itc != ITC::timeoutscr)
 				prog(data->index, data->totalSize);
@@ -281,7 +301,6 @@ static Result i_install_resume_loop(get_url_func get_url, prog_func prog, cia_ne
 			hidScanInput();
 			if(!aptMainLoop() || (hidKeysDown() & (KEY_B | KEY_START)))
 			{
-				httpcCancelConnection(&hctx); /* aborts if in http  */
 				res = APPERR_CANCELLED;
 				break;
 			}
@@ -290,8 +309,8 @@ static Result i_install_resume_loop(get_url_func get_url, prog_func prog, cia_ne
 
 	data->itc = ITC::exit;
 	th.join();
-	svcCloseHandle(data->eventHandle);
 
+	svcCloseHandle(data->eventHandle);
 	delete [] data->buffer;
 	return res;
 }
@@ -407,6 +426,7 @@ Result install::hs_cia(const hsapi::FullTitle& meta, prog_func prog, bool reinst
 	/* we instead want to use the theme installer installation method */
 	if(meta.flags & hsapi::TitleFlag::installer)
 	{
+		ilog("installing installer content");
 		content_type content;
 		data.content = &content;
 		data.type = ActionType::download;
@@ -416,6 +436,7 @@ Result install::hs_cia(const hsapi::FullTitle& meta, prog_func prog, bool reinst
 		/* trust me this'll be fine */
 		return install_forwarder((u8 *) content.c_str(), content.size());
 	}
+	ilog("installing normal content");
 	data.type = ActionType::install;
 	return i_install_hs_cia(meta, prog, reinstallable, &data, meta.flags & hsapi::TitleFlag::is_ktr);
 }

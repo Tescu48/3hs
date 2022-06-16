@@ -241,3 +241,22 @@ u16 ctr::get_tid_cat(u64 tid)
 	return (tid >> 32) & 0xFFFF;
 }
 
+Result ctr::lockNDM()
+{
+	/* basically ensures that we can use the network during sleep
+	 * thanks Kartik for the help */
+	aptSetSleepAllowed(false);
+	Result res;
+	if(R_FAILED(res = NDMU_EnterExclusiveState(NDM_EXCLUSIVE_STATE_INFRASTRUCTURE)))
+		return res;
+	return NDMU_LockState();
+}
+
+void ctr::unlockNDM()
+{
+	NDMU_UnlockState();
+	NDMU_LeaveExclusiveState();
+	aptSetSleepAllowed(true);
+}
+
+

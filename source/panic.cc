@@ -26,6 +26,9 @@
 #include "util.hh"
 #include "log.hh"
 
+static bool gfx_is_init = false;
+void gfx_was_init() { gfx_is_init = true; }
+
 Result init_services(bool& isLuma)
 {
 	Result res;
@@ -37,8 +40,11 @@ Result init_services(bool& isLuma)
 	// Doesn't work in citra
 	if(isLuma) if(R_FAILED(res = mcuHwcInit())) return res;
 	/* 1MiB */ if(R_FAILED(res = httpcInit(1024 * 1024))) return res;
+	if(R_FAILED(res = ptmSysmInit())) return res;
 	if(R_FAILED(res = romfsInit())) return res;
+	if(R_FAILED(res = ptmuInit())) return res;
 	if(R_FAILED(res = cfguInit())) return res;
+	if(R_FAILED(res = ndmuInit())) return res;
 	if(R_FAILED(res = aptInit())) return res;
 	if(R_FAILED(res = nsInit())) return res;
 	if(R_FAILED(res = fsInit())) return res;
@@ -46,27 +52,18 @@ Result init_services(bool& isLuma)
 	if(R_FAILED(res = psInit())) return res;
 	if(R_FAILED(res = acInit())) return res;
 
-	/* basically ensures that we can use the network during sleep
-	 * thanks Kartik for the help */
-	aptSetSleepAllowed(false);
-	if(R_FAILED(res = ndmuInit())) return res;
-	if(R_FAILED(res = NDMU_EnterExclusiveState(NDM_EXCLUSIVE_STATE_INFRASTRUCTURE))) return res;
-	if(R_FAILED(res = NDMU_LockState())) return res;
-
 	return res;
 }
 
 void exit_services()
 {
-	NDMU_UnlockState();
-	NDMU_LeaveExclusiveState();
-	ndmuExit();
-	aptSetSleepAllowed(true);
-
 	mcuHwcExit();
 	httpcExit();
+	ptmSysmExit();
 	romfsExit();
+	ptmuExit();
 	cfguExit();
+	ndmuExit();
 	aptExit();
 	fsExit();
 	nsExit();
@@ -170,8 +167,37 @@ void handle_error(const error_container& err, const std::string *label)
 	exit(0);
 }
 
+[[noreturn]] static void panic_preinit_impl(const std::string& caller, const std::string& msg)
+{
+	elog("PANIC (PREINIT) -- THERE IS AN ERROR IN THE APPLCIATION");
+	elog("Caller is %s", caller.c_str());
+
+	gfxInitDefault();
+	consoleInit(GFX_TOP, NULL);
+
+	printf("\x1b[31mFATAL PANIC -- INITIALIZATION FAILED\x1b[0m\n");
+	printf("Failed to initialize 3hs: %s\n", msg.c_str());
+	printf("  from %s.\n", caller.c_str());
+	printf("\x1b[31mFATAL PANIC -- INITIALIZATION FAILED\x1b[0m\n");
+	printf("Press [A] to exit\n");
+
+	while(aptMainLoop())
+	{
+		hidScanInput();
+		if(hidKeysDown() & KEY_A)
+			break;
+		gfxFlushBuffers();
+		gfxSwapBuffers();
+		gspWaitForVBlank();
+	}
+
+	exit(0);
+}
+
 [[noreturn]] void panic_impl(const std::string& caller, const std::string& msg)
 {
+	elog("PANIC MESSAGE -- %s", msg.c_str());
+	if(!gfx_is_init) panic_preinit_impl(caller, msg);
 	ui::RenderQueue queue;
 
 	ui::builder<ui::Text>(ui::Screen::top, msg)
@@ -180,23 +206,24 @@ void handle_error(const error_container& err, const std::string *label)
 		.wrap()
 		.add_to(queue);
 
-	elog("PANIC MESSAGE -- %s", msg.c_str());
 	panic_core(caller, queue);
 }
 
 [[noreturn]] void panic_impl(const std::string& caller, Result res)
 {
+	elog("PANIC RESULT -- 0x%08lX", res);
+	if(!gfx_is_init) panic_preinit_impl(caller, "Failed, result: " + pad8code(res));
 	ui::RenderQueue queue;
 
 	error_container err = get_error(res);
 	pusherror(err, queue, 70.0f);
 
-	elog("PANIC RESULT -- 0x%016lX", res);
 	panic_core(caller, queue);
 }
 
 [[noreturn]] void panic_impl(const std::string& caller)
 {
+	if(!gfx_is_init) panic_preinit_impl(caller, "fatal panic");
 	ui::RenderQueue queue;
 	panic_core(caller, queue);
 }

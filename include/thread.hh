@@ -44,6 +44,7 @@ namespace ctr
 			s32 prio = 0;
 			svcGetThreadPriority(&prio, CUR_THREAD_HANDLE);
 
+			this->isFinished = false;
 			this->threadobj = threadCreate(&thread::_entrypoint, params, 64 * 1024, prio - 1,
 				-2, false);
 			panic_assert(this->threadobj != nullptr, "failed to create thread");

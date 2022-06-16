@@ -134,6 +134,9 @@ namespace ctr {
 		std::string u16conv(u16 *str, size_t size);
 		TitleSMDH *get(u64 tid);
 	}
+
+	Result lockNDM();
+	void unlockNDM();
 }
 
 #endif

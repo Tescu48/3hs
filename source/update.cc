@@ -56,7 +56,11 @@ bool update_app()
 		return false;
 	}
 
-	install::gui::net_cia(hsapi::update_location(nver), tid, false, true);
+	if(R_FAILED(res = install::gui::net_cia(hsapi::update_location(nver), tid, false, true)))
+	{
+		elog("install::gui::net_cia(...): %08lX", res);
+		return false;
+	}
 	return true;
 }
 

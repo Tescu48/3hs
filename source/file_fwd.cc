@@ -4,6 +4,7 @@
 #include <nnc/ncch.h>
 #include <nnc/cia.h>
 
+#include <sys/stat.h>
 #include <string.h>
 #include <3ds.h>
 
@@ -45,7 +46,7 @@ Result install_forwarder(u8 *data, size_t len)
 	nnc_cia_content_reader reader;
 	nnc_cia_header header;
 	u8 *contents = NULL;
-	char *contents_s, *dest, *src, *end;
+	char *contents_s, *dest, *src, *end, *slash;
 	nnc_romfs_ctx romfs;
 	nnc_ncch_section_stream romfsSection;
 	nnc_cia_content_stream ncch0;
@@ -92,7 +93,19 @@ Result install_forwarder(u8 *data, size_t len)
 	if(end) *end = '\0';
 
 	/* now we just have to copy the files around */
-	rdest = strstr(dest, "sdmc:/") == dest ? dest : "sdmc:/" + std::string(dest);
+	slash = *dest == '/' ? dest + 1 : dest;
+	rdest = strstr(dest, "sdmc:/") == dest ? dest : "sdmc:/" + std::string(slash);
+	/*  /Themes/file.txt
+	 *   1. /Themes
+	 * */
+	while((slash = strchr(slash, '/')))
+	{
+		*slash = '\0';
+		mkdir(dest, 0777);
+		*slash = '/';
+		++slash;
+	}
+
 	if(nnc_get_info(&romfs, &info, src) != NNC_R_OK) goto fail2;
 	if(nnc_romfs_open_subview(&romfs, &sv, &info)) goto fail2;
 	free(contents);

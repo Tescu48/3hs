@@ -21,39 +21,34 @@
 
 #include <3ds.h>
 
-
-void ui::loading(ui::RenderQueue& queue, std::function<void()> callback)
+void ui::loading(std::function<void()> callback)
 {
 	std::string desc = ::set_desc(STRING(loading));
 	bool focus = ::set_focus(true);
 
+	/* static because ??? */
+	static bool spin_flag;
+	spin_flag = true;
+
 	aptSetHomeAllowed(false);
-	bool spinning = true;
-	ctr::thread<ui::RenderQueue&, bool&> th([](ui::RenderQueue& queue, bool& spinning) -> void {
-		ui::Keys keys = ui::RenderQueue::get_keys();
-		while(spinning && queue.render_frame(keys))
-			keys = ui::RenderQueue::get_keys();
-	}, queue, spinning);
+	ctr::thread<> th([]() -> void {
+		ui::RenderQueue queue;
+		ui::builder<ui::Spinner>(ui::Screen::top)
+			.x(ui::layout::center_x)
+			.y(ui::layout::center_y)
+			.add_to(queue);
+
+		while(spin_flag && queue.render_frame(ui::RenderQueue::get_keys()))
+			/* no-op */ ;
+	});
 
 	/* */ callback();
-	spinning = false;
+	spin_flag = false;
 	th.join();
 	aptSetHomeAllowed(true);
 
 	::set_focus(focus);
 	::set_desc(desc);
-}
-
-void ui::loading(std::function<void()> callback)
-{
-	RenderQueue queue;
-
-	ui::builder<ui::Spinner>(ui::Screen::top)
-		.x(ui::layout::center_x)
-		.y(ui::layout::center_y)
-		.add_to(queue);
-
-	ui::loading(queue, callback);
 }
 
 /* class Spinner */
@@ -110,9 +105,10 @@ void ui::detail::TimeoutScreenHelper::setup(const std::string& fmt, size_t nsecs
 	this->shouldStop = shouldStop;
 	this->nsecs = nsecs;
 
-	this->text.setup(ui::Screen::top, "");
-	this->text.ptr()->set_x(ui::layout::center_x);
-	this->text.ptr()->set_y(80.0f);
+	this->text.setup(ui::Screen::top);
+	this->text->set_x(ui::layout::center_x);
+	this->text->set_y(80.0f);
+	this->text->autowrap();
 
 	this->update_text(this->startTime);
 }
@@ -140,7 +136,7 @@ void ui::detail::TimeoutScreenHelper::update_text(time_t now)
 		}
 	}
 
-	this->text.ptr()->set_text(ntxt);
+	this->text->set_text(ntxt);
 }
 
 bool ui::detail::TimeoutScreenHelper::render(const ui::Keys& keys)
@@ -150,16 +146,16 @@ bool ui::detail::TimeoutScreenHelper::render(const ui::Keys& keys)
 		*this->shouldStop = true;
 		return false;
 	}
-
 	time_t now = time(NULL);
+
+	if(now - this->startTime >= this->nsecs)
+		return false;
+
 	if(this->lastCheck != now)
 	{
 		this->update_text(now);
 		this->lastCheck = now;
 	}
-
-	if(now - this->startTime >= this->nsecs)
-		return false;
 
 	return this->text->render(keys);
 }

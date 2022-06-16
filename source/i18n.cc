@@ -37,6 +37,8 @@
  *   - Strings marked with "selector" have a maximum length (of 200 pixels)
  *   - Strings marked with "scroll" scroll sideways, for example all setting titles use this
  *     - Strings that scroll obviously can't wrap
+ *  - If your language is officially supported by Nintendo, use their translations for their terms
+ *    - For example, "blocks", "HOME menu", "theme"
  *
  * Any questions and new translations can be posted in the hShop discord channel
  */
@@ -78,7 +80,7 @@ static const char *strtab[lang::_i_max][str::_i_max] =
 			[str::fail_init_networking] = "Failed to initialize networking", /* context: networking means network libraries, may be translated as "failed to start application" if there exists no good translation for networking */
 			[str::fail_fetch_index] = "Failed to fetch index\n%1", /* unused */
 			[str::credits_thanks] =
-				"Thank you for using 3hs, a 3ds client for hShop.\n"
+				"Thank you for using 3hs, a 3DS client for hShop.\n"
 				"You can get this software for free at\n"
 				PAGE_3HS, /* context: PAGE_3HS expands to the 3hs page on hShop */
 			[str::credits_names] = "", /* unused */
@@ -221,7 +223,7 @@ static const char *strtab[lang::_i_max][str::_i_max] =
 			[str::def_sort_dir_desc] = "Specifies the default sort direction to use when viewing a list of titles.", /* context: setting description */
 			[str::invalid_content_type] = "Invalid content type", /* context: legacy search content type (see p: documentation on site) */
 			[str::theme_installed] = "A theme was installed. Please see " PAGE_THEMES, /* context, shown after installation of anything in the themes category, PAGE_THEMES links to the theme installer wiki page */
-			[str::file_installed] = "A file was installed. These are not shown on the HOME Menu", /* context: shown after a file forwarder is installed that's not a theme, just here for future proofing */
+			[str::file_installed] = "A file was installed. These are not shown on the HOME menu", /* context: shown after a file forwarder is installed that's not a theme, just here for future proofing */
 		},
 
 	[lang::dutch] =
@@ -847,7 +849,7 @@ static const char *strtab[lang::_i_max][str::_i_max] =
 			[str::def_sort_dir] = "Direction de tri par défaut", /* scroll, context: setting title */
 			[str::def_sort_dir_desc] = "Spécifie la direction de la méthode de tri par défaut en regardant une liste de titres.", /* context: setting description */
 			[str::invalid_content_type] = "Type de contenu invalide", /* context: legacy search content type (see p: documentation on site) */
-			[str::theme_installed] = "un thème a été installé. Merci de regarder " PAGE_THEMES, /* context, shown after installation of anything in the themes category, PAGE_THEMES links to the theme installer wiki page */
+			[str::theme_installed] = "Un thème a été installé. Merci de regarder " PAGE_THEMES, /* context, shown after installation of anything in the themes category, PAGE_THEMES links to the theme installer wiki page */
 			[str::file_installed] = "Un fichier a été installé. Ils ne seront pas visible sur le menu home", /* context: shown after a file forwarder is installed that's not a theme, just here for future proofing */
 		},
 
@@ -1160,7 +1162,7 @@ static const char *strtab[lang::_i_max][str::_i_max] =
 			[str::def_sort_meth_desc] = "Specifică metoda de sortare implicită de folosit când vizionați o listă de titluri.", /* context: setting description */
 			[str::def_sort_dir] = "Direcția de sortare implicită", /* scroll, context: setting title */
 			[str::def_sort_dir_desc] = "Specifică direcția de sortare implicită de folosit când vizionați o listă de titluri.", /* context: setting description */
-			[str::invalid_content_type] = "Tip de conținut invalid", /* context: legacy search content type (see p: documentation on site) */
+			[str::invalid_content_type] = "Tip de conținut nevalid", /* context: legacy search content type (see p: documentation on site) */
 			[str::theme_installed] = "O temă a fost instalată. Vă rugăm vedeți " PAGE_THEMES, /* context, shown after installation of anything in the themes category, PAGE_THEMES links to the theme installer wiki page */
 			[str::file_installed] = "Un fișier a fost instalat. Acestea nu sunt afișate pe Meniul Acasă", /* context: shown after a file forwarder is installed that's not a theme, just here for future proofing */
 		},
@@ -1308,18 +1310,18 @@ static const char *strtab[lang::_i_max][str::_i_max] =
 			[str::invalid_excludes] = "Filtri di esclusione non validi",
 			[str::filter_overlap] = "Rilevata una contraddizione nei filtri di ricerca specificati",
 			[str::lgy_search] = "Ricerca classica",
-			STUB(sure_reset),
-			STUB(ascending),
-			STUB(descending),
-			STUB(alphabetical),
-			STUB(downloads),
-			STUB(def_sort_meth),
-			STUB(def_sort_meth_desc),
-			STUB(def_sort_dir),
-			STUB(def_sort_dir_desc),
-			STUB(invalid_content_type),
-			STUB(theme_installed),
-			STUB(file_installed),
+			[str::sure_reset] = "Sei sicuro che vuoi ripristinare le tue impostazioni?", /* context: prompt to reset settings */
+			[str::ascending] = "Crescente", /* nowrap, context: sort direction, in switcher in settings + if you press L in title select */
+			[str::descending] = "Decrescente", /* nowrap, context: sort direction, in switcher in settings + if you press L in title select */
+			[str::alphabetical] = "Alfabetico", /* nowrap, context: sort method, in switcher in settings */
+			[str::downloads] = "Più installati", /* nowrap, context: sort method, may be translated as "popularity", in switcher in settings */
+			[str::def_sort_meth] = "Ordinamento predefinito", /* scroll, context: setting title */
+			[str::def_sort_meth_desc] = "Specifica il metodo di ordinamento da usare quando si visualizza una lista di titoli.", /* context: setting description */
+			[str::def_sort_dir] = "Direzione predefinita di ordinamento", /* scroll, context: setting title */
+			[str::def_sort_dir_desc] = "Specifica la direzione predefinita di ordinamento da usare quando si visualizza una lista di titoli.", /* context: setting description */
+			[str::invalid_content_type] = "Tipo di contenuto non valido", /* context: legacy search content type (see p: documentation on site) */
+			[str::theme_installed] = "Un tema è appena stato installato. Vedi " PAGE_THEMES, /* context, shown after installation of anything in the themes category, PAGE_THEMES links to the theme installer wiki page */
+			[str::file_installed] = "Un file è appena stato installato. Questi non verranno mostrati nel menù HOME", /* context: shown after a file forwarder is installed that's not a theme, just here for future proofing */
 		},
 
 	[lang::portuguese] =
@@ -2121,7 +2123,7 @@ static const char *strtab[lang::_i_max][str::_i_max] =
 			[str::fail_init_networking] = "ネットワークの初期化に失敗しました",
 			[str::fail_fetch_index] = "インデックスの取得に失敗しました\n%1",
 			[str::credits_thanks] =
-				"hShop用の3dsクライアントである3hsをご利用いただきありがとうございます！\n"
+				"hShop用の3DSクライアントである3hsをご利用いただきありがとうございます！\n"
 				"このソフトウェアは、\n"
 				PAGE_3HS,
 			[str::credits_names] = "",
@@ -2174,7 +2176,7 @@ static const char *strtab[lang::_i_max][str::_i_max] =
 			[str::search_content] = "コンテンツを検索する",
 			[str::search_content_action] = "コンテンツを検索中...",
 			[str::results_query] = "クエリ\"%1\"の結果",
-			[str::result_code] = "結果コード:%1",
+			[str::result_code] = "結果コード: %1",
 			[str::level] = "レベル: %1",
 			[str::summary] = "要約: %1",
 			[str::module] = "モジュール: %1",
@@ -2234,7 +2236,7 @@ static const char *strtab[lang::_i_max][str::_i_max] =
 			[str::found_missing] ="%1個の不足しているタイトルが見つかりました\nキューをチェックしてインストールしてください。",
 			[str::found_0_missing] = "不足しているタイトルは見つかりませんでした。",
 			[str::max_elogs] = "古いログファイルの最大数",
-			[str::max_elogs_desc] = "保持するログファイルの数を設定します。 可能な値は0〜255で、0は追加のログファイルを保持しません。",
+			[str::max_elogs_desc] = "保持するログファイルの数を設定します。 可能な値は0~255で、0は追加のログファイルを保持しません。",
 			[str::elogs_hint] = "0から255までの値",
 			[str::log_id] = "このIDを使用してサポートを取得します：\n%1", /* %1 = id */
 			[str::block] = "ブロック",
@@ -2272,19 +2274,14 @@ static const char *strtab[lang::_i_max][str::_i_max] =
 			[str::banner]  = "Лучший сервис загрузки контента для 3DS", /* unused */
 			[str::loading] = "Загрузка...",
 			[str::luma_not_installed] = "Обнаружена не поддерживаемая прошивка.",
-			[str::install_luma] = "3hs нельзя использовать в данной системе .",
+			[str::install_luma] = "3hs нельзя использовать в данной системе.",
 			[str::queue] = "Очередь",
 			[str::connect_wifi] = "Подключите Wi-Fi и перезапустите приложение.", /* unused */
 			[str::fail_init_networking] = "Ошибка инициализации сети",
 			[str::fail_fetch_index] = "Ошибка инициализации индекса\n%1", /* unused */
-			[str::credits_thanks] =
-				"Спасибо что используете 3hs, hShop клиент для 3DS.\n"
-				"Вы можете скачать контент по ссылке\n"
-				"https://hshop.erista.me/",
+			[str::credits_thanks] = "Спасибо, что используете 3hs, hShop клиент для 3DS.\n" "Вы можете скачать контент по ссылке\n" PAGE_3HS,
 			[str::credits_names] = "", /* unused */
-			[str::press_to_install] =
-				"Нажмите " UI_GLYPH_A " для установки.\n"
-				"Нажмите " UI_GLYPH_B " для возврата.",
+			[str::press_to_install] = "Нажмите " UI_GLYPH_A " для установки.\n" "Нажмите " UI_GLYPH_B " для возврата.",
 			[str::version] = "Версия",
 			[str::prodcode] = "Код продукта",
 			[str::size] = "Размер",
@@ -2300,8 +2297,8 @@ static const char *strtab[lang::_i_max][str::_i_max] =
 			[str::no_cats_index] = "Нет категории в индексе (?)", /* unused */
 			[str::empty_subcat] = "Пустая подкатегория (?)", /* unused */
 			[str::empty_cat] = "Пустая категория (?)", /* unused */
-			[str::fmt_24h] = "24 часа", /* context: time format */
-			[str::fmt_12h] = "12 часов", /* context: time format */
+			[str::fmt_24h] = "24-часовой", /* context: time format */
+			[str::fmt_12h] = "12-часовой", /* context: time format */
 			[str::unknown] = "Неизвестно", /* context: unknown setting */
 			[str::btrue] = "ВКЛ.", /* unused, context: setting is set to ON */
 			[str::bfalse] = "ВЫКЛ.", /* unused, context: setting is set to OFF */
@@ -2312,7 +2309,7 @@ static const char *strtab[lang::_i_max][str::_i_max] =
 			[str::load_space] = "Объём свободного места",
 			[str::show_battery] = "Уровень заряда",
 			[str::time_format] = "Формат времени",
-			[str::progbar_screen] = "Положение прогресс бара",
+			[str::progbar_screen] = "Индикатор загрузки",
 			[str::language] = "Язык",
 			[str::value_x] = "Значение: %1", /* context: value of setting */
 			[str::back] = "Назад", /* context: back button */
@@ -2337,21 +2334,16 @@ static const char *strtab[lang::_i_max][str::_i_max] =
 			[str::module] = "Модуль: %1", /* %1 english module name (module code), context: used when displaying errors */
 			[str::hs_bunny_found] = "Поздравляем! Вы нашли пасхалку!", /* context: easter egg, see also: gfx/img/bun.png */
 			[str::already_installed_reinstall] = "Уже установлено. Переустановить?",
-			[str::queue_empty] =
-				"Пусто\n"
-				"Нажмите " UI_GLYPH_A " для возврата.\n"
-				"Нажмите " UI_GLYPH_Y " чтобы добавить в очередь.",
+			[str::queue_empty] = "Пусто\n" "Нажмите " UI_GLYPH_A " для возврата.\n" "Нажмите " UI_GLYPH_Y " чтобы добавить в очередь.",
 			[str::cancel] = "Закрыть",
 			[str::confirm] = "Готово",
 			[str::invalid_proxy] = "Неверные настройки прокси",
 			[str::more_about_content] = "Подробнее",
 			[str::lumalocalemode] = "Режим LumaLocale",
-			[str::automatic] = "авто",
-			[str::manual] = "вручную",
-			[str::disabled] = "отключено",
-			[str::patching_reboot] =
-				"Luma3DS Game Patching не активен.\n"
-				"Изменения вступят в силу после перезагрузки.",
+			[str::automatic] = "Авто",
+			[str::manual] = "Вручную",
+			[str::disabled] = "Отключено",
+			[str::patching_reboot] = "Luma3DS Game Patching не активен.\n" "Изменения вступят в силу после перезагрузки.",
 			[str::reboot_now] = "Перезагрузить сейчас?",
 			[str::this_version] = "Текущая версия 3hs %1", /* %1 = version int "version desc" */
 			[str::retry_req] = "Ошибка запроса. Повторить?", /* context: API request */
@@ -2369,22 +2361,22 @@ static const char *strtab[lang::_i_max][str::_i_max] =
 			[str::port] = "Порт", /* context: proxy */
 			[str::username] = "Имя", /* context: proxy */
 	 		[str::password] = "Пароль", /* context: proxy */
-			[str::clear] = "Стереть", /* context: clear the contents of a field */
-			[str::progbar_screen_desc] = "Выбрать позицию прогресс бара.",
+			[str::clear] = "Очистить", /* context: clear the contents of a field */
+			[str::progbar_screen_desc] = "На каком экране отображать индикатор загрузки?",
 			[str::light_mode_desc] = "Выберете тёмную или светлую тему.",
-			[str::resume_dl_desc] = "Продолжить загрузку после сбоя сети.",
-			[str::load_space_desc] = "Вкл./Выкл. информации о свободном объёме.",
-			[str::show_battery_desc] = "Вкл./Выкл. информации о заряде батареи.",
-			[str::time_format_desc] = "Измените формат времени.",
-			[str::language_desc] = "Выбор языка. Изменения вступят в силу после перезагрузки .",
-			[str::lumalocalemode_desc] = "Режим автоматического выбора языка. Или укажите регион самостоятельно ",
-			[str::check_extra_desc] = "Поиск доп. контента после установки.",
+			[str::resume_dl_desc] = "Возобновить загрузку после сбоя сети.",
+			[str::load_space_desc] = "Показать или скрыть информацию о свободном месте.",
+			[str::show_battery_desc] = "Показать или скрыть информацию о заряде батареи.",
+			[str::time_format_desc] = "Выберите формат времени.",
+			[str::language_desc] = "Выбор языка. Изменения вступят в силу после перезагрузки.",
+			[str::lumalocalemode_desc] = "LumaLocate: Авто - выберает регион автоматически, Вручную - запросит регион после установки. ",
+			[str::check_extra_desc] = "Искать дополнительный контент после установки.",
 			[str::proxy_desc] = "Настроить прокси (для опытных пользователей).",
 			[str::install_all] = "Установить всё", /* context: install all items in queue */
 			[str::install_no_base] = "Базовая игра не установлена. Продолжить?",
-			[str::warn_no_base] = "Предупредить если базовая игра не установлена",
+			[str::warn_no_base] = "Уведомление об отсутствии игры",
 			[str::warn_no_base_desc] = "Уведомлять об отсутствии базовой игры при установке DLC или доп. контента.",
-			[str::replaying_errors] = "Воспроизведение ошибок, возникших при обработке очереди.",
+			[str::replaying_errors] = "При обработке очереди, возникли следующие ошибки:",
 			[str::log] = "Логи", /* context: may also be translated as "manage logs" */
 			[str::upload_logs] = "Загрузить логи",
 			[str::clear_logs] = "Очистить логи",
@@ -2413,11 +2405,11 @@ static const char *strtab[lang::_i_max][str::_i_max] =
 			[str::sure_reset] = "Вы действительно хотите сбросить настройки?",
 			[str::ascending] = "По возрастанию", /* nowrap, context: sort direction, in switcher in settings + if you press L in title select */
 			[str::descending] = "По убыванию", /* nowrap, context: sort direction, in switcher in settings + if you press L in title select */
-			[str::alphabetical] = "По алфавиту", /* nowrap, context: sort method, in switcher in settings */
-			[str::downloads] = "По загрузкам", /* nowrap, context: sort method, in switcher in settings */
-			[str::def_sort_meth] = "По умолчанию", /* scroll, context: setting title */
+			[str::alphabetical] = "Алфавит", /* nowrap, context: sort method, in switcher in settings */
+			[str::downloads] = "Загрузки", /* nowrap, context: sort method, in switcher in settings */
+			[str::def_sort_meth] = "Метод сортировки", /* scroll, context: setting title */
 			[str::def_sort_meth_desc] = "Укажите метод сортировки контента.", /* context: setting description */
-			[str::def_sort_dir] = "Сортировать по умолчанию", /* scroll, context: setting title */
+			[str::def_sort_dir] = "Направление сортировки", /* scroll, context: setting title */
 			[str::def_sort_dir_desc] = "Укажите направление сортировки контента.", /* context: setting description */
 			[str::invalid_content_type] = "Неверный тип содержимого", /* context: legacy search content type (see p: documentation on site) */
 			[str::theme_installed] = "Тема установлена. Посмотрите " PAGE_THEMES, /* context, shown after installation of anything in the themes category, PAGE_THEMES links to the theme installer wiki page */
@@ -2437,7 +2429,7 @@ static const char *strtab[lang::_i_max][str::_i_max] =
 			[str::credits_thanks] =
 				"Thanketh thee f'r using 3hs, a 3ds client f'r hShop. \n"
 				"Thee can receiveth this software f'r free at\n"
-				"https://hshop.erista.me/",
+				PAGE_3HS,
 			[str::credits_names] = "",
 			[str::press_to_install] =
 				"Presseth " UI_GLYPH_A " to installeth this content. \n"
@@ -2567,18 +2559,491 @@ static const char *strtab[lang::_i_max][str::_i_max] =
 			[str::invalid_excludes] = "Invalid excludeth filt'rs",
 			[str::filter_overlap] = "Did detect an ov'rlap in the specifi'd searcheth filt'rs",
 			[str::lgy_search] = "Legacy searcheth",
-			STUB(sure_reset),
-			STUB(ascending),
-			STUB(descending),
-			STUB(alphabetical),
-			STUB(downloads),
-			STUB(def_sort_meth),
-			STUB(def_sort_meth_desc),
-			STUB(def_sort_dir),
-			STUB(def_sort_dir_desc),
-			STUB(invalid_content_type),
-			STUB(theme_installed),
-			STUB(file_installed),
+			[str::sure_reset] = "Art thee sure thee wanteth to did reset thy settings?", /* context: prompt to reset settings */
+			[str::ascending] = "Ascending", /* nowrap, context: sort direction, in switcher in settings + if you press L in title select */
+			[str::descending] = "Descending", /* nowrap, context: sort direction, in switcher in settings + if you press L in title select */
+			[str::alphabetical] = "Alphabetical", /* nowrap, context: sort method, in switcher in settings */
+			[str::downloads] = "Downloads", /* nowrap, context: sort method, may be translated as "popularity", in switcher in settings */
+			[str::def_sort_meth] = "Default s'rt method", /* scroll, context: setting title */
+			[str::def_sort_meth_desc] = "Specifies the default s'rt method to useth at which hour viewing a listeth of titles", /* context: setting description */
+			[str::def_sort_dir] = "Default s'rt direction", /* scroll, context: setting title */
+			[str::def_sort_dir_desc] = "Specifies the default s'rt direction to useth at which hour viewing a listeth of titles", /* context: setting description */
+			[str::invalid_content_type] = "Invalid content typeth", /* context: legacy search content type (see p: documentation on site) */
+			[str::theme_installed] = "A theme wast did install. Prithee seeth " PAGE_THEMES, /* context, shown after installation of anything in the themes category, PAGE_THEMES links to the theme installer wiki page */
+			[str::file_installed] = "A fileth wast did install. These art not shown on the HOME menu", /* context: shown after a file forwarder is installed that's not a theme, just here for future proofing */
+		},
+
+	[lang::ryukyuan] =
+		{
+			[str::banner]  = "ふぶまじりぬ3DSコンテンツ保存サービス",
+			[str::loading] = "ロード中...",
+			[str::luma_not_installed] = "サポートさりてぃうぅらんファームウェアぬ検出さりやびたん。",
+			[str::install_luma] = "くぬシステムっしぇー3hsー使用なやびらん。",
+			[str::queue] = "キュー",
+			[str::connect_wifi] = "Wi-Fiんかい接続し、アプリ再起動しくぃみそーれー。",
+			[str::fail_init_networking] = "ネットワークぬ初期化んかいしーやんじゃびたん",
+			[str::fail_fetch_index] = "インデックスぬ取得んかいしーやんじゃびたん\n%1",
+			[str::credits_thanks] =
+				"hShop用ぬ3DSクライアントやん3hsぐ利用いただちにふぇーでーびる！\n"
+				"くぬソフトウェアー、\n"
+				PAGE_3HS " うぅてぃ完全いちゃんだっし入手なやびーん。",
+			[str::credits_names] = "",
+			[str::press_to_install] =
+			UI_GLYPH_A " うち くぬコンテンツインストール\n"
+			UI_GLYPH_B " うち前ぬ画面んかいむどぅいん",
+			[str::version] = "バージョン",
+			[str::prodcode] = "プロダクトコード",
+			[str::size] = "サイズ",
+			[str::name] = "ゲーム名",
+			[str::tid] = "タイトルID",
+			[str::category] = "カテゴリー",
+			[str::landing_id] = "hShop ID",
+			[str::description] = "説明",
+			[str::total_titles] = "総タイトル数",
+			[str::select_cat] = "カテゴリー選択",
+			[str::select_subcat] = "サブカテゴリー選択",
+			[str::select_title] = "タイトル選択",
+			[str::no_cats_index] = "インデックスんかいカテゴリぬあいびらん (?)",
+			[str::empty_subcat] = "空ぬサブカテゴリー (?)",
+			[str::empty_cat] = "空ぬカテゴリー (?)",
+			[str::fmt_24h] = "24時間表記",
+			[str::fmt_12h] = "12時間表記",
+			[str::unknown] = "不明",
+			[str::btrue] = "はい",
+			[str::bfalse] = "うぅーうぅー",
+			[str::top] = "うぃー",
+			[str::bottom] = "しちゃ",
+			[str::light_mode] = "ライトモード",
+			[str::resume_dl] = "ダウンロード再開すん",
+			[str::load_space] = "空き領域インジケーター表示すん",
+			[str::show_battery] = "バッテリーレベルインジケーター表示すん",
+			[str::time_format] = "時間形式",
+			[str::progbar_screen] = "プログレスバーぬ位置",
+			[str::language] = "言語変更",
+			[str::value_x] = "値: %1",
+			[str::back] = "むどぅいん",
+			[str::invalid] = "無効",
+			[str::title_doesnt_exist] = "タイトルぬ存在さびらん: %1",
+			[str::fail_create_tex] = "texぬ作成んかいしーやんじゃびたん",
+			[str::fail_load_smdh_icon] = "load_smdh_icon()：無効なSMDHIconType",
+			[str::netcon_lost] = "ネットワーク接続ぬ失らりやびたん(%1)。\n$t秒っし再試行さびーん。..",
+			[str::about_app] = "3hsぬ詳細",
+			[str::help_manual] = "ヘルプ/マニュアル",
+			[str::find_missing_content] = "不足そーるコンテンツかめーいん",
+			[str::press_a_exit] = UI_GLYPH_A "うち終了さびーん。",
+			[str::fatal_panic] = "致命的なパニックぬ発生さびたん。",
+			[str::failed_open_seeddb] = "seeddb.binふぃらちゅるくとぅがなやびらんたん。",
+			[str::update_to] = "%1に更新さびーが？",
+			[str::search_content] = "コンテンツ検索すん",
+			[str::search_content_action] = "コンテンツ検索中...",
+			[str::results_query] = "クエリ\"%1\"ぬ結果",
+			[str::result_code] = "結果コード: %1",
+			[str::level] = "レベル: %1",
+			[str::summary] = "要約: %1",
+			[str::module] = "モジュール: %1",
+			[str::hs_bunny_found] = "かりーでーびる！ hShopバニー見ーちきやびたん！",
+			[str::already_installed_reinstall] = "タイトローしでぃにインストールさりとーいびーん。 再インストールさびーが？",
+			[str::queue_empty] =
+				"キューぬ空やいびーん\n"
+				UI_GLYPH_A "うち元ぬ画面んかいむどぅやびーん。\n"
+				"ヒント: " UI_GLYPH_Y " うち、キューんかいタイトルいりしーいびーん。",
+			[str::cancel] = "キャンセル",
+			[str::confirm] = "確認",
+			[str::invalid_proxy] = "プロキシ設定ぬ無効やいびーん",
+			[str::more_about_content] = "くぬコンテンツぬ詳細",
+			[str::lumalocalemode] = "LumaLocaleモード",
+			[str::automatic] = "自動",
+			[str::manual] = "マニュアル",
+			[str::disabled] = "無効",
+			[str::patching_reboot] =
+				"Luma3DSゲームパッチぬ有効なやびたん。\n"
+				"くぬ変更有効なすんがー、システム再起動するいりゆーぬあいびーん。",
+			[str::reboot_now] = "なまちゃーき再起動さびーが？",
+			[str::this_version] = "くれー3hsバージョン%1やいびーん",
+			[str::retry_req] = "要求ぬしーやんじゃびたん。 リトライさびーが？",
+			[str::search_zero_results] =
+				"検索結果がけーさりやびらんたん。\n"
+				UI_GLYPH_A "うちむどぅやびーん。",
+			[str::credits] = "クレジット",
+			[str::extra_content] = "キューんかいコンテンツいりしーいびーが？",
+			[str::check_extra] = "追加コンテンツ検索すん",
+			[str::no_req] = "なーらリクエストーあいびらん",
+			[str::invalid_query] = "無効なクエリ\nむどぅいんがー" UI_GLYPH_A "うちくぃみそーれー。",
+			[str::min_constraint] = "現在ぬ3hsバージョン%1ー、いりゆーなバージョン%2やかふぃくくなとーいびーん",
+			[str::proxy] = "プロキシー",
+			[str::none] = "(なし)",
+			[str::press_a_to_view] = UI_GLYPH_A "クリックし表示さびーん。",
+			[str::host] = "ホスト",
+			[str::port] = "ポート",
+			[str::username] = "ユーザー名",
+			[str::password] = "パスワード",
+			[str::clear] = "クリア",
+			[str::progbar_screen_desc] = "プログレスバーぬ位置選択さびーん。",
+			[str::light_mode_desc] = "ライトモード有効/無効なさびーん。 くりにゆり、ふとぅんどぅぬUIぬ外観ぬ変わやびーん。",
+			[str::resume_dl_desc] = "ネットワークぬ中断さる後、ダウンロード再開さびーん。",
+			[str::load_space_desc] = "空き領域インジケーター切り替いやびーん。",
+			[str::show_battery_desc] = "バッテリーレベルインジケーター切り替いやびーん。",
+			[str::time_format_desc] = "時間形式選択さびーん。",
+			[str::language_desc] = "3hsぬ言語変更さびーん。 選択さる言語有効なすんがー、アプリケーション再起動するいりゆーぬあいびーん。",
+			[str::lumalocalemode_desc] = "LumaLocaleオートセッターぬモード設定さびーん。 自動ー言語自動的に選択さびーん。 くりが手動んかい設定さりとーるばー、コンテンツぬインストール後、3hsっしリージョンぬ入力むとぅみららりやびーん。",
+			[str::check_extra_desc] = "インストール後に追加ぬコンテンツ検索さびーん。",
+			[str::proxy_desc] = "3hsぬプロキシサーバー構成さびーん。 くぬ設定ー上級ユーザー向きやいびーん。",
+			[str::install_all] = "まじりインストール",
+			[str::install_no_base] = "元とぅないるゲームぬインストールさりやびらん。 続きやびーが？",
+			[str::warn_no_base] = "元とぅないるゲームぬインストールさりてぃうぅらんばーに警告すん",
+			[str::warn_no_base_desc] = "元とぅないるゲームぬインストールさりてぃうぅらんばー、アップデートあらんでぃDLCコンテンツインストールする前にメッセージ表示さびーん。",
+			[str::replaying_errors] = "キューぬ処理中んかい発生さる再生エラー。",
+			[str::log] = "ログ",
+			[str::upload_logs] = "ログアップロードすん",
+			[str::clear_logs] = "ログクリアすん",
+			[str::found_missing] =" %1個ぬ不足そーるタイトルぬ見ちかやびたん\nキューチェックしインストールしくぃみそーれー。",
+			[str::found_0_missing] = "不足そーるタイトロー見ちかやびらんたん。",
+			[str::max_elogs] = "古さるログファイルぬ最大数",
+			[str::max_elogs_desc] = "保持するログファイルぬかじ設定さびーん。 可能な値ー0~255っし、0ー追加ぬログファイル保持さびらん。",
+			[str::elogs_hint] = "0から255までぃぬ値",
+			[str::log_id] = "くぬID使用しサポート取得さびーん：\n%1", /* %1 = id */
+			[str::block] = "ブロック",
+			[str::blocks] = "ブロック",
+			[str::search_text] = "テキストっし検索",
+			[str::search_id] = "hShop IDっし検索",
+			[str::search_tid] = "タイトルIDっし検索",
+			[str::invalid_tid] = "タイトルIDぬ無効やいびーん",
+			[str::theme_installer_tid_bad] = "テーマかめーいんがー、テーマカテゴリ参照しくぃみそーれー",
+			[str::enter_lgy_query] = "従来ぬ検索クエリ入力さびーん",
+			[str::no_other_params_tid] = "タイトルID指定するとぅちに他ぬパラメーター指定すしぇーなやびらん",
+			[str::both_sd_and_sb] = "検索結果並べいけーいるとぅちぇー、並べいけーい方法んでぃ並べいけーい方向指定するいりゆーぬあいびーん",
+			[str::invalid_sb] = "無効なソート方法",
+			[str::invalid_sd] = "ソート方向ぬ無効やいびーん",
+			[str::invalid_includes] = "ソート方向ぬ無効やいびーん",
+			[str::invalid_excludes] = "無効な除外フィルター",
+			[str::filter_overlap] = "指定さったる検索フィルターっし重複ぬ検出さりやびたん",
+			[str::lgy_search] = "レガシー検索",
+			[str::sure_reset] = "構成リセットしんゆたさいびーが？",
+			[str::ascending] = "昇順",
+			[str::descending] = "降順",
+			[str::alphabetical] = "アルファベット順",
+			[str::downloads] = "ダウンロード",
+			[str::def_sort_meth] = "デフォルトぬソート方法",
+			[str::def_sort_meth_desc] = "タイトルぬリスト表示するとぅちに使用するデフォルトぬ並べいけーい方法指定さびーん。",
+			[str::def_sort_dir] = "デフォルトぬソート方向",
+			[str::def_sort_dir_desc] = "タイトルぬリスト表示するとぅちに使用するデフォルトぬソート方向指定さびーん。",
+			[str::invalid_content_type] = "無効なコンテンツタイプ",
+			[str::theme_installed] = "テーマぬインストールさりやびたん。 参照しくぃみそーれー " ,
+			[str::file_installed] = "ファイルぬインストールさりやびたん。 くりらーホームメニューんかえー表示さりやびらん",
+		},
+
+	[lang::latvian] =
+		{
+			[str::banner]  = "Labākais 3DS satura saglabāšanas pakalpojums", /* unused */
+			[str::loading] = "Notiek ielāde...",
+			[str::luma_not_installed] = "Tika konstatēta neatbalstīta programmaparatūra.",
+			[str::install_luma] = "Šajā sistēmā nevar izmantot 3hs.",
+			[str::queue] = "Rindā",
+			[str::connect_wifi] = "Lūdzu izveidojiet savienojumu ar Wi-Fi un restartējiet aplikāciju.", /* unused */
+			[str::fail_init_networking] = "Neizdevās inicializēt tīkla izveidi",
+			[str::fail_fetch_index] = "Neizdevās atnest indeksu\n%1", /* unused */
+			[str::credits_thanks] =
+				"Paldies, ka izmantojās 3hs, hShop 3DS klientu.\n"
+				"Jūs varat iegūt šo programmatūru bez maksas vietnē\n"
+				PAGE_3HS,
+			[str::credits_names] = "", /* unused */
+			[str::press_to_install] =
+				"Nospiediet " UI_GLYPH_A " lai instalētu šo saturu.\n"
+				"Nospiediet " UI_GLYPH_B " lai dotos atpakaļ.",
+			[str::version] = "Versija",
+			[str::prodcode] = "Produkta kods",
+			[str::size] = "Izmērs",
+			[str::name] = "Nosaukums",
+			[str::tid] = "Aplikācijas ID",
+			[str::category] = "Kategorija",
+			[str::landing_id] = "hShop ID",
+			[str::description] = "Apraksts",
+			[str::total_titles] = "Kopējais aplikāciju skaits",
+			[str::select_cat] = "Izvēlies kategoriju",
+			[str::select_subcat] = "Izvēlieties apakškategoriju",
+			[str::select_title] = "Izvēlieties aplikāciju",
+			[str::no_cats_index] = "indeksā nav kategoriju (?)", /* unused */
+			[str::empty_subcat] = "Tukša apakškategorija (?)", /* unused */
+			[str::empty_cat] = "Tukša kategorija (?)", /* unused */
+			[str::fmt_24h] = "24 stundu", /* context: time format */
+			[str::fmt_12h] = "12 stundu", /* context: time format */
+			[str::unknown] = "nezināms", /* context: unknown setting */
+			[str::btrue] = "taisnība", /* unused, context: setting is set to ON */
+			[str::bfalse] = "netaisnība", /* unused, context: setting is set to OFF */
+			[str::top] = "augšā", /* context: top screen in progress bar location settings switcher */
+			[str::bottom] = "apakšā", /* context: bottom screen in progress bar location settings switcher */
+			[str::light_mode] = "Gaismas režīms",
+			[str::resume_dl] = "Atsākt lejupielādes",
+			[str::load_space] = "Rādīt brīvas vietas indikatoru",
+			[str::show_battery] = "Rādīt akumulatora līmeņa indikatoru",
+			[str::time_format] = "Laika formāts",
+			[str::progbar_screen] = "Progresa joslas pozīcija",
+			[str::language] = "Valoda",
+			[str::value_x] = "Vērtība: %1", /* context: value of setting */
+			[str::back] = "Atpakaļ", /* context: back button */
+			[str::invalid] = "nederīgs",
+			[str::title_doesnt_exist] = "Aplikācija neeksistē %1", /* %1: title id */
+			[str::fail_create_tex] = "Neizdevās izveidot teksu", /* unused */
+			[str::fail_load_smdh_icon] = "load_smdh_icon(): nederīgs SMDHIconType", /* unused */
+			[str::netcon_lost] = "Zaudēts tīkla savienojums (%1).\nMēģinās vēlreiz pēc $t sekundēm...", /* %1: error code, $t: seconds remaining */
+			[str::about_app] = "Par",
+			[str::help_manual] = "Palīdzība / Rokasgrāmata",
+			[str::find_missing_content] = "Meklēt trūkstošo saturu",
+			[str::press_a_exit] = "Nospiediet " UI_GLYPH_A " lai izietu.", /* context: exit menu and sometimes application */
+			[str::fatal_panic] = "Fatāla kļūda", /* context: can also be translated as fatal error */
+			[str::failed_open_seeddb] = "Neizdevās atvērt seeddb.bin.",
+			[str::update_to] = "Vai jūs vēlaties atjaunināt uz %1?", /* %1: new version, i.e. 1.0.2 */
+			[str::search_content] = "Meklēt saturu",
+			[str::search_content_action] = "Meklēt saturu...",
+			[str::results_query] = "Rezultāti vaicājumam \"%1\"", /* unused, %1: search query */
+			[str::result_code] = "Rezultāta kods: %1", /* %1: result code */
+			[str::level] = "Līmenis: %1", /* %1: english level name (level code), context: used when displaying errors */
+			[str::summary] = "Kopsavilkums: %1", /* %1 english summary name (summary code), context: used when displaying errors */
+			[str::module] = "Modulis: %1", /* %1 english module name (module code), context: used when displaying errors */
+			[str::hs_bunny_found] = "Apsveicu! Jūs atradāt hShop zaķi!", /* context: easter egg, see also: gfx/img/bun.png */
+			[str::already_installed_reinstall] = "aplikācija jau ir instalēta. Pārinstalēt?",
+			[str::queue_empty] =
+				"Rinda ir tukša\n"
+				"Nospiediet " UI_GLYPH_A " lai atgrieztos.\n"
+				"Padoms: Nospiediet " UI_GLYPH_Y " lai rindai pievienotu aplikāciju.",
+			[str::cancel] = "Atcelt",
+			[str::confirm] = "Apstiprināt",
+			[str::invalid_proxy] = "Nederīgi starpniekservera iestatījumi",
+			[str::more_about_content] = "Vairāk par šo saturu",
+			[str::lumalocalemode] = "LumaLocale režīms",
+			[str::automatic] = "automātiski",
+			[str::manual] = "manuāli",
+			[str::disabled] = "atspējots",
+			[str::patching_reboot] =
+				"Luma3DS Spēļu labošana tagad ir iespējota.\n"
+				"Lai šīs izmaiņas stātos spēkā, sistēma ir jārestartē.",
+			[str::reboot_now] = "Restartēt tagad?",
+			[str::this_version] = "Šī ir 3hs versija %1", /* %1 = version int "version desc" */
+			[str::retry_req] = "Pieprasījums neizdevās. Vai mēģināt vēlreiz?", /* context: API request */
+			[str::search_zero_results] = "Jūsu meklēšana nedeva nekādus rezultātus.\nNospiediet " UI_GLYPH_A " lai dotos atpakaļ.",
+			[str::credits] = "Kredīti",
+			[str::extra_content] = "Vai pievienot rindai papildu saturu?", /* context: i.e. DLC/Updates */
+			[str::check_extra] = "Meklēt papildu saturu", /* context: i.e. DLC/Updates */
+			[str::no_req] = "Vēl nav izgatavots neviens pieprasījums", /* context: hlink requests */
+			[str::invalid_query] = "Nederīgs vaicājums\nNospiediet  " UI_GLYPH_A " lai atgrieztos.",
+			[str::min_constraint] = "Pašreizējā 3hs versija %1 ir zemāka par nepieciešamo versiju %2",
+			[str::proxy] = "Starpniekserveris",
+			[str::none] = "(neviens)", /* context: used for no proxy set */
+			[str::press_a_to_view] = "Noklikšķiniet uz " UI_GLYPH_A " lai skatītu.", /* context: view proxy settings */
+			[str::host] = "Hosts", /* context: proxy */
+			[str::port] = "Ports", /* context: proxy */
+			[str::username] = "Lietotājvārds", /* context: proxy */
+	 		[str::password] = "Parole", /* context: proxy */
+			[str::clear] = "Notīrīt", /* context: clear the contents of a field */
+			[str::progbar_screen_desc] = "Izvēlieties progresa joslas pozīciju.",
+			[str::light_mode_desc] = "Iespējot/atspējot gaismas režīmu. Tas mainīs veidu, kā izskatās lielākā daļa lietotāja interfeisa elementi.",
+			[str::resume_dl_desc] = "Atsāciet lejupielādi pēc tīkla pārtraukuma.",
+			[str::load_space_desc] = "Pārslēdziet brīvās vietas indikatoru.",
+			[str::show_battery_desc] = "Pārslēdziet akumulatora uzlādes līmeņa indikatoru.",
+			[str::time_format_desc] = "Izvēlieties laika formātu.",
+			[str::language_desc] = "Iestatiet 3hs valodu. Lai izvēlētā valoda stātos spēkā, lietojumprogramma ir jārestartē.",
+			[str::lumalocalemode_desc] = "Iestatiet LumaLocale automātiskās iestatīšanas režīmu. Automātiski automātiski atlasa valodu. Ja tas ir iestatīts uz manuāli, pēc satura instalēšanas 3hs liks norādīt reģionu.",
+			[str::check_extra_desc] = "Pēc instalēšanas meklēt papildu saturu.",
+			[str::proxy_desc] = "Konfigurējiet starpniekserveri 3hs. Šis iestatījums ir paredzēts pieredzējušiem lietotājiem.",
+			[str::install_all] = "Instalēt visu", /* context: install all items in queue */
+			[str::install_no_base] = "Pamatspēle nav instalēta. Vai tomēr turpināt?",
+			[str::warn_no_base] = "Brīdināt, ja bāzes spēle nav instalēta",
+			[str::warn_no_base_desc] = "Parāda ziņojumu pirms atjauninājuma vai DLC satura instalēšanas, ja bāzes spēle nav instalēta.",
+			[str::replaying_errors] = "Atkārtoti tiek atskaņotas kļūdas, kas radušās, apstrādājot rindu.",
+			[str::log] = "Pārvaldīt žurnālus", /* context: may also be translated as "manage logs" */
+			[str::upload_logs] = "Augšupielādēt žurnālus",
+			[str::clear_logs] = "Notīrīt žurnālus",
+			[str::found_missing] = "Atrasts %1 trūkstošs(-i) aplikācijas\nPārbaudiet rindu, lai tos instalētu", // %1 = amount of titles found
+			[str::found_0_missing] = "Trūksošas aplikācijas netika atrastas.",
+			[str::max_elogs] = "Maksimālais veco žurnālfailu skaits",
+			[str::max_elogs_desc] = "Iestatiet saglabājamo žurnālfailu skaitu. Iespējamās vērtības ir no 0 līdz 255, kur 0 nesaglabā papildu žurnālfailus.",
+			[str::elogs_hint] = "Vērtība no 0 līdz 255",
+			[str::log_id] = "Izmantojiet šo ID, lai saņemtu palīdzību:\n%1", /* %1 = id */
+			[str::block] = "bloks", /* context: nintendo blocks, use official nintendo translation if available */
+			[str::blocks] = "bloki", /* context: see above, just in plural this time */
+			[str::search_text] = "Meklēt pēc teksta",
+			[str::search_id] = "Meklēt pēc hShop ID",
+			[str::search_tid] = "Meklēt pēc Aplikācijas ID",
+			[str::invalid_tid] = "Nederīgs Aplikācijas ID",
+			[str::theme_installer_tid_bad] = "Lūdzu, manuāli pārlūkojiet kategoriju Motīvi, lai meklētu motīvus",
+			[str::enter_lgy_query] = "Ievadiet mantoto meklēšanas vaicājumu", /* context: this is displayed in transparent letters on the keyboard */
+			[str::no_other_params_tid] = "Norādot aplikācijas ID, nevar norādīt citus parametrus",
+			[str::both_sd_and_sb] = "Kārtojot meklēšanas rezultātus, ir jānorāda kārtošanas metode un kārtošanas virziens",
+			[str::invalid_sb] = "Nederīga kārtošanas metode",
+			[str::invalid_sd] = "Nederīgs kārtošanas virziens", /* context: ascending/descending */
+			[str::invalid_includes] = "Nederīgi iekļaušanas filtri",
+			[str::invalid_excludes] = "Nederīgi izslēgšanas filtri",
+			[str::filter_overlap] = "Konstatēta norādīto meklēšanas filtru pārklāšanās",
+			[str::lgy_search] = "Mantotā meklēšana",
+			[str::sure_reset] = "Vai tiešām vēlaties atiestatīt iestatījumus?", /* context: prompt to reset settings */
+			[str::ascending] = "Augoša", /* nowrap, context: sort direction, in switcher in settings + if you press L in title select */
+			[str::descending] = "Dilstoša", /* nowrap, context: sort direction, in switcher in settings + if you press L in title select */
+			[str::alphabetical] = "Alfabētiskā secībā", /* nowrap, context: sort method, in switcher in settings */
+			[str::downloads] = "Lejupielādes", /* nowrap, context: sort method, may be translated as "popularity", in switcher in settings */
+			[str::def_sort_meth] = "Noklusējuma kārtošanas metode", /* scroll, context: setting title */
+			[str::def_sort_meth_desc] = "Norāda noklusējuma kārtošanas metodi, kas jāizmanto, skatot aplikāciju sarakstu.", /* context: setting description */
+			[str::def_sort_dir] = "Noklusējuma kārtošanas virziens", /* scroll, context: setting title */
+			[str::def_sort_dir_desc] = "Norāda noklusējuma kārtošanas virzienu, kas jāizmanto, skatot aplikāciju sarakstu.", /* context: setting description */
+			[str::invalid_content_type] = "Nederīgs satura veids", /* context: legacy search content type (see p: documentation on site) */
+			[str::theme_installed] = "Motīvs tika instalēts. Lūdzu apskatiet " PAGE_THEMES, /* context, shown after installation of anything in the themes category, PAGE_THEMES links to the theme installer wiki page */
+			[str::file_installed] = "Tika instalēts fails. Tie netiek rādīti mājas izvēlnē", /* context: shown after a file forwarder is installed that's not a theme, just here for future proofing */
+		},
+
+	[lang::jp_osaka] =
+		{
+			[str::banner]  = "ほぼ全ての3DSコンテンツ保存サービス",
+			[str::loading] = "ロード中...",
+			[str::luma_not_installed] = "サポートされてへんファームウェアが検出された。",
+			[str::install_luma] = "このシステムでは3hsは使用できまへん。",
+			[str::queue] = "キュー",
+			[str::connect_wifi] = "Wi-Fiに接続して、アプリを再起動してくれへん。",
+			[str::fail_init_networking] = "ネットワークの初期化に失敗した",
+			[str::fail_fetch_index] = "インデックスの取得に失敗した\n%1",
+			[str::credits_thanks] =
+				"hShop用の3dsクライアントである3hsをご利用いただきおおきに！\n"
+				"このソフトウェアは、\n"
+				PAGE_3HS,
+			[str::credits_names] = "",
+			[str::press_to_install] =
+			 UI_GLYPH_A " を押して このコンテンツをインストール\n"
+			 UI_GLYPH_B " を押して前の画面に戻る",
+			[str::version] = "バージョン",
+			[str::prodcode] = "プロダクトコード",
+			[str::size] = "サイズ",
+			[str::name] = "ゲーム名",
+			[str::tid] = "タイトルID",
+			[str::category] = "カテゴリー",
+			[str::landing_id] = "hShop ID",
+			[str::description] = "説明",
+			[str::total_titles] = "総タイトル数",
+			[str::select_cat] = "カテゴリーを選択",
+			[str::select_subcat] = "サブカテゴリを選択",
+			[str::select_title] = "タイトルを選択",
+			[str::no_cats_index] = "インデックスにカテゴリがおまへん (?)",
+			[str::empty_subcat] = "空のサブカテゴリ (?)",
+			[str::empty_cat] = "空のカテゴリー (?)",
+			[str::fmt_24h] = "24時間表記",
+			[str::fmt_12h] = "12時間表記",
+			[str::unknown] = "不明",
+			[str::btrue] = "はい",
+			[str::bfalse] = "いいや",
+			[str::top] = "上",
+			[str::bottom] = "下",
+			[str::light_mode] = "ライトモード",
+			[str::resume_dl] = "ダウンロードを再開する",
+			[str::load_space] = "空き領域インジケーターを表示する",
+			[str::show_battery] = "バッテリーレベルインジケーターを表示する",
+			[str::time_format] = "時間形式",
+			[str::progbar_screen] = "プログレスバーの位置",
+			[str::language] = "言語を変更",
+			[str::value_x] = "値: %1",
+			[str::back] = "戻る",
+			[str::invalid] = "無効",
+			[str::title_doesnt_exist] = "タイトルが存在しまへん: %1",
+			[str::fail_create_tex] = "texの作成に失敗した",
+			[str::fail_load_smdh_icon] = "load_smdh_icon()：無効なSMDHIconType",
+			[str::netcon_lost] = "ネットワーク接続が失われた(%1)。\n$t秒で再試行する。..",
+			[str::about_app] = "3hsの詳細",
+			[str::help_manual] = "ヘルプ/マニュアル",
+			[str::find_missing_content] = "不足してるコンテンツを探す",
+			[str::press_a_exit] = UI_GLYPH_A "を押して終了する。",
+			[str::fatal_panic] = "致命的なパニックが発生した。",
+			[str::failed_open_seeddb] = "seeddb.binを開くこと出来まへんでした。",
+			[str::update_to] = "%1に更新するか？",
+			[str::search_content] = "コンテンツを検索する",
+			[str::search_content_action] = "コンテンツを検索中...",
+			[str::results_query] = "クエリ\"%1\"の結果",
+			[str::result_code] = "結果コード: %1",
+			[str::level] = "レベル: %1",
+			[str::summary] = "要約: %1",
+			[str::module] = "モジュール: %1",
+			[str::hs_bunny_found] = "おめでとうございます！ hShopバニーを見つけた！",
+			[str::already_installed_reinstall] = "タイトルはすでにインストールされてます。 再インストールするか？",
+			[str::queue_empty] =
+				"キューが空です\n"
+				UI_GLYPH_A "を押して元の画面に戻ります。\n"
+				"ヒント: " UI_GLYPH_Y " を押して、キューにタイトルを追加する。",
+			[str::cancel] = "キャンセル",
+			[str::confirm] = "確認",
+			[str::invalid_proxy] = "プロキシ設定が無効です",
+			[str::more_about_content] = "このコンテンツの詳細",
+			[str::lumalocalemode] = "LumaLocaleモード",
+			[str::automatic] = "自動",
+			[str::manual] = "マニュアル",
+			[str::disabled] = "無効",
+			[str::patching_reboot] =
+			"Luma3DSゲームパッチが有効になった。\n"
+			"この変更を有効にするには、システムを再起動する必要があるんや。",
+			[str::reboot_now] = "今すぐ再起動するか？",
+			[str::this_version] = "こら3hsバージョン%1です",
+			[str::retry_req] = "要求が失敗した。 リトライするか？",
+			[str::search_zero_results] = "検索結果が返されまへんでした。\n" UI_GLYPH_A " を押して戻る。",
+			[str::credits] = "クレジット",
+			[str::extra_content] = "キューにコンテンツを追加するか？",
+			[str::check_extra] = "追加コンテンツを検索する",
+			[str::no_req] = "まだリクエストはおまへん",
+			[str::invalid_query] = "無効なクエリ\n戻るには" UI_GLYPH_A "を押してくれへん。",
+			[str::min_constraint] = "現在の3hsバージョン%1は、必要なバージョン%2よりも低なってます",
+			[str::proxy] = "プロキシー",
+			[str::none] = "(なし)",
+			[str::press_a_to_view] = UI_GLYPH_A " をクリックして表示する。",
+			[str::host] = "ホスト",
+			[str::port] = "ポート",
+			[str::username] = "ユーザー名",
+			[str::password] = "パスワード",
+			[str::clear] = "クリア",
+			[str::progbar_screen_desc] = "プログレスバーの位置を選択する。",
+			[str::light_mode_desc] = "ライトモードを有効/無効にする。 これにより、ほとんどのUIの外観が変わる。",
+			[str::resume_dl_desc] = "ネットワークが中断した後、ダウンロードを再開する。",
+			[str::load_space_desc] = "空き領域インジケーターを切り替える。",
+			[str::show_battery_desc] = "バッテリーレベルインジケーターを切り替える。",
+			[str::time_format_desc] = "時間形式を選択する。",
+			[str::language_desc] = "3hsの言語を変更する。 選択した言語を有効にするには、アプリケーションを再起動する必要があるんや。",
+			[str::lumalocalemode_desc] = "LumaLocaleオートセッターのモードを設定する。 自動は言語を自動的に選択する。 これが手動に設定されてる場合、コンテンツのインストール後、3hsでリージョンの入力を求められる。",
+			[str::check_extra_desc] = "インストール後に追加のコンテンツを検索する。",
+			[str::proxy_desc] = "3hsのプロキシサーバーを構成する。 この設定は上級ユーザー向けです。",
+			[str::install_all] = "全てインストール",
+			[str::install_no_base] = "元となるゲームがインストールされてまへん。 続けるか？",
+			[str::warn_no_base] = "元となるゲームがインストールされてへん場合に警告する",
+			[str::warn_no_base_desc] = "元となるゲームがインストールされてへん場合、アップデートまたはDLCコンテンツをインストールする前にメッセージを表示する。",
+			[str::replaying_errors] = "キューの処理中に発生した再生エラー。",
+			[str::log] = "ログ",
+			[str::upload_logs] = "ログをアップロードする",
+			[str::clear_logs] = "ログをクリアする",
+			[str::found_missing] =" %1個の不足してるタイトルが見つかった\nキューをチェックしてインストールしてくれへん。",
+			[str::found_0_missing] = "不足してるタイトルは見つかりまへんでした。",
+			[str::max_elogs] = "古いログファイルの最大数",
+			[str::max_elogs_desc] = "保持するログファイルの数を設定する。 可能な値は0~255で、0は追加のログファイルを保持しまへん。",
+			[str::elogs_hint] = "0から255までの値",
+			[str::log_id] = "このIDを使用してサポートを取得する：\n%1", /* %1 = id */
+			[str::block] = "ブロック",
+			[str::blocks] = "ブロック",
+			[str::search_text] = "テキストで検索",
+			[str::search_id] = "hShop IDで検索",
+			[str::search_tid] = "タイトルIDで検索",
+			[str::invalid_tid] = "タイトルIDが無効です",
+			[str::theme_installer_tid_bad] = "テーマを探すには、テーマカテゴリを参照してくれへん",
+			[str::enter_lgy_query] = "従来の検索クエリを入力する",
+			[str::no_other_params_tid] = "タイトルIDを指定するときに他のパラメーターを指定することはできまへん",
+			[str::both_sd_and_sb] = "検索結果を並べ替えるときは、並べ替え方法と並べ替え方向を指定する必要があるんや",
+			[str::invalid_sb] = "無効なソート方法",
+			[str::invalid_sd] = "ソート方向が無効です",
+			[str::invalid_includes] = "ソート方向が無効です",
+			[str::invalid_excludes] = "無効な除外フィルター",
+			[str::filter_overlap] = "指定された検索フィルターで重複が検出された",
+			[str::lgy_search] = "レガシー検索",
+			[str::sure_reset] = "構成をリセットしてもよろしいですか？",
+			[str::ascending] = "昇順",
+			[str::descending] = "降順",
+			[str::alphabetical] = "アルファベット順",
+			[str::downloads] = "ダウンロード",
+			[str::def_sort_meth] = "デフォルトのソート方法",
+			[str::def_sort_meth_desc] = "タイトルのリストを表示するときに使用するデフォルトの並べ替え方法を指定する。",
+			[str::def_sort_dir] = "デフォルトのソート方向",
+			[str::def_sort_dir_desc] = "タイトルのリストを表示するときに使用するデフォルトのソート方向を指定する。",
+			[str::invalid_content_type] = "無効なコンテンツタイプ",
+			[str::theme_installed] = "テーマがインストールされた。 参照してくれへん" ,
+			[str::file_installed] = "ファイルがインストールされた。 これらはホームメニューには表示されまへん",
 		},
 };
 #pragma GCC diagnostic pop
@@ -2619,6 +3084,10 @@ const char *i18n::langname(lang::type id)
 	case lang::hungarian: return LANGNAME_HUNGARIAN;
 	case lang::japanese: return LANGNAME_JAPANESE;
 	case lang::russian: return LANGNAME_RUSSIAN;
+	case lang::spearglish: return LANGNAME_SPEARGLISH;
+	case lang::ryukyuan: return LANGNAME_RYUKYUAN;
+	case lang::latvian: return LANGNAME_LATVIAN;
+	case lang::jp_osaka: return LANGNAME_JP_OSAKA;
 	}
 
 	return "invalid";
@@ -2632,8 +3101,17 @@ namespace CountryCode
 		canada  = 18,
 		greece  = 79,
 		hungary = 80,
+		latvia  = 84,
 		poland  = 97,
 		romania = 99,
+	};
+}
+
+// Not documented so gotten through a test application
+namespace ProvinceCode
+{
+	enum _codes {
+		japan_okinawa = 48,
 	};
 }
 
@@ -2645,19 +3123,25 @@ lang::type i18n::default_lang()
 		syslang = CFG_LANGUAGE_EN;
 	/* countryinfo */
 	if(R_FAILED(CFGU_GetConfigInfoBlk2(4, 0x000B0000, countryinfo)))
+	{
+		countryinfo[2] = 0;
 		countryinfo[3] = 0;
+	}
 
 	switch(countryinfo[3])
 	{
 	case CountryCode::hungary: return lang::hungarian;
 	case CountryCode::romania: return lang::romanian;
+	case CountryCode::latvia: return lang::latvian;
 	case CountryCode::poland: return lang::polish;
 	case CountryCode::greece: return lang::greek;
 	}
 
 	switch(syslang)
 	{
-	case CFG_LANGUAGE_JP: return lang::japanese;
+	case CFG_LANGUAGE_JP:
+		return countryinfo[2] == ProvinceCode::japan_okinawa
+			? lang::ryukyuan : lang::japanese;
 	case CFG_LANGUAGE_FR:
 		return countryinfo[3] == CountryCode::canada
 			? lang::french_canada : lang::french;

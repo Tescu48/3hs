@@ -479,10 +479,12 @@ static void update_settings_ID(SettingsId ID)
 		read_set_enum<lang::type>(
 			{ LANGNAME_ENGLISH, LANGNAME_DUTCH, LANGNAME_GERMAN, LANGNAME_SPANISH, LANGNAME_FRENCH,
 			  LANGNAME_FRENCH_CANADA, LANGNAME_ROMANIAN, LANGNAME_ITALIAN, LANGNAME_PORTUGUESE, LANGNAME_KOREAN,
-			  LANGNAME_GREEK, LANGNAME_POLISH, LANGNAME_HUNGARIAN, LANGNAME_JAPANESE, LANGNAME_RUSSIAN, LANGNAME_SPEARGLISH },
+			  LANGNAME_GREEK, LANGNAME_POLISH, LANGNAME_HUNGARIAN, LANGNAME_JAPANESE, LANGNAME_RUSSIAN, LANGNAME_SPEARGLISH,
+			  LANGNAME_RYUKYUAN, LANGNAME_LATVIAN, LANGNAME_JP_OSAKA },
 			{ lang::english, lang::dutch, lang::german, lang::spanish, lang::french,
 			  lang::french_canada, lang::romanian, lang::italian, lang::portuguese, lang::korean,
-			  lang::greek, lang::polish, lang::hungarian, lang::japanese, lang::russian, lang::spearglish },
+			  lang::greek, lang::polish, lang::hungarian, lang::japanese, lang::russian, lang::spearglish,
+			  lang::ryukyuan, lang::latvian, lang::jp_osaka },
 			g_settings.language
 		);
 		break;
