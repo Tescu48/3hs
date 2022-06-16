@@ -1,0 +1,416 @@
+- native_name
+Latviešu
+
+- loading
+Notiek ielāde...
+
+- luma_not_installed
+Tika konstatēta neatbalstīta programmaparatūra.
+
+- install_luma
+Šajā sistēmā nevar izmantot 3hs.
+
+- queue
+Rindā
+
+- fail_init_networking
+Neizdevās inicializēt tīkla izveidi
+
+- credits_thanks
+Paldies, ka izmantojās 3hs, hShop 3DS klientu.
+Jūs varat iegūt šo programmatūru bez maksas vietnē
+PAGE_3HS
+
+- press_to_install
+Nospiediet UI_GLYPH_A lai instalētu šo saturu.
+Nospiediet UI_GLYPH_B lai dotos atpakaļ.
+
+- version
+Versija
+
+- prodcode
+Produkta kods
+
+- size
+Izmērs
+
+- name
+Nosaukums
+
+- tid
+Aplikācijas ID
+
+- category
+Kategorija
+
+- landing_id
+hShop ID
+
+- description
+Apraksts
+
+- total_titles
+Kopējais aplikāciju skaits
+
+- select_cat
+Izvēlies kategoriju
+
+- select_subcat
+Izvēlieties apakškategoriju
+
+- select_title
+Izvēlieties aplikāciju
+
+- fmt_24h
+24 stundu
+
+- fmt_12h
+12 stundu
+
+- unknown
+nezināms
+
+- btrue
+taisnība
+
+- bfalse
+netaisnība
+
+- top
+augšā
+
+- bottom
+apakšā
+
+- light_mode
+Gaismas režīms
+
+- resume_dl
+Atsākt lejupielādes
+
+- load_space
+Rādīt brīvas vietas indikatoru
+
+- show_battery
+Rādīt akumulatora līmeņa indikatoru
+
+- time_format
+Laika formāts
+
+- progbar_screen
+Progresa joslas pozīcija
+
+- language
+Valoda
+
+- value_x
+Vērtība: %1
+
+- back
+Atpakaļ
+
+- invalid
+nederīgs
+
+- title_doesnt_exist
+Aplikācija neeksistē %1
+
+- netcon_lost
+Zaudēts tīkla savienojums (%1).
+Mēģinās vēlreiz pēc $t sekundēm...
+
+- about_app
+Par
+
+- help_manual
+Palīdzība / Rokasgrāmata
+
+- find_missing_content
+Meklēt trūkstošo saturu
+
+- press_a_exit
+Nospiediet UI_GLYPH_A lai izietu.
+
+- fatal_panic
+Fatāla kļūda
+
+- failed_open_seeddb
+Neizdevās atvērt seeddb.bin.
+
+- update_to
+Vai jūs vēlaties atjaunināt uz %1?
+
+- search_content
+Meklēt saturu
+
+- search_content_action
+Meklēt saturu...
+
+- result_code
+Rezultāta kods: %1
+
+- level
+Līmenis: %1
+
+- summary
+Kopsavilkums: %1
+
+- module
+Modulis: %1
+
+- hs_bunny_found
+Apsveicu! Jūs atradāt hShop zaķi!
+
+- already_installed_reinstall
+aplikācija jau ir instalēta. Pārinstalēt?
+
+- queue_empty
+Rinda ir tukša
+Nospiediet UI_GLYPH_A lai atgrieztos.
+Padoms: Nospiediet UI_GLYPH_Y lai rindai pievienotu aplikāciju.
+
+- cancel
+Atcelt
+
+- confirm
+Apstiprināt
+
+- invalid_proxy
+Nederīgi starpniekservera iestatījumi
+
+- more_about_content
+Vairāk par šo saturu
+
+- lumalocalemode
+LumaLocale režīms
+
+- automatic
+automātiski
+
+- manual
+manuāli
+
+- disabled
+atspējots
+
+- patching_reboot
+Luma3DS Spēļu labošana tagad ir iespējota.
+Lai šīs izmaiņas stātos spēkā, sistēma ir jārestartē.
+
+- reboot_now
+Restartēt tagad?
+
+- this_version
+Šī ir 3hs versija %1
+
+- retry_req
+Pieprasījums neizdevās. Vai mēģināt vēlreiz?
+
+- search_zero_results
+Jūsu meklēšana nedeva nekādus rezultātus.
+Nospiediet UI_GLYPH_A lai dotos atpakaļ.
+
+- credits
+Kredīti
+
+- check_extra
+Meklēt papildu saturu
+
+- no_req
+Vēl nav izgatavots neviens pieprasījums
+
+- invalid_query
+Nederīgs vaicājums
+Nospiediet  UI_GLYPH_A lai atgrieztos.
+
+- min_constraint
+Pašreizējā 3hs versija %1 ir zemāka par nepieciešamo versiju %2
+
+- proxy
+Starpniekserveris
+
+- none
+(neviens)
+
+- press_a_to_view
+Noklikšķiniet uz UI_GLYPH_A lai skatītu.
+
+- host
+Hosts
+
+- port
+Ports
+
+- username
+Lietotājvārds
+
+- password
+Parole
+
+- clear
+Notīrīt
+
+- progbar_screen_desc
+Izvēlieties progresa joslas pozīciju.
+
+- light_mode_desc
+Iespējot/atspējot gaismas režīmu. Tas mainīs veidu, kā izskatās lielākā daļa lietotāja interfeisa elementi.
+
+- resume_dl_desc
+Atsāciet lejupielādi pēc tīkla pārtraukuma.
+
+- load_space_desc
+Pārslēdziet brīvās vietas indikatoru.
+
+- show_battery_desc
+Pārslēdziet akumulatora uzlādes līmeņa indikatoru.
+
+- time_format_desc
+Izvēlieties laika formātu.
+
+- language_desc
+Iestatiet 3hs valodu. Lai izvēlētā valoda stātos spēkā, lietojumprogramma ir jārestartē.
+
+- lumalocalemode_desc
+Iestatiet LumaLocale automātiskās iestatīšanas režīmu. Automātiski automātiski atlasa valodu. Ja tas ir iestatīts uz manuāli, pēc satura instalēšanas 3hs liks norādīt reģionu.
+
+- check_extra_desc
+Pēc instalēšanas meklēt papildu saturu.
+
+- proxy_desc
+Konfigurējiet starpniekserveri 3hs. Šis iestatījums ir paredzēts pieredzējušiem lietotājiem.
+
+- install_all
+Instalēt visu
+
+- install_no_base
+Pamatspēle nav instalēta. Vai tomēr turpināt?
+
+- warn_no_base
+Brīdināt, ja bāzes spēle nav instalēta
+
+- warn_no_base_desc
+Parāda ziņojumu pirms atjauninājuma vai DLC satura instalēšanas, ja bāzes spēle nav instalēta.
+
+- replaying_errors
+Atkārtoti tiek atskaņotas kļūdas, kas radušās, apstrādājot rindu.
+
+- log
+Pārvaldīt žurnālus
+
+- upload_logs
+Augšupielādēt žurnālus
+
+- clear_logs
+Notīrīt žurnālus
+
+- found_missing
+Atrasts %1 trūkstošs(-i) aplikācijas
+Pārbaudiet rindu, lai tos instalētu
+
+- found_0_missing
+Trūksošas aplikācijas netika atrastas.
+
+- max_elogs
+Maksimālais veco žurnālfailu skaits
+
+- max_elogs_desc
+Iestatiet saglabājamo žurnālfailu skaitu. Iespējamās vērtības ir no 0 līdz 255, kur 0 nesaglabā papildu žurnālfailus.
+
+- elogs_hint
+Vērtība no 0 līdz 255
+
+- log_id
+Izmantojiet šo ID, lai saņemtu palīdzību:
+%1
+
+- block
+bloks
+
+- blocks
+bloki
+
+- search_text
+Meklēt pēc teksta
+
+- search_id
+Meklēt pēc hShop ID
+
+- search_tid
+Meklēt pēc Aplikācijas ID
+
+- invalid_tid
+Nederīgs Aplikācijas ID
+
+- theme_installer_tid_bad
+Lūdzu, manuāli pārlūkojiet kategoriju Motīvi, lai meklētu motīvus
+
+- enter_lgy_query
+Ievadiet mantoto meklēšanas vaicājumu
+
+- no_other_params_tid
+Norādot aplikācijas ID, nevar norādīt citus parametrus
+
+- both_sd_and_sb
+Kārtojot meklēšanas rezultātus, ir jānorāda kārtošanas metode un kārtošanas virziens
+
+- invalid_sb
+Nederīga kārtošanas metode
+
+- invalid_sd
+Nederīgs kārtošanas virziens
+
+- invalid_includes
+Nederīgi iekļaušanas filtri
+
+- invalid_excludes
+Nederīgi izslēgšanas filtri
+
+- filter_overlap
+Konstatēta norādīto meklēšanas filtru pārklāšanās
+
+- lgy_search
+Mantotā meklēšana
+
+- sure_reset
+Vai tiešām vēlaties atiestatīt iestatījumus?
+
+- ascending
+Augoša
+
+- descending
+Dilstoša
+
+- alphabetical
+Alfabētiskā secībā
+
+- downloads
+Lejupielādes
+
+- def_sort_meth
+Noklusējuma kārtošanas metode
+
+- def_sort_meth_desc
+Norāda noklusējuma kārtošanas metodi, kas jāizmanto, skatot aplikāciju sarakstu.
+
+- def_sort_dir
+Noklusējuma kārtošanas virziens
+
+- def_sort_dir_desc
+Norāda noklusējuma kārtošanas virzienu, kas jāizmanto, skatot aplikāciju sarakstu.
+
+- invalid_content_type
+Nederīgs satura veids
+
+- theme_installed
+Motīvs tika instalēts. Lūdzu apskatiet PAGE_THEMES
+
+- file_installed
+Tika instalēts fails. Tie netiek rādīti mājas izvēlnē
+
+- allow_led
+Iespējot LED statusa indikatorus
+
+- allow_led_desc
+Tas LED indikators mirgos, lai informētu jūs par dažādām statusa izmaiņām piemēram, kad ir pabeigta aplikācijas instalēšana.
+

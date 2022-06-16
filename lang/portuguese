@@ -1,0 +1,410 @@
+- native_name
+Português
+
+- loading
+Carregando...
+
+- luma_not_installed
+Uma versão de sistema não suportada foi detetada.
+
+- install_luma
+O 3hs não consegue ser usado neste sistema.
+
+- queue
+Fila
+
+- fail_init_networking
+Falha ao iniciar a rede
+
+- credits_thanks
+Obrigado por usares a 3hs, um cliente de 3DS para a hShop.
+Podes ter este programa de graça pelo
+PAGE_3HS
+
+- press_to_install
+Pressiona UI_GLYPH_A para instalar este conteúdo.
+Pressiona UI_GLYPH_B para voltar.
+
+- version
+Versão
+
+- prodcode
+Product Code
+
+- size
+Tamanho
+
+- name
+Nome
+
+- tid
+ID do Jogo
+
+- category
+Categoria
+
+- landing_id
+ID hShop
+
+- description
+Descrição
+
+- total_titles
+Total de Jogos
+
+- select_cat
+Seleciona a categoria
+
+- select_subcat
+Seleciona a sub-categoria
+
+- select_title
+Seleciona um jogo
+
+- fmt_24h
+24 horas
+
+- fmt_12h
+12 horas
+
+- unknown
+desconhecido
+
+- btrue
+ligado
+
+- bfalse
+desligado
+
+- top
+cima
+
+- bottom
+baixo
+
+- light_mode
+Modo escuro
+
+- resume_dl
+Resumir downloads
+
+- load_space
+Mostrar indicadores de espaço livre
+
+- show_battery
+Mostrar indicador do nivel de bateria
+
+- time_format
+Formato do tempo
+
+- progbar_screen
+Posição da barra de progresso
+
+- language
+Linguagem
+
+- value_x
+Valor: %1
+
+- back
+Voltar
+
+- invalid
+invalido
+
+- title_doesnt_exist
+Jogo não existe: %1
+
+- netcon_lost
+Conexão com rede perdida (%1).
+Tentando novamente em $t segundos...
+
+- about_app
+Sobre
+
+- help_manual
+Ajuda/Manual
+
+- find_missing_content
+Encontre conteúdo em falta
+
+- press_a_exit
+Pressione UI_GLYPH_A para sair.
+
+- fatal_panic
+Um erro fatal ocorreu.
+
+- failed_open_seeddb
+Falha ao abrir seeddb.bin.
+
+- update_to
+Queres atualizar para %1?
+
+- search_content
+Pesquise conteúdo
+
+- search_content_action
+Pesquise conteúdo...
+
+- result_code
+Codigo do resultado: %1
+
+- level
+Nivel: %1
+
+- summary
+Resumo: %1
+
+- module
+Modulo: %1
+
+- hs_bunny_found
+Parabens! Encontraste o coelho do hShop!
+
+- already_installed_reinstall
+Jogo já instalado. Reinstalar?
+
+- queue_empty
+A fila está vazia
+Pressione UI_GLYPH_A para voltar.
+Dica: Pressione UI_GLYPH_Y para adicionar um jogo a fila.
+
+- cancel
+Cancelar
+
+- confirm
+Confirmar
+
+- invalid_proxy
+Opções de Proxy invalidas
+
+- more_about_content
+Mais sobre este conteúdo
+
+- lumalocalemode
+Modo de LumaLocale
+
+- automatic
+automatico
+
+- manual
+manual
+
+- disabled
+desligado
+
+- patching_reboot
+Luma3DS Game Patching está ligado.
+A consola tem de ser reinicia para as mudanças tomarem efeito.
+
+- reboot_now
+Reiniciar agora?
+
+- this_version
+Está na versão 3hs %1
+
+- retry_req
+Pedido falhado. Tentar novamente?
+
+- search_zero_results
+A pesquisa não retornou resultados.
+Pressione UI_GLYPH_A para voltar.
+
+- credits
+Creditos
+
+- check_extra
+Pesquisar por conteúdo extra?
+
+- no_req
+Nenhum pedido feito até agora
+
+- invalid_query
+Pesquisa invalida
+Pressiona UI_GLYPH_A para voltar.
+
+- min_constraint
+Atual versão 3hs %1 é menor que a versão requerida %2
+
+- proxy
+Proxy
+
+- none
+(none)
+
+- press_a_to_view
+Pressione UI_GLYPH_A para ver.
+
+- host
+Host
+
+- port
+Port
+
+- username
+Nome do usuário
+
+- password
+Password
+
+- clear
+Descartar
+
+- progbar_screen_desc
+Selecione a posição da barra de progresso.
+
+- light_mode_desc
+Ligue/Desligue o modo escuro. Isto vai mudar como muito elementos de UI aparecem.
+
+- resume_dl_desc
+Resumir downloads depois de uma interrupção de rede.
+
+- load_space_desc
+Ligue o indicador de espaço livre.
+
+- show_battery_desc
+Ligue o indicador do nível de bateria.
+
+- time_format_desc
+Selecione o formato de tempo.
+
+- language_desc
+Define a linguagem para o 3hs. A app tem de ser reiniciada para a linguagem selecionada tomar efeito.
+
+- lumalocalemode_desc
+Define o modo do LumaLocale auto-defenidor. Automaticamente seleciona a linguagem automatica. Se isto for definido para manual, o 3hs vai pedir pela região depois da instalação do conteúdo.
+
+- check_extra_desc
+Pesquisar por conteúdo extra depois da instalação.
+
+- proxy_desc
+Configurar um server proxy para o 3hs. Esta definição é apenas para utilizadores avançados.
+
+- install_all
+Instalar tudo
+
+- install_no_base
+O jogo base não está instalado. Continuar na mesma?
+
+- warn_no_base
+Avisar se o jogo base não está instalado
+
+- warn_no_base_desc
+Mostra uma mensagem antes de instalar updates ou DLCs se o jogo base não está instalado.
+
+- replaying_errors
+Erros encontrados ao processar a fila.
+
+- log
+Gerir registros
+
+- upload_logs
+Enviar registros
+
+- clear_logs
+Descartar registros
+
+- found_missing
+Encontrado(s) %1 jogo(s) em falta
+Verifica a fila para os instalar.
+
+- found_0_missing
+Nenhum jogo em falta encontrado.
+
+- max_elogs
+Maximo de ficheiros de registro antigos
+
+- max_elogs_desc
+Define o numero de ficheiros de registro para manter. Valores possiveis são de 0 a 255, 0 não mantém ficheiros de registro adicionais.
+
+- elogs_hint
+Valor entre 0 e 255
+
+- log_id
+Usa este ID para obter supporte:
+%1
+
+- block
+bloco
+
+- blocks
+blocos
+
+- search_text
+Pesquisa por texto
+
+- search_id
+Pesquisa por ID hShop
+
+- search_tid
+Pesquisar por ID de Jogo
+
+- invalid_tid
+ID de Jogo inválido
+
+- theme_installer_tid_bad
+Porfavor pesquise a categoria dos temas manualmente para pesquisar temas.
+
+- enter_lgy_query
+Insira uma pesquisa clássica
+
+- no_other_params_tid
+Impossivel especificar outros parâmetros quando se especifica um ID de Jogo
+
+- both_sd_and_sb
+Tens de especificar um metodo de ordenagem e de direção enquanto se ordena os resultados da pesquisa
+
+- invalid_sb
+Metodo de ordenagem inválido
+
+- invalid_sd
+Direção de ordenagem inválida
+
+- invalid_includes
+Filtros de inclusão inválidos
+
+- invalid_excludes
+Filtros de exclusão inválidos
+
+- filter_overlap
+Detetada uma sobreposição nos filtros de pesquisa utilizados
+
+- lgy_search
+Pesquisa Clássica
+
+- sure_reset
+Tens certeza que queres resetar as suas definições?
+
+- ascending
+Ascendente
+
+- descending
+Descendente
+
+- alphabetical
+Alfabética
+
+- downloads
+Downloads
+
+- def_sort_meth
+Metodo de ordem predefinido
+
+- def_sort_meth_desc
+Especifica o metodo de ordem predefinido para usar durante a visualização de jogos.
+
+- def_sort_dir
+Direção de ordem predefinida
+
+- def_sort_dir_desc
+Especifica a direção da ordem predefinida para usar durante a visualização de jogos.
+
+- invalid_content_type
+Tipo de conteúdo invalido
+
+- theme_installed
+Um tema foi instalado. Porfavor veja.PAGE_THEMES
+
+- file_installed
+Um ficheiro foi instalado. Eles não são mostrados no Menu Inicial.
+

@@ -1,0 +1,416 @@
+- native_name
+Русский
+
+- loading
+Загрузка...
+
+- luma_not_installed
+Обнаружена не поддерживаемая прошивка.
+
+- install_luma
+3hs нельзя использовать в данной системе.
+
+- queue
+Очередь
+
+- fail_init_networking
+Ошибка инициализации сети
+
+- credits_thanks
+Спасибо, что используете 3hs, hShop клиент для 3DS.
+Вы можете скачать контент по ссылке
+PAGE_3HS
+
+- press_to_install
+Нажмите UI_GLYPH_A для установки.
+Нажмите UI_GLYPH_B для возврата.
+
+- version
+Версия
+
+- prodcode
+Код продукта
+
+- size
+Размер
+
+- name
+Имя
+
+- tid
+Title ID
+
+- category
+Категория
+
+- landing_id
+hShop ID
+
+- description
+Описание
+
+- total_titles
+Общее количество
+
+- select_cat
+Выберите категорию
+
+- select_subcat
+Выберите подкатегорию
+
+- select_title
+Выберите
+
+- fmt_24h
+24-часовой
+
+- fmt_12h
+12-часовой
+
+- unknown
+Неизвестно
+
+- btrue
+ВКЛ.
+
+- bfalse
+ВЫКЛ.
+
+- top
+Верхний
+
+- bottom
+Нижний
+
+- light_mode
+Цветовая схема
+
+- resume_dl
+Продолжить загрузку
+
+- load_space
+Объём свободного места
+
+- show_battery
+Уровень заряда
+
+- time_format
+Формат времени
+
+- progbar_screen
+Индикатор загрузки
+
+- language
+Язык
+
+- value_x
+Значение: %1
+
+- back
+Назад
+
+- invalid
+Недопустимо
+
+- title_doesnt_exist
+Название не существует: %1
+
+- netcon_lost
+Соединение прервано (%1).
+Повтор через $t секунд...
+
+- about_app
+Информация
+
+- help_manual
+Помощь/Инструкция
+
+- find_missing_content
+Найти недостающий контент
+
+- press_a_exit
+Нажмите UI_GLYPH_A для выхода.
+
+- fatal_panic
+Критическая ошибка.
+
+- failed_open_seeddb
+Не удалось открыть seeddb.bin.
+
+- update_to
+Обновить до %1?
+
+- search_content
+Поиск
+
+- search_content_action
+Поиск...
+
+- result_code
+Код результата: %1
+
+- level
+Уровень: %1
+
+- summary
+Сводка: %1
+
+- module
+Модуль: %1
+
+- hs_bunny_found
+Поздравляем! Вы нашли пасхалку!
+
+- already_installed_reinstall
+Уже установлено. Переустановить?
+
+- queue_empty
+Пусто
+Нажмите UI_GLYPH_A для возврата.
+Нажмите UI_GLYPH_Y чтобы добавить в очередь.
+
+- cancel
+Закрыть
+
+- confirm
+Готово
+
+- invalid_proxy
+Неверные настройки прокси
+
+- more_about_content
+Подробнее
+
+- lumalocalemode
+Режим LumaLocale
+
+- automatic
+Авто
+
+- manual
+Вручную
+
+- disabled
+Отключено
+
+- patching_reboot
+Luma3DS Game Patching не активен.
+Изменения вступят в силу после перезагрузки.
+
+- reboot_now
+Перезагрузить сейчас?
+
+- this_version
+Текущая версия 3hs %1
+
+- retry_req
+Ошибка запроса. Повторить?
+
+- search_zero_results
+Поиск не дал результатов.
+Нажмите UI_GLYPH_A для возврата.
+
+- credits
+Credits
+
+- check_extra
+Поиск доп. контента
+
+- no_req
+Запросов не было
+
+- invalid_query
+Ошибка запроса
+Нажмите UI_GLYPH_A для возврата.
+
+- min_constraint
+Текущая версия 3hs %1 ниже требуемой %2
+
+- proxy
+Прокси
+
+- none
+(не использовать)
+
+- press_a_to_view
+Нажмите UI_GLYPH_A для просмотра.
+
+- host
+Хост
+
+- port
+Порт
+
+- username
+Имя
+
+- password
+Пароль
+
+- clear
+Очистить
+
+- progbar_screen_desc
+На каком экране отображать индикатор загрузки?
+
+- light_mode_desc
+Выберете тёмную или светлую тему.
+
+- resume_dl_desc
+Возобновить загрузку после сбоя сети.
+
+- load_space_desc
+Показать или скрыть информацию о свободном месте.
+
+- show_battery_desc
+Показать или скрыть информацию о заряде батареи.
+
+- time_format_desc
+Выберите формат времени.
+
+- language_desc
+Выбор языка. Изменения вступят в силу после перезагрузки.
+
+- lumalocalemode_desc
+LumaLocate: Авто - выберает регион автоматически, Вручную - запросит регион после установки. 
+
+- check_extra_desc
+Искать дополнительный контент после установки.
+
+- proxy_desc
+Настроить прокси (для опытных пользователей).
+
+- install_all
+Установить всё
+
+- install_no_base
+Базовая игра не установлена. Продолжить?
+
+- warn_no_base
+Уведомление об отсутствии игры
+
+- warn_no_base_desc
+Уведомлять об отсутствии базовой игры при установке DLC или доп. контента.
+
+- replaying_errors
+При обработке очереди, возникли следующие ошибки:
+
+- log
+Логи
+
+- upload_logs
+Загрузить логи
+
+- clear_logs
+Очистить логи
+
+- found_missing
+Найдено %1 потерянных объектов
+Проверьте очередь для их установки.
+
+- found_0_missing
+Потерянных объектов не найдено.
+
+- max_elogs
+Хранение лог-файлов
+
+- max_elogs_desc
+Установите количество сохраняемых лог-файлов. Выберите число от 0 до 255 (0 - не сохранять логи).
+
+- elogs_hint
+Значение от 0 до 255
+
+- log_id
+Используйте этот ID для получения поддержки:
+%1
+
+- block
+блок
+
+- blocks
+блоков
+
+- search_text
+Поиск по тексту
+
+- search_id
+Поиск по hShop ID
+
+- search_tid
+Поиск по Title ID
+
+- invalid_tid
+Неверный Title ID
+
+- theme_installer_tid_bad
+Пожалуйста, поищите темы самостоятельно
+
+- enter_lgy_query
+Введите запрос устаревшего поиска
+
+- no_other_params_tid
+Невозможно указать другие параметры для Title ID
+
+- both_sd_and_sb
+При отображении результатов поиска необходимо указать метод сортировки
+
+- invalid_sb
+Неверный метод сортировки
+
+- invalid_sd
+Неверное направление сортировки
+
+- invalid_includes
+Недопустимое значение фильтров
+
+- invalid_excludes
+Недопустимое исключение фильтров
+
+- filter_overlap
+Обнаружено совпадение в указанных фильтрах
+
+- lgy_search
+Устаревший поиск
+
+- sure_reset
+Вы действительно хотите сбросить настройки?
+
+- ascending
+По возрастанию
+
+- descending
+По убыванию
+
+- alphabetical
+Алфавит
+
+- downloads
+Загрузки
+
+- def_sort_meth
+Метод сортировки
+
+- def_sort_meth_desc
+Укажите метод сортировки контента.
+
+- def_sort_dir
+Направление сортировки
+
+- def_sort_dir_desc
+Укажите направление сортировки контента.
+
+- invalid_content_type
+Неверный тип содержимого
+
+- theme_installed
+Тема установлена. Посмотрите PAGE_THEMES
+
+- file_installed
+Файл установлен. Он не отобразиться в меню HOME
+
+- allow_led
+Светодиодный индикатор
+
+- allow_led_desc
+Светодиодная индикация различных событий, например после завершения установки игры.
+

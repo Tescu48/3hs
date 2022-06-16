@@ -114,6 +114,7 @@ enum SettingsId
 	ID_Battery,    // bool
 	ID_Extra,      // bool
 	ID_WarnNoBase, // bool
+	ID_AllowLED,   // bool
 	ID_TimeFmt,    // show as text: enum val
 	ID_ProgLoc,    // show as text: enum val
 	ID_Language,   // show as text: enum val
@@ -216,6 +217,8 @@ static bool serialize_id_bool(SettingsId ID)
 		return g_settings.checkForExtraContent;
 	case ID_WarnNoBase:
 		return g_settings.warnNoBase;
+	case ID_AllowLED:
+		return g_settings.allowLEDChange;
 	case ID_TimeFmt:
 	case ID_ProgLoc:
 	case ID_Language:
@@ -240,6 +243,7 @@ static std::string serialize_id_text(SettingsId ID)
 	case ID_Battery:
 	case ID_Extra:
 	case ID_WarnNoBase:
+	case ID_AllowLED:
 		panic("impossible text setting switch case reached");
 	case ID_TimeFmt:
 		return g_settings.timeFormat == Timefmt::good ? STRING(fmt_24h) : STRING(fmt_12h);
@@ -460,6 +464,9 @@ static void update_settings_ID(SettingsId ID)
 	case ID_Extra:
 		g_settings.checkForExtraContent = !g_settings.checkForExtraContent;
 		break;
+	case ID_AllowLED:
+		g_settings.allowLEDChange = !g_settings.allowLEDChange;
+		break;
 	// Enums
 	case ID_TimeFmt:
 		read_set_enum<Timefmt>(
@@ -477,14 +484,7 @@ static void update_settings_ID(SettingsId ID)
 		break;
 	case ID_Language:
 		read_set_enum<lang::type>(
-			{ LANGNAME_ENGLISH, LANGNAME_DUTCH, LANGNAME_GERMAN, LANGNAME_SPANISH, LANGNAME_FRENCH,
-			  LANGNAME_FRENCH_CANADA, LANGNAME_ROMANIAN, LANGNAME_ITALIAN, LANGNAME_PORTUGUESE, LANGNAME_KOREAN,
-			  LANGNAME_GREEK, LANGNAME_POLISH, LANGNAME_HUNGARIAN, LANGNAME_JAPANESE, LANGNAME_RUSSIAN, LANGNAME_SPEARGLISH,
-			  LANGNAME_RYUKYUAN, LANGNAME_LATVIAN, LANGNAME_JP_OSAKA },
-			{ lang::english, lang::dutch, lang::german, lang::spanish, lang::french,
-			  lang::french_canada, lang::romanian, lang::italian, lang::portuguese, lang::korean,
-			  lang::greek, lang::polish, lang::hungarian, lang::japanese, lang::russian, lang::spearglish,
-			  lang::ryukyuan, lang::latvian, lang::jp_osaka },
+			{ I18N_ALL_NAMES }, { I18N_ALL_IDS },
 			g_settings.language
 		);
 		break;
@@ -567,6 +567,7 @@ void show_settings()
 		{ STRING(show_battery)   , STRING(show_battery_desc)   , ID_Battery    , false },
 		{ STRING(check_extra)    , STRING(check_extra_desc)    , ID_Extra      , false },
 		{ STRING(warn_no_base)   , STRING(warn_no_base_desc)   , ID_WarnNoBase , false },
+		{ STRING(allow_led)      , STRING(allow_led_desc)      , ID_AllowLED   , false },
 		{ STRING(time_format)    , STRING(time_format_desc)    , ID_TimeFmt    , true  },
 		{ STRING(progbar_screen) , STRING(progbar_screen_desc) , ID_ProgLoc    , true  },
 		{ STRING(language)       , STRING(language_desc)       , ID_Language   , true  },

@@ -1,0 +1,410 @@
+- native_name
+琉球諸語
+
+- loading
+ロード中...
+
+- luma_not_installed
+サポートさりてぃうぅらんファームウェアぬ検出さりやびたん。
+
+- install_luma
+くぬシステムっしぇー3hsー使用なやびらん。
+
+- queue
+キュー
+
+- fail_init_networking
+ネットワークぬ初期化んかいしーやんじゃびたん
+
+- credits_thanks
+hShop用ぬ3DSクライアントやん3hsぐ利用いただちにふぇーでーびる！
+くぬソフトウェアー、
+PAGE_3HS うぅてぃ完全いちゃんだっし入手なやびーん。
+
+- press_to_install
+UI_GLYPH_A うち くぬコンテンツインストール
+UI_GLYPH_B うち前ぬ画面んかいむどぅいん
+
+- version
+バージョン
+
+- prodcode
+プロダクトコード
+
+- size
+サイズ
+
+- name
+ゲーム名
+
+- tid
+タイトルID
+
+- category
+カテゴリー
+
+- landing_id
+hShop ID
+
+- description
+説明
+
+- total_titles
+総タイトル数
+
+- select_cat
+カテゴリー選択
+
+- select_subcat
+サブカテゴリー選択
+
+- select_title
+タイトル選択
+
+- fmt_24h
+24時間表記
+
+- fmt_12h
+12時間表記
+
+- unknown
+不明
+
+- btrue
+はい
+
+- bfalse
+うぅーうぅー
+
+- top
+うぃー
+
+- bottom
+しちゃ
+
+- light_mode
+ライトモード
+
+- resume_dl
+ダウンロード再開すん
+
+- load_space
+空き領域インジケーター表示すん
+
+- show_battery
+バッテリーレベルインジケーター表示すん
+
+- time_format
+時間形式
+
+- progbar_screen
+プログレスバーぬ位置
+
+- language
+言語変更
+
+- value_x
+値: %1
+
+- back
+むどぅいん
+
+- invalid
+無効
+
+- title_doesnt_exist
+タイトルぬ存在さびらん: %1
+
+- netcon_lost
+ネットワーク接続ぬ失らりやびたん(%1)。
+$t秒っし再試行さびーん。..
+
+- about_app
+3hsぬ詳細
+
+- help_manual
+ヘルプ/マニュアル
+
+- find_missing_content
+不足そーるコンテンツかめーいん
+
+- press_a_exit
+UI_GLYPH_Aうち終了さびーん。
+
+- fatal_panic
+致命的なパニックぬ発生さびたん。
+
+- failed_open_seeddb
+seeddb.binふぃらちゅるくとぅがなやびらんたん。
+
+- update_to
+%1に更新さびーが？
+
+- search_content
+コンテンツ検索すん
+
+- search_content_action
+コンテンツ検索中...
+
+- result_code
+結果コード: %1
+
+- level
+レベル: %1
+
+- summary
+要約: %1
+
+- module
+モジュール: %1
+
+- hs_bunny_found
+かりーでーびる！ hShopバニー見ーちきやびたん！
+
+- already_installed_reinstall
+タイトローしでぃにインストールさりとーいびーん。 再インストールさびーが？
+
+- queue_empty
+キューぬ空やいびーん
+UI_GLYPH_Aうち元ぬ画面んかいむどぅやびーん。
+ヒント: UI_GLYPH_Y うち、キューんかいタイトルいりしーいびーん。
+
+- cancel
+キャンセル
+
+- confirm
+確認
+
+- invalid_proxy
+プロキシ設定ぬ無効やいびーん
+
+- more_about_content
+くぬコンテンツぬ詳細
+
+- lumalocalemode
+LumaLocaleモード
+
+- automatic
+自動
+
+- manual
+マニュアル
+
+- disabled
+無効
+
+- patching_reboot
+Luma3DSゲームパッチぬ有効なやびたん。
+くぬ変更有効なすんがー、システム再起動するいりゆーぬあいびーん。
+
+- reboot_now
+なまちゃーき再起動さびーが？
+
+- this_version
+くれー3hsバージョン%1やいびーん
+
+- retry_req
+要求ぬしーやんじゃびたん。 リトライさびーが？
+
+- search_zero_results
+検索結果がけーさりやびらんたん。
+UI_GLYPH_Aうちむどぅやびーん。
+
+- credits
+クレジット
+
+- check_extra
+追加コンテンツ検索すん
+
+- no_req
+なーらリクエストーあいびらん
+
+- invalid_query
+無効なクエリ
+むどぅいんがーUI_GLYPH_Aうちくぃみそーれー。
+
+- min_constraint
+現在ぬ3hsバージョン%1ー、いりゆーなバージョン%2やかふぃくくなとーいびーん
+
+- proxy
+プロキシー
+
+- none
+(なし)
+
+- press_a_to_view
+UI_GLYPH_Aクリックし表示さびーん。
+
+- host
+ホスト
+
+- port
+ポート
+
+- username
+ユーザー名
+
+- password
+パスワード
+
+- clear
+クリア
+
+- progbar_screen_desc
+プログレスバーぬ位置選択さびーん。
+
+- light_mode_desc
+ライトモード有効/無効なさびーん。 くりにゆり、ふとぅんどぅぬUIぬ外観ぬ変わやびーん。
+
+- resume_dl_desc
+ネットワークぬ中断さる後、ダウンロード再開さびーん。
+
+- load_space_desc
+空き領域インジケーター切り替いやびーん。
+
+- show_battery_desc
+バッテリーレベルインジケーター切り替いやびーん。
+
+- time_format_desc
+時間形式選択さびーん。
+
+- language_desc
+3hsぬ言語変更さびーん。 選択さる言語有効なすんがー、アプリケーション再起動するいりゆーぬあいびーん。
+
+- lumalocalemode_desc
+LumaLocaleオートセッターぬモード設定さびーん。 自動ー言語自動的に選択さびーん。 くりが手動んかい設定さりとーるばー、コンテンツぬインストール後、3hsっしリージョンぬ入力むとぅみららりやびーん。
+
+- check_extra_desc
+インストール後に追加ぬコンテンツ検索さびーん。
+
+- proxy_desc
+3hsぬプロキシサーバー構成さびーん。 くぬ設定ー上級ユーザー向きやいびーん。
+
+- install_all
+まじりインストール
+
+- install_no_base
+元とぅないるゲームぬインストールさりやびらん。 続きやびーが？
+
+- warn_no_base
+元とぅないるゲームぬインストールさりてぃうぅらんばーに警告すん
+
+- warn_no_base_desc
+元とぅないるゲームぬインストールさりてぃうぅらんばー、アップデートあらんでぃDLCコンテンツインストールする前にメッセージ表示さびーん。
+
+- replaying_errors
+キューぬ処理中んかい発生さる再生エラー。
+
+- log
+ログ
+
+- upload_logs
+ログアップロードすん
+
+- clear_logs
+ログクリアすん
+
+- found_missing
+ %1個ぬ不足そーるタイトルぬ見ちかやびたん
+キューチェックしインストールしくぃみそーれー。
+
+- found_0_missing
+不足そーるタイトロー見ちかやびらんたん。
+
+- max_elogs
+古さるログファイルぬ最大数
+
+- max_elogs_desc
+保持するログファイルぬかじ設定さびーん。 可能な値ー0~255っし、0ー追加ぬログファイル保持さびらん。
+
+- elogs_hint
+0から255までぃぬ値
+
+- log_id
+くぬID使用しサポート取得さびーん：
+%1
+
+- block
+ブロック
+
+- blocks
+ブロック
+
+- search_text
+テキストっし検索
+
+- search_id
+hShop IDっし検索
+
+- search_tid
+タイトルIDっし検索
+
+- invalid_tid
+タイトルIDぬ無効やいびーん
+
+- theme_installer_tid_bad
+テーマかめーいんがー、テーマカテゴリ参照しくぃみそーれー
+
+- enter_lgy_query
+従来ぬ検索クエリ入力さびーん
+
+- no_other_params_tid
+タイトルID指定するとぅちに他ぬパラメーター指定すしぇーなやびらん
+
+- both_sd_and_sb
+検索結果並べいけーいるとぅちぇー、並べいけーい方法んでぃ並べいけーい方向指定するいりゆーぬあいびーん
+
+- invalid_sb
+無効なソート方法
+
+- invalid_sd
+ソート方向ぬ無効やいびーん
+
+- invalid_includes
+ソート方向ぬ無効やいびーん
+
+- invalid_excludes
+無効な除外フィルター
+
+- filter_overlap
+指定さったる検索フィルターっし重複ぬ検出さりやびたん
+
+- lgy_search
+レガシー検索
+
+- sure_reset
+構成リセットしんゆたさいびーが？
+
+- ascending
+昇順
+
+- descending
+降順
+
+- alphabetical
+アルファベット順
+
+- downloads
+ダウンロード
+
+- def_sort_meth
+デフォルトぬソート方法
+
+- def_sort_meth_desc
+タイトルぬリスト表示するとぅちに使用するデフォルトぬ並べいけーい方法指定さびーん。
+
+- def_sort_dir
+デフォルトぬソート方向
+
+- def_sort_dir_desc
+タイトルぬリスト表示するとぅちに使用するデフォルトぬソート方向指定さびーん。
+
+- invalid_content_type
+無効なコンテンツタイプ
+
+- theme_installed
+テーマぬインストールさりやびたん。 参照しくぃみそーれー 
+
+- file_installed
+ファイルぬインストールさりやびたん。 くりらーホームメニューんかえー表示さりやびらん
+

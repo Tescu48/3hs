@@ -1,0 +1,410 @@
+- native_name
+Español
+
+- loading
+Cargando...
+
+- luma_not_installed
+Se detectó un firmware incompatible.
+
+- install_luma
+No se puede usar 3hs en este sistema.
+
+- queue
+Cola
+
+- fail_init_networking
+No se pudo inicializar la red
+
+- credits_thanks
+Gracias por usar 3hs, un cliente de 3DS para hShop.
+Puedes conseguir este software gratuitamente en
+PAGE_3HS
+
+- press_to_install
+Presiona UI_GLYPH_A para instalar este contenido.
+Presiona UI_GLYPH_B para volver.
+
+- version
+Versión
+
+- prodcode
+Código de producto
+
+- size
+Tamaño
+
+- name
+Nombre
+
+- tid
+ID de Título
+
+- category
+Categoría
+
+- landing_id
+ID de hShop
+
+- description
+Descripción
+
+- total_titles
+Títulos totales
+
+- select_cat
+Selecciona una categoría
+
+- select_subcat
+Selecciona una sub-categoría
+
+- select_title
+Selecciona un título
+
+- fmt_24h
+24 horas
+
+- fmt_12h
+12 horas
+
+- unknown
+desconocido
+
+- btrue
+verdadero
+
+- bfalse
+falso
+
+- top
+superior
+
+- bottom
+inferior
+
+- light_mode
+Modo luz
+
+- resume_dl
+Resumir descargas
+
+- load_space
+Mostrar el indicador de espacio libre
+
+- show_battery
+Mostrar el indicador de batería
+
+- time_format
+Formato de tiempo
+
+- progbar_screen
+Posición de la barra de progreso
+
+- language
+Lenguaje
+
+- value_x
+Valor: %1
+
+- back
+Volver
+
+- invalid
+inválido
+
+- title_doesnt_exist
+El título no existe: %1
+
+- netcon_lost
+Se perdió la conexión con la red (%1).
+Reintentando en $t segundos...
+
+- about_app
+Acerca de
+
+- help_manual
+Ayuda/Manual
+
+- find_missing_content
+Buscar contenido faltante
+
+- press_a_exit
+Presiona UI_GLYPH_A para salir.
+
+- fatal_panic
+Ocurrió un error fatal.
+
+- failed_open_seeddb
+Fallo al abrir seeddb.bin.
+
+- update_to
+Quieres actualizar a %1?
+
+- search_content
+Buscar por contenido
+
+- search_content_action
+Buscando por contenido...
+
+- result_code
+Código de resultado: %1
+
+- level
+Level: %1
+
+- summary
+Summary: %1
+
+- module
+Module: %1
+
+- hs_bunny_found
+¡Felicidades! You found the hShop bunny!
+
+- already_installed_reinstall
+El título ya está instalado. ¿Reinstalar?
+
+- queue_empty
+La cola está vacía
+Presiona UI_GLYPH_A para volver.
+Consejo: Presiona UI_GLYPH_Y para añadir un título a la cola.
+
+- cancel
+Cancelar
+
+- confirm
+Confirmar
+
+- invalid_proxy
+Configuración de Proxy invalida
+
+- more_about_content
+Más acerca de este contenido
+
+- lumalocalemode
+Modo de LumaLocale
+
+- automatic
+automático
+
+- manual
+manual
+
+- disabled
+desactivado
+
+- patching_reboot
+El parcheador de juegos de Luma3DS está activado.
+El sistema tiene que reiniciar para que los cambios den efecto.
+
+- reboot_now
+¿Reiniciar ahora?
+
+- this_version
+Está es la versión %1 de 3hs
+
+- retry_req
+Petición fallida. ¿Reintentar?
+
+- search_zero_results
+La búsqueda no dió resultados.
+Presiona UI_GLYPH_A para volver.
+
+- credits
+Créditos
+
+- check_extra
+Buscar por contenido adicional
+
+- no_req
+No hay solicitudes hechas todavía
+
+- invalid_query
+Consulta inválida
+Presiona UI_GLYPH_A para volver.
+
+- min_constraint
+La versión de 3hs, %1, es inferior a la versión requerida, %2
+
+- proxy
+Proxy
+
+- none
+(ninguno)
+
+- press_a_to_view
+Presiona UI_GLYPH_A para ver.
+
+- host
+Host
+
+- port
+Puerto
+
+- username
+Nombre de Usuario
+
+- password
+Contraseña
+
+- clear
+Despejar
+
+- progbar_screen_desc
+Selecciona la posición de la barra de progreso.
+
+- light_mode_desc
+Activar/desactivar modo luz. Esto cambiará cómo se verá la mayoria de la interfaz de usuario.
+
+- resume_dl_desc
+Reanudar descargas después de una interrupción de la red.
+
+- load_space_desc
+Alternar el indicador de espacio libre.
+
+- show_battery_desc
+Alternar el indicador de nivel de batería.
+
+- time_format_desc
+Selecciona el formato de tiempo.
+
+- language_desc
+Set the language for 3hs. The application must be restarted for the selected language to take effect.
+
+- lumalocalemode_desc
+Set the mode of the LumaLocale autosetter. Automatic selects a language automatically. If this is set to manual, 3hs will prompt for a region after the installation of content.
+
+- check_extra_desc
+Buscar por contenido adicional después de la instalación.
+
+- proxy_desc
+Configurar un servidor proxy para 3hs. Esta opción es para usuarios avanzados.
+
+- install_all
+Instalar todo
+
+- install_no_base
+El juego base no está instalado. ¿Continuar igualmente?
+
+- warn_no_base
+Informar si el juego base no está instalado
+
+- warn_no_base_desc
+Muestra un mensaje antes de instalar una actualización/DLC si el juego base no está instalado.
+
+- replaying_errors
+Reproduciendo errores encontrados mientras se procesaba la cola.
+
+- log
+Registros
+
+- upload_logs
+Subir registros
+
+- clear_logs
+Despejar registros
+
+- found_missing
+Se encontró %1 título perdido(s)
+Revisa la cola para instalarlos.
+
+- found_0_missing
+No se encontraron títulos faltantes.
+
+- max_elogs
+Máximo de archivos de registro antiguos
+
+- max_elogs_desc
+Establezca el número de archivos de registro que desea conservar. Los valores posibles son de 0 a 255, donde 0 no guarda archivos de registro adicionales.
+
+- elogs_hint
+Valor entre 0 y 255
+
+- log_id
+Usa este ID para conseguir soporte:
+%1
+
+- block
+bloque
+
+- blocks
+bloques
+
+- search_text
+Buscar por texto
+
+- search_id
+Buscar por ID de hShop
+
+- search_tid
+Buscar por ID de título
+
+- invalid_tid
+ID de título inválido
+
+- theme_installer_tid_bad
+Por favor, busque la categoría de Temas manualmente para buscar temas
+
+- enter_lgy_query
+Ingresa una consulta de búsqueda clásica
+
+- no_other_params_tid
+No se puede especificar ningún otro parámetro al buscar un ID de Título
+
+- both_sd_and_sb
+Debes especificar un método y dirección de organización para ordenar los resultados de busqueda
+
+- invalid_sb
+Método de organización inválido
+
+- invalid_sd
+Dirección de organización inválido
+
+- invalid_includes
+Filtros de inclusión inválidos
+
+- invalid_excludes
+Filtros de exclusión inválidos
+
+- filter_overlap
+Se detectó una superposición en los filtros de búsqueda especificados
+
+- lgy_search
+Búsqueda Clásica
+
+- sure_reset
+¿Estás seguro de querer restablecer tu configuración?
+
+- ascending
+Ascendiendo
+
+- descending
+Descendiendo
+
+- alphabetical
+Alfabético
+
+- downloads
+Descargas
+
+- def_sort_meth
+Método de organización predeterminado
+
+- def_sort_meth_desc
+Especifica el método de organización predeterminado que se utilizará al ver una lista de títulos.
+
+- def_sort_dir
+Dirección de organización por defecto
+
+- def_sort_dir_desc
+Especifica la dirección de organización predeterminado que se utilizará al ver una lista de títulos.
+
+- invalid_content_type
+Tipo de contenido inválido
+
+- theme_installed
+Un tema fue instalado. Por favor, vea PAGE_THEMES
+
+- file_installed
+Un archivo fue instalado. Estos no se muestran en el menú HOME
+

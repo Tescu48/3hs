@@ -1,0 +1,417 @@
+- native_name
+Deutsch
+
+- loading
+Laden ...
+
+- luma_not_installed
+Dieses Gerät verwendet eine nicht unterstützte Firmware
+
+- install_luma
+3hs kann auf diesem Gerät nicht verwendet werden
+
+- queue
+Warteschlange
+
+- fail_init_networking
+Netzwerkverbindung fehlgeschlagen
+
+- credits_thanks
+Danke, dass du 3hs nutzt. 3hs ist ein 3DS-Client für hShop.
+Du kannst diese Software auf
+PAGE_3HS kostenlos herunterladen.
+
+- press_to_install
+Drücke UI_GLYPH_A falls du diesen Inhalt zu installieren möchtest.
+Drücke UI_GLYPH_B falls nicht.
+
+- version
+Version
+
+- prodcode
+Produkt-Code
+
+- size
+Größe
+
+- name
+Name
+
+- tid
+Title-ID
+
+- category
+Kategorie
+
+- landing_id
+hShop-ID
+
+- description
+Beschreibung
+
+- total_titles
+Gesamte Anzahl der Inhalte
+
+- select_cat
+Wähle eine Kategorie aus
+
+- select_subcat
+Wähle eine Unterkategorie aus
+
+- select_title
+Wähle einen Inhalt
+
+- fmt_24h
+24-Stunden-Zeit
+
+- fmt_12h
+12-Stunden-Zeit
+
+- unknown
+unbekannt
+
+- btrue
+Ja
+
+- bfalse
+Nein
+
+- top
+Oben
+
+- bottom
+Unten
+
+- light_mode
+Helles Design
+
+- resume_dl
+Downloads fortsetzen
+
+- load_space
+Freier-Speicherplatz-Indikator anzeigen
+
+- show_battery
+Batterie anzeigen
+
+- time_format
+Zeitformat
+
+- progbar_screen
+Ladebalken-Bildschirm
+
+- language
+Sprache
+
+- value_x
+Wert: %1
+
+- back
+Zurück
+
+- invalid
+ungültig
+
+- title_doesnt_exist
+Inhalt existiert nicht: %1
+
+- netcon_lost
+Netzwerkverbindung verloren (%1).
+Neuer versuch in $t Sekunden...
+
+- about_app
+Über
+
+- help_manual
+Hilfe/Anleitung
+
+- find_missing_content
+Suche nach fehlenden Inhalten
+
+- press_a_exit
+Drücke UI_GLYPH_A zum Schließen
+
+- fatal_panic
+Schwerwiegender Fehler aufgetreten
+
+- failed_open_seeddb
+Konnte seeddb.bin nicht öffnen
+
+- update_to
+Möchtest du auf Version %1 updaten?
+
+- search_content
+Suche nach Inhalten
+
+- search_content_action
+Suche nach Inhalten...
+
+- result_code
+Fehler-Code: %1
+
+- level
+Level: %1
+
+- summary
+Kurzbeschreibung: %1
+
+- module
+Modul: %1
+
+- hs_bunny_found
+Glückwunsch! Du hast has hShop-Häschen gefunden
+
+- already_installed_reinstall
+Inhalt ist bereits installiert. Neuinstallieren?
+
+- queue_empty
+Warteschlange ist leer
+Drücke UI_GLYPH_A um zurückzukehren
+Tipp: Drücke UI_GLYPH_Y um einen Inhalt zur Warteschlange hinzuzufügen
+
+- cancel
+Abbrechen
+
+- confirm
+Bestätigen
+
+- invalid_proxy
+Ungültige Proxy-Einstellungen
+
+- more_about_content
+Mehr über diesen Inhalt
+
+- lumalocalemode
+LumaLocale-Modus
+
+- automatic
+Automatisch
+
+- manual
+Manuell
+
+- disabled
+Deaktiviert
+
+- patching_reboot
+Luma3DS-Game-Patching wurde aktiviert.
+Damit die Änderungen übernommen werden können, musst du deinen 3DS neustarten.
+
+- reboot_now
+Jetzt neustarten?
+
+- this_version
+Dies ist 3hs Version %1
+
+- retry_req
+Erneut versuchen?
+
+- search_zero_results
+Suche ergab keine Ergebnisse
+Drücke UI_GLYPH_A um zurückzukehren
+
+- credits
+Mitwirkende
+
+- check_extra
+Nach zusätzlichen Inhalten suchen
+
+- no_req
+keine anfragen gestellt
+
+- invalid_query
+Ungültige Anfrage
+Drücke UI_GLYPH_A um zurückzukehren
+
+- min_constraint
+Jetztige 3hs-Version ist %1 Versionen älter als die benötigte Version %2
+
+- proxy
+Proxy
+
+- none
+(keine)
+
+- press_a_to_view
+Drücke UI_GLYPH_A um anzusehen
+
+- host
+Adresse
+
+- port
+Port
+
+- username
+Benutzername
+
+- password
+Passwort
+
+- clear
+Löschen
+
+- progbar_screen_desc
+Der Bildschirm auf dem die Fortschrittsbalken gezeichnet werden sollen
+
+- light_mode_desc
+Den Lichtmodus anschalten. Dies wird das Aussehen der meisten Elemente auf der Benutzeroberfläche ändern.
+
+- resume_dl_desc
+Sollen wir dort fortfahren, wo wir beim ersten Versuch fehlgeschlagen haben?
+
+- load_space_desc
+Die freier-Speicherplatz Anzeige anzeigen
+
+- show_battery_desc
+Batterieanzeige in der Ecke oben links anzeigen
+
+- time_format_desc
+Dein bevorzugtes Zeitformat, entweder 24-Stunden or 12-Stunden.
+
+- language_desc
+Die Sprache die 3hs verwenden soll. Um die Änderungen am Text vollstandig anzuwenden, musst du 3hs möglicherweise neu starten
+
+- lumalocalemode_desc
+Der Modus der LumaLocale autosetter verwdendet. Automatisch wird eine Sprache automatisch auswählen. Falls du Manuell auswählst, wird 3hs dich um die Region fragen nach der Installation eines Inhalts
+
+- check_extra_desc
+Nach zusätzlichen Inhalten suchen nach einer Installation
+
+- proxy_desc
+Konfiguriere eine Proxy. Nicht berühren, falls du nicht weißt, was du tust
+
+- install_all
+Alles installieren
+
+- install_no_base
+Kein Grundspiel für dieses DLC/Update installiert. Trotzdem fortfahren?
+
+- warn_no_base
+Warnen, wenn ein Grundspiel nicht installiert ist
+
+- warn_no_base_desc
+Eine Warnung anzeigen, wenn du versuchst, DLC/Update Daten zu installieren, wenn das zusammenpassende Grundspiel nicht installiert ist.
+
+- replaying_errors
+Zeige Fehler die während der Verarbeitung der Warteschlange aufgetreten sind.
+
+- log
+Protokolle
+
+- upload_logs
+Protokolle hochladen
+
+- clear_logs
+Protokolle löschen
+
+- found_missing
+%1 fehlende(r) Inhalt(e) gefunden.
+Du kannst sie in der Warteschlange installieren.
+
+- found_0_missing
+Keine fehlenden Inhalte gefunden
+
+- max_elogs
+Maximale Anzahl von alten Protokolldateien
+
+- max_elogs_desc
+Anzahl von alten Protokolldateien die behalten werden sollen, zwischen 0-255 inklusive, 0 = keine zusätzlichen Protokolldateien werden behalten.
+
+- elogs_hint
+Nummer zwischen 0-255 inklusive
+
+- log_id
+Benutze diese ID, um Hilfe zu bekommen
+%1
+
+- block
+Block
+
+- blocks
+Blöcke
+
+- search_text
+Mithilfe von Text suchen
+
+- search_id
+Mithilfe einer hShop-ID suchen
+
+- search_tid
+Mithilfe einer Title-ID suchen
+
+- invalid_tid
+Ungültige Title-ID
+
+- theme_installer_tid_bad
+Bitte durchsuche die Themes Kategorie manuell, um nach Themes zu suchen
+
+- enter_lgy_query
+Gebe hier einen klassischen
+Suchtext ein
+
+- no_other_params_tid
+Wenn du eine Title-ID eingibst, kannst du keine andere Suchparameter eingeben
+
+- both_sd_and_sb
+Du musst eine Sortiermethode und eine Sortierrichtung eingeben, wenn du möchtest, dass die Suchergebnisse sortiert werden sollen
+
+- invalid_sb
+Ungültige Sortiermethode
+
+- invalid_sd
+Ungültige Sortierrichtung
+
+- invalid_includes
+Ungültige Einschließungsfilter
+
+- invalid_excludes
+Ungültige Ausschließungsfilter
+
+- filter_overlap
+Erkannte überschneidende Suchfilter
+
+- lgy_search
+Klassische Suche
+
+- sure_reset
+Bist du sicher, dass du die Einstellungen zurücksetzen möchtest?
+
+- ascending
+Aufsteigend
+
+- descending
+Absteigend
+
+- alphabetical
+Alphabetisch
+
+- downloads
+Downloads
+
+- def_sort_meth
+Standard-Sortiermethode
+
+- def_sort_meth_desc
+Gibt an, welche Sortiermethode standardmäßig bei einer Titellistenansicht verwendet werden soll.
+
+- def_sort_dir
+Standard-Sortierrichtung
+
+- def_sort_dir_desc
+Gibt an, welche Sortierrichtung standardmäßig bei einer Titellistenansicht verwendet werden soll.
+
+- invalid_content_type
+Ungültige Inhaltsart
+
+- theme_installed
+Ein Design wurde installiert. Siehe PAGE_THEMES
+
+- file_installed
+Eine Datei wurde installiert. Dateien werden nicht auf dem HOME-Menü erscheinen
+
+- allow_led
+LED-Statusleuchte aktivieren
+
+- allow_led_desc
+Dies wird die LED-Statusleuchte einschalten, um verschiedene Statusänderungen anzuzeigen, wie z.B. wenn ein Inhalt installiert wurde.
+

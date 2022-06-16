@@ -1,0 +1,572 @@
+
+# This is the base 3hs translation file.
+# All other translations should derive from this file.
+# If you want to translate 3hs in your language please contact us in the hShop discord server.
+
+# Some strings have a comment which indicates a context, this may help while translating
+#  - If you require context for anything else feel free to ask
+#  - %<n> where <n> is a number from 1-9 is a variable, their meaning is explained in the matching comment
+#  - The value of the variable will literally be substituted (replaced)
+#  - if this doesn't work in your language ask in the hShop discord channel so i can write a workaround for you
+# UI_GLYPH_ is a prefix for buttons in the system fonts i.e. UI_GLYPH_B is the B button on your 3DS
+#  - They should be kept exactly as-is, they should be encircled by spaces
+#    - Even if your language has no such things, not having a space causes ugly clamping
+# PAGE_* are URLs to hShop pages
+#  - They should be kept exactly as-is, the actual URL gets placed in place of the PAGE_ letters
+# Preserve newlines ("enter"s), they are added for stylistic purposes, most things should neatly wrap
+# Although text wraps in most cases, it's for the best not make your translation too verbose
+#  - Text wrapping means the text continues on the next line if it's too large
+#  - Strings marked with "nowrap" don't wrap.
+#  - Strings marked with "button" use button wrap
+#    - This means they gradually expand in size as the string gets larger
+#    - This does not mean they wrap to the next line
+#  - Strings marked with "selector" have a maximum length (of 200 pixels)
+#  - Strings marked with "scroll" scroll sideways, for example all setting titles use this
+#    - Strings that scroll obviously can't wrap
+# If your language is officially supported by Nintendo, use their translations for their terms
+#   - For example, "blocks", "HOME menu", "theme"
+#
+# Any questions and new translations can be posted in the hShop discord channel
+
+# The name of the language this file is for in that language (i.e. Español for Spanish)
+- native_name
+English
+
+# shown at the top of the screen during loading (the spinner)
+- loading
+Loading...
+
+- luma_not_installed
+An unsupported firmware was detected.
+
+# displayed under above string
+- install_luma
+3hs cannot be used on this system.
+
+# button, button on bottom of screen to enter queue
+- queue
+Queue
+
+# networking means network libraries, may be translated as "failed to start application" if there exists no good translation for networking
+- fail_init_networking
+Failed to initialize networking
+
+# PAGE_3HS expands to the 3hs page on hShop
+- credits_thanks
+Thank you for using 3hs, a 3DS client for hShop.
+You can get this software for free at
+PAGE_3HS
+
+- press_to_install
+Press UI_GLYPH_A to install this content.
+Press UI_GLYPH_B to go back.
+
+# nowrap, used for title version, bottom screen metadata when you press A on a list item
+- version
+Version
+
+# nowrap, used for title product code, same location as above string
+- prodcode
+Product Code
+
+# nowrap, used for title size, (sub)category size, displayed on bottom screen in the main list, sort method in switcher in settings
+- size
+Size
+
+# nowrap, used for title name, (sub)category name, see above for location
+- name
+Name
+
+# nowrap, used for title id, extmeta & main list, sort method in switcher in settings
+- tid
+Title ID
+
+# nowrap, used for content category, extmeta & main list
+- category
+Category
+
+# nowrap, hShop ID used for searching, previously known as landing ID, sort method in switcher in settings
+- landing_id
+hShop ID
+
+# nowrap, used for category description
+- description
+Description
+
+# nowrap, shown on bottom screen category selection
+- total_titles
+Total Titles
+
+# nowrap, shown top screen category selection
+- select_cat
+Select a category
+
+# nowrap, shown top screen subcategory selection
+- select_subcat
+Select a subcategory
+
+# nowrap, shown top screen title selection
+- select_title
+Select a title
+
+# the time format (15:00)
+- fmt_24h
+24 hour
+
+# time time format (3 PM)
+- fmt_12h
+12 hour
+
+# unknown setting value
+- unknown
+unknown
+
+# setting is set to ON
+- btrue
+true
+
+# setting is set to OFF
+- bfalse
+false
+
+# top screen in progress bar location settings switcher
+- top
+top
+
+# bottom screen in progress bar location settings switcher
+- bottom
+bottom
+
+# scroll, setting title
+- light_mode
+Light mode
+
+# scroll, setting title
+- resume_dl
+Resume downloads
+
+# scroll, setting title
+- load_space
+Show free space indicator
+
+# scroll, setting title
+- show_battery
+Show battery level indicator
+
+# scroll, setting title
+- time_format
+Time format
+
+# scroll, setting title
+- progbar_screen
+Progress bar position
+
+# scroll, setting title
+- language
+Language
+
+# value of setting
+- value_x
+Value: %1
+
+# back button
+- back
+Back
+
+# invalid option
+- invalid
+invalid
+
+# %1 = title id
+- title_doesnt_exist
+Title doesn't exist: %1
+
+# %1 = error code
+# $t = seconds remaining
+- netcon_lost
+Network connection lost (%1).
+Retrying in $t seconds...
+
+# nowrap, burger (three lines) menu entry
+- about_app
+About
+
+# nowrap, burger (three lines) menu entry
+- help_manual
+Help/Manual
+
+# nowrap, burger (three lines) menu entry
+- find_missing_content
+Find missing content
+
+# exit menu and sometimes application
+- press_a_exit
+Press UI_GLYPH_A to exit.
+
+# can also be translated as fatal error
+- fatal_panic
+A fatal panic has occurred.
+
+# failed to open romfs file, may be translated as "failed to start application"
+- failed_open_seeddb
+Failed to open seeddb.bin.
+
+# %1 = new version, i.e. 1.0.2
+- update_to
+Do you want to update to %1?
+
+# nowrap, top screen while searching
+- search_content
+Search for content
+
+# keyboard hint while searching, apparently this has a maximum length
+- search_content_action
+Search for content...
+
+# used for displaying error codes
+# %1 = result code (0x...)
+- result_code
+Result code: %1
+
+# used for displaying error codes
+# %1 = level name
+- level
+Level: %1
+
+# used for displaying error codes
+# %1 = summary name
+- summary
+Summary: %1
+
+# used for displaying error codes
+# %1 = module name
+- module
+Module: %1
+
+# easter egg, see also: gfx/img/bun.png
+- hs_bunny_found
+Congrats! You found the hShop bunny!
+
+- already_installed_reinstall
+Title already installed. Reinstall?
+
+- queue_empty
+Queue is empty
+Press UI_GLYPH_A to go back.
+Tip: Press UI_GLYPH_Y to add a title to the queue.
+
+# button, yes/no prompt "no" option
+- cancel
+Cancel
+
+# button, yes/no prompt "yes" option
+- confirm
+Confirm
+
+# proxy settings are checked at startup for obvious errors (user tampering), if bad, it errors with this message
+- invalid_proxy
+Invalid proxy settings
+
+# nowrap, shown in top when clicking on extended meta
+- more_about_content
+More about this content
+
+# scroll, setting title
+- lumalocalemode
+LumaLocale mode
+
+# selector, lumalocale mode setting
+- automatic
+automatic
+
+# selector, lumalocale mode setting
+- manual
+manual
+
+# selector, lumalocale mode setting
+- disabled
+disabled
+
+- patching_reboot
+Luma3DS Game Patching is now enabled.
+The system must be restarted for this change to take effect.
+
+- reboot_now
+Restart now?
+
+# %1 = version int "version desc" (i.e. 1.2.0 "cotidie morimur")
+- this_version
+This is 3hs version %1
+
+# request = API HTTP request, may be translated as "failed to access API"
+- retry_req
+Request failed. Retry?
+
+- search_zero_results
+Your search returned no results.
+Press UI_GLYPH_A to go back.
+
+# Shown in the "About" burger option
+- credits
+Credits
+
+# scroll, setting title, i.e. DLC/Updates
+- check_extra
+Search for extra content
+
+# request = request for the 3DS to do something, like a command
+- no_req
+No requests made yet
+
+# invalid search query
+- invalid_query
+Invalid query
+Press UI_GLYPH_A to go back.
+
+# %1 = current version
+# %2 = minimum required version
+- min_constraint
+Current 3hs version %1 is lower than the required version %2
+
+# scroll, setting title
+- proxy
+Proxy
+
+# used for "no proxy is set"
+- none
+(none)
+
+# view proxy settings
+- press_a_to_view
+Click UI_GLYPH_A to view.
+
+# proxy host
+- host
+Host
+
+# proxy port
+- port
+Port
+
+# proxy username
+- username
+Username
+
+# proxy password
+- password
+Password
+
+# clear all proxy field
+- clear
+Clear
+
+# setting description
+- progbar_screen_desc
+Select the position of the progress bar.
+
+# setting description
+- light_mode_desc
+Enable/disable light mode. This will change the way most UI elements look.
+
+# setting description
+- resume_dl_desc
+Resume downloads after a network interruption.
+
+# setting description
+- load_space_desc
+Toggle the free space indicator.
+
+# setting description
+- show_battery_desc
+Toggle the battery level indicator.
+
+# setting description
+- time_format_desc
+Select the time format.
+
+# setting description
+- language_desc
+Set the language for 3hs. The application must be restarted for the selected language to take effect.
+
+# setting description
+- lumalocalemode_desc
+Set the mode of the LumaLocale autosetter. Automatic selects a language automatically. If this is set to manual, 3hs will prompt for a region after the installation of content.
+
+# setting description
+- check_extra_desc
+Search for extra content after installation.
+
+# setting description
+- proxy_desc
+Configure a proxy server for 3hs. This setting is for advanced users.
+
+# install all from queue
+- install_all
+Install all
+
+- install_no_base
+The base game is not installed. Continue anyway?
+
+# setting title
+- warn_no_base
+Warn if a base game is not installed
+
+# setting description
+- warn_no_base_desc
+Shows a message before installing update or DLC content if the base game is not installed.
+
+# if an error occurs while installing all titles from the queue, this message is displayed before showing each one
+- replaying_errors
+Replaying errors encountered while processing the queue.
+
+# may also be translated as "manage logs"
+- log
+Logs
+
+- upload_logs
+Upload logs
+
+- clear_logs
+Clear logs
+
+# %1 = amount of titles found
+- found_missing
+Found %1 missing title(s)
+Check the queue to install them.
+
+- found_0_missing
+No missing titles were found.
+
+# setting title
+- max_elogs
+Maximum old log files
+
+# setting description
+- max_elogs_desc
+Set the number of log files to keep. Possible values are 0 to 255, where 0 keeps no additional log files.
+
+# keyboard hint for max old log files, apparently has a maximum amount of characters
+- elogs_hint
+Value between 0 and 255
+
+# %1 = id
+- log_id
+Use this ID to get support:
+%1
+
+# Nintendo blocks, use official Nintendo translation if available
+- block
+block
+
+# see above, just in plural this time
+- blocks
+blocks
+
+# nowrap, search menu item
+- search_text
+Search by text
+
+# nowrap, search menu item
+- search_id
+Search by hShop ID
+
+# nowrap, search menu item
+- search_tid
+Search by Title ID
+
+# invalid title id specified during legacy search
+- invalid_tid
+Invalid Title ID
+
+- theme_installer_tid_bad
+Please browse the Themes category manually to look for themes
+
+# this is displayed in transparent letters on the keyboard
+- enter_lgy_query
+Enter a legacy search query
+
+- no_other_params_tid
+Cannot specify any other parameters when specifying a Title ID
+
+- both_sd_and_sb
+You must specify a sort method and a sort direction when sorting search results
+
+# i.e. sort by title_id, size, category, subcategory, etc
+- invalid_sb
+Invalid sort method
+
+# i.e. ascending/descending
+- invalid_sd
+Invalid sort direction
+
+# include legacy filter, includes a (sub)category, like a coffee filter
+- invalid_includes
+Invalid include filters
+
+# exclude legacy filter, excludes a (sub)category, like a coffee filter
+- invalid_excludes
+Invalid exclude filters
+
+# overlapping filters in legacy search, i.e. include:games exclude:games
+- filter_overlap
+Detected an overlap in the specified search filters
+
+# nowrap, search menu item, "legacy" may be translated as "traditional", "old-school", "classic", you name it
+- lgy_search
+Legacy Search
+
+- sure_reset
+Are you sure you want to reset your settings?
+
+# sort direction
+- ascending
+Ascending
+
+# sort direction
+- descending
+Descending
+
+# sort method
+- alphabetical
+Alphabetical
+
+# sort method
+- downloads
+Downloads
+
+# setting title
+- def_sort_meth
+Default sort method
+
+# setting description
+- def_sort_meth_desc
+Specifies the default sort method to use when viewing a list of titles.
+
+# setting title
+- def_sort_dir
+Default sort direction
+
+# setting description
+- def_sort_dir_desc
+Specifies the default sort direction to use when viewing a list of titles.
+
+# legacy search content type (see p: documentation on site)
+- invalid_content_type
+Invalid content type
+
+# shown after installation of anything in the themes category, PAGE_THEMES links to the theme installer wiki page
+- theme_installed
+A theme was installed. Please see PAGE_THEMES
+
+# shown after a file forwarder is installed that's not a theme, just here for future proofing
+- file_installed
+A file was installed. These are not shown on the HOME menu
+
+# setting title
+- allow_led
+Enable LED status indicators
+
+# setting description
+- allow_led_desc
+This will flash the LED light to inform you of various status changes, such as when a title finishes installing.
+

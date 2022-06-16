@@ -1,0 +1,416 @@
+- native_name
+Italiano
+
+- loading
+Caricamento...
+
+- luma_not_installed
+È stato trovato un firmware non supportato.
+
+- install_luma
+3hs non può essere utilizzato su questo sistema.
+
+- queue
+Coda
+
+- fail_init_networking
+Impossibile inizializzare la rete
+
+- credits_thanks
+Grazie per aver scelto 3hs, app hShop per 3DS.
+Puoi prendere gratis questo software a
+PAGE_3HS
+
+- press_to_install
+Premi UI_GLYPH_A per installare questo contenuto.
+Premi UI_GLYPH_B per annullare.
+
+- version
+Versione
+
+- prodcode
+Codice Prodotto
+
+- size
+Dimensioni
+
+- name
+Nome
+
+- tid
+ID Titolo
+
+- category
+Categoria
+
+- landing_id
+hShop ID
+
+- description
+Descrizione
+
+- total_titles
+Totale Titoli
+
+- select_cat
+Seleziona una categoria
+
+- select_subcat
+Seleziona una sottocategoria
+
+- select_title
+Seleziona un titolo
+
+- fmt_24h
+24 ore
+
+- fmt_12h
+12 ore
+
+- unknown
+sconosciuto
+
+- btrue
+sì
+
+- bfalse
+no
+
+- top
+superiore
+
+- bottom
+inferiore
+
+- light_mode
+Modalità chiara
+
+- resume_dl
+Riprendi i download
+
+- load_space
+Mostra l'indicatore di spazio libero
+
+- show_battery
+Mostra lo stato della batteria
+
+- time_format
+Formato dell'ora
+
+- progbar_screen
+Posizione barra di avanzamento
+
+- language
+Lingua
+
+- value_x
+Valore: %1
+
+- back
+Indietro
+
+- invalid
+non valido
+
+- title_doesnt_exist
+Il titolo non esiste: %1
+
+- netcon_lost
+Connessione alla rete persa (%1).
+Riprovo fra $t secondi...
+
+- about_app
+Riguardo l'app
+
+- help_manual
+Aiuto/Manuale
+
+- find_missing_content
+Trova contenuti mancanti
+
+- press_a_exit
+Premi UI_GLYPH_A per uscire.
+
+- fatal_panic
+Si è verificato un fatale errore di panico.
+
+- failed_open_seeddb
+Impossibile aprire seeddb.bin.
+
+- update_to
+Vuoi aggiornare a %1?
+
+- search_content
+Cerca contenuto
+
+- search_content_action
+Cercando dei contenuti...
+
+- result_code
+Codice risultante: %1
+
+- level
+Livello: %1
+
+- summary
+Riepilogo: %1
+
+- module
+Modulo: %1
+
+- hs_bunny_found
+Congratulazioni! Hai trovato il coniglio hShop!
+
+- already_installed_reinstall
+Titolo già installato. Reinstallare?
+
+- queue_empty
+La coda è vuota
+Premi UI_GLYPH_A per tornare indietro.
+Premi UI_GLYPH_Y per mettere in coda un titolo.
+
+- cancel
+Annulla
+
+- confirm
+Conferma
+
+- invalid_proxy
+Impostazioni del proxy non valide
+
+- more_about_content
+Di più su questo contenuto
+
+- lumalocalemode
+Modalità LumaLocale
+
+- automatic
+automatico
+
+- manual
+manuale
+
+- disabled
+disabilitato
+
+- patching_reboot
+Luma3DS Game Patching è ora attivo.
+Il sistema dev'essere riavviato perché i cambiamenti abbiano effetto.
+
+- reboot_now
+Riavviare adesso?
+
+- this_version
+Questa è la versione di 3hs %1
+
+- retry_req
+Richiesta fallita. Riprovare?
+
+- search_zero_results
+La tua ricerca non ha prodotto risultati.
+PremiUI_GLYPH_Aper tornare indietro.
+
+- credits
+Crediti
+
+- check_extra
+Cerca contenuti extra
+
+- no_req
+Nessuna richiesta
+
+- invalid_query
+Richiesta non valida
+PressUI_GLYPH_Aper tornare indietro
+
+- min_constraint
+Questa versione di 3hs %1 è più vecchia di quella richiesta %2
+
+- proxy
+Proxy
+
+- none
+(nessuno)
+
+- press_a_to_view
+Premi UI_GLYPH_A per vedere.
+
+- host
+Host
+
+- port
+Porta
+
+- username
+Nome utente
+
+- password
+Password
+
+- clear
+Cancella
+
+- progbar_screen_desc
+Scegli la posizione della barra di avanzamento.
+
+- light_mode_desc
+Attiva/Disattiva la modalità chiara. Questo cambierà il colore degli elementi dell'interfaccia.
+
+- resume_dl_desc
+Riprendi i download dopo un'interruzione della connessione alla rete.
+
+- load_space_desc
+Scegli se visualizzare l'indicatore dello spazio libero.
+
+- show_battery_desc
+Scegli se visualizzare lo stato della batteria.
+
+- time_format_desc
+Seleziona il formato delle ore.
+
+- language_desc
+Imposta la linugua di 3hs. L'applicazione dev'essere riavviata perché il cambiamento abbia effetto.
+
+- lumalocalemode_desc
+Imposta la modalità del LumaLocale autosetter. 'Automatico' seleziona la lingua automaticamente. Se viene scelto 'manuale', 3hs chiederà la regione dopo l'installazione del contenuto.
+
+- check_extra_desc
+Cerca dei contenuti extra dopo l'installazione.
+
+- proxy_desc
+Configura un server proxy per 3hs. Questa impostazione è per gli utenti avanzati.
+
+- install_all
+Installa tutto
+
+- install_no_base
+Il gioco di base non è installato. Continuare ugualmente?
+
+- warn_no_base
+Avvisa se il gioco di base non è installato.
+
+- warn_no_base_desc
+Mostra un messaggio prima di installare un aggiornamento on un DLC se il gioco di base non è installato.
+
+- replaying_errors
+Errori di riproduzione rilevati durante l'elaborazione della coda.
+
+- log
+Gestisci i registri
+
+- upload_logs
+Registri di upload
+
+- clear_logs
+Cancella registri
+
+- found_missing
+Trovato/i %1 titolo/i mancanti
+Controlla la coda per installarli.
+
+- found_0_missing
+Non sono stati trovati titoli mancanti.
+
+- max_elogs
+Massimi file di registro
+
+- max_elogs_desc
+Imposta il numero di file di registro da mantenere. Da 0 a 255, dove 0 non mantiene nessun registro in più.
+
+- elogs_hint
+Valore tra 0 e 255
+
+- log_id
+Usa questo ID per ottenere supporto:
+%1
+
+- block
+blocco
+
+- blocks
+blocchi
+
+- search_text
+Cerca tramite testo
+
+- search_id
+Cerca tramite ID hShop
+
+- search_tid
+Cerca tramite ID Titolo
+
+- invalid_tid
+ID Titolo non valido
+
+- theme_installer_tid_bad
+Per favore naviga la categoria Temi manualmente per cercare temi
+
+- enter_lgy_query
+Inserire i termini per la ricerca classica
+
+- no_other_params_tid
+Impossibile specificare altri parametri quando si specifica un ID Titolo
+
+- both_sd_and_sb
+Devi specificare il metodo di ordinamento e la direzione crescente o decrescente
+
+- invalid_sb
+Metodo di ordinamento non valido
+
+- invalid_sd
+Direzione di ordinamento non valida
+
+- invalid_includes
+Filtri di inclusione non validi
+
+- invalid_excludes
+Filtri di esclusione non validi
+
+- filter_overlap
+Rilevata una contraddizione nei filtri di ricerca specificati
+
+- lgy_search
+Ricerca classica
+
+- sure_reset
+Sei sicuro che vuoi ripristinare le tue impostazioni?
+
+- ascending
+Crescente
+
+- descending
+Decrescente
+
+- alphabetical
+Alfabetico
+
+- downloads
+Più installati
+
+- def_sort_meth
+Ordinamento predefinito
+
+- def_sort_meth_desc
+Specifica il metodo di ordinamento da usare quando si visualizza una lista di titoli.
+
+- def_sort_dir
+Direzione predefinita di ordinamento
+
+- def_sort_dir_desc
+Specifica la direzione predefinita di ordinamento da usare quando si visualizza una lista di titoli.
+
+- invalid_content_type
+Tipo di contenuto non valido
+
+- theme_installed
+Un tema è appena stato installato. Vedi PAGE_THEMES
+
+- file_installed
+Un file è appena stato installato. Questi non verranno mostrati nel menù HOME
+
+- allow_led
+Attiva indicatori di stato con i LED
+
+- allow_led_desc
+Questo farà illuminare le luci LED per informarti di vari cambiamenti di stato, come un titolo che finisce di installarsi
+

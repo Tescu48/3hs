@@ -1,0 +1,410 @@
+- native_name
+Français (Canada)
+
+- loading
+Chargement...
+
+- luma_not_installed
+Version trop veille pour cette appli.
+
+- install_luma
+3hs n'peut pas être utilisé sur cette console.
+
+- queue
+Queue
+
+- fail_init_networking
+Réseau non trouvé
+
+- credits_thanks
+Merci d'avoir utilisé 3hs.
+Vous pouvez télécharger cette appli sur
+PAGE_3HS
+
+- press_to_install
+Appuie UI_GLYPH_A pour installer.
+Appuie UI_GLYPH_B pour revenir.
+
+- version
+Version
+
+- prodcode
+Product Code
+
+- size
+Taille
+
+- name
+Nom
+
+- tid
+Title ID
+
+- category
+Catégorie
+
+- landing_id
+ID hShop
+
+- description
+Déscription
+
+- total_titles
+Titres en totales
+
+- select_cat
+Sélectionne une catégorie
+
+- select_subcat
+Sélectionne une sous-catégorie
+
+- select_title
+Sélectionne un titre
+
+- fmt_24h
+24 heures
+
+- fmt_12h
+12 heures
+
+- unknown
+Inconnu
+
+- btrue
+Vrai
+
+- bfalse
+Faux
+
+- top
+En haut
+
+- bottom
+En bas
+
+- light_mode
+Mode clair
+
+- resume_dl
+Reprendre les téléchargements
+
+- load_space
+Montre l'indicateur d'storage libre
+
+- show_battery
+Montre l'indicateur du niveau d'batterie 
+
+- time_format
+Format de temps
+
+- progbar_screen
+Position d'la barre d'progréssion
+
+- language
+Langage
+
+- value_x
+Valeur: %1
+
+- back
+Retour
+
+- invalid
+Non valide
+
+- title_doesnt_exist
+Ce titre n'existe pas: %1
+
+- netcon_lost
+Connection perdue (%1).
+On recommence dans $t secondes...
+
+- about_app
+À propos
+
+- help_manual
+Aide/Manuel
+
+- find_missing_content
+Trouve le contenu perdu
+
+- press_a_exit
+Appuie UI_GLYPH_A pour quitter.
+
+- fatal_panic
+Une erreur fatal s'est produit.
+
+- failed_open_seeddb
+Arrive pas à ouvrir seeddb.bin.
+
+- update_to
+Veux-tu mettre à jour à %1?
+
+- search_content
+Cherche du contenu
+
+- search_content_action
+Recherche du contenu...
+
+- result_code
+Résultat du code: %1
+
+- level
+Niveau: %1
+
+- summary
+Résumé: %1
+
+- module
+Module: %1
+
+- hs_bunny_found
+Bravo! T'as trouvé le lapin hShop!
+
+- already_installed_reinstall
+Titre déjà installé. Réinstaller?
+
+- queue_empty
+La queue est vide
+Appuie UI_GLYPH_A pour partir en avant.
+Astuce: Appuie UI_GLYPH_Y pour ajouter une titre à la queue.
+
+- cancel
+Annuler
+
+- confirm
+Confirme
+
+- invalid_proxy
+Paramètres proxy invalides
+
+- more_about_content
+Plus à propos de ce contenu
+
+- lumalocalemode
+mode LumaLocale
+
+- automatic
+automatique
+
+- manual
+manuel
+
+- disabled
+désactivé
+
+- patching_reboot
+Luma3DS Game Patching est maintenant activé.
+La console doit-être redémarré pour que ce changement marche.
+
+- reboot_now
+Redémarre maintenant?
+
+- this_version
+La version de 3hs %1
+
+- retry_req
+Requête en échec. Réssaie?
+
+- search_zero_results
+Votre recherche ne retrouve aucun résultat.
+Press UI_GLYPH_A to go back.
+
+- credits
+Crédits
+
+- check_extra
+Recherche du contenu additionel
+
+- no_req
+Aucune requête pour l'instant
+
+- invalid_query
+Requête invalide
+Press UI_GLYPH_A to go back.
+
+- min_constraint
+La Version actuelle de 3hs %1 est plus basse que %2
+
+- proxy
+Proxy
+
+- none
+(none)
+
+- press_a_to_view
+Appuie UI_GLYPH_A pour voir.
+
+- host
+Hôte
+
+- port
+Port
+
+- username
+Utilisateur
+
+- password
+Mot de passe
+
+- clear
+Supprimer
+
+- progbar_screen_desc
+Sélectionne la position d'la barre de progression.
+
+- light_mode_desc
+Active/Désactive le mode Clair. ça change le GUI de l'application.
+
+- resume_dl_desc
+Reprendre les téléchargement après l'interruption de réseau.
+
+- load_space_desc
+Active/Désactive l'indicateur d'storage libre.
+
+- show_battery_desc
+Active/Désactive l'indicateur du niveau d'batterie.
+
+- time_format_desc
+Choisis le temps de format.
+
+- language_desc
+Mets le langage pour 3hs. L'appli doit-être redémarré pour que le langage séléctionné prend effect.
+
+- lumalocalemode_desc
+Mets le mode du LumaLocale autosetter. Automatique sélectionne un langage automatiquement. Si elle est mis en manuel, 3hs va vous demander pour la région après l'installation du contenu.
+
+- check_extra_desc
+Recherche de contenu additionel après l'installation du contenu.
+
+- proxy_desc
+Configure un serveur proxy pour 3hs. Ce paramètre est pour les utilisateurs avancés.
+
+- install_all
+Installe tout
+
+- install_no_base
+Le jeu n'est pas installé. Continuez malgré?
+
+- warn_no_base
+Avertir si le jeu de base n'est pas installé
+
+- warn_no_base_desc
+Montre un message avant d'installer une mise à jour/DLC si le jeu de base n'est pas installé.
+
+- replaying_errors
+Remontre les erreurs encontrés dans la requête.
+
+- log
+Logs
+
+- upload_logs
+Envoye les logs
+
+- clear_logs
+Supprime les logs
+
+- found_missing
+%1 Titre(s) perdu(s) a été trouvé
+Vérifiez la requête pour les installer.
+
+- found_0_missing
+Aucun titre perdu n'a été trouvé.
+
+- max_elogs
+Nombre maximum de fichiers log
+
+- max_elogs_desc
+Choisissez le nombre de fichiers logs à conserver. Les valeurs possibles sont comprises entre 0 et 255, où 0 ne conserve pas de fichiers log additionnels.
+
+- elogs_hint
+Valuer entre 0 et 255
+
+- log_id
+Utilisez cet ID pour obtenir de l'aide:
+%1
+
+- block
+bloc
+
+- blocks
+blocs
+
+- search_text
+Recherce par text
+
+- search_id
+Recherche par ID hShop
+
+- search_tid
+Recherche par title ID
+
+- invalid_tid
+Title ID Invalide
+
+- theme_installer_tid_bad
+S'il te plaît cherche dans la catégorie Thèmes pour chercher des thèmes
+
+- enter_lgy_query
+Enter a legacy search query
+
+- no_other_params_tid
+Impossible de spécifier d'autres paramètres lors de la spécification d'un title ID
+
+- both_sd_and_sb
+Tu dois spécifier une méthode de tri et une direction de tri lors du tri des résultats de recherche
+
+- invalid_sb
+Méthode de tri invalide
+
+- invalid_sd
+Direction de tri invalide
+
+- invalid_includes
+Filtres d'inclusion invalides
+
+- invalid_excludes
+Filtres d'exclusion invalides
+
+- filter_overlap
+Chevauchement détecté dans les filtres de recherche spécifiés
+
+- lgy_search
+Recherche héritée
+
+- sure_reset
+Es-tu sûre d'éffacer tous tes paramètres?
+
+- ascending
+Croissant
+
+- descending
+Décroissant
+
+- alphabetical
+Alphabétique
+
+- downloads
+Téléchargements
+
+- def_sort_meth
+Méthode de tirage par défault
+
+- def_sort_meth_desc
+Spécifie la méthode de tirage par défault à utiliser quand tu regarde une liste de titres.
+
+- def_sort_dir
+Direction du tirage par défault
+
+- def_sort_dir_desc
+Spécifie la direction du tirage par défault à utiliser quand tu regarde une liste de titres.
+
+- invalid_content_type
+Type de contenue invalide
+
+- theme_installed
+Un thème a été installé. S'il te-plaît regarde 
+
+- file_installed
+Un fichier a été installé. Il ne sera visible que sur le menu HOME
+

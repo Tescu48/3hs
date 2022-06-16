@@ -1,0 +1,423 @@
+- native_name
+Română
+
+- loading
+Se încarcă...
+
+- luma_not_installed
+O versiune de sistem nesuportată a fost detetcată.
+
+- install_luma
+3hs nu poate fi folosit pe acest sistem.
+
+- queue
+Coadă
+
+- fail_init_networking
+Nu s-au putut inițializa serviciile de rețea
+
+- credits_thanks
+Mulțumim că folosiți 3hs, un client 3DS pentru hShop.
+Puteți obține această aplicație pe gratis la
+PAGE_3HS
+
+- press_to_install
+Apăsați UI_GLYPH_A pentru a instala acest conținut.
+Apăsați UI_GLYPH_B pentru a vă întoarce.
+
+- version
+Versiune
+
+- prodcode
+Cod de Produs
+
+- size
+Mărime
+
+- name
+Nume
+
+- tid
+ID de titlu
+
+- category
+Categorie
+
+- landing_id
+ID hShop
+
+- description
+Descriere
+
+- total_titles
+Titluri
+
+- select_cat
+Selectați o categorie
+
+- select_subcat
+Selectați o subcategorie
+
+- select_title
+Selectați un titlu
+
+- fmt_24h
+24 de ore
+
+- fmt_12h
+12 ore
+
+- unknown
+necunoscut/ă
+
+- btrue
+adevărat
+
+- bfalse
+fals
+
+- top
+sus
+
+- bottom
+jos
+
+- light_mode
+Mod luminos
+
+- resume_dl
+Reluați descărcările
+
+- load_space
+Afişați indicator de spațiu liber
+
+- show_battery
+Afişați indicator de baterie
+
+- time_format
+Format de timp
+
+- progbar_screen
+Poziția bării de progres
+
+- language
+Limbă
+
+- value_x
+Valoare: %1
+
+- back
+Înapoi
+
+- invalid
+invalid
+
+- title_doesnt_exist
+Titlul nu există: %1
+
+- netcon_lost
+Conexiunea la internet s-a pierdut (%1).
+Se va reîncerca în $t secunde...
+
+- about_app
+Despre
+
+- help_manual
+Ajutor/Manual
+
+- find_missing_content
+Găsiți conținut lipsă
+
+- press_a_exit
+Apăsați UI_GLYPH_A pentru a ieşi.
+
+- fatal_panic
+O panică fatală a avut loc.
+
+- failed_open_seeddb
+Deschiderea seeddb.bin a eşuat.
+
+- update_to
+Vreți să actualizați la %1?
+
+- search_content
+Căutați conținut
+
+- search_content_action
+Căutați conținut...
+
+- result_code
+Cod rezultat: %1
+
+- level
+Nivel: %1
+
+- summary
+Sumar: %1
+
+- module
+Modul: %1
+
+- hs_bunny_found
+Felicitări! Ai găsit iepuraşul hShop!
+
+- already_installed_reinstall
+Titlu deja instalat. Reinstalați?
+
+- queue_empty
+Coada este goală
+Apăsați UI_GLYPH_A pentru a vă întoarce.
+Pont: Apăsați UI_GLYPH_Y pentru a adăuga un titlu la coadă.
+
+- cancel
+Anulați
+
+- confirm
+Confirmați
+
+- invalid_proxy
+Setări proxy invalide
+
+- more_about_content
+Mai multe despre acest conținut
+
+- lumalocalemode
+Modul LumaLocale
+
+- automatic
+automat
+
+- manual
+manual
+
+- disabled
+oprit
+
+- patching_reboot
+Luma3DS Game Patching este acum pornit.
+Sistemul trebuie repornit
+pentru ca această schimbare să aibă efect.
+
+- reboot_now
+Reporniți acum?
+
+- this_version
+Acesta este 3hs versiunea %1
+
+- retry_req
+Cerere eşuată. Reîncercați?
+
+- search_zero_results
+Căutarea dvs. nu a dat rezultate.
+Apăsați UI_GLYPH_A pentru a vă întoarce.
+
+- credits
+Mulțumiri
+
+- check_extra
+Căutați conținut extra
+
+- no_req
+Nici o cerere făcută încă
+
+- invalid_query
+Căutare invalidă
+Apăsați UI_GLYPH_A pentru a vă întoarce.
+
+- min_constraint
+ Versiunea curentă a 3hs %1 este mai mică decât versiunea necesară %2
+
+- proxy
+Proxy
+
+- none
+(nimic)
+
+- press_a_to_view
+Apăsați UI_GLYPH_A pentru a vizualiza.
+
+- host
+Gazdă
+
+- port
+Port
+
+- username
+Nume de Utilizator
+
+- password
+Parlă
+
+- clear
+Curățați
+
+- progbar_screen_desc
+Selectați poziția bării de progres.
+
+- light_mode_desc
+Porniți/opriți modul luminos. Acesta va schimba felul în care arată majoritatea elementelor UI.
+
+- resume_dl_desc
+Reluați descărcările după o întrerupere de rețea.
+
+- load_space_desc
+Afişați indicatorul de progres.
+
+- show_battery_desc
+Afişați indicatorul de baterie.
+
+- time_format_desc
+Selectați formatul orar.
+
+- language_desc
+Setați limba a 3hs. Aplicația trebuie repornită pentru ca limba selectată să intre în efect.
+
+- lumalocalemode_desc
+Setați modul autosetatorului LumaLocale. Automat alege o limbă automat. Dacă este setat la manual, 3hs va solicita o regiune după instalarea conținutului.
+
+- check_extra_desc
+Căutați conținut extra după instalare.
+
+- proxy_desc
+Configurați un server proxy pentru 3hs. Această setare este pentru utilizatorii avansați.
+
+- install_all
+Instalați tot
+
+- install_no_base
+Jocul de bază nu este instalat. Continuați totuşi?
+
+- warn_no_base
+Avertizează dacă un joc de bază nu a fost instalat
+
+- warn_no_base_desc
+Afişează un mesaj înainte de a instala un conținut de actualizare sau DLC dacă jocul de bază nu este instalat.
+
+- replaying_errors
+Se reiau erori apărute în timpul procesării cozii.
+
+- log
+Registre
+
+- upload_logs
+Încărcați registre
+
+- clear_logs
+ştergeți registre
+
+- found_missing
+S-au găsit %1 titluri care lipsesc
+Verificați coada pentru a le instala.
+
+- found_0_missing
+Niciun titlu lipsă nu a fost găsit.
+
+- max_elogs
+Numărul maxim de registre vechi
+
+- max_elogs_desc
+Setați numărul de registre pe care să le țineți. Valorile posibile sunt de la 0 la 255, unde 0 nu reține niciun fişier de registru.
+
+- elogs_hint
+Valoare între 0 şi 255
+
+- log_id
+Folosiți acest ID pentru a obține suport:
+%1
+
+- block
+bloc
+
+- blocks
+blocuri
+
+- search_text
+Căutați după text
+
+- search_id
+Căutați după ID hShop
+
+- search_tid
+Căutați după ID de titlu
+
+- invalid_tid
+ID de titlu invalid
+
+- theme_installer_tid_bad
+vă rugăm să navigați categoria Teme manual pentru a găsi teme
+
+- enter_lgy_query
+Introduceți termeni pentru căutarea clasică
+
+- no_other_params_tid
+Nu se poate specifica nici un alt parametru când specificați un ID de titlu
+
+- both_sd_and_sb
+Trebuie să specificați o metodă de sortare şi o direcție de sortare când sortați rezultatele căutării
+
+- invalid_sb
+Metodă de sortare invalidă
+
+- invalid_sd
+Direcție de sortare invalidă
+
+- invalid_includes
+Filtre de includere invalide
+
+- invalid_excludes
+Filtre de excludere invalide
+
+- filter_overlap
+A fost găsită o suprapunere a filtrelor de căutare
+
+- lgy_search
+Căutare Clasică
+
+- sure_reset
+Sunteți sigur că vreți să resetați setările?
+
+- ascending
+Crescător
+
+- descending
+Descrescător
+
+- alphabetical
+Alfabetic
+
+- downloads
+Descărcări
+
+- def_sort_meth
+Metoda de sortare implicită
+
+- def_sort_meth_desc
+Specifică metoda de sortare implicită de folosit când vizionați o listă de titluri.
+
+- def_sort_dir
+Direcția de sortare implicită
+
+- def_sort_dir_desc
+Specifică direcția de sortare implicită de folosit când vizionați o listă de titluri.
+
+- invalid_content_type
+Tip de conținut nevalid
+
+- theme_installed
+O temă a fost instalată. Vă rugăm vedeți PAGE_THEMES
+
+- file_installed
+Un fișier a fost instalat. Acestea nu sunt afișate pe Meniul Acasă
+
+- allow_led
+Porniți indicatorii pentru statutul LED-ului
+
+- allow_led_desc
+Aceasta va porni lumina LED pentru a vă informa despre schimbări, precum atunci când un titlu este instalat.
+
+- allow_led
+Porniți indicatorii pentru statutul LED-ului
+
+- allow_led_desc
+Aceasta va porni lumina LED pentru a vă informa despre schimbări, precum atunci când un titlu este instalat.
+

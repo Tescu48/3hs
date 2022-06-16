@@ -1,0 +1,416 @@
+- native_name
+Polski
+
+- loading
+Ładowanie...
+
+- luma_not_installed
+Wykryto nieobsługiwane oprogramowanie.
+
+- install_luma
+3hs nie może być używane w tym systemie.
+
+- queue
+Kolejka
+
+- fail_init_networking
+Nie udało się zainicjować sieci
+
+- credits_thanks
+Dziękujemy za skorzystanie z 3hs, klienta 3ds dla hShop.
+Możesz pobrać to oprogramowanie za darmo pod adresem
+PAGE_3HS
+
+- press_to_install
+Naciskać UI_GLYPH_A aby zainstalować tę zawartość.
+Naciskać UI_GLYPH_B aby wrócić.
+
+- version
+Wersja
+
+- prodcode
+Kod produktu
+
+- size
+Rozmiar pliku
+
+- name
+Nazwa
+
+- tid
+Identyfikator tytułu
+
+- category
+Kategoria
+
+- landing_id
+Identyfikator w hShop
+
+- description
+Opis
+
+- total_titles
+Wszystkie tytuły
+
+- select_cat
+Wybierz kategorię
+
+- select_subcat
+Wybierz podkategorię
+
+- select_title
+Wybierz tytuł
+
+- fmt_24h
+zegar 24-godzinny
+
+- fmt_12h
+zegar 12-godzinny
+
+- unknown
+nieznany
+
+- btrue
+prawda
+
+- bfalse
+fałszywy
+
+- top
+górny
+
+- bottom
+dolny
+
+- light_mode
+Tryb jasny
+
+- resume_dl
+Wznów pobieranie
+
+- load_space
+Pokaż wskaźnik wolnego miejsca
+
+- show_battery
+Pokaż wskaźnik poziomu baterii
+
+- time_format
+Format czasu
+
+- progbar_screen
+Pozycja paska progresu
+
+- language
+Język
+
+- value_x
+Wartość: %1
+
+- back
+powrótk
+
+- invalid
+nieprawidłowe
+
+- title_doesnt_exist
+Tytuł nie istnieje: %1
+
+- netcon_lost
+Utracono połączenie sieciowe (%1).
+Ponowna próba za $t sekund...
+
+- about_app
+Dokumentacja
+
+- help_manual
+Pomoc/Podręcznik
+
+- find_missing_content
+Znajdź brakujące pliki
+
+- press_a_exit
+Naciśnij UI_GLYPH_A aby wyjść.
+
+- fatal_panic
+Wystąpił błąd krytyczny.
+
+- failed_open_seeddb
+Nie udało się otworzyć seeddb.bin.
+
+- update_to
+Czy chcesz zaktualizować do wersji %1?
+
+- search_content
+Szukaj rzeczyt
+
+- search_content_action
+Szukaj rzeczyt...
+
+- result_code
+Kod wyniku: %1
+
+- level
+Poziom: %1
+
+- summary
+Streszczenie: %1
+
+- module
+Moduł: %1
+
+- hs_bunny_found
+Gratulacje! Znalazłeś królika w hShop!
+
+- already_installed_reinstall
+Tytuł już zainstalowany. Zainstalować ponownie?
+
+- queue_empty
+Kolejka jest pusta
+Naciskać UI_GLYPH_A aby wrócić.
+Wskazówka: Naciskać UI_GLYPH_Y aby dodać tytuł do kolejki.
+
+- cancel
+Anuluj
+
+- confirm
+Potwierdzać
+
+- invalid_proxy
+Nieprawidłowe ustawienia proxy
+
+- more_about_content
+Więcej o tej treści
+
+- lumalocalemode
+Tryb LumaLocale
+
+- automatic
+automatyczny
+
+- manual
+podręcznik
+
+- disabled
+wyłączone
+
+- patching_reboot
+Poprawka gier Luma3DS jest teraz włączone.
+Aby zmiana zaczęła obowiązywać, należy ponownie uruchomić system.
+
+- reboot_now
+Restart now?
+
+- this_version
+To jest wersja 3hs %1
+
+- retry_req
+Żądanie nie powiodło się. Spróbować ponownie?
+
+- search_zero_results
+Twoje wyszukiwanie nie przyniosło żadnych rezultatów
+Press UI_GLYPH_A to go back.
+
+- credits
+Kredyty
+
+- check_extra
+Szukaj dodatkowych rzeczy
+
+- no_req
+Nie złożono jeszcze próśb
+
+- invalid_query
+Nieprawidłowe zapytanie
+Naciśnij UI_GLYPH_A aby wrócić.
+
+- min_constraint
+Ta wersja 3hs %1 jest niższa niż wymagana wersja %2
+
+- proxy
+Proxy
+
+- none
+(Nic)
+
+- press_a_to_view
+Naciśnij UI_GLYPH_A wyświetlić
+
+- host
+Gospodarz
+
+- port
+Port
+
+- username
+Nazwa użytkownika
+
+- password
+Hasło
+
+- clear
+Oczyść
+
+- progbar_screen_desc
+Wybierz pozycję paska progresu.
+
+- light_mode_desc
+Włącz / wyłącz tryb jasny. Zmieni to wygląd większości elementów interfejsu użytkownika.
+
+- resume_dl_desc
+Wznów pobieranie po przerwie w sieci.
+
+- load_space_desc
+Zmień widok wskaźnika wolnego miejsca.
+
+- show_battery_desc
+Zmień widok wskaźnika poziomu naładowania baterii.
+
+- time_format_desc
+Wybierz format czasu.
+
+- language_desc
+Ustaw język na 3h. Aby wybrany język zaczął obowiązywać, aplikacja musi zostać ponownie uruchomiona.
+
+- lumalocalemode_desc
+Ustaw tryb autosettera LumaLocale. Automatycznie wybiera język automatycznie. Jeśli jest to ustawione na ręczne, 3hs poprosi o region po zainstalowaniu zawartości.
+
+- check_extra_desc
+Wyszukaj dodatkowe pliki po instalacji.
+
+- proxy_desc
+Skonfiguruj serwer proxy na 3hs. To ustawienie jest przeznaczone dla zaawansowanych użytkowników.
+
+- install_all
+Zainstaluj wszystko
+
+- install_no_base
+Podstawowa gra nie jest zainstalowana. Kontynuować mimo wszystko?
+
+- warn_no_base
+Ostrzegaj, jeśli gra podstawowa nie jest zainstalowana
+
+- warn_no_base_desc
+Wyświetla komunikat przed zainstalowaniem aktualizacji lub zawartości DLC, jeśli gra podstawowa nie jest zainstalowana.
+
+- replaying_errors
+Powtarzanie błędów napotkanych podczas przetwarzania kolejki.
+
+- log
+dzienniki
+
+- upload_logs
+Prześlij dzienniki
+
+- clear_logs
+Wyczyść dzienniki
+
+- found_missing
+Znaleziono %1 brakujących tytułów
+Sprawdź kolejkę, aby je zainstalować.
+
+- found_0_missing
+Nie znaleziono brakujących tytułów.
+
+- max_elogs
+Maksymalna liczba starych plików dziennika
+
+- max_elogs_desc
+Ustaw liczbę plików dziennika do przechowywania. Możliwe wartości to od 0 do 255, gdzie 0 nie przechowuje żadnych dodatkowych plików dziennika.
+
+- elogs_hint
+Wartość od 0 do 255
+
+- log_id
+Użyj tego identyfikatora, aby uzyskać pomoc:
+%1
+
+- block
+Blok
+
+- blocks
+Bloki
+
+- search_text
+Szukaj według tekstu
+
+- search_id
+Szukaj według identyfikatora hShop
+
+- search_tid
+Szukaj według identyfikatora tytułu
+
+- invalid_tid
+Nieprawidłowy identyfikator tytułu
+
+- theme_installer_tid_bad
+Proszę ręcznie przeglądać kategorię Motywy, aby wyszukać motywy
+
+- enter_lgy_query
+Wpisz starsze zapytanie
+
+- no_other_params_tid
+Nie można określić żadnych innych parametrów podczas określania identyfikatora tytułu
+
+- both_sd_and_sb
+Podczas sortowania wyników wyszukiwania musisz określić metodę sortowania i kierunek sortowania
+
+- invalid_sb
+Nieprawidłowa metoda sortowania
+
+- invalid_sd
+Nieprawidłowy kierunek sortowania
+
+- invalid_includes
+Nieprawidłowe filtry uwzględniania
+
+- invalid_excludes
+Nieprawidłowe filtry wykluczania
+
+- filter_overlap
+Wykryto nakładanie się określonych filtrów wyszukiwania
+
+- lgy_search
+Wyszukiwanie starsze
+
+- sure_reset
+Czy na pewno chcesz zresetować konfigurację?
+
+- ascending
+Większa Kolejność
+
+- descending
+Kolejność malejąca
+
+- alphabetical
+Alfabetyczny
+
+- downloads
+Pobrane pliki
+
+- def_sort_meth
+Domyślna metoda sortowania
+
+- def_sort_meth_desc
+Określa domyślną metodę sortowania używaną podczas przeglądania listy tytułów.
+
+- def_sort_dir
+Domyślny kierunek sortowania
+
+- def_sort_dir_desc
+Określa domyślny kierunek sortowania używany podczas przeglądania listy tytułów.
+
+- invalid_content_type
+nieprawidłowy typ pliku
+
+- theme_installed
+Motyw został zainstalowany. Proszę zobaczyć PAGE_THEMES
+
+- file_installed
+Zainstalowano plik. Nie są one wyświetlane w menu głównym
+
+- allow_led
+Włącz wskaźniki stanu LED
+
+- allow_led_desc
+Spowoduje to miganie diody LED, aby poinformować Cię o różnych zmianach stanu, na przykład po zakończeniu instalacji tytułu
+

@@ -1,0 +1,410 @@
+- native_name
+Magyar
+
+- loading
+Betöltés...
+
+- luma_not_installed
+Nem támogatott firmware észlelve.
+
+- install_luma
+Ezen a rendszeren a 3hs nem használható.
+
+- queue
+Várólista
+
+- fail_init_networking
+Az internethez kapcsolódás sikertelen volt
+
+- credits_thanks
+Köszönjük hogy 3hs-t, a 3DS hShop klienset választottad.
+Ez a szoftver ingyenesen elérhető az alábbi címen:
+PAGE_3HS
+
+- press_to_install
+Telepítéshez nyomd meg az UI_GLYPH_A gombot.
+Visszalépéshez nyomd meg a UI_GLYPH_B gombot.
+
+- version
+Verzió
+
+- prodcode
+Termék Kód
+
+- size
+Méret
+
+- name
+Név
+
+- tid
+Letöltési ID
+
+- category
+Kategória
+
+- landing_id
+hShop ID
+
+- description
+Leírás
+
+- total_titles
+Kapcsolódó Letöltések
+
+- select_cat
+Válassz egy kategóriát
+
+- select_subcat
+Válassz egy alkategóriát
+
+- select_title
+Válassz egy letöltést
+
+- fmt_24h
+24 órás
+
+- fmt_12h
+12 órás
+
+- unknown
+ismeretlen
+
+- btrue
+igaz
+
+- bfalse
+hamis
+
+- top
+Felső kijelző
+
+- bottom
+Alsó kijelző
+
+- light_mode
+Világos mód
+
+- resume_dl
+Letöltések folytatása
+
+- load_space
+Szabad tárhely kijelzése
+
+- show_battery
+Akkumulátor szint kijelzése
+
+- time_format
+Idő formátum
+
+- progbar_screen
+Folyamatjelző sáv pozíciója
+
+- language
+Nyelv
+
+- value_x
+Érték: %1
+
+- back
+Vissza
+
+- invalid
+érvénytelen
+
+- title_doesnt_exist
+Az alábbi letöltés nem létezik: %1
+
+- netcon_lost
+Megszakadt az internet kapcsolat (%1).
+Újrakapcsolódás $t másodpercen belül...
+
+- about_app
+A szoftverről
+
+- help_manual
+Segítség/Kézikönyv
+
+- find_missing_content
+Kapcsolódó letöltések megkeresése
+
+- press_a_exit
+Kilépéshez nyomd meg az UI_GLYPH_A gombot.
+
+- fatal_panic
+Egy komoly hiba történt.
+
+- failed_open_seeddb
+Nem sikerült a seeddb.bin fájlt megnyitni.
+
+- update_to
+Frissíteni akarsz a(z) %1 verzióra?
+
+- search_content
+Letöltések keresése
+
+- search_content_action
+Letöltések keresése...
+
+- result_code
+Eredmény kód: %1
+
+- level
+Level: %1
+
+- summary
+Summary: %1
+
+- module
+Module: %1
+
+- hs_bunny_found
+Gratulálunk! Megtaláltad a hShop nyuszit!
+
+- already_installed_reinstall
+Az alábbi letöltés már fel van telepítve. Újra akarod telepíteni?
+
+- queue_empty
+Üres a várólista
+Visszalépéshez nyomd meg az UI_GLYPH_A gombot.
+Tipp: Letöltések várólistára helyezéséhez nyomd meg az UI_GLYPH_Y gombot.
+
+- cancel
+Mégse
+
+- confirm
+Tovább
+
+- invalid_proxy
+Helytelen proxy beállítások
+
+- more_about_content
+További információk
+
+- lumalocalemode
+LumaLocale mód
+
+- automatic
+automatikus
+
+- manual
+manuális
+
+- disabled
+kikapcsol
+
+- patching_reboot
+A Luma3DS Game Patching be lett kapcsolva.
+A változtatások véglegesítéséhez a rendszer újraindítása szükséges.
+
+- reboot_now
+Újraindítod most?
+
+- this_version
+A 3hs aktuális verziója %1
+
+- retry_req
+A kérelem hibába ütközött. Újra próbálod?
+
+- search_zero_results
+A keresés nem hozott semmi eredményt.
+Visszalépéshez nyomd meg az UI_GLYPH_A gombot.
+
+- credits
+Készítők
+
+- check_extra
+Kapcsolódó letöltések keresése
+
+- no_req
+Ehhez még nem lett kérelem beadva
+
+- invalid_query
+Helytelen folyamat
+Visszalépéshez nyomd meg az UI_GLYPH_A gombot.
+
+- min_constraint
+A 3hs aktuális %1 verziója korábbi, mint a szükséges %2 verzió
+
+- proxy
+Proxy
+
+- none
+(nincs)
+
+- press_a_to_view
+Megnyitáshoz nyomd meg az UI_GLYPH_A gombot.
+
+- host
+Cím
+
+- port
+Port
+
+- username
+Felhasználónév
+
+- password
+Jelszó
+
+- clear
+Törlés
+
+- progbar_screen_desc
+Folyamatjelző sáv pozíciójának kiválasztása.
+
+- light_mode_desc
+Világos mód ki/be kapcsolása. Ez a szoftver kinézetét változtatja meg.
+
+- resume_dl_desc
+Hálózati hiba után a letöltések automatikus folytatása.
+
+- load_space_desc
+Szabad tárhely kijelzésének ki/be kapcsolása.
+
+- show_battery_desc
+Akkumulátor szint kijelzésének ki/be kapcsolása.
+
+- time_format_desc
+Idő formátum beállítása.
+
+- language_desc
+3hs nyelvének beállítása. A nyelv véglegesítéséhez az alkalmazás újraindítása szükséges.
+
+- lumalocalemode_desc
+LumaLocale módjának beállítása. Automatikus mód magától fog nyelvet választani. Ha manuálisra van állítva, 3hs a letöltések telepítését követően a régió kiválasztását fogja kérni.
+
+- check_extra_desc
+Kapcsolódó letöltések megkeresése a telepítés után.
+
+- proxy_desc
+Proxy szerver beállítása a 3hs-hez. Ez az opció tapasztaltabb felhasználóknak ajánlott.
+
+- install_all
+Összes telepítése
+
+- install_no_base
+A kapcsolódó játék nincs feltelepítve. Folytatod nélküle?
+
+- warn_no_base
+Értesítsen, ha a kapcsolódó játék nincs feltelepítve
+
+- warn_no_base_desc
+Frissítés vagy DLC telepítése előtt értesít, ha a kapcsolódó játék nincs feltelepítve.
+
+- replaying_errors
+Várólista feldolgozása alatt előfordult hibaüzenetek újramutatása.
+
+- log
+Naplófájlok
+
+- upload_logs
+Naplófájlok feltöltése
+
+- clear_logs
+Naplófájlok kiürítése
+
+- found_missing
+%1 hiányzó letöltés található.
+Ezek a várólistán belül feltelepíthetőek.
+
+- found_0_missing
+Nem találhatóak hiányzó letöltések.
+
+- max_elogs
+Tárolt naplófájlok száma
+
+- max_elogs_desc
+Add meg a tárolni kívánt naplófájlok számát. Az érték 1 és 255 között választható, valamint 0 nem fog fájlokat tárolni.
+
+- elogs_hint
+Egy érték 0 és 255 között
+
+- log_id
+Az alábbi ID számra hivatkozva tudsz segítséget kérni:
+%1
+
+- block
+blokk
+
+- blocks
+blokk
+
+- search_text
+Keresés szöveg alapján
+
+- search_id
+Keresés hShop ID alapján
+
+- search_tid
+Keresés Letöltési ID alapján
+
+- invalid_tid
+Érvénytelen Letöltési ID
+
+- theme_installer_tid_bad
+Kinézetekhez a Themes kategória manuális keresése szükséges
+
+- enter_lgy_query
+Régimódú keresés paramétereinek megadása
+
+- no_other_params_tid
+Több paraméter nem adható meg a Letöltési ID-n kívül.
+
+- both_sd_and_sb
+Az eredmények sorbarendezéséhez egy mód és irány megadása szükséges
+
+- invalid_sb
+Érvénytelen rendezési mód
+
+- invalid_sd
+Érvénytelen rendezési irány
+
+- invalid_includes
+Érvénytelen tartalmazási szűrők
+
+- invalid_excludes
+Érvénytelen kizárási szűrők
+
+- filter_overlap
+Átfedés található a megadott keresési szűrők között
+
+- lgy_search
+Régimódú Keresés
+
+- sure_reset
+Biztosan vissza akarod állítani az alapbeállításokat?
+
+- ascending
+Növekvő sorrend
+
+- descending
+Csökkenő sorrend
+
+- alphabetical
+Ábécé sorrend
+
+- downloads
+Letöltések
+
+- def_sort_meth
+Alapértelmezett rendezési mód
+
+- def_sort_meth_desc
+A címlista megtekintésekor használandó alapértelmezett rendezési mód.
+
+- def_sort_dir
+Alapértelmezett rendezési irány
+
+- def_sort_dir_desc
+A címlista megtekintésekor használandó alapértelmezett rendezési irány.
+
+- invalid_content_type
+Érvénytelen tartalomtípus
+
+- theme_installed
+A kinézet fel lett telepítve. Lásd az alábbi oldalt: PAGE_THEMES
+
+- file_installed
+A fájl fel lett telepítve. Ezek a HOME Menüben nem fognak megjelenni
+

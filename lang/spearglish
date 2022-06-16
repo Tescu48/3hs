@@ -1,0 +1,417 @@
+- native_name
+Spearglish
+
+- loading
+Loading...
+
+- luma_not_installed
+An unsupp'rt'd firmware wast did detect
+
+- install_luma
+3hs cannot beest hath used on this system
+
+- queue
+Queueth
+
+- fail_init_networking
+Did fail to initialize netw'rking
+
+- credits_thanks
+Thanketh thee f'r using 3hs, a 3ds client f'r hShop.
+Thee can receiveth this software f'r free at
+PAGE_3HS
+
+- press_to_install
+Presseth UI_GLYPH_A to installeth this content.
+Presseth UI_GLYPH_B to wend backeth
+
+- version
+V'rsion
+
+- prodcode
+Product Code
+
+- size
+Size
+
+- name
+Nameth
+
+- tid
+Title ID
+
+- category
+Categ'ry
+
+- landing_id
+Landing ID
+
+- description
+Description
+
+- total_titles
+Total Titles
+
+- select_cat
+Selecteth a categ'ry
+
+- select_subcat
+Selecteth a subcateg'ry
+
+- select_title
+Selecteth a title
+
+- fmt_24h
+24 hour
+
+- fmt_12h
+12 hour
+
+- unknown
+unknown
+
+- btrue
+true
+
+- bfalse
+false
+
+- top
+top
+
+- bottom
+bottom
+
+- light_mode
+Lighteth mode
+
+- resume_dl
+Resume downloads
+
+- load_space
+Showeth free space indicat'r
+
+- show_battery
+Showeth batt'ry leveleth indicat'r
+
+- time_format
+Timeth f'rmat
+
+- progbar_screen
+Progresseth bar position
+
+- language
+Language
+
+- value_x
+Value: %1
+
+- back
+Backeth
+
+- invalid
+invalid
+
+- title_doesnt_exist
+Title doesn't existeth: %1
+
+- netcon_lost
+Netw'rk connection hath lost (%1).
+Retrying in $t seconds
+
+- about_app
+About
+
+- help_manual
+Holp/manual
+
+- find_missing_content
+Findeth missing content
+
+- press_a_exit
+Presseth UI_GLYPH_A to exit.
+
+- fatal_panic
+A fatal panic hast did occur
+
+- failed_open_seeddb
+Did fail to ope seeddb.bin.
+
+- update_to
+Doth thee wanteth to updateth to %1?
+
+- search_content
+Searcheth f'r content
+
+- search_content_action
+Searcheth f'r content...
+
+- result_code
+Result code: %1
+
+- level
+Leveleth: %1
+
+- summary
+Summary: %1
+
+- module
+Module: %1
+
+- hs_bunny_found
+Congrats! thee hath found the hShop bunny!
+
+- already_installed_reinstall
+Title already did install.  Reinstall?
+
+- queue_empty
+Queueth is empty
+Presseth UI_GLYPH_A to wend backeth.
+Tipeth: presseth UI_GLYPH_Y to addeth a title to the queueth
+
+- cancel
+Cancel
+
+- confirm
+Confirm
+
+- invalid_proxy
+Invalid proxy settings
+
+- more_about_content
+M're about this content
+
+- lumalocalemode
+LumaLocale mode
+
+- automatic
+automatic
+
+- manual
+manual
+
+- disabled
+disabl'd
+
+- patching_reboot
+Luma3DS Game Patching is anon enabl'd.
+The system might not but beest restarted
+f'r this changeth to taketh effect
+
+- reboot_now
+Restart anon?
+
+- this_version
+This is 3hs v'rsion %1
+
+- retry_req
+Requesteth did fail.  Retry?
+
+- search_zero_results
+Thy searcheth hath returned nay results.
+press UI_GLYPH_A to wend backeth
+
+- credits
+Credits
+
+- check_extra
+Searcheth f'r extra content
+
+- no_req
+Nay requests madeth yet
+
+- invalid_query
+Invalid qu'ry
+press UI_GLYPH_A to wend backeth
+
+- min_constraint
+Current 3hs v'rsion %1 is base'r than the requir'd v'rsion %2
+
+- proxy
+Proxy
+
+- none
+(none)
+
+- press_a_to_view
+Click UI_GLYPH_A to view.
+
+- host
+Host
+
+- port
+P'rt
+
+- username
+Us'rname
+
+- password
+Passw'rd
+
+- clear
+Cleareth
+
+- progbar_screen_desc
+Selecteth the position of the progresseth bar
+
+- light_mode_desc
+Enable/disable lighteth mode.  This shall changeth the way most UI elements behold
+
+- resume_dl_desc
+Resume downloads aft'r a netw'rk int'rruption
+
+- load_space_desc
+Toggle the free space indicat'r
+
+- show_battery_desc
+Toggle the batt'ry leveleth indicat'r
+
+- time_format_desc
+Selecteth the timeth f'rmat
+
+- language_desc
+Setteth the language f'r 3hs.  The application wilt beest restart'd f'r the did select language to taketh effect
+
+- lumalocalemode_desc
+Setteth the mode of the lumalocale autosett'r.  Automatic selects a language automatically.  If 't be true this is setteth to manual, 3hs shall prompt f'r a climature aft'r the installation of content
+
+- check_extra_desc
+Searcheth f'r extra content aft'r installation
+
+- proxy_desc
+Configure a proxy server for 3hs. This setting is for advanced users.
+
+- install_all
+Installeth all
+
+- install_no_base
+The base game is not did install.  Continueth concluded, be it?
+
+- warn_no_base
+Warneth if 't be true a base game is not did install
+
+- warn_no_base_desc
+Shows a message bef're installing updateth 'r dlc content if 't be true the base game is not did install
+
+- replaying_errors
+Replaying 'rr'rs encount'r'd while processing the queueth
+
+- log
+Logs
+
+- upload_logs
+Uploadeth logs
+
+- clear_logs
+Cleareth logs
+
+- found_missing
+Hath found %1 missing title(s)
+check the queueth to installeth those folk
+
+- found_0_missing
+Nay missing titles w're hath found
+
+- max_elogs
+Maximum fusty logeth files
+
+- max_elogs_desc
+Setteth the numb'r of logeth files to keepeth.  Possible values art 0 to 255, wh're 0 keeps nay additional logeth files
+
+- elogs_hint
+Value between 0 and 255
+
+- log_id
+Useth this id to receiveth supp'rt:
+%1
+
+- block
+block
+
+- blocks
+blocks
+
+- search_text
+Searcheth by text
+
+- search_id
+Searcheth by hShop ID
+
+- search_tid
+Searcheth by Title ID
+
+- invalid_tid
+Invalid Title ID
+
+- theme_installer_tid_bad
+Prithee browse the Themes categ'ry manually to behold f'r Themes
+
+- enter_lgy_query
+Ent'r a legacy searcheth qu'ry
+
+- no_other_params_tid
+Cannot specifyeth any oth'r paramet'rs at which hour specifying a Title ID
+
+- both_sd_and_sb
+Thee might not but specifyeth a s'rt method and a s'rt direction at which hour s'rting searcheth results
+
+- invalid_sb
+Invalid s'rt method
+
+- invalid_sd
+Invalid s'rt direction
+
+- invalid_includes
+Invalid includeth filt'rs
+
+- invalid_excludes
+Invalid excludeth filt'rs
+
+- filter_overlap
+Did detect an ov'rlap in the specifi'd searcheth filt'rs
+
+- lgy_search
+Legacy searcheth
+
+- sure_reset
+Art thee sure thee wanteth to did reset thy settings?
+
+- ascending
+Ascending
+
+- descending
+Descending
+
+- alphabetical
+Alphabetical
+
+- downloads
+Downloads
+
+- def_sort_meth
+Default s'rt method
+
+- def_sort_meth_desc
+Specifies the default s'rt method to useth at which hour viewing a listeth of titles
+
+- def_sort_dir
+Default s'rt direction
+
+- def_sort_dir_desc
+Specifies the default s'rt direction to useth at which hour viewing a listeth of titles
+
+- invalid_content_type
+Invalid content typeth
+
+- theme_installed
+A theme wast did install. Prithee seeth PAGE_THEMES
+
+- file_installed
+A fileth wast did install. These art not shown on the HOME menu
+
+- allow_led
+enable hath led status indicat'rs
+
+- allow_led_desc
+This shall flasheth the hath led lighteth to inf'rm thee of various status changes, such as at which hour a title finishes installing.
+

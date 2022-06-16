@@ -1,0 +1,410 @@
+- native_name
+大阪弁
+
+- loading
+ロード中...
+
+- luma_not_installed
+サポートされてへんファームウェアが検出された。
+
+- install_luma
+このシステムでは3hsは使用できまへん。
+
+- queue
+キュー
+
+- fail_init_networking
+ネットワークの初期化に失敗した
+
+- credits_thanks
+hShop用の3dsクライアントである3hsをご利用いただきおおきに！
+このソフトウェアは、
+PAGE_3HS
+
+- press_to_install
+UI_GLYPH_A を押して このコンテンツをインストール
+UI_GLYPH_B を押して前の画面に戻る
+
+- version
+バージョン
+
+- prodcode
+プロダクトコード
+
+- size
+サイズ
+
+- name
+ゲーム名
+
+- tid
+タイトルID
+
+- category
+カテゴリー
+
+- landing_id
+hShop ID
+
+- description
+説明
+
+- total_titles
+総タイトル数
+
+- select_cat
+カテゴリーを選択
+
+- select_subcat
+サブカテゴリを選択
+
+- select_title
+タイトルを選択
+
+- fmt_24h
+24時間表記
+
+- fmt_12h
+12時間表記
+
+- unknown
+不明
+
+- btrue
+はい
+
+- bfalse
+いいや
+
+- top
+上
+
+- bottom
+下
+
+- light_mode
+ライトモード
+
+- resume_dl
+ダウンロードを再開する
+
+- load_space
+空き領域インジケーターを表示する
+
+- show_battery
+バッテリーレベルインジケーターを表示する
+
+- time_format
+時間形式
+
+- progbar_screen
+プログレスバーの位置
+
+- language
+言語を変更
+
+- value_x
+値: %1
+
+- back
+戻る
+
+- invalid
+無効
+
+- title_doesnt_exist
+タイトルが存在しまへん: %1
+
+- netcon_lost
+ネットワーク接続が失われた(%1)。
+$t秒で再試行する。..
+
+- about_app
+3hsの詳細
+
+- help_manual
+ヘルプ/マニュアル
+
+- find_missing_content
+不足してるコンテンツを探す
+
+- press_a_exit
+UI_GLYPH_Aを押して終了する。
+
+- fatal_panic
+致命的なパニックが発生した。
+
+- failed_open_seeddb
+seeddb.binを開くこと出来まへんでした。
+
+- update_to
+%1に更新するか？
+
+- search_content
+コンテンツを検索する
+
+- search_content_action
+コンテンツを検索中...
+
+- result_code
+結果コード: %1
+
+- level
+レベル: %1
+
+- summary
+要約: %1
+
+- module
+モジュール: %1
+
+- hs_bunny_found
+おめでとうございます！ hShopバニーを見つけた！
+
+- already_installed_reinstall
+タイトルはすでにインストールされてます。 再インストールするか？
+
+- queue_empty
+キューが空です
+UI_GLYPH_Aを押して元の画面に戻ります。
+ヒント: UI_GLYPH_Y を押して、キューにタイトルを追加する。
+
+- cancel
+キャンセル
+
+- confirm
+確認
+
+- invalid_proxy
+プロキシ設定が無効です
+
+- more_about_content
+このコンテンツの詳細
+
+- lumalocalemode
+LumaLocaleモード
+
+- automatic
+自動
+
+- manual
+マニュアル
+
+- disabled
+無効
+
+- patching_reboot
+Luma3DSゲームパッチが有効になった。
+この変更を有効にするには、システムを再起動する必要があるんや。
+
+- reboot_now
+今すぐ再起動するか？
+
+- this_version
+こら3hsバージョン%1です
+
+- retry_req
+要求が失敗した。 リトライするか？
+
+- search_zero_results
+検索結果が返されまへんでした。
+UI_GLYPH_A を押して戻る。
+
+- credits
+クレジット
+
+- check_extra
+追加コンテンツを検索する
+
+- no_req
+まだリクエストはおまへん
+
+- invalid_query
+無効なクエリ
+戻るにはUI_GLYPH_Aを押してくれへん。
+
+- min_constraint
+現在の3hsバージョン%1は、必要なバージョン%2よりも低なってます
+
+- proxy
+プロキシー
+
+- none
+(なし)
+
+- press_a_to_view
+UI_GLYPH_A をクリックして表示する。
+
+- host
+ホスト
+
+- port
+ポート
+
+- username
+ユーザー名
+
+- password
+パスワード
+
+- clear
+クリア
+
+- progbar_screen_desc
+プログレスバーの位置を選択する。
+
+- light_mode_desc
+ライトモードを有効/無効にする。 これにより、ほとんどのUIの外観が変わる。
+
+- resume_dl_desc
+ネットワークが中断した後、ダウンロードを再開する。
+
+- load_space_desc
+空き領域インジケーターを切り替える。
+
+- show_battery_desc
+バッテリーレベルインジケーターを切り替える。
+
+- time_format_desc
+時間形式を選択する。
+
+- language_desc
+3hsの言語を変更する。 選択した言語を有効にするには、アプリケーションを再起動する必要があるんや。
+
+- lumalocalemode_desc
+LumaLocaleオートセッターのモードを設定する。 自動は言語を自動的に選択する。 これが手動に設定されてる場合、コンテンツのインストール後、3hsでリージョンの入力を求められる。
+
+- check_extra_desc
+インストール後に追加のコンテンツを検索する。
+
+- proxy_desc
+3hsのプロキシサーバーを構成する。 この設定は上級ユーザー向けです。
+
+- install_all
+全てインストール
+
+- install_no_base
+元となるゲームがインストールされてまへん。 続けるか？
+
+- warn_no_base
+元となるゲームがインストールされてへん場合に警告する
+
+- warn_no_base_desc
+元となるゲームがインストールされてへん場合、アップデートまたはDLCコンテンツをインストールする前にメッセージを表示する。
+
+- replaying_errors
+キューの処理中に発生した再生エラー。
+
+- log
+ログ
+
+- upload_logs
+ログをアップロードする
+
+- clear_logs
+ログをクリアする
+
+- found_missing
+ %1個の不足してるタイトルが見つかった
+キューをチェックしてインストールしてくれへん。
+
+- found_0_missing
+不足してるタイトルは見つかりまへんでした。
+
+- max_elogs
+古いログファイルの最大数
+
+- max_elogs_desc
+保持するログファイルの数を設定する。 可能な値は0~255で、0は追加のログファイルを保持しまへん。
+
+- elogs_hint
+0から255までの値
+
+- log_id
+このIDを使用してサポートを取得する：
+%1
+
+- block
+ブロック
+
+- blocks
+ブロック
+
+- search_text
+テキストで検索
+
+- search_id
+hShop IDで検索
+
+- search_tid
+タイトルIDで検索
+
+- invalid_tid
+タイトルIDが無効です
+
+- theme_installer_tid_bad
+テーマを探すには、テーマカテゴリを参照してくれへん
+
+- enter_lgy_query
+従来の検索クエリを入力する
+
+- no_other_params_tid
+タイトルIDを指定するときに他のパラメーターを指定することはできまへん
+
+- both_sd_and_sb
+検索結果を並べ替えるときは、並べ替え方法と並べ替え方向を指定する必要があるんや
+
+- invalid_sb
+無効なソート方法
+
+- invalid_sd
+ソート方向が無効です
+
+- invalid_includes
+ソート方向が無効です
+
+- invalid_excludes
+無効な除外フィルター
+
+- filter_overlap
+指定された検索フィルターで重複が検出された
+
+- lgy_search
+レガシー検索
+
+- sure_reset
+構成をリセットしてもよろしいですか？
+
+- ascending
+昇順
+
+- descending
+降順
+
+- alphabetical
+アルファベット順
+
+- downloads
+ダウンロード
+
+- def_sort_meth
+デフォルトのソート方法
+
+- def_sort_meth_desc
+タイトルのリストを表示するときに使用するデフォルトの並べ替え方法を指定する。
+
+- def_sort_dir
+デフォルトのソート方向
+
+- def_sort_dir_desc
+タイトルのリストを表示するときに使用するデフォルトのソート方向を指定する。
+
+- invalid_content_type
+無効なコンテンツタイプ
+
+- theme_installed
+テーマがインストールされた。 参照してくれへん
+
+- file_installed
+ファイルがインストールされた。 これらはホームメニューには表示されまへん
+

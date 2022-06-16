@@ -1,0 +1,416 @@
+- native_name
+Nederlands
+
+- loading
+Aan het laden ...
+
+- luma_not_installed
+Je gebruikt een (C)FW die niet ondersteund is
+
+- install_luma
+Je kan 3hs niet op deze 3DS gebruiken
+
+- queue
+Wachtrij
+
+- fail_init_networking
+Kon netwerkdiensten niet opstarten
+
+- credits_thanks
+Bedankt voor het gebruiken van 3hs, een 3DS hShop applicatie
+Je kan deze software gratis verkrijgen op
+PAGE_3HS
+
+- press_to_install
+Klik op UI_GLYPH_A als je deze titel wilt installeren.
+Klik op UI_GLYPH_B als je dat niet wilt.
+
+- version
+Versie
+
+- prodcode
+Productie code
+
+- size
+Grootte
+
+- name
+Naam
+
+- tid
+Titel ID
+
+- category
+Categorie
+
+- landing_id
+hShop ID
+
+- description
+Beschrijving
+
+- total_titles
+Aantal titels
+
+- select_cat
+Selecteer een categorie
+
+- select_subcat
+Selecteer een subcategorie
+
+- select_title
+Selecteer een titel
+
+- fmt_24h
+24 uur
+
+- fmt_12h
+12 uur
+
+- unknown
+onbekend
+
+- btrue
+waar
+
+- bfalse
+niet waar
+
+- top
+boven
+
+- bottom
+onder
+
+- light_mode
+Licht thema
+
+- resume_dl
+Downloads voortzetten
+
+- load_space
+Laad bruikbare opslag indicator
+
+- show_battery
+Laad batterij indicator
+
+- time_format
+Tijdsformaat
+
+- progbar_screen
+Laadbalk scherm
+
+- language
+Taal
+
+- value_x
+Waarde: %1
+
+- back
+Terug
+
+- invalid
+ongeldig
+
+- title_doesnt_exist
+Titel bestaat niet: %1
+
+- netcon_lost
+Netwerk verbinding verloren (%1).
+We proberen het in $t seconden weer...
+
+- about_app
+Informatie over applicatie
+
+- help_manual
+Hulp/Gebruikshandleiding
+
+- find_missing_content
+Vind missende titels
+
+- press_a_exit
+Klik op UI_GLYPH_A om af te sluiten
+
+- fatal_panic
+Fatale fout
+
+- failed_open_seeddb
+Kon seeddb.bin niet openen
+
+- update_to
+Wil je updaten naar versie %1?
+
+- search_content
+Zoek naar titels
+
+- search_content_action
+Zoek naar titels...
+
+- result_code
+Resultaatcode: %1
+
+- level
+Niveau: %1
+
+- summary
+Samenvatting: %1
+
+- module
+Module: %1
+
+- hs_bunny_found
+Je hebt het hShop konijn gevonden!
+
+- already_installed_reinstall
+Titel is al geïnstalleerd. Herinstalleeren?
+
+- queue_empty
+De wachtrij is leeg
+Klik op UI_GLYPH_A om terug te gaan
+Tip: klik op UI_GLYPH_Y om een titel toe te voegen aan de wachtrij
+
+- cancel
+Weiger
+
+- confirm
+Accepteer
+
+- invalid_proxy
+Ongeldige proxy instellingen
+
+- more_about_content
+Meer over deze titel
+
+- lumalocalemode
+LumaLocale modus
+
+- automatic
+automatisch
+
+- manual
+handmatig
+
+- disabled
+uitgeschakeled
+
+- patching_reboot
+Luma3DS Game Patching is ingeschakeld
+Om de verandering te zien, moet je je 3DS herstarten
+
+- reboot_now
+Nu herstarten?
+
+- this_version
+Dit is 3hs versie %1
+
+- retry_req
+Opnieuw proberen gegevens te halen?
+
+- search_zero_results
+Zoekopdracht gaf 0 resultaten
+Klik op UI_GLYPH_A om terug te gaan
+
+- credits
+Met dank aan
+
+- check_extra
+Zoek naar extras
+
+- no_req
+Er is nog niets gebeurd
+
+- invalid_query
+Ongeldige zoekopdracht
+Klik op UI_GLYPH_A om terug te gaan
+
+- min_constraint
+Huidige 3hs versie %1 is lager dan het minimale wat %2 is
+
+- proxy
+Proxy
+
+- none
+(geen)
+
+- press_a_to_view
+Klik op UI_GLYPH_A om de waarde te bekijken
+
+- host
+Adres
+
+- port
+Poort
+
+- username
+Gebruikersnaam
+
+- password
+Wachtwoord
+
+- clear
+Maak leeg
+
+- progbar_screen_desc
+Het scherm om de laadbalk op te laten verschijnen
+
+- light_mode_desc
+Zet lichte modus aan. Dit zal het uiterlijk van 3hs een lichte tint geven
+
+- resume_dl_desc
+Hervat installaties wanneer zij onderbroken worden
+
+- load_space_desc
+Laad de vrije opslag balk
+
+- show_battery_desc
+Laat de status van de batterij zien
+
+- time_format_desc
+Jouw favoriete tijd formaat. 24h of 12h. In Nederland wordt 24h het vaakst gebruikt
+
+- language_desc
+De taal waarin alles wordt weergegeven. Soms moet je 3hs herstarten voordat alles veranderd is
+
+- lumalocalemode_desc
+De wijze waarom LumaLocale bestanden worden gegenereerd. Automatisch zal alles automatisch regelen. Als je handmatig kiest zal je worden gevraagt naar de taal en regio
+
+- check_extra_desc
+Zoek naar extras na het installeren van een spel
+
+- proxy_desc
+Configureer een proxy. Als je niet weet wat dat is raak deze optie dan niet aan
+
+- install_all
+Installeer alles
+
+- install_no_base
+Het spel waarbij deze extra hoort is niet geïnstalleerd. Toch doorgaan?
+
+- warn_no_base
+Waarschuw bij nutteloze extras
+
+- warn_no_base_desc
+Geef een waarschuwing als je een extra probeert te installeren waarvan het bijhorende spel niet is geïnstalleerd
+
+- replaying_errors
+Fouten aan het herspelen die zijn voorgekomen.
+
+- log
+Beheer logboek
+
+- upload_logs
+Logboek uploaden
+
+- clear_logs
+Logboek verwijderen
+
+- found_missing
+%1 missende titel(s) gevonden
+Ga naar de wachtrij om ze te installeren
+
+- found_0_missing
+Geen missende titles gevonden
+
+- max_elogs
+Maximum aantal extra log bestanden
+
+- max_elogs_desc
+Aantal oude log bestanden om te bewaren. Een nummer van 0 tot en met 255.
+
+- elogs_hint
+Nummer van 0 tot/met 255
+
+- log_id
+Gebruik deze ID om hulp te krijgen
+%1
+
+- block
+blok
+
+- blocks
+blokken
+
+- search_text
+Zoek op tekst
+
+- search_id
+Vind met hShop ID
+
+- search_tid
+Vind met titel ID
+
+- invalid_tid
+Ongeldige title ID
+
+- theme_installer_tid_bad
+Bekijk de "Themes" categorie als je op zoek wilt naar thema's
+
+- enter_lgy_query
+Tik een classieke zoekopdracht in
+
+- no_other_params_tid
+Je kan geen andere parameters gebruiken wanneer je op titel ID zoekt
+
+- both_sd_and_sb
+Je moet een sorteer methode en zoek richting aangeven als zelfs als je één van beide wilt gebruiken
+
+- invalid_sb
+Ongeldige sorteer methode
+
+- invalid_sd
+Ongeldige zoek richting
+
+- invalid_includes
+Ongeldige inclusie filters
+
+- invalid_excludes
+Ongelidge exclusie filters
+
+- filter_overlap
+Er is een overlap tussen de filters
+
+- lgy_search
+Classieke zoekmethode
+
+- sure_reset
+Weet je zeker dat je je instellingen wilt terugzetten?
+
+- ascending
+Stijgend
+
+- descending
+Dalend
+
+- alphabetical
+Alfabetisch
+
+- downloads
+Populariteit
+
+- def_sort_meth
+Standaard sorteer methode
+
+- def_sort_meth_desc
+De standaard sorteer methode in gebruik tijdens het bekijken van titels.
+
+- def_sort_dir
+Standaard sorteer richting
+
+- def_sort_dir_desc
+De standaard sorteer richting in gebruik tijdens het bekijken van titels.
+
+- invalid_content_type
+Ongeldige titel type
+
+- theme_installed
+Een thema was geïnstalleerd. Bekijk PAGE_THEMES
+
+- file_installed
+Een bestand was geïnstalleerd. Deze zullen niet op je HOME-menu komen
+
+- allow_led
+Zet LED status licht aan
+
+- allow_led_desc
+Dit zorgt ervoor dat 3hs de kleur van de LED kan veranderen om status veranderingen aan te geven, zoals wanneer een titel klaar is met installeren.
+
