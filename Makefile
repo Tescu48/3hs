@@ -204,7 +204,7 @@ endif
 
 .PHONY: all clean
 
-INT_ALL 	:=	$(BUILD) $(GFXBUILD) $(DEPSDIR) $(ROMFS_T3XFILES) $(ROMFS_FONTFILES) $(T3XHFILES)
+INT_ALL 	:=	$(BUILD)/i18n_tab.cc $(BUILD) $(GFXBUILD) $(DEPSDIR) $(ROMFS_T3XFILES) $(ROMFS_FONTFILES) $(T3XHFILES)
 REAL_ALL	:=	$(INT_ALL)
 ifeq ($(RELEASE),)
 	REAL_ALL	:=	$(REAL_ALL) _build_all
@@ -234,6 +234,11 @@ cia: $(INT_ALL) $(BUILD)/banner.bnr $(BUILD)/icon.smdh $(BUILD)/romfs.bin
 	$(SILENTCMD) makerom -f cia -o $(TARGET).cia -target t -elf $(TARGET).elf -icon $(BUILD)/icon.smdh -banner $(BUILD)/banner.bnr -rsf $(CIA_PREFIX)/$(TARGET).rsf -romfs $(BUILD)/romfs.bin -ver $(VERSION)
 	$(SILENTMSG) built ... $(TARGET).cia
 
+$(BUILD)/i18n_tab.cc: $(shell find $(TOPDIR)/lang/ -not -name '*.pl' -type f)
+	$(SILENTCMD) mkdir -p $(BUILD)
+	$(SILENTCMD) cd $(TOPDIR); ./lang/make.pl
+	$(SILENTMSG) generated ... i18n_tab.cc
+	$(SILENTMSG) generated ... i18n_tab.hh
 
 $(BUILD):
 	@mkdir -p $@
@@ -329,7 +334,7 @@ endef
 ifneq ($(wildcard ../hscert.der),)
 # If hscert.der exists we use that ...
 hscert.o: ../hscert.der
-	$(SILENTCMD) cd ..; xxd -i hscert.der > build/hscert.c; cd build
+	$(SILENTCMD) cd $(TOPDIR); xxd -i hscert.der > $(BUILD)/hscert.c
 	$(SILENTMSG) generated ... hscert.c
 	$(SILENTCMD)$(CXX) -MMD -MP -MF $(DEPSDIR)/$*.d $(CXXFLAGS) -c hscert.c -o hscert.o $(ERROR_FILTER)
 	$(SILENTMSG) hscert.o

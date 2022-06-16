@@ -32,6 +32,7 @@ my @languages = qw(
 	ryukyuan
 	latvian
 	jp_osaka
+	moldovan
 );
 
 my @preserve_keywords = qw(
@@ -271,7 +272,7 @@ const char *i18n::langname(lang::type id)
 	{
 EOF
 
-foreach my $lang (@languages) {
+foreach my $lang (@lang_names) {
 	my $def = uc $lang;
 	$def = "LANGNAME_$def";
 	$source_file .= "\tcase lang::$lang: return $def;\n";

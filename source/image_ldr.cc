@@ -76,7 +76,7 @@ void load_smdh_icon(C2D_Image *ret, const ctr::TitleSMDH& smdh, SMDHIconType typ
 	// tex
 	C3D_Tex *tex = new C3D_Tex;
 	if(!C3D_TexInit(tex, dim2, dim2, GPU_RGB565))
-		panic(STRING(fail_create_tex));
+		panic("failed to create a C3D texture");
 
 	u16 *dst = (u16 *) tex->data + (dim2 - dim) * dim2;
 
