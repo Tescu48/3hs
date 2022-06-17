@@ -47,11 +47,8 @@ ssize_t show_find_missing(hsapi::htid tid)
 		ctr::list_titles_on(MEDIATYPE_GAME_CARD, installed); // it might error if there is no cart inserted so we don't want to panic if it fails
 
 		std::vector<hsapi::htid> doCheckOn;
-		dlog("TID = %016llX", tid);
 		if(tid == 0) doCheckOn = installed;
 		else doCheckOn.push_back(tid);
-
-		dlog("%d", doCheckOn.size());
 
 		std::vector<hsapi::htid> installedGames;
 		std::copy_if(doCheckOn.begin(), doCheckOn.end(), std::back_inserter(installedGames), tid_can_have_missing);
@@ -70,6 +67,9 @@ ssize_t show_find_missing(hsapi::htid tid)
 
 		std::vector<hsapi::FullTitle> newInstalls;
 		std::copy_if(potentialInstalls.begin(), potentialInstalls.end(), std::back_inserter(newInstalls), [installed](const hsapi::FullTitle& title) -> bool {
+			/* don't import demo's */
+			if(ctr::get_tid_cat(title.tid) == 0x2)
+				return false;
 			/* already in queue */
 			if(std::find(queue_get().begin(), queue_get().end(), title) != queue_get().end())
 				return false;

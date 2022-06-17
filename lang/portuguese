@@ -408,3 +408,9 @@ Um tema foi instalado. Porfavor veja.PAGE_THEMES
 - file_installed
 Um ficheiro foi instalado. Eles não são mostrados no Menu Inicial.
 
+- allow_led
+Ligar indicador de estado LED
+
+- allow_led_desc
+Isto vai piscar a luz LED para te informar das variadas mudanças de estado, por exemplo quando um jogo acaba de instalar.
+

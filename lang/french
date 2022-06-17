@@ -409,3 +409,9 @@ Un thème a été installé. Merci de regarder PAGE_THEMES
 - file_installed
 Un fichier a été installé. Ils ne seront pas visible sur le menu home
 
+- allow_led
+Activer l'indication LED
+
+- allow_led_desc
+Ce paramètre permet d'utiliser la LED pour indiquer certaines informations, par exemple, quand un titre est installé.
+

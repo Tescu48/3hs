@@ -22,7 +22,6 @@
 
 #include "hsapi.hh"
 
-
 std::vector<hsapi::FullTitle>& queue_get();
 
 void queue_add(hsapi::hid id, bool disp = true);

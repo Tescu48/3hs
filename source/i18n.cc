@@ -68,6 +68,7 @@ namespace CountryCode
 namespace ProvinceCode
 {
 	enum _codes {
+		japan_osaka   = 28,
 		japan_okinawa = 48,
 	};
 }
@@ -97,11 +98,15 @@ lang::type i18n::default_lang()
 	switch(syslang)
 	{
 	case CFG_LANGUAGE_JP:
-		return countryinfo[2] == ProvinceCode::japan_okinawa
-			? lang::ryukyuan : lang::japanese;
+		switch(countryinfo[2])
+		{
+		case ProvinceCode::japan_okinawa: return lang::ryukyuan;
+		case ProvinceCode::japan_osaka: return lang::jp_osaka;
+		}
+		return lang::japanese;
 	case CFG_LANGUAGE_FR:
 		return countryinfo[3] == CountryCode::canada
-			? lang::french_canada : lang::french;
+			? lang::fr_canada : lang::french;
 	case CFG_LANGUAGE_DE: return lang::german;
 	case CFG_LANGUAGE_IT: return lang::italian;
 	case CFG_LANGUAGE_ES: return lang::spanish;

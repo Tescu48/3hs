@@ -4,11 +4,10 @@ use warnings;
 use strict;
 use utf8;
 
+# ====================== #
+
 my $build_dir = "build";
 my $lang_dir = "lang";
-
--d $lang_dir or die "no language directory available.";
--d $build_dir or die "no build directory available.";
 
 # NOTE: The first language in this array
 #       will be used as the base language.
@@ -18,7 +17,7 @@ my @languages = qw(
 	german
 	spanish
 	french
-	french_canada
+	fr_canada
 	romanian
 	italian
 	portuguese
@@ -35,6 +34,7 @@ my @languages = qw(
 	moldovan
 );
 
+# Strings never to put between quotes
 my @preserve_keywords = qw(
 	PAGE_3HS
 	PAGE_THEMES
@@ -46,6 +46,11 @@ my @preserve_keywords = qw(
 	UI_GLYPH_R
 	UI_GLYPH_DPAD
 );
+
+# ====================== #
+
+-d $lang_dir or die "no language directory available.";
+-d $build_dir or die "no build directory available.";
 
 my $source_file = "";
 my $header_file = "";
@@ -150,10 +155,12 @@ sub parse_lang_file {
 	$source_file .= "\t\t},\n";
 
 	if(not $is_reference_lang) {
-		print "$missing missing\n";
 		if($missing) {
+			print "\033[31;1m$missing\033[0m missing\n";
 			$total_missing += $missing;
 			++$langs_w_missing;
+		} else {
+			print "complete\n";
 		}
 	}
 
@@ -252,8 +259,6 @@ EOF
 }
 
 $header_file .= <<EOF;
-
-#include <vector>
 
 namespace i18n
 {

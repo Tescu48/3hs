@@ -408,3 +408,9 @@ Un tema fue instalado. Por favor, vea PAGE_THEMES
 - file_installed
 Un archivo fue instalado. Estos no se muestran en el menú HOME
 
+- allow_led
+Activar indicador de estados de LED
+
+- allow_led_desc
+Esto permitirá que la luz LED cambie para notificar cambios de estado, como la instalación de contenido.
+
