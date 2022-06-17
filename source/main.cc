@@ -43,6 +43,7 @@
 #include "log.hh"
 #include "ctr.hh"
 
+#define ENVINFO (* (u8 *) 0x1FF80014)
 
 #ifndef RELEASE
 class FrameCounter : public ui::BaseWidget
@@ -160,6 +161,8 @@ int main(int argc, char* argv[])
 		exit(0);
 	}
 #endif
+
+	if(!(ENVINFO & 1)) ui::notice(STRING(dev_unitinfo), 40.0f);
 
 	init_seeddb();
 	proxy::init();

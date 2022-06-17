@@ -126,7 +126,7 @@ void ui::exit()
 	gfxExit();
 }
 
-void ui::notice(const std::string& msg)
+void ui::notice(const std::string& msg, float ypos)
 {
 	ui::RenderQueue queue;
 
@@ -138,7 +138,7 @@ void ui::notice(const std::string& msg)
 
 	ui::builder<ui::Text>(ui::Screen::top, msg)
 		.x(ui::layout::center_x)
-		.y(70.0f)
+		.y(ypos)
 		.wrap()
 		.add_to(queue);
 

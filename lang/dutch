@@ -414,3 +414,8 @@ Zet LED status licht aan
 - allow_led_desc
 Dit zorgt ervoor dat 3hs de kleur van de LED kan veranderen om status veranderingen aan te geven, zoals wanneer een titel klaar is met installeren.
 
+- dev_unitinfo
+Volgens ENVINFO is deze 3DS een ontwikkelaars variant.
+3hs zal niet correct werken op deze 3DS.
+Als je een normale 3DS hebt, controleer dan of "Enable developer UNITINFO" uit staat in de Luma3DS instellingen.
+

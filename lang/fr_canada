@@ -403,8 +403,14 @@ Spécifie la direction du tirage par défault à utiliser quand tu regarde une l
 Type de contenue invalide
 
 - theme_installed
-Un thème a été installé. S'il te-plaît regarde 
+Un thème a été installé. S'il te-plaît regarde
 
 - file_installed
 Un fichier a été installé. Il ne sera visible que sur le menu HOME
+
+- allow_led
+Active les status d'indicators de LED
+
+- allow_led_desc
+Ceci va flasher la lumière LED pour t'informer de plusieurs changements de status, comme quand un jeu fini de télécharger
 

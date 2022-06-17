@@ -203,7 +203,7 @@ namespace ui
 	void exit();
 
 	/* [msg]\nPress [A] to continue */
-	void notice(const std::string& msg);
+	void notice(const std::string& msg, float ypos = 70.0f);
 
 	u32 color_button();
 	u32 color_text();
