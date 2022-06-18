@@ -30,8 +30,6 @@
 #define VVERSION "v" VERSION
 #define USER_AGENT MK_UA(INT_TO_STR(VERSION_MAJOR), INT_TO_STR(VERSION_MINOR), INT_TO_STR(VERSION_PATCH))
 
-#include <string>
-
 
 bool update_app();
 

@@ -155,13 +155,13 @@ start_install:
 	}
 	else
 	{
-		error_container err = get_error(res);
-		report_error(err, "User was installing (" + ctr::tid_to_str(meta.tid) + ") (" + std::to_string(meta.id) + ")");
-		if(interactive) handle_error(err);
-
 		ui::LED::Pattern pattern;                                   /* RED */
 		ui::LED::Solid(&pattern, UI_LED_MAKE_ANIMATION(0, 0xFF, 0), 0xFF, 0x00, 0x00);
 		ui::LED::SetSleepPattern(&pattern);
+
+		error_container err = get_error(res);
+		report_error(err, "User was installing (" + ctr::tid_to_str(meta.tid) + ") (" + std::to_string(meta.id) + ")");
+		if(interactive) handle_error(err);
 	}
 
 	set_focus(focus);
