@@ -408,3 +408,17 @@ A kinézet fel lett telepítve. Lásd az alábbi oldalt: PAGE_THEMES
 - file_installed
 A fájl fel lett telepítve. Ezek a HOME Menüben nem fognak megjelenni
 
+# setting title
+- allow_led
+LED állapotjelző opció bekapcsolása
+
+# setting description
+- allow_led_desc
+Ez a LED lámpák használatával fog tájékoztatni különböző állapotváltozásokról, mint például egy telepítés befejezéséről.
+
+# don't translate "Enable developer UNITINFO", ENVINFO may be translated as configuration, retail may be translated as normal, unit may be translated as variant
+- dev_unitinfo
+A konzolod az ENVINFO konfigurációk alapján egy fejlesztői modell.
+3hs nem fog helyesen futni ezen a rendszeren.
+Ha a 3DS konzolod egy rendes modell, a Luma3DS konfigurációkban az "Enable developer UNITINFO" opciót hagyd kikapcsolva.
+

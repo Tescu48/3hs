@@ -19,6 +19,7 @@
 #include "util.hh"
 #include "i18n.hh"
 
+#include <unistd.h>
 #include <3ds.h>
 
 void ui::loading(std::function<void()> callback)
@@ -164,13 +165,20 @@ bool ui::detail::TimeoutScreenHelper::render(const ui::Keys& keys)
 
 bool ui::timeoutscreen(const std::string& fmt, size_t nsecs, bool allowCancel)
 {
-	ui::RenderQueue queue;
+	bool isOpen;
 	bool ret = false;
+	if(R_SUCCEEDED(ui::shell_is_open(&isOpen)) && isOpen)
+	{
+		ui::RenderQueue queue;
 
-	ui::builder<ui::detail::TimeoutScreenHelper>(ui::Screen::top, fmt, nsecs, allowCancel ? &ret : nullptr)
-		.add_to(queue);
+		ui::builder<ui::detail::TimeoutScreenHelper>(ui::Screen::top, fmt, nsecs, allowCancel ? &ret : nullptr)
+			.add_to(queue);
 
-	queue.render_finite();
+		queue.render_finite();
+	} else {
+		/* if the lid is closed don't try to use ui as it'll wait until the lid is opened */
+		sleep(nsecs);
+	}
 	return ret;
 }
 

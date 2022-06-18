@@ -415,3 +415,8 @@ LED-Statusleuchte aktivieren
 - allow_led_desc
 Dies wird die LED-Statusleuchte einschalten, um verschiedene Statusänderungen anzuzeigen, wie z.B. wenn ein Inhalt installiert wurde.
 
+- dev_unitinfo
+Gemäß der ENVINFO dieses Geräts wurde festgestellt, dass dies ein Entwicklermodell ist.
+3hs wird auf diesem Gerät nicht korrekt funktionieren.
+Falls dieses Gerät kein Entwicklermodell ist, stelle sicher, dass "Enable developer UNITINFO" in der Luma3DS-Konfiguration ausgeschaltet ist.
+

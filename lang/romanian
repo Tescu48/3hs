@@ -246,7 +246,7 @@ Port
 Nume de Utilizator
 
 - password
-Parlă
+Parolă
 
 - clear
 Curățați
@@ -420,4 +420,9 @@ Porniți indicatorii pentru statutul LED-ului
 
 - allow_led_desc
 Aceasta va porni lumina LED pentru a vă informa despre schimbări, precum atunci când un titlu este instalat.
+
+- dev_unitinfo
+Potrivit ENVINFO-ului al acestei console, aceasta este o unitate de dezvoltare.
+3hs nu va funcționa corect pe acest sistem.
+În cazul în care aveți un 3DS comercial, asigurați-vă că opțiunea "Enable developer UNITINFO" în Luma3DS este oprită.
 

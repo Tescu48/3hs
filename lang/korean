@@ -408,3 +408,9 @@ hShop ID로 검색
 - file_installed
 파일이 설치되었습니다. 이 파일은 메인메뉴에서 확인할 수 없습니다.
 
+- allow_led
+LED 상태 표시
+
+- allow_led_desc
+타이틀 설치 완료 등의 상태를 LED로 신호
+

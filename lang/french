@@ -415,3 +415,8 @@ Activer l'indication LED
 - allow_led_desc
 Ce paramètre permet d'utiliser la LED pour indiquer certaines informations, par exemple, quand un titre est installé.
 
+- dev_unitinfo
+Cette console a été détecté en tant qu'unité de développement.
+3hs risque de ne pas fonctionner correctement.
+Si vous avez une 3ds normale, soyez sûr d'avoir désactivé "Enable developer UNITINFO" dans le menu de configuration luma.
+

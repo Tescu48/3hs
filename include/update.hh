@@ -19,7 +19,7 @@
 
 #define VERSION_MAJOR 1
 #define VERSION_MINOR 3
-#define VERSION_PATCH 0
+#define VERSION_PATCH 1
 #define VERSION_DESC "libere dorme"
 
 #define INT_TO_STR(i) INT_TO_STR_(i)

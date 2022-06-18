@@ -205,6 +205,8 @@ namespace ui
 	/* [msg]\nPress [A] to continue */
 	void notice(const std::string& msg, float ypos = 70.0f);
 
+	Result shell_is_open(bool *is_open);
+
 	u32 color_button();
 	u32 color_text();
 	u32 color_bg();

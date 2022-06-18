@@ -45,7 +45,7 @@ static u8 LEDFlags = LED_NONE;
 
 /* helpers */
 
-static inline Result shell_is_open(bool *is_open)
+Result ui::shell_is_open(bool *is_open)
 {
 	Result res;
 	u8 state;
@@ -238,7 +238,7 @@ bool ui::RenderQueue::render_frame(const ui::Keys& keys)
 	}
 
 	bool isOpen;
-	if(R_SUCCEEDED(shell_is_open(&isOpen)) && isOpen)
+	if(R_SUCCEEDED(ui::shell_is_open(&isOpen)) && isOpen)
 	{
 		if(LEDFlags & LED_RESET_SLEEP)
 		{
@@ -1019,7 +1019,7 @@ Result ui::LED::SetPattern(ui::LED::Pattern *info)
 Result ui::LED::SetSleepPattern(ui::LED::Pattern *info)
 {
 	bool isOpen;
-	if(R_FAILED(shell_is_open(&isOpen)) || isOpen)
+	if(R_FAILED(ui::shell_is_open(&isOpen)) || isOpen)
 		return 0; /* no-op is success */
 	Result res;
 	if(R_SUCCEEDED(res = ui::LED::SetPattern(info)))

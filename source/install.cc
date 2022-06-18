@@ -67,7 +67,7 @@ typedef struct cia_net_data
 
 static Result i_install_net_cia(std::string url, cia_net_data *data, size_t from, httpcContext *pctx)
 {
-	u32 status = 0, dled = 0, remaining, dlnext, written, rdl;
+	u32 status = 0, dled = 0, remaining, dlnext, written, rdl = 0;
 	Result res = 0;
 #define CHECKRET(expr) if(R_FAILED(res = ( expr ) )) goto err
 
