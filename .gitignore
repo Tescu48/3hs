@@ -2,7 +2,7 @@ romfs/gfx/
 build/
 dumps/
 
-hlink-client/hlink
+3hstool/3hstool
 *.smdh
 *.3dsx
 *.elf
