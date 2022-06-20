@@ -18,12 +18,14 @@
 #include <ui/base.hh>
 #include <algorithm>
 
+#include "image_ldr.hh"
 #include "update.hh"
 #include "panic.hh"
 #include "log.hh"
 
 #define VERSION_INT ((VERSION_MAJOR << 20) | (VERSION_MINOR << 10) | (VERSION_PATCH))
 /* 3DS is Little Endian ... */
+#define U16(a) (__builtin_bswap16(a))
 #define U32(a) (__builtin_bswap32(a))
 #define DESCRIPTOR_MAX 128
 
@@ -70,6 +72,13 @@ enum hstx_ident {
 	ID_LED_GREEN_CLR     = 0x1013,
 	ID_LED_RED_CLR       = 0x1014,
 	ID_SMDH_BORDER_CLR   = 0x1015,
+
+	ID_MORE_IMG          = 0x2001,
+	ID_BATTERY_IMG       = 0x2002,
+	ID_SEARCH_IMG        = 0x2003,
+	ID_SETTINGS_IMG      = 0x2004,
+	ID_SPINNER_IMG       = 0x2005,
+	ID_RANDOM_IMG        = 0x2006,
 };
 
 static ui::ThemeManager manager;
@@ -82,7 +91,7 @@ ui::Theme *ui::Theme::global()
 void ui::Theme::cleanup_images()
 {
 	for(u32 i = ui::theme::max_color + 1; i < ui::theme::max; ++i)
-		free(this->descriptors[i].image.data);
+		delete_image(this->descriptors[i].image);
 }
 
 bool ui::Theme::parse(const char *filename)
@@ -110,7 +119,7 @@ bool ui::Theme::parse(const char *filename)
 	num_descriptors = U32(hdr->num_descriptors);
 	blob_base = &contents[0x30 + 0x10 * num_descriptors];
 
-#define GETBLOBADDR(offset) (offset ? offset >= blob_size ? NULL : &blob_base[offset] : NULL)
+#define GETBLOBADDR(offset) (offset ? offset > blob_size ? NULL : &blob_base[offset] : NULL)
 
 	blob_rel_addr = U32(hdr->name_offset);
 	if((blob_addr = GETBLOBADDR(blob_rel_addr)))
@@ -131,9 +140,12 @@ bool ui::Theme::parse(const char *filename)
 			: target_version > VERSION_INT ? "greater than"
 				: "lesser than", target_version, VERSION_INT, format_version);
 
+	u32 ident, offset, isize;
+	u32 *ptr;
+	u16 w, h;
 	for(u32 i = 0; i < num_descriptors; ++i)
 	{
-		u32 ident = U32(descriptors[i].ident);
+		ident = U32(descriptors[i].ident);
 		switch(ident)
 		{
 #define CVAL(fid, iid) case fid: this->descriptors[ui::theme::iid].color = (descriptors[i].data.color.value); break
@@ -145,6 +157,7 @@ bool ui::Theme::parse(const char *filename)
 		CVAL(ID_BATTERY_RED_CLR, battery_red_color);
 		CVAL(ID_TOGGLE_GREEN_CLR, toggle_green_color);
 		CVAL(ID_TOGGLE_RED_CLR, toggle_red_color);
+		CVAL(ID_TOGGLE_SLID_CLR, toggle_slider_color);
 		CVAL(ID_PROGBAR_FG_CLR, progress_bar_foreground_color);
 		CVAL(ID_PROGBAR_BG_CLR, progress_bar_background_color);
 		CVAL(ID_SCROLLBAR_CLR, scrollbar_color);
@@ -152,6 +165,27 @@ bool ui::Theme::parse(const char *filename)
 		CVAL(ID_LED_RED_CLR, led_red_color);
 		CVAL(ID_SMDH_BORDER_CLR, smdh_icon_border_color);
 #undef CVAL
+#define IVAL(fid, iid) case fid: \
+	offset = U32(descriptors[i].data.image.img_ptr); \
+	w = U16(descriptors[i].data.image.w); h = U16(descriptors[i].data.image.h); \
+	isize = w * h * 4; \
+	ptr = (u32 *) GETBLOBADDR(offset); \
+	if(offset + isize > blob_size || !offset) { \
+		elog("theme parser: invalid blob offset (got: %lu-%lu, max is %lu)", offset, offset + isize, blob_size); \
+		continue; \
+	} \
+	rgba_to_abgr(ptr, w, h); \
+	if(this->descriptors[ui::theme::iid].image.tex) \
+		delete_image_data(this->descriptors[ui::theme::iid].image); \
+	load_rgba8(&this->descriptors[ui::theme::iid].image, ptr, w, h); \
+	break
+		IVAL(ID_MORE_IMG, more_image);
+		IVAL(ID_BATTERY_IMG, battery_image);
+		IVAL(ID_SEARCH_IMG, search_image);
+		IVAL(ID_SETTINGS_IMG, settings_image);
+		IVAL(ID_SPINNER_IMG, spinner_image);
+		IVAL(ID_RANDOM_IMG, random_image);
+#undef IVAL
 		default:
 			elog("theme parser: unknown identifier %lu", ident);
 			break;
@@ -185,24 +219,20 @@ ui::ThemeManager *ui::ThemeManager::global()
 
 ui::SlotManager ui::ThemeManager::get_slots(ui::BaseWidget *that, const char *id, size_t count, const slot_color_getter *getters)
 {
+	(void) that; /* unused for now */
 	auto it = this->slots.find(id);
 	if(it != this->slots.end())
 	{
-		if(that && that->supports_theme_hook())
-			it->second.slaves.push_back(that);
 		return ui::SlotManager(it->second.colors);
 	}
 
 	slot_data slot;
 	slot.colors = (u32 *) malloc(sizeof(u32) * count);
 	slot.getters = getters;
-	if(that && that->supports_theme_hook())
-		slot.slaves = { that };
 	slot.len = count;
 	fill_colors(slot);
 
 	this->slots[id] = slot;
-	this->slots[id].slaves.reserve(10);
 	return ui::SlotManager(slot.colors);
 }
 
@@ -212,32 +242,11 @@ void ui::ThemeManager::reget(const char *id)
 	if(it == this->slots.end())
 		panic(std::string(id) + ": not found");
 	fill_colors(it->second);
-	for(ui::BaseWidget *w : it->second.slaves)
-		w->update_theme_hook();
 }
 
 void ui::ThemeManager::reget()
 {
 	for(auto& it : this->slots)
-	{
 		fill_colors(it.second);
-		for(size_t i = 0; i < it.second.slaves.size(); ++i)
-			it.second.slaves[i]->update_theme_hook();
-	}
-}
-
-void ui::ThemeManager::unregister(ui::BaseWidget *w)
-{
-	for(auto& it : this->slots)
-	{
-		for(size_t i = 0; i < it.second.slaves.size(); ++i)
-		{
-			if(it.second.slaves[i] == w)
-			{
-				it.second.slaves.erase(it.second.slaves.begin() + i);
-				return;
-			}
-		}
-	}
 }
 

@@ -24,8 +24,6 @@
 #include <citro2d.h>
 #include <3ds.h>
 
-#define SMDH_ICON_FORMAT GPU_RGB565
-
 
 static u32 next_pow2(u32 i)
 {
@@ -94,10 +92,52 @@ void load_smdh_icon(C2D_Image *ret, const ctr::TitleSMDH& smdh, SMDHIconType typ
 	ret->tex = tex;
 }
 
-void delete_smdh_icon(C2D_Image icon)
+void rgba_to_abgr(u32 *data, u16 w, u16 h)
 {
-	C3D_TexDelete(icon.tex);
+	u32 size = w * h;
+	for(u32 i = 0; i < size; ++i)
+		data[i] = __builtin_bswap32(data[i]);
+}
+
+void load_rgba8(C2D_Image *image, u32 *data, u16 w, u16 h)
+{
+	Tex3DS_SubTexture *subtex = new Tex3DS_SubTexture;
+	C3D_Tex *tex = new C3D_Tex;
+
+	u32 w_pow2 = next_pow2(w);
+	u32 h_pow2 = next_pow2(h);
+
+	subtex->width = w;
+	subtex->height = h;
+	subtex->left = 0.0f;
+	subtex->top = 1.0f;
+	subtex->right = (w / (float) w_pow2);
+	subtex->bottom = 1.0 - (h / (float) h_pow2);
+
+	panic_assert(C3D_TexInit(tex, w_pow2, h_pow2, GPU_RGBA8), "failed to load C3D texture");
+	u32 *dst = (u32 *) tex->data;
+
+	for(u16 x = 0; x < w; x++)
+		for(u16 y = 0; y < h; y++)
+		{
+			u32 dst_pos = ((((y >> 3) * (w_pow2 >> 3) + (x >> 3)) << 6) + ((x & 1) | ((y & 1) << 1) | ((x & 2) << 1) | ((y & 2) << 2) | ((x & 4) << 2) | ((y & 4) << 3)));
+			memcpy(&dst[dst_pos], &data[y * w + x], 4);
+		}
+
+	C3D_TexFlush(tex);
+
+	image->subtex = subtex;
+	image->tex = tex;
+}
+
+void delete_image(C2D_Image icon)
+{
 	delete icon.subtex;
 	delete icon.tex;
+}
+
+void delete_image_data(C2D_Image icon)
+{
+	C3D_TexDelete(icon.tex);
 }
 

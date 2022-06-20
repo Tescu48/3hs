@@ -123,26 +123,10 @@ namespace ui
 	/* holds sprite ids used for ui::SpriteStore::get_by_id() */
 	enum class sprite : u32
 	{
-		battery_light = next_battery_light_idx,
-#undef next_battery_light_idx
-		battery_dark = next_battery_dark_idx,
-#undef next_battery_dark
 		bun = next_bun_idx,
 #undef next_bun_idx
 		logo = next_logo_idx,
 #undef next_logo_idx
-		more_dark = next_more_dark_idx,
-#undef next_more_dark_idx
-		more_light = next_more_light_idx,
-#undef next_more_light_idx
-		search_dark = next_search_dark_idx,
-#undef next_search_dark_idx
-		search_light = next_search_light_idx,
-#undef next_search_light_idx
-		settings_dark = next_settings_dark_idx,
-#undef next_settings_dark_idx
-		settings_light = next_settings_light_idx,
-#undef next_settings_light_idx
 		net_discon = next_net_discon_idx,
 #undef next_net_discon_idx
 		net_0 = next_net_0_idx,
@@ -155,14 +139,6 @@ namespace ui
 #undef next_net_3_idx
 		gplv3 = next_gplv3_idx,
 #undef next_gplv3_idx
-		spinner_dark = next_spinner_dark_idx,
-#undef next_spinner_dark_idx
-		spinner_light = next_spinner_light_idx,
-#undef next_spinner_light_idx
-		random_dark = next_random_dark_idx,
-#undef next_random_dark_idx
-		random_light = next_random_light_idx,
-#undef next_random_light_idx
 	};
 
 	struct Keys
@@ -256,7 +232,6 @@ namespace ui
 		void set_tag(int t) { this->tag = t; }
 
 		virtual void update_theme_hook() { }
-		virtual bool supports_theme_hook() { return false; }
 
 
 	protected:
@@ -547,9 +522,8 @@ namespace ui
 	class Sprite : public ui::BaseWidget
 	{ UI_WIDGET("Sprite")
 	public:
-		void setup(const C2D_Sprite& light, const C2D_Sprite& dark);
 		void setup(const C2D_Sprite& sprite);
-		void destroy() override;
+		void setup(const C2D_Image& img);
 
 		bool render(const ui::Keys&) override;
 		float height() override;
@@ -563,24 +537,11 @@ namespace ui
 		void set_center(float x, float y);
 		void rotate(float degs);
 
-		void update_theme_hook() override;
-		bool supports_theme_hook() override;
-
 		inline C2D_Sprite& get_sprite() { return this->sprite; }
 
 
 	private:
-		enum flags {
-			flag_darklight = 1,
-			flag_isdark = 2,
-			flag_islight = 4,
-
-			flag_themefield = flag_isdark | flag_islight,
-		};
-
 		C2D_Sprite sprite;
-		C2D_Sprite second;
-		u8 flags = 0;
 
 
 	};
@@ -591,9 +552,9 @@ namespace ui
 	public:
 		using click_cb_t = std::function<bool()>;
 
-		void setup(const C2D_Sprite& light, const C2D_Sprite& dark);
 		void setup(const std::string& label);
 		void setup(const C2D_Sprite& sprite);
+		void setup(const C2D_Image& image);
 		void destroy() override;
 		void setup();
 

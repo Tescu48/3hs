@@ -19,6 +19,7 @@
 
 #include <unordered_map>
 #include <3ds/types.h>
+#include <citro2d.h>
 #include <stddef.h>
 #include <string>
 #include <vector>
@@ -43,10 +44,7 @@ namespace ui
 	typedef u32 (*slot_color_getter)();
 	class BaseWidget;
 
-	struct ThemeDescriptorImage {
-		u8 *data;
-		u16 w, h;
-	};
+	typedef C2D_Image ThemeDescriptorImage;
 	typedef u32 ThemeDescriptorColor;
 
 	namespace theme
@@ -68,6 +66,12 @@ namespace ui
 			led_red_color,
 			smdh_icon_border_color,
 			/* don't forget to update max_color when adding a color! */
+			more_image,
+			battery_image,
+			search_image,
+			settings_image,
+			spinner_image,
+			random_image,
 			max,
 		};
 		constexpr u32 max_color = smdh_icon_border_color;
@@ -76,6 +80,7 @@ namespace ui
 	class Theme
 	{
 	public:
+		Theme() { memset(this->descriptors, 0, sizeof(this->descriptors)); }
 		~Theme() { this->cleanup_images(); }
 		constexpr ThemeDescriptorColor *get_color(u32 descriptor_id)
 		{ return &this->descriptors[descriptor_id].color; }
@@ -117,10 +122,6 @@ namespace ui
 		void reget(const char *id);
 		void reget();
 
-		/* XXX: Is there really not better way to go around this than a pointer vector?
-		 *      I feel there must be, but i just don't know how. For now, this will do. */
-		void unregister(ui::BaseWidget *w);
-
 		static ui::ThemeManager *global();
 
 		~ThemeManager();
@@ -129,7 +130,6 @@ namespace ui
 	public:
 		struct slot_data {
 			const slot_color_getter *getters; /* of size len */
-			std::vector<BaseWidget *> slaves;
 			u32 *colors; /* of size len */
 			size_t len;
 		};

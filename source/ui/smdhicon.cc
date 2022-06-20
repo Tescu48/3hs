@@ -52,7 +52,7 @@ void ui::SMDHIcon::setup(u64 tid, SMDHIconType type)
 
 void ui::SMDHIcon::destroy()
 {
-	delete_smdh_icon(this->img);
+	delete_image(this->img);
 }
 
 void ui::SMDHIcon::set_x(float x)

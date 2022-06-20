@@ -178,7 +178,7 @@ int main(int argc, char* argv[])
 		.add_to(ui::RenderQueue::global());
 
 	/* buttons */
-	ui::builder<ui::Button>(ui::Screen::bottom, ui::SpriteStore::get_by_id(ui::sprite::settings_light), ui::SpriteStore::get_by_id(ui::sprite::settings_dark))
+	ui::builder<ui::Button>(ui::Screen::bottom, *ui::Theme::global()->get_image(ui::theme::settings_image))
 		.connect(ui::Button::click, []() -> bool {
 			ui::RenderQueue::global()->render_and_then(show_settings);
 			return true;
@@ -190,7 +190,7 @@ int main(int argc, char* argv[])
 		.tag(ui::tag::settings)
 		.add_to(ui::RenderQueue::global());
 
-	ui::builder<ui::Button>(ui::Screen::bottom, ui::SpriteStore::get_by_id(ui::sprite::more_light), ui::SpriteStore::get_by_id(ui::sprite::more_dark))
+	ui::builder<ui::Button>(ui::Screen::bottom, *ui::Theme::global()->get_image(ui::theme::more_image))
 		.connect(ui::Button::click, []() -> bool {
 			ui::RenderQueue::global()->render_and_then(show_more);
 			return true;
@@ -202,7 +202,7 @@ int main(int argc, char* argv[])
 		.tag(ui::tag::more)
 		.add_to(ui::RenderQueue::global());
 
-	ui::builder<ui::Button>(ui::Screen::bottom, ui::SpriteStore::get_by_id(ui::sprite::search_light), ui::SpriteStore::get_by_id(ui::sprite::search_dark))
+	ui::builder<ui::Button>(ui::Screen::bottom, *ui::Theme::global()->get_image(ui::theme::search_image))
 		.connect(ui::Button::click, []() -> bool {
 			ui::RenderQueue::global()->render_and_then(show_search);
 			return true;
@@ -215,7 +215,7 @@ int main(int argc, char* argv[])
 		.add_to(ui::RenderQueue::global());
 
 	static bool isInRand = false;
-	ui::builder<ui::Button>(ui::Screen::bottom, ui::SpriteStore::get_by_id(ui::sprite::random_light), ui::SpriteStore::get_by_id(ui::sprite::random_dark))
+	ui::builder<ui::Button>(ui::Screen::bottom, *ui::Theme::global()->get_image(ui::theme::random_image))
 		.connect(ui::Button::click, []() -> bool {
 			ui::RenderQueue::global()->render_and_then([]() -> void {
 				if(isInRand) return;

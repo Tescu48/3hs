@@ -196,7 +196,7 @@ void ui::BatteryIndicator::setup()
 		.y(5.0f)
 		.tag(TAG_PERC)
 		.add_to(this->queue);
-	ui::builder<ui::Sprite>(this->screen, ui::SpriteStore::get_by_id(ui::sprite::battery_light), ui::SpriteStore::get_by_id(ui::sprite::battery_dark))
+	ui::builder<ui::Sprite>(this->screen, *ui::Theme::global()->get_image(ui::theme::battery_image))
 		.x(ui::screen_width(ui::Screen::top) - 37.0f)
 		.y(5.0f)
 		.tag(TAG_FG)

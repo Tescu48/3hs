@@ -655,49 +655,20 @@ void ui::Text::set_text(const std::string& label)
 
 /* core widget class Sprite */
 
-static u32 sprite_stub() { return 0; }
-static ui::slot_color_getter sprite_stub_a[] = { sprite_stub };
-void ui::Sprite::setup(const C2D_Sprite& light, const C2D_Sprite& dark)
-{
-	const C2D_Sprite *first = &dark, *second = &light;
-	this->flags = ui::Sprite::flag_isdark;
-	if(get_settings()->isLightMode)
-	{ this->flags = ui::Sprite::flag_islight; first = &light; second = &dark; }
-	this->sprite = *first;
-	this->second = *second;
-	this->flags |= ui::Sprite::flag_darklight;
-	ui::ThemeManager::global()->get_slots(this, "Sprite", 1, sprite_stub_a);
-}
-
 void ui::Sprite::setup(const C2D_Sprite& sprite)
 {
-	// Compatibility with other methods
-	this->set_center(0.0f, 0.0f);
+	memset(&this->sprite.params, 0, sizeof(C2D_DrawParams));
 	this->sprite = sprite;
+	this->set_center(0.0f, 0.0f);
 }
 
-void ui::Sprite::destroy()
+void ui::Sprite::setup(const C2D_Image& img)
 {
-	if(this->flags & ui::Sprite::flag_darklight)
-	{
-		ui::ThemeManager::global()->unregister(this);
-	}
-}
-
-bool ui::Sprite::supports_theme_hook() { return true; }
-void ui::Sprite::update_theme_hook()
-{ /* only called if this->flags & ui::Sprite::flag_darklight */
-	bool light = get_settings()->isLightMode;
-	if(light && (this->flags & ui::Sprite::flag_islight))
-		return;
-	if(!light && (this->flags & ui::Sprite::flag_isdark))
-		return;
-	this->flags &= ~ui::Sprite::flag_themefield;
-	this->flags |= light ? ui::Sprite::flag_islight : ui::Sprite::flag_isdark;
-	C2D_Sprite first = this->sprite;
-	this->sprite = this->second;
-	this->second = first;
-	this->sprite.params = first.params;
+	memset(&this->sprite.params, 0, sizeof(C2D_DrawParams));
+	this->sprite.params.pos.w = img.subtex->width;
+	this->sprite.params.pos.h = img.subtex->height;
+	this->sprite.image = img;
+	this->set_center(0.0f, 0.0f);
 }
 
 void ui::Sprite::set_sprite(const C2D_Sprite& sprite)
@@ -757,17 +728,6 @@ void ui::Sprite::set_center(float x, float y)
 
 UI_SLOTS(ui::Button_colors, color_button_border, color_button)
 
-void ui::Button::setup(const C2D_Sprite& light, const C2D_Sprite& dark)
-{
-	ui::Sprite *label = new ui::Sprite(this->screen);
-	label->setup(light, dark);
-	label->set_z(1.0f);
-	label->finalize();
-
-	this->widget = label;
-	this->readjust();
-}
-
 void ui::Button::setup(const std::string& text)
 {
 	this->widget = nullptr;
@@ -775,6 +735,17 @@ void ui::Button::setup(const std::string& text)
 }
 
 void ui::Button::setup(const C2D_Sprite& sprite)
+{
+	ui::Sprite *label = new ui::Sprite(this->screen);
+	label->setup(sprite);
+	label->set_z(1.0f);
+	label->finalize();
+
+	this->widget = label;
+	this->readjust();
+}
+
+void ui::Button::setup(const C2D_Image& sprite)
 {
 	ui::Sprite *label = new ui::Sprite(this->screen);
 	label->setup(sprite);

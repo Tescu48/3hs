@@ -1,21 +1,9 @@
 --atlas -f rgba8888 -z auto
-img/battery_light.png
-img/battery_dark.png
 img/bun.png
 img/logo.png
-img/more_dark.png
-img/more_light.png
-img/search_dark.png
-img/search_light.png
-img/settings_dark.png
-img/settings_light.png
 img/net_discon.png
 img/net_0.png
 img/net_1.png
 img/net_2.png
 img/net_3.png
 img/gplv3.png
-img/spinner_dark.png
-img/spinner_light.png
-img/random_dark.png
-img/random_light.png
