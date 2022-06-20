@@ -29,6 +29,13 @@
 #include "ctr.hh"
 #include "log.hh"
 
+
+UI_CTHEME_GETTER(color_led_green, ui::theme::led_green_color)
+UI_CTHEME_GETTER(color_led_red, ui::theme::led_red_color)
+static ui::slot_color_getter slotmgr_getters[] = {
+	color_led_green, color_led_red
+};
+
 static void make_queue(ui::RenderQueue& queue, ui::ProgressBar **bar)
 {
 	ui::builder<ui::ProgressBar>(ui::progloc())
@@ -137,6 +144,10 @@ start_install:
 			goto start_install;
 	}
 
+	static ui::SlotManager slotmgr { nullptr };
+	if(!slotmgr.is_initialized())
+		slotmgr = ui::ThemeManager::global()->get_slots(nullptr, "__global_install_gui_colors", 2, slotmgr_getters);
+
 	if(R_SUCCEEDED(res))
 	{
 		res = add_seed(meta.tid);
@@ -149,14 +160,14 @@ start_install:
 				ui::notice(STRING(file_installed));
 		}
 
-		ui::LED::Pattern pattern;                                   /* GREEN */
-		ui::LED::Solid(&pattern, UI_LED_MAKE_ANIMATION(0, 0xFF, 0), 0x00, 0xFF, 0x00);
+		ui::LED::Pattern pattern;
+		ui::LED::Solid(&pattern, UI_LED_MAKE_ANIMATION(0, 0xFF, 0), slotmgr.get(0));
 		ui::LED::SetSleepPattern(&pattern);
 	}
 	else
 	{
-		ui::LED::Pattern pattern;                                   /* RED */
-		ui::LED::Solid(&pattern, UI_LED_MAKE_ANIMATION(0, 0xFF, 0), 0xFF, 0x00, 0x00);
+		ui::LED::Pattern pattern;
+		ui::LED::Solid(&pattern, UI_LED_MAKE_ANIMATION(0, 0xFF, 0), slotmgr.get(1));
 		ui::LED::SetSleepPattern(&pattern);
 
 		error_container err = get_error(res);

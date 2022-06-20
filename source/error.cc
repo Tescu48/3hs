@@ -82,7 +82,10 @@ static const std::unordered_map<Result, std::unordered_map<Result, const char *>
 	},
 	{
 		RM_AM, {
+			{ 2   , "Previous error invalidated context"  },
 			{ 4   , "Wrong installation state"            },
+			{ 8   , "non-linear write"                    },
+			{ 18  , "finalization of incomplete install"  },
 			{ 37  , "Invalid NCCH"                        },
 			{ 39  , "Invalid or outdated title version"   },
 			{ 41  , "Error type 1"                        },
@@ -93,7 +96,7 @@ static const std::unordered_map<Result, std::unordered_map<Result, const char *>
 			{ 103 , "Error type -3"                       },
 			{ 104 , "Error type -4"                       },
 			{ 105 , "Error type -5"                       },
-			{ 106 , "Cert signature or hash check failed" },
+			{ 106 , "Bad signature/hash or devunit"       },
 			{ 107 , "Error type -7"                       },
 			{ 108 , "Error type -8"                       },
 			{ 109 , "Error type -9"                       },

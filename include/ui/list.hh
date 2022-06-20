@@ -61,7 +61,7 @@ namespace ui
 			this->sx = ui::screen_width(this->screen) - scrollbar_width - 5.0f;
 
 			static ui::slot_color_getter getters[] = {
-				ui::color_bg, ui::color_text, this->color_scrollbar
+				color_bg, color_text, color_scrollbar
 			};
 			this->slots = ui::ThemeManager::global()->get_slots(this, "List", 3, getters);
 		}
@@ -398,7 +398,9 @@ builtin_controls_done:
 				? this->lines.size() - this->amountRows + 1 : 0;
 		}
 
-		static u32 color_scrollbar() { return DICOLOR(UI_COLOR(2C,2C,2C,FF), UI_COLOR(3C,3C,3C,FF)); }
+		UI_CTHEME_GETTER(color_scrollbar, ui::theme::scrollbar_color)
+		UI_CTHEME_GETTER(color_text, ui::theme::text_color)
+		UI_CTHEME_GETTER(color_bg, ui::theme::background_color)
 
 
 	};

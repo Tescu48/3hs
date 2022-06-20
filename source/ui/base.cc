@@ -23,6 +23,7 @@
 #include "ctr.hh"
 
 /* internal constants */
+#define THEME_PATH get_settings()->isLightMode ? "romfs:/light.hstx" : "romfs:/dark.hstx"
 #define SPRITESHEET_PATH "romfs:/gfx/next.t3x"
 
 /* global variables */
@@ -42,6 +43,15 @@ enum LEDFlags_V {
 	LED_RESET_SLEEP   = 1,
 };
 static u8 LEDFlags = LED_NONE;
+
+
+UI_CTHEME_GETTER(color_toggle_green, ui::theme::toggle_green_color)
+UI_CTHEME_GETTER(color_toggle_red, ui::theme::toggle_red_color)
+UI_CTHEME_GETTER(color_toggle_slider, ui::theme::toggle_slider_color)
+UI_CTHEME_GETTER(color_button_border, ui::theme::button_border_color)
+UI_CTHEME_GETTER(color_button, ui::theme::button_background_color)
+UI_CTHEME_GETTER(color_bg, ui::theme::background_color)
+UI_CTHEME_GETTER(color_text, ui::theme::text_color)
 
 /* helpers */
 
@@ -145,28 +155,26 @@ void ui::notice(const std::string& msg, float ypos)
 	queue.render_finite_button(KEY_A | KEY_START);
 }
 
-u32 ui::color_button() { return DICOLOR(UI_COLOR(DE,DE,DE,FF), UI_COLOR(32,35,36,FF)); }
-u32 ui::color_text() { return DICOLOR(UI_COLOR(00,00,00,FF), UI_COLOR(FF,FF,FF,FF)); }
-u32 ui::color_bg() { return DICOLOR(UI_COLOR(FF,FF,FF,FF), UI_COLOR(1C,20,21,FF)); }
-
 static ui::slot_color_getter slotmgr_getters[] = {
-	ui::color_bg
+	color_bg
 };
+
+static void common_init()
+{
+	g_spritestore.open(SPRITESHEET_PATH);
+	panic_assert(ui::Theme::global()->parse(THEME_PATH), "failed to parse default theme");
+	slotmgr = ui::ThemeManager::global()->get_slots(nullptr, "__global_slot_manager", 1, slotmgr_getters);
+}
 
 void ui::init(C3D_RenderTarget *top, C3D_RenderTarget *bot)
 {
-	g_spritestore.open(SPRITESHEET_PATH);
-
 	g_top = top;
 	g_bot = bot;
-
-	slotmgr = ThemeManager::global()->get_slots(nullptr, "__global_slot_manager", 1, slotmgr_getters);
+	common_init();
 }
 
 bool ui::init()
 {
-	g_spritestore.open(SPRITESHEET_PATH);
-
 	gfxInitDefault();
 	if(!C3D_Init(C3D_DEFAULT_CMDBUF_SIZE)) return false;
 	if(!C2D_Init(C2D_DEFAULT_MAX_OBJECTS)) return false;
@@ -175,7 +183,7 @@ bool ui::init()
 	g_bot = C2D_CreateScreenTarget(GFX_BOTTOM, GFX_LEFT);
 	g_top = C2D_CreateScreenTarget(GFX_TOP, GFX_LEFT);
 
-	slotmgr = ThemeManager::global()->get_slots(nullptr, "__global_slot_manager", 1, slotmgr_getters);
+	common_init();
 	return true;
 }
 
@@ -399,7 +407,7 @@ C2D_Sprite ui::SpriteStore::get_by_id(ui::sprite id)
 
 #define TEXT_MAXLINES 16
 
-UI_SLOTS(ui::Text_color, ui::color_bg, ui::color_text)
+UI_SLOTS(ui::Text_color, color_bg, color_text)
 
 void ui::Text::setup(const std::string& label)
 { this->set_text(label); }
@@ -747,8 +755,7 @@ void ui::Sprite::set_center(float x, float y)
 
 /* core widget class Button */
 
-static u32 button_border_color() { return DICOLOR(UI_COLOR(00,00,00,FF), UI_COLOR(FF,FF,FF,FF)); }
-UI_SLOTS(ui::Button_colors, button_border_color, ui::color_button)
+UI_SLOTS(ui::Button_colors, color_button_border, color_button)
 
 void ui::Button::setup(const C2D_Sprite& light, const C2D_Sprite& dark)
 {
@@ -947,16 +954,12 @@ void ui::ButtonCallback::connect(ui::ButtonCallback::connect_type type, std::fun
 	this->cb = cb;
 }
 
-static u32 color_green() { return DICOLOR(UI_COLOR(00,FF,00,FF), UI_COLOR(00,A2,00,FF)); }
-static u32 color_red() { return DICOLOR(UI_COLOR(FF,00,00,FF), UI_COLOR(DA,00,00,FF)); }
-static u32 color_white() { return DICOLOR(UI_COLOR(FF, FF, FF, FF), UI_COLOR(FF, FF, FF, FF)); }
-
 #define SLIDER_X(t) (t->toggled_state ? (t->x + 2) + (t->width() - 4) / 2 : (t->x + 2))
 #define SLIDER_Y(t) (t->y + 2)
 #define SLIDER_WIDTH(t) ((t->width() - 4) / 2)
 #define SLIDER_HEIGHT(t) (t->height() - 4)
 
-UI_SLOTS(ui::Toggle_color, color_green, color_red, color_white)
+UI_SLOTS(ui::Toggle_color, color_toggle_green, color_toggle_red, color_toggle_slider)
 
 void ui::Toggle::setup(bool state, std::function<void()> on_toggle_cb)
 {

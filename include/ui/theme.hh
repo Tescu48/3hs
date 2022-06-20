@@ -34,6 +34,8 @@
 	UI_SLOTS__3(line, name, __VA_ARGS__)
 #define UI_SLOTS(name, ...) \
 	UI_SLOTS__2(__LINE__, name, __VA_ARGS__)
+#define UI_CTHEME_GETTER(symbol, id) \
+	static u32 symbol() { return *ui::Theme::global()->get_color(id); }
 
 
 namespace ui
@@ -41,13 +43,68 @@ namespace ui
 	typedef u32 (*slot_color_getter)();
 	class BaseWidget;
 
+	struct ThemeDescriptorImage {
+		u8 *data;
+		u16 w, h;
+	};
+	typedef u32 ThemeDescriptorColor;
+
+	namespace theme
+	{
+		enum _enum {
+			background_color,
+			text_color,
+			button_background_color,
+			button_border_color,
+			battery_green_color,
+			battery_red_color,
+			toggle_green_color,
+			toggle_red_color,
+			toggle_slider_color,
+			progress_bar_foreground_color,
+			progress_bar_background_color,
+			scrollbar_color,
+			led_green_color,
+			led_red_color,
+			smdh_icon_border_color,
+			/* don't forget to update max_color when adding a color! */
+			max,
+		};
+		constexpr u32 max_color = smdh_icon_border_color;
+	}
+
+	class Theme
+	{
+	public:
+		~Theme() { this->cleanup_images(); }
+		constexpr ThemeDescriptorColor *get_color(u32 descriptor_id)
+		{ return &this->descriptors[descriptor_id].color; }
+		constexpr ThemeDescriptorImage *get_image(u32 descriptor_id)
+		{ return &this->descriptors[descriptor_id].image; }
+
+		static Theme *global();
+
+		std::string author;
+		std::string name;
+
+		bool parse(const char *filename);
+
+	private:
+		union data_union {
+			ThemeDescriptorColor color;
+			ThemeDescriptorImage image;
+		} descriptors[theme::max];
+		void cleanup_images();
+	};
+
 	class SlotManager
 	{
 	public:
 		SlotManager(const u32 *colors)
 			: colors(colors) { }
 		/* no bounds checking! */
-		inline u32 get(size_t i) { return this->colors[i]; }
+		constexpr u32 get(size_t i) { return this->colors[i]; }
+		constexpr bool is_initialized() { return this->colors != nullptr; }
 	private:
 		const u32 *colors;
 	};

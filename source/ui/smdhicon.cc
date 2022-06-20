@@ -20,7 +20,7 @@
 #include "panic.hh"
 #include "i18n.hh"
 
-static u32 color_border() { return UI_COLOR(00,00,00,FF); }
+UI_CTHEME_GETTER(color_border, ui::theme::smdh_icon_border_color)
 UI_SLOTS(ui::SMDHIcon_color, color_border)
 
 void ui::SMDHIcon::setup(ctr::TitleSMDH *smdh, SMDHIconType type)

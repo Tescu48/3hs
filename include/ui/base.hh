@@ -69,6 +69,8 @@ namespace ui
 		} Pattern;
 
 		void Solid(Pattern *info, u32 animation, u8 r, u8 g, u8 b);
+		inline void Solid(Pattern *info, u32 animation, u32 abgr)
+		{ Solid(info, animation, (abgr >> 24) & 0xFF, (abgr >> 16) & 0xFF, (abgr >> 8) & 0xFF); }
 		Result SetSleepPattern(Pattern *info);
 		Result SetPattern(Pattern *info);
 		Result ResetPattern(void);
@@ -206,10 +208,6 @@ namespace ui
 	void notice(const std::string& msg, float ypos = 70.0f);
 
 	Result shell_is_open(bool *is_open);
-
-	u32 color_button();
-	u32 color_text();
-	u32 color_bg();
 
 	/* base widget class */
 	class BaseWidget

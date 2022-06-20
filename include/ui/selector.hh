@@ -59,7 +59,7 @@ namespace ui
 			this->assign_txty();
 
 			static ui::slot_color_getter getters[] = {
-				ui::color_button, ui::color_text
+				color_button, color_text
 			};
 			this->slots = ui::ThemeManager::global()->get_slots(this, "Selector", 2, getters);
 		}
@@ -202,6 +202,8 @@ namespace ui
 			this->assign_txty();
 		}
 
+		UI_CTHEME_GETTER(color_button, ui::theme::button_background_color)
+		UI_CTHEME_GETTER(color_text, ui::theme::text_color)
 
 	};
 }

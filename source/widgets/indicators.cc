@@ -185,8 +185,8 @@ std::string ui::TimeIndicator::time(time_t now)
 
 /* BatteryIndicator */
 
-static u32 color_green() { return DICOLOR(UI_COLOR(00,FF,00,FF), UI_COLOR(00,A2,00,FF)); }
-static u32 color_red() { return DICOLOR(UI_COLOR(FF,00,00,FF), UI_COLOR(DA,00,00,FF)); }
+UI_CTHEME_GETTER(color_green, ui::theme::battery_green_color)
+UI_CTHEME_GETTER(color_red, ui::theme::battery_red_color)
 UI_SLOTS(ui::BatteryIndicator_color, color_green, color_red)
 
 void ui::BatteryIndicator::setup()

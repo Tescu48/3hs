@@ -22,23 +22,23 @@
 #define Y_OFFSET 30
 #define Y_LEN 30
 
-
-static u32 color_fg() { return DICOLOR(UI_COLOR(C0,C0,C0,FF), UI_COLOR(00,D2,03,FF)); }
-static u32 color_bg() { return DICOLOR(UI_COLOR(DE,DE,DE,FF), UI_COLOR(FF,FF,FF,FF)); }
-UI_SLOTS(ui::ProgressBar_color, ui::color_text, color_fg, color_bg)
+UI_CTHEME_GETTER(color_fg, ui::theme::progress_bar_foreground_color)
+UI_CTHEME_GETTER(color_bg, ui::theme::progress_bar_background_color)
+UI_CTHEME_GETTER(color_text, ui::theme::text_color)
+UI_SLOTS(ui::ProgressBar_color, color_text, color_fg, color_bg)
 
 std::string ui::up_to_mib_serialize(u64 n, u64 largest)
 {
-		if(largest < 1024) return std::to_string(n); /* < 1 KiB */
-		if(largest < 1024 * 1024)  return ui::floating_prec<float>((float) n / 1024); /* < 1 MiB */
-		else return ui::floating_prec<float>((float) n / 1024 / 1024);
+	if(largest < 1024) return std::to_string(n); /* < 1 KiB */
+	if(largest < 1024 * 1024)  return ui::floating_prec<float>((float) n / 1024); /* < 1 MiB */
+	else return ui::floating_prec<float>((float) n / 1024 / 1024);
 }
 
 std::string ui::up_to_mib_postfix(u64 n)
 {
-		if(n < 1024) return " B"; /* < 1 KiB */
-		if(n < 1024 * 1024) return " KiB"; /* < 1 MiB */
-		else return " MiB";
+	if(n < 1024) return " B"; /* < 1 KiB */
+	if(n < 1024 * 1024) return " KiB"; /* < 1 MiB */
+	else return " MiB";
 }
 
 /* class ProgressBar */

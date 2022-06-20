@@ -20,8 +20,6 @@
 #include <3ds/types.h>
 #include "i18n.hh"
 
-#define DICOLOR(light, dark) (get_settings()->isLightMode ? light : dark)
-
 // 24h is superior but we'll allow 12h
 // because we care about customizability
 enum class Timefmt

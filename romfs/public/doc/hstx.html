@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>HSTX documentation</title>
+		<meta charset="utf8"/>
+	</head>
+	<body>
+		<h1>Overview</h1>
+		<p>HSTX is the theme format for 3hs. <b>hS</b>hop <b>t</b>heme e<b>x</b>tendible.</p>
+		<p>All integers are in the Big Endian byte order.</p>
+		<h1>Format</h1>
+		<table border=1>
+			<tr>
+				<td>Offset</td>
+				<td>Size</td>
+				<td>Name</td>
+				<td>Description</td>
+			</tr>
+			<tr>
+				<td>0x00</td>
+				<td>0x30</td>
+				<td><a href="#Section_Header">Section_Header</a></td>
+				<td>Basic data about theme and contents</td>
+			</tr>
+			<tr>
+				<td>0x30</td>
+				<td>0x10 * num_descriptors</td>
+				<td><a href="#Section_Descriptors">Section_Descriptors</a></td>
+				<td>Section to set attributes of theme</td>
+			</tr>
+			<tr>
+				<td>0x30 + 0x10 * num_descriptors</td>
+				<td>blob_size</td>
+				<td><a href="#Section_Blob">Section_Blob</a></td>
+				<td>Section to contain variable length data</td>
+			</tr>
+		</table>
+		<h3 id="Section_Header">Section_Header</h3>
+		<table border=1>
+			<tr>
+				<td>Offset</td>
+				<td>Size</td>
+				<td>Name</td>
+				<td>Description</td>
+			</tr>
+			<tr>
+				<td>0x00</td>
+				<td>0x04</td>
+				<td>magic</td>
+				<td>Always "HSTX"</td>
+			</tr>
+			<tr>
+				<td>0x04</td>
+				<td>0x04</td>
+				<td>format_version</td>
+				<td>Version of the used HSTX format, currently 0</td>
+			</tr>
+			<tr>
+				<td>0x08</td>
+				<td>0x04</td>
+				<td>target_version</td>
+				<td>Version of the targetted 3hs version, calculate with <a href="#Algorithm_TargetVersion">Algorithm_TargetVersion</a></td>
+			</tr>
+			<tr>
+				<td>0x0C</td>
+				<td>0x04</td>
+				<td>num_descriptors</td>
+				<td>Amount of descriptors in <a href="#Section_Descriptors">Section_Descriptors</a>, the maximum value of this field is <b>128</b></td>
+			</tr>
+			<tr>
+				<td>0x10</td>
+				<td>0x04</td>
+				<td>blob_size</td>
+				<td>Size of <a href="#Section_Blob">Section_Blob</a></td>
+			</tr>
+			<tr>
+				<td>0x14</td>
+				<td>0x04</td>
+				<td>name_offset</td>
+				<td>NULL-terminated char[] pointer relative to <a href="#Section_Blob">Section_Blob</a> for the theme name, may be 0 for disabled</td>
+			</tr>
+			<tr>
+				<td>0x18</td>
+				<td>0x04</td>
+				<td>author_offset</td>
+				<td>NULL-terminated char[] pointer relative to <a href="#Section_Blob">Section_Blob</a> for the theme author, may be 0 for disabled</td>
+			</tr>
+			<tr>
+				<td>0x1C</td>
+				<td>0x14</td>
+				<td>reserved0</td>
+				<td>reserved, always 0 currently</td>
+			</tr>
+		</table>
+		<h3 id="Algorithm_TargetVersion">Algorithm_TargetVersion</h3>
+<code><pre>
+let Major, Minor, Patch = scanf "%d.%d.%d" $Version
+let TargetVersion = ($Major &lt;&lt; 20) | ($Minor &lt;&lt; 10) | ($Patch)
+</pre></code>
+		<h3>Section_Descriptors</h3>
+		<table border=1>
+			<tr>
+				<td>Offset</td>
+				<td>Size</td>
+				<td>Name</td>
+				<td>Description</td>
+			</tr>
+			<tr>
+				<td>0x00</td>
+				<td>0x10 * num_descriptors</td>
+				<td>descriptors</td>
+				<td>Array of <a href="#Struct_Descriptor">Struct_Descriptor</a>, duplicate idents are not explicitily forbidden but counterproductive</td>
+			</tr>
+		</table>
+		<h3>Struct_Descriptor</h3>
+		<table border=1>
+			<tr>
+				<td>Offset</td>
+				<td>Size</td>
+				<td>Name</td>
+				<td>Description</td>
+			</tr>
+			<tr>
+				<td>0x00</td>
+				<td>0x04</td>
+				<td>ident</td>
+				<td>Descriptor identifier, see <a href="#Enum_Ident">Enum_Ident</a></td>
+			</tr>
+			<tr>
+				<td>0x04</td>
+				<td>0x0C</td>
+				<td>union data</td>
+				<td>
+					Color data:
+					<table border=1>
+						<tr>
+							<td>Offset</td>
+							<td>Size</td>
+							<td>Name</td>
+							<td>Description</td>
+						</tr>
+						<tr>
+							<td>0x00</td>
+							<td>0x04</td>
+							<td>color</td>
+							<td>RGBA color, α is almost always 0xFF, in some cases ignored</td>
+						</tr>
+						<tr>
+							<td>0x04</td>
+							<td>0x08</td>
+							<td>reserved1</td>
+							<td>Reserved, always 0 currently</td>
+						</tr>
+					</table>
+					Image data:
+					<table border=1>
+						<tr>
+							<td>Offset</td>
+							<td>Size</td>
+							<td>Name</td>
+							<td>Description</td>
+						</tr>
+						<tr>
+							<td>0x00</td>
+							<td>0x04</td>
+							<td>img_ptr</td>
+							<td>pointer relative to <a href="#Section_Blob">Section_Blob</a> containing raw (RGBA) image data</td>
+						</tr>
+						<tr>
+							<td>0x04</td>
+							<td>0x02</td>
+							<td>w</td>
+							<td>Image width</td>
+						</tr>
+						<tr>
+							<td>0x06</td>
+							<td>0x02</td>
+							<td>h</td>
+							<td>Image height</td>
+						</tr>
+						<tr>
+							<td>0x08</td>
+							<td>0x04</td>
+							<td>reserved2</td>
+							<td>Reserved, always 0 currently</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>0x08</td>
+				<td>0x04</td>
+				<td>size</td>
+				<td>If data points to <a href="#Section_Blob">Section_Blob</a> then the size of the data there, otherwise 0.</td>
+			</tr>
+			<tr>
+				<td>0x0C</td>
+				<td>0x04</td>
+				<td>reserved1</td>
+				<td>reserved, always 0 currently</td>
+			</tr>
+		</table>
+		<h3>Enum_Ident</h3>
+		<table border=1>
+			<tr>
+				<td>Name</td>
+				<td>Value</td>
+				<td>Type</td>
+			</tr>
+			<tr>
+				<td>BG_CLR</td>
+				<td>0x1001</td>
+				<td>Color (RGBA)</td>
+			</tr>
+			<tr>
+				<td>TEXT_CLR</td>
+				<td>0x1002</td>
+				<td>Color (RGBA)</td>
+			<tr>
+				<td>BTN_BG_CLR</td>
+				<td>0x1003</td>
+				<td>Color (RGBA)</td>
+			</tr>
+			<tr>
+				<td>BTN_BORDER_CLR</td>
+				<td>0x1004</td>
+				<td>Color (RGBA)</td>
+			</tr>
+			<tr>
+				<td>BTN_BORDER_CLR</td>
+				<td>0x1004</td>
+				<td>Color (RGBA)</td>
+			</tr>
+			<tr>
+				<td>NET_GREEN_CLR</td>
+				<td>0x1005</td>
+				<td>Color (RGBA)</td>
+			</tr>
+			<tr>
+				<td>NET_RED_CLR</td>
+				<td>0x1006</td>
+				<td>Color (RGBA)</td>
+			</tr>
+			<tr>
+				<td>TOGGLE_GREEN_CLR</td>
+				<td>0x1007</td>
+				<td>Color (RGBA)</td>
+			</tr>
+			<tr>
+				<td>TOGGLE_RED_CLR</td>
+				<td>0x1008</td>
+				<td>Color (RGBA)</td>
+			</tr>
+			<tr>
+				<td>TOGGLE_SLID_CLR</td>
+				<td>0x1009</td>
+				<td>Color (RGBA)</td>
+			</tr>
+			<tr>
+				<td>PROGBAR_FG_CLR</td>
+				<td>0x1010</td>
+				<td>Color (RGBA)</td>
+			</tr>
+			<tr>
+				<td>PROGBAR_BG_CLR</td>
+				<td>0x1011</td>
+				<td>Color (RGBA)</td>
+			</tr>
+			<tr>
+				<td>SCROLLBAR_CLR</td>
+				<td>0x1012</td>
+				<td>Color (RGBA)</td>
+			</tr>
+			<tr>
+				<td>LED_GREEN_CLR</td>
+				<td>0x1013</td>
+				<td>Color (RGB)</td>
+			</tr>
+			<tr>
+				<td>LED_RED_CLR</td>
+				<td>0x1013</td>
+				<td>Color (RGB)</td>
+			</tr>
+			<tr>
+				<td>SMDH_BORDER_CLR</td>
+				<td>0x1014</td>
+				<td>Color (RGBA)</td>
+			</tr>
+		</table>
+	</body>
+</html>
