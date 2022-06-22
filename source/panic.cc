@@ -38,19 +38,19 @@ Result init_services(bool& isLuma)
 	if(isLuma) svcCloseHandle(lumaCheck);
 
 	// Doesn't work in citra
-	if(isLuma) if(R_FAILED(res = mcuHwcInit())) return res;
-	/* 1MiB */ if(R_FAILED(res = httpcInit(1024 * 1024))) return res;
-	if(R_FAILED(res = ptmSysmInit())) return res;
-	if(R_FAILED(res = romfsInit())) return res;
-	if(R_FAILED(res = ptmuInit())) return res;
-	if(R_FAILED(res = cfguInit())) return res;
-	if(R_FAILED(res = ndmuInit())) return res;
-	if(R_FAILED(res = aptInit())) return res;
-	if(R_FAILED(res = nsInit())) return res;
-	if(R_FAILED(res = fsInit())) return res;
-	if(R_FAILED(res = amInit())) return res;
-	if(R_FAILED(res = psInit())) return res;
-	if(R_FAILED(res = acInit())) return res;
+#define TRYINIT(service_pretty, func, ...) if(R_FAILED(res = (func))) do { elog("Failed to initialize " service_pretty ", %08lX", res); return res; } while(0)
+	if(isLuma) TRYINIT("MCU::HWC", mcuHwcInit());
+	/* 1MiB */ TRYINIT("http:C", httpcInit(1024 * 1024));
+	TRYINIT("ptm:sysm", ptmSysmInit());
+	TRYINIT("romfs", romfsInit());
+	TRYINIT("ptm:u", ptmuInit());
+	TRYINIT("cfg:u", cfguInit());
+	TRYINIT("ndm:u", ndmuInit());
+	TRYINIT("apt", aptInit());
+	TRYINIT("ns", nsInit());
+	TRYINIT("fs", fsInit());
+	TRYINIT("am", amInit());
+	TRYINIT("ac", acInit());
 
 	return res;
 }
@@ -68,10 +68,8 @@ void exit_services()
 	fsExit();
 	nsExit();
 	amExit();
-	psExit();
 	acExit();
 }
-
 
 static void pusha(ui::RenderQueue& queue)
 {
@@ -135,6 +133,7 @@ void handle_error(const error_container& err, const std::string *label)
 	elog("Caller is %s", caller.c_str());
 	aptSetHomeAllowed(true); /* these might be set otherwise in other parts of the code */
 	C3D_FrameRate(60.0f);
+	ui::maybe_end_frame();
 
 	ui::Text *action = ui::RenderQueue::global()->find_tag<ui::Text>(ui::tag::action);
 	/* panic may be called before core ui is set-up so we can't be sure

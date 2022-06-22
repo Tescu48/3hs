@@ -6,17 +6,19 @@
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <stdint.h>
 #include <stdio.h>
 #include <errno.h>
 
 typedef uint64_t u64;
+typedef uint32_t u32;
 
 
-static int getulong(const char *s, unsigned long *ul)
+static int getulong(const char *s, unsigned long *ul, int base)
 {
 	errno = 0;
 	char *end;
-	*ul = strtoul(s, &end, 10);
+	*ul = strtoul(s, &end, base);
 	return !(end == s || errno == ERANGE);
 }
 
@@ -98,7 +100,7 @@ opt_wait:
 					while((arg = TAKEARG()))
 					{
 						unsigned long t;
-						if(!getulong(arg, &t))
+						if(!getulong(arg, &t, 10))
 							continue;
 						usleep(t * 1000);
 					}

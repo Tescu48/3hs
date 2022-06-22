@@ -56,7 +56,7 @@ void ui::loading(std::function<void()> callback)
 
 void ui::Spinner::setup()
 {
-	this->sprite.setup(this->screen, *ui::Theme::global()->get_image(ui::theme::spinner_image));
+	this->sprite.setup(this->screen, ui::Sprite::theme, ui::theme::spinner_image);
 	this->sprite.ptr()->set_center(0.5f, 0.5f);
 }
 

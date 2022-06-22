@@ -28,25 +28,33 @@ namespace ui
 	class MenuSelect : public ui::BaseWidget
 	{ UI_WIDGET("MenuSelect")
 	public:
-		using callback_t = std::function<void()>;
+		using callback_t = std::function<bool()>;
 
 		void setup();
 		bool render(const ui::Keys&) override;
 		float height() override;
 		float width() override;
 
-		enum connect_type { add };
+		enum connect_type { add, on_select, on_move };
 		void connect(connect_type, const std::string&, callback_t);
+		void connect(connect_type, callback_t);
 
 		void add_row(const std::string& label, callback_t callback);
+		void add_row(const std::string& label);
+
+		u32 pos() { return this->i; }
 
 
 	private:
+		void push_button(const std::string& label);
 		void call_current();
 
+		ui::ScopedWidget<ui::Text> hint;
+
+		callback_t cursor_move_callback = nullptr;
+		callback_t main_callback = nullptr;
 		std::vector<ui::Button *> btns;
 		std::vector<callback_t> funcs;
-		ui::RenderQueue q;
 		float w, h;
 		u32 i = 0;
 

@@ -36,6 +36,9 @@ static ui::slot_color_getter slotmgr_getters[] = {
 	color_led_green, color_led_red
 };
 
+static ui::SlotManager slotmgr;
+
+
 static void make_queue(ui::RenderQueue& queue, ui::ProgressBar **bar)
 {
 	ui::builder<ui::ProgressBar>(ui::progloc())
@@ -131,6 +134,9 @@ Result install::gui::hs_cia(const hsapi::FullTitle& meta, bool interactive, bool
 	bool shouldReinstall = defaultReinstallable;
 	Result res = 0;
 
+	if(interactive && R_FAILED(res = ctr::lockNDM()))
+		elog("failed to lock NDM: %08lX", res);
+
 start_install:
 	res = install::hs_cia(meta, [&queue, &bar](u64 now, u64 total) -> void {
 		bar->update(now, total);
@@ -144,10 +150,6 @@ start_install:
 			goto start_install;
 	}
 
-	static ui::SlotManager slotmgr { nullptr };
-	if(!slotmgr.is_initialized())
-		slotmgr = ui::ThemeManager::global()->get_slots(nullptr, "__global_install_gui_colors", 2, slotmgr_getters);
-
 	if(R_SUCCEEDED(res))
 	{
 		res = add_seed(meta.tid);
@@ -159,23 +161,36 @@ start_install:
 			else if(meta.flags & hsapi::TitleFlag::installer)
 				ui::notice(STRING(file_installed));
 		}
-
-		ui::LED::Pattern pattern;
-		ui::LED::Solid(&pattern, UI_LED_MAKE_ANIMATION(0, 0xFF, 0), slotmgr.get(0));
-		ui::LED::SetSleepPattern(&pattern);
+		install::gui::SuccessLED();
 	}
 	else
 	{
-		ui::LED::Pattern pattern;
-		ui::LED::Solid(&pattern, UI_LED_MAKE_ANIMATION(0, 0xFF, 0), slotmgr.get(1));
-		ui::LED::SetSleepPattern(&pattern);
-
+		install::gui::ErrorLED();
 		error_container err = get_error(res);
 		report_error(err, "User was installing (" + ctr::tid_to_str(meta.tid) + ") (" + std::to_string(meta.id) + ")");
 		if(interactive) handle_error(err);
 	}
 
+	if(interactive) ctr::unlockNDM();
+	else            ui::LED::SetTimeout(time(NULL) + 2);
+
 	set_focus(focus);
 	return res;
 }
+
+static void setled(size_t i)
+{
+	if(!slotmgr.is_initialized())
+		slotmgr = ui::ThemeManager::global()->get_slots(nullptr, "__global_install_gui_colors", 2, slotmgr_getters);
+
+	ilog("color: %08lX", slotmgr.get(i));
+
+	ui::LED::Pattern pattern;
+	ui::LED::Solid(&pattern, UI_LED_MAKE_ANIMATION(0, 0xFF, 0), slotmgr.get(i));
+	ui::LED::SetSleepPattern(&pattern);
+
+}
+
+void install::gui::SuccessLED() { setled(0); }
+void install::gui::ErrorLED()   { setled(1); }
 

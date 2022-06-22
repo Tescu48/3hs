@@ -127,13 +127,12 @@ int main(int argc, char* argv[])
 	panic_assert(R_SUCCEEDED(res),
 		"init_services() failed, this should **never** happen (0x" + pad8code(res) + ")");
 	atexit(exit_services);
+	load_themes();
+	atexit(cleanup_themes);
+	panic_assert(themes().size() > 0, "failed to load any themes");
 	panic_assert(ui::init(), "ui::init() failed, this should **never** happen");
 	atexit(ui::exit);
 	gfx_was_init();
-
-	if(R_SUCCEEDED(res = ctr::lockNDM()))
-		atexit(ctr::unlockNDM);
-	else elog("failed to lock NDM: %08lX", res);
 
 	hidScanInput();
 	if((hidKeysDown() | hidKeysHeld()) & KEY_R)
@@ -178,7 +177,7 @@ int main(int argc, char* argv[])
 		.add_to(ui::RenderQueue::global());
 
 	/* buttons */
-	ui::builder<ui::Button>(ui::Screen::bottom, *ui::Theme::global()->get_image(ui::theme::settings_image))
+	ui::builder<ui::Button>(ui::Screen::bottom, ui::Sprite::theme, ui::theme::settings_image)
 		.connect(ui::Button::click, []() -> bool {
 			ui::RenderQueue::global()->render_and_then(show_settings);
 			return true;
@@ -190,7 +189,7 @@ int main(int argc, char* argv[])
 		.tag(ui::tag::settings)
 		.add_to(ui::RenderQueue::global());
 
-	ui::builder<ui::Button>(ui::Screen::bottom, *ui::Theme::global()->get_image(ui::theme::more_image))
+	ui::builder<ui::Button>(ui::Screen::bottom, ui::Sprite::theme, ui::theme::more_image)
 		.connect(ui::Button::click, []() -> bool {
 			ui::RenderQueue::global()->render_and_then(show_more);
 			return true;
@@ -202,7 +201,7 @@ int main(int argc, char* argv[])
 		.tag(ui::tag::more)
 		.add_to(ui::RenderQueue::global());
 
-	ui::builder<ui::Button>(ui::Screen::bottom, *ui::Theme::global()->get_image(ui::theme::search_image))
+	ui::builder<ui::Button>(ui::Screen::bottom, ui::Sprite::theme, ui::theme::search_image)
 		.connect(ui::Button::click, []() -> bool {
 			ui::RenderQueue::global()->render_and_then(show_search);
 			return true;
@@ -215,7 +214,7 @@ int main(int argc, char* argv[])
 		.add_to(ui::RenderQueue::global());
 
 	static bool isInRand = false;
-	ui::builder<ui::Button>(ui::Screen::bottom, *ui::Theme::global()->get_image(ui::theme::random_image))
+	ui::builder<ui::Button>(ui::Screen::bottom, ui::Sprite::theme, ui::theme::random_image)
 		.connect(ui::Button::click, []() -> bool {
 			ui::RenderQueue::global()->render_and_then([]() -> void {
 				if(isInRand) return;
@@ -274,7 +273,9 @@ int main(int argc, char* argv[])
 	// DRM Check
 #ifdef DEVICE_ID
 	u32 devid = 0;
+	panic_assert(R_SUCCEEDED(res = psInit()), "failed to initialize PS");
 	PS_GetDeviceId(&devid);
+	psExit();
 	// DRM Check failed
 	if(devid != DEVICE_ID)
 	{

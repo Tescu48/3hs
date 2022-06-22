@@ -43,6 +43,9 @@ namespace install
 		/* the interactive bool disables any "press a to continue" or similar */
 		Result net_cia(const std::string& url, u64 tid, bool interactive = true, bool defaultReinstallable = false);
 		Result hs_cia(const hsapi::FullTitle& meta, bool interactive = true, bool defaultReinstallable = false);
+
+		void SuccessLED();
+		void ErrorLED();
 	}
 }
 

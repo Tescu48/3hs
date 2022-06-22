@@ -1,81 +1,52 @@
 
-# This is the base 3hs translation file.
-# All other translations should derive from this file.
-# If you want to translate 3hs in your language please contact us in the hShop discord server.
-
-# Some strings have a comment which indicates a context, this may help while translating
-#  - If you require context for anything else feel free to ask
-#  - %<n> where <n> is a number from 1-9 is a variable, their meaning is explained in the matching comment
-#  - The value of the variable will literally be substituted (replaced)
-#  - if this doesn't work in your language ask in the hShop discord channel so i can write a workaround for you
-# UI_GLYPH_ is a prefix for buttons in the system fonts i.e. UI_GLYPH_B is the B button on your 3DS
-#  - They should be kept exactly as-is, they should be encircled by spaces
-#    - Even if your language has no such things, not having a space causes ugly clamping
-# PAGE_* are URLs to hShop pages
-#  - They should be kept exactly as-is, the actual URL gets placed in place of the PAGE_ letters
-# Preserve newlines ("enter"s), they are added for stylistic purposes, most things should neatly wrap
-# Although text wraps in most cases, it's for the best not make your translation too verbose
-#  - Text wrapping means the text continues on the next line if it's too large
-#  - Strings marked with "nowrap" don't wrap.
-#  - Strings marked with "button" use button wrap
-#    - This means they gradually expand in size as the string gets larger
-#    - This does not mean they wrap to the next line
-#  - Strings marked with "selector" have a maximum length (of 200 pixels)
-#  - Strings marked with "scroll" scroll sideways, for example all setting titles use this
-#    - Strings that scroll obviously can't wrap
-# If your language is officially supported by Nintendo, use their translations for their terms
-#   - For example, "blocks", "HOME menu", "theme"
-#
-# Any questions and new translations can be posted in the hShop discord channel
-
 # The name of the language this file is for in that language (i.e. Español for Spanish)
 - native_name
-English
+简体中文
 
 # shown at the top of the screen during loading (the spinner)
 - loading
-Loading...
+载入中...
 
 - luma_not_installed
-An unsupported firmware was detected.
+检测到不支持的固件。
 
 # displayed under above string
 - install_luma
-3hs cannot be used on this system.
+3hs 不能在此系统使用。
 
 # button, button on bottom of screen to enter queue
 - queue
-Queue
+队列
 
 # networking means network libraries, may be translated as "failed to start application" if there exists no good translation for networking
 - fail_init_networking
-Failed to initialize networking
+初始化网络连接失败
 
 # PAGE_3HS expands to the 3hs page on hShop
 - credits_thanks
-Thank you for using 3hs, a 3DS client for hShop.
-You can get this software for free at
+感谢你使用 3hs 这是 hShop 在 3DS 上的客户端软件。
+本软件可以在以下链接免费下载：
 PAGE_3HS
 
 - press_to_install
-Press UI_GLYPH_A to install this content.
-Press UI_GLYPH_B to go back.
+按 UI_GLYPH_A 安装此内容。
+按 UI_GLYPH_B 返回。
 
 # nowrap, used for title version, bottom screen metadata when you press A on a list item
 - version
-Version
+版本
 
 # nowrap, used for title product code, same location as above string
 - prodcode
-Product Code
+产品代码
 
 # nowrap, used for title size, (sub)category size, displayed on bottom screen in the main list, sort method in switcher in settings
 - size
-Size
+大小
 
 # nowrap, used for title name, (sub)category name, see above for location
 - name
-Name
+名称
 
 # nowrap, used for title id, extmeta & main list, sort method in switcher in settings
 - tid
@@ -83,7 +54,7 @@ Title ID
 
 # nowrap, used for content category, extmeta & main list
 - category
-Category
+类别
 
 # nowrap, hShop ID used for searching, previously known as landing ID, sort method in switcher in settings
 - landing_id
@@ -91,137 +62,137 @@ hShop ID
 
 # nowrap, used for category description
 - description
-Description
+简介
 
 # nowrap, shown on bottom screen category selection
 - total_titles
-Total Titles
+全部内容
 
 # nowrap, shown top screen category selection
 - select_cat
-Select a category
+选择分类
 
 # nowrap, shown top screen subcategory selection
 - select_subcat
-Select a subcategory
+选择子分类
 
 # nowrap, shown top screen title selection
 - select_title
-Select a title
+选择一个项目
 
 # the time format (15:00)
 - fmt_24h
-24 hour
+24 小时制
 
 # time time format (3 PM)
 - fmt_12h
-12 hour
+12 小时制
 
 # unknown setting value
 - unknown
-unknown
+未知
 
 # setting is set to ON
 - btrue
-true
+是
 
 # setting is set to OFF
 - bfalse
-false
+否
 
 # top screen in progress bar location settings switcher
 - top
-top
+顶部
 
 # bottom screen in progress bar location settings switcher
 - bottom
-bottom
+底部
 
 # scroll, setting title
 - light_mode
-Light mode
+亮色模式
 
 # scroll, setting title
 - resume_dl
-Resume downloads
+恢复下载
 
 # scroll, setting title
 - load_space
-Show free space indicator
+显示剩余空间
 
 # scroll, setting title
 - show_battery
-Show battery level indicator
+显示电池状态
 
 # scroll, setting title
 - time_format
-Time format
+时钟格式
 
 # scroll, setting title
 - progbar_screen
-Progress bar position
+进度条显示位置
 
 # scroll, setting title
 - language
-Language
+语言
 
 # value of setting
 - value_x
-Value: %1
+值: %1
 
 # back button
 - back
-Back
+返回
 
 # invalid option
 - invalid
-invalid
+无效值
 
 # %1 = title id
 - title_doesnt_exist
-Title doesn't exist: %1
+此项目不存在: %1
 
 # %1 = error code
 # $t = seconds remaining
 - netcon_lost
-Network connection lost (%1).
-Retrying in $t seconds...
+连接丢失 (%1)。
+ $t 秒后重试...
 
 # nowrap, burger (three lines) menu entry
 - about_app
-About
+关于
 
 # nowrap, burger (three lines) menu entry
 - help_manual
-Help/Manual
+帮助/手册
 
 # nowrap, burger (three lines) menu entry
 - find_missing_content
-Find missing content
+搜寻缺失内容
 
 # exit menu and sometimes application
 - press_a_exit
-Press UI_GLYPH_A to exit.
+按 UI_GLYPH_A 退出。
 
 # can also be translated as fatal error
 - fatal_panic
-A fatal panic has occurred.
+发生致命错误(fatal error)。
 
 # failed to open romfs file, may be translated as "failed to start application"
 - failed_open_seeddb
-Failed to open seeddb.bin.
+打开 seeddb.bin 失败。
 
 # %1 = new version, i.e. 1.0.2
 - update_to
-Do you want to update to %1?
+你想升级到 %1 吗？
 
 # nowrap, top screen while searching
 - search_content
-Search for content
+查找内容
 
 # keyboard hint while searching, apparently this has a maximum length
 - search_content_action
-Search for content...
+查找内容...
 
 # used for displaying error codes
 # %1 = result code (0x...)
@@ -245,346 +216,333 @@ Module: %1
 
 # easter egg, see also: gfx/img/bun.png
 - hs_bunny_found
-Congrats! You found the hShop bunny!
+祝贺！你找到 hShop 的兔女郎了！
 
 - already_installed_reinstall
-Title already installed. Reinstall?
+内容已经安装，要重新安装吗？
 
 - queue_empty
-Queue is empty
-Press UI_GLYPH_A to go back.
-Tip: Press UI_GLYPH_Y to add a title to the queue.
+队列无内容
+按 UI_GLYPH_A 返回。
+提示：按 UI_GLYPH_Y 可以把内容加入下载队列。
 
 # button, yes/no prompt "no" option
 - cancel
-Cancel
+取消
 
 # button, yes/no prompt "yes" option
 - confirm
-Confirm
+确认
 
 # proxy settings are checked at startup for obvious errors (user tampering), if bad, it errors with this message
 - invalid_proxy
-Invalid proxy settings
+代理设置无效
 
 # nowrap, shown in top when clicking on extended meta
 - more_about_content
-More about this content
+此内容的详细信息
 
 # scroll, setting title
 - lumalocalemode
-LumaLocale mode
+游戏换区(LumaLocale)模式
 
 # selector, lumalocale mode setting
 - automatic
-automatic
+自动
 
 # selector, lumalocale mode setting
 - manual
-manual
+手动
 
 # selector, lumalocale mode setting
 - disabled
-disabled
+停用
 
 - patching_reboot
-Luma3DS Game Patching is now enabled.
-The system must be restarted for this change to take effect.
+Luma3DS 游戏补丁已生效。
+你必须重启系统来生效。
 
 - reboot_now
-Restart now?
+现在重启？
 
 # %1 = version int "version desc" (i.e. 1.2.0 "cotidie morimur")
 - this_version
-This is 3hs version %1
+当前的 3hs 版本是 %1
 
 # request = API HTTP request, may be translated as "failed to access API"
 - retry_req
-Request failed. Retry?
+请求失败，重试？
 
 - search_zero_results
-Your search returned no results.
-Press UI_GLYPH_A to go back.
+没有搜索到内容
+按 UI_GLYPH_A 返回。
 
 # Shown in the "About" burger option
 - credits
-Credits
+制作组
 
 # scroll, setting title, i.e. DLC/Updates
 - check_extra
-Search for extra content
+寻找额外内容
 
 # request = request for the 3DS to do something, like a command
 - no_req
-No requests made yet
+当前无请求
 
 # invalid search query
 - invalid_query
-Invalid query
-Press UI_GLYPH_A to go back.
+无效的队列
+按 UI_GLYPH_A 返回。
 
 # %1 = current version
 # %2 = minimum required version
 - min_constraint
-Current 3hs version %1 is lower than the required version %2
+当前的 3hs 版本 %1 低于需求版本 %2
 
 # scroll, setting title
 - proxy
-Proxy
+代理
 
 # used for "no proxy is set"
 - none
-(none)
+(无)
 
 # view proxy settings
 - press_a_to_view
-Click UI_GLYPH_A to view.
+按 UI_GLYPH_A 查看。
 
 # proxy host
 - host
-Host
+主机
 
 # proxy port
 - port
-Port
+端口
 
 # proxy username
 - username
-Username
+用户名
 
 # proxy password
 - password
-Password
+密码
 
 # clear all proxy field
 - clear
-Clear
+清除
 
 # setting description
 - progbar_screen_desc
-Select the position of the progress bar.
+选择进度条的位置。
 
 # setting description
 - light_mode_desc
-Enable/disable light mode. This will change the way most UI elements look.
+启用/停用亮色模式。该选项影响大部分 UI 外观。
 
 # setting description
 - resume_dl_desc
-Resume downloads after a network interruption.
+在每次断线后继续尝试重连下载。
 
 # setting description
 - load_space_desc
-Toggle the free space indicator.
+切换剩余空间显示。
 
 # setting description
 - show_battery_desc
-Toggle the battery level indicator.
+切换电池状态显示。
 
 # setting description
 - time_format_desc
-Select the time format.
+选择时间格式。
 
 # setting description
 - language_desc
-Set the language for 3hs. The application must be restarted for the selected language to take effect.
+选择 3hs 语言。必须重启本应用才能使选择的语言完全生效。
 
 # setting description
 - lumalocalemode_desc
-Set the mode of the LumaLocale autosetter. Automatic selects a language automatically. If this is set to manual, 3hs will prompt for a region after the installation of content.
+选择跨区模式。“自动”将会自动选择游戏语言分区。若设定为“手动”，3hs 会在内容安装完成后以你指定的语言分区对其进行修改。
 
 # setting description
 - check_extra_desc
-Search for extra content after installation.
+安装后自动寻找额外内容（补丁、DLC等）。
 
 # setting description
 - proxy_desc
-Configure a proxy server for 3hs. This setting is for advanced users.
+修改 3hs 的代理设置。此选项面向高级用户。
 
 # install all from queue
 - install_all
-Install all
+安装全部
 
 - install_no_base
-The base game is not installed. Continue anyway?
+你还没有安装基础游戏，仍要继续吗？
 
 # setting title
 - warn_no_base
-Warn if a base game is not installed
+无游戏本体警告
 
 # setting description
 - warn_no_base_desc
-Shows a message before installing update or DLC content if the base game is not installed.
+安装升级补丁、DLC 之前，如果你还没有安装游戏本体，是否发出警告。
 
 # if an error occurs while installing all titles from the queue, this message is displayed before showing each one
 - replaying_errors
-Replaying errors encountered while processing the queue.
+处理队列时遇到了复现错误。
 
 # may also be translated as "manage logs"
 - log
-Logs
+日志
 
 - upload_logs
-Upload logs
+上传日志
 
 - clear_logs
-Clear logs
+清除日志
 
 # %1 = amount of titles found
 - found_missing
-Found %1 missing title(s)
-Check the queue to install them.
+找到 %1 个缺失的内容。
+查看队列来安装它们。
 
 - found_0_missing
-No missing titles were found.
+没有发现缺失内容。
 
 # setting title
 - max_elogs
-Maximum old log files
+最大历史日志数量
 
 # setting description
 - max_elogs_desc
-Set the number of log files to keep. Possible values are 0 to 255, where 0 keeps no additional log files.
+设置日志文件的保存数量，可以从 0 到 255 调节，选择 0 时则不会产生额外的日志文件。
 
 # keyboard hint for max old log files, apparently has a maximum amount of characters
 - elogs_hint
-Value between 0 and 255
+从 0 到 255 的数值
 
 # %1 = id
 - log_id
-Use this ID to get support:
+使用此 ID 来获取支持:
 %1
 
 # Nintendo blocks, use official Nintendo translation if available
 - block
-block
+格
 
 # see above, just in plural this time
 - blocks
-blocks
+格
 
 # nowrap, search menu item
 - search_text
-Search by text
+文字搜索
 
 # nowrap, search menu item
 - search_id
-Search by hShop ID
+hShop ID 搜索
 
 # nowrap, search menu item
 - search_tid
-Search by Title ID
+Title ID 搜索
 
 # invalid title id specified during legacy search
 - invalid_tid
-Invalid Title ID
+无效 Title ID
 
 - theme_installer_tid_bad
-Please browse the Themes category manually to look for themes
+请手动浏览主题分类来查找主题
 
 # this is displayed in transparent letters on the keyboard
 - enter_lgy_query
-Enter a legacy search query
+请输入传统搜索序列
 
 - no_other_params_tid
-Cannot specify any other parameters when specifying a Title ID
+在指定 Title ID 时，不能指定任何其他参数
 
 - both_sd_and_sb
-You must specify a sort method and a sort direction when sorting search results
+在对搜索结果进行排序时，你必须指定一个排序方法和一个排序顺序
 
 # i.e. sort by title_id, size, category, subcategory, etc
 - invalid_sb
-Invalid sort method
+排序方法无效
 
 # i.e. ascending/descending
 - invalid_sd
-Invalid sort direction
+排序顺序无效
 
 # include legacy filter, includes a (sub)category, like a coffee filter
 - invalid_includes
-Invalid include filters
+无效的包含过滤
 
 # exclude legacy filter, excludes a (sub)category, like a coffee filter
 - invalid_excludes
-Invalid exclude filters
+无效的除外过滤
 
 # overlapping filters in legacy search, i.e. include:games exclude:games
 - filter_overlap
-Detected an overlap in the specified search filters
+包含与除外过滤器矛盾
 
 # nowrap, search menu item, "legacy" may be translated as "traditional", "old-school", "classic", you name it
 - lgy_search
-Legacy Search
+传统搜索
 
 - sure_reset
-Are you sure you want to reset your settings?
+你确定要重置设置吗？
 
 # sort direction
 - ascending
-Ascending
+升序
 
 # sort direction
 - descending
-Descending
+降序
 
 # sort method
 - alphabetical
-Alphabetical
+按名称
 
 # sort method
 - downloads
-Downloads
+按下载数
 
 # setting title
 - def_sort_meth
-Default sort method
+默认排序方式
 
 # setting description
 - def_sort_meth_desc
-Specifies the default sort method to use when viewing a list of titles.
+指定在浏览内容列表时使用的排序方式。
 
 # setting title
 - def_sort_dir
-Default sort direction
+默认排序顺序
 
 # setting description
 - def_sort_dir_desc
-Specifies the default sort direction to use when viewing a list of titles.
+指定在浏览内容列表时使用的排序顺序。
 
 # legacy search content type (see p: documentation on site)
 - invalid_content_type
-Invalid content type
+无效的内容类型
 
 # shown after installation of anything in the themes category, PAGE_THEMES links to the theme installer wiki page
 - theme_installed
-A theme was installed. Please see PAGE_THEMES
+安装了一个主题，详情请见 PAGE_THEMES
 
 # shown after a file forwarder is installed that's not a theme, just here for future proofing
 - file_installed
-A file was installed. These are not shown on the HOME menu
+安装了一个文件，此文件并不显示在 HOME 菜单
 
 # setting title
 - allow_led
-Enable LED status indicators
+启用 LED 指示灯提示
 
 # setting description
 - allow_led_desc
-This will flash the LED light to inform you of various status changes, such as when a title finishes installing.
+启用此项将会使 LED 指示灯在一些情况发生时闪烁，比如当一个内容安装完毕时。
 
 # don't translate "Enable developer UNITINFO", ENVINFO may be translated as configuration, retail may be translated as normal, unit may be translated as variant
 - dev_unitinfo
-According to this console's ENVINFO, this is a development unit.
-3hs will not function correctly on this system.
-In case you have a retail 3DS, ensure "Enable developer UNITINFO" in the Luma3DS configuration is disabled.
-
-# nowrap, used in for examples language select
-- hint_navigate
-UI_GLYPH_DPAD_CLEAR/UI_GLYPH_CPAD: navigate
-
-# %1 = theme author
-- made_by
-by %1
-
-# nowrap, burger menu item
-- themes
-Themes
-
+根据本设备的 ENVINFO，这可能是一台 3DS 开发机。
+3hs 将不会在此系统上正确运行。
+如果你的 3DS 的确是常规机型，请去 Luma3DS 设置中禁用 "Enable developer UNITINFO"。

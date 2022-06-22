@@ -44,7 +44,10 @@ namespace ui
 	typedef u32 (*slot_color_getter)();
 	class BaseWidget;
 
-	typedef C2D_Image ThemeDescriptorImage;
+	typedef struct ThemeDescriptorImage {
+		C2D_Image actual_image;
+		bool isOwn;
+	} ThemeDescriptorImage;
 	typedef u32 ThemeDescriptorColor;
 
 	namespace theme
@@ -81,25 +84,38 @@ namespace ui
 	{
 	public:
 		Theme() { memset(this->descriptors, 0, sizeof(this->descriptors)); }
-		~Theme() { this->cleanup_images(); }
 		constexpr ThemeDescriptorColor *get_color(u32 descriptor_id)
 		{ return &this->descriptors[descriptor_id].color; }
-		constexpr ThemeDescriptorImage *get_image(u32 descriptor_id)
-		{ return &this->descriptors[descriptor_id].image; }
+		constexpr C2D_Image *get_image(u32 descriptor_id)
+		{ return &this->descriptors[descriptor_id].image.actual_image; }
+
+		void cleanup() { this->cleanup_images(); }
+		/* clear all references & delete color data but don't free */
+		void clear();
 
 		static Theme *global();
 
 		std::string author;
 		std::string name;
 
-		bool parse(const char *filename);
+		enum flags_field {
+			load_data = 1,
+			load_meta = 2,
+		};
+
+		bool open(const char *filename, ui::Theme *base, u8 flags = ui::Theme::load_data | ui::Theme::load_meta);
+		/* creates a reference to images, copy of colors */
+		void replace_without_meta(ui::Theme& other);
+		void replace_with(ui::Theme& other);
 
 	private:
 		union data_union {
 			ThemeDescriptorColor color;
 			ThemeDescriptorImage image;
 		} descriptors[theme::max];
+		bool parse(const char *filename, u8 flags);
 		void cleanup_images();
+
 	};
 
 	class SlotManager
@@ -107,6 +123,8 @@ namespace ui
 	public:
 		SlotManager(const u32 *colors)
 			: colors(colors) { }
+		SlotManager()
+			: colors(nullptr) { }
 		/* no bounds checking! */
 		constexpr u32 get(size_t i) { return this->colors[i]; }
 		constexpr bool is_initialized() { return this->colors != nullptr; }
@@ -122,6 +140,10 @@ namespace ui
 		void reget(const char *id);
 		void reget();
 
+		/* XXX: Is there really not better way to go around this than a pointer vector?
+		 *      I feel there must be, but i just don't know how. For now, this will do. */
+		void unregister(ui::BaseWidget *w);
+
 		static ui::ThemeManager *global();
 
 		~ThemeManager();
@@ -130,6 +152,7 @@ namespace ui
 	public:
 		struct slot_data {
 			const slot_color_getter *getters; /* of size len */
+			std::vector<BaseWidget *> slaves;
 			u32 *colors; /* of size len */
 			size_t len;
 		};

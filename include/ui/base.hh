@@ -46,13 +46,20 @@
 	0x##a##b##g##r
 
 // Button glyphs
-#define UI_GLYPH_A "\uE000"
-#define UI_GLYPH_B "\uE001"
-#define UI_GLYPH_X "\uE002"
-#define UI_GLYPH_Y "\uE003"
-#define UI_GLYPH_L "\uE004"
-#define UI_GLYPH_R "\uE005"
-#define UI_GLYPH_DPAD "\uE006"
+#define UI_GLYPH_A               "\uE000"
+#define UI_GLYPH_B               "\uE001"
+#define UI_GLYPH_X               "\uE002"
+#define UI_GLYPH_Y               "\uE003"
+#define UI_GLYPH_L               "\uE004"
+#define UI_GLYPH_R               "\uE005"
+#define UI_GLYPH_DPAD_CLEAR      "\uE006"
+#define UI_GLYPH_CPAD            "\uE077"
+#define UI_GLYPH_DPAD_UP         "\uE079"
+#define UI_GLYPH_DPAD_DOWN       "\uE07A"
+#define UI_GLYPH_DPAD_LEFT       "\uE07B"
+#define UI_GLYPH_DPAD_RIGHT      "\uE07C"
+#define UI_GLYPH_DPAD_HORIZONTAL "\uE07D"
+#define UI_GLYPH_DPAD_VERTICAL   "\uE07E"
 
 #define UI_LED_MAKE_ANIMATION(delay, smoothing, loop_delay) \
 	((((delay) & 0xFF) << 24) | (((smoothing) & 0xFF) << 16) | (((loop_delay) & 0xFF) << 8))
@@ -70,10 +77,12 @@ namespace ui
 
 		void Solid(Pattern *info, u32 animation, u8 r, u8 g, u8 b);
 		inline void Solid(Pattern *info, u32 animation, u32 abgr)
-		{ Solid(info, animation, (abgr >> 24) & 0xFF, (abgr >> 16) & 0xFF, (abgr >> 8) & 0xFF); }
+		{ Solid(info, animation, (abgr) & 0xFF, (abgr >> 8) & 0xFF, (abgr >> 16) & 0xFF); }
 		Result SetSleepPattern(Pattern *info);
 		Result SetPattern(Pattern *info);
+		void SetTimeout(time_t newTime);
 		Result ResetPattern(void);
+		void ClearTimeout(void);
 	}
 
 	class BaseWidget; /* forward declaration */
@@ -146,6 +155,9 @@ namespace ui
 		u32 kDown, kHeld, kUp;
 		touchPosition touch;
 	};
+
+	/* do not use */
+	void maybe_end_frame();
 
 	/* gets the width of a screen */
 	constexpr inline float screen_width(ui::Screen scr)
@@ -231,6 +243,7 @@ namespace ui
 		bool matches_tag(int t) { return this->tag == t; }
 		void set_tag(int t) { this->tag = t; }
 
+		virtual bool supports_theme_hook() { return false; }
 		virtual void update_theme_hook() { }
 
 
@@ -522,8 +535,24 @@ namespace ui
 	class Sprite : public ui::BaseWidget
 	{ UI_WIDGET("Sprite")
 	public:
-		void setup(const C2D_Sprite& sprite);
-		void setup(const C2D_Image& img);
+		void destroy() override { ui::ThemeManager::global()->unregister(this); }
+
+		static void spritesheet(C2D_Sprite& sprite, u32 data)
+		{
+			C2D_DrawParams params = sprite.params;
+			sprite = ui::SpriteStore::get_by_id((ui::sprite) data);
+			params.pos.w = sprite.params.pos.w;
+			params.pos.h = sprite.params.pos.h;
+			sprite.params = params;
+		}
+		static void theme(C2D_Sprite& sprite, u32 data)
+		{
+			sprite.image = *ui::Theme::global()->get_image(data);
+			sprite.params.pos.w = sprite.image.subtex->width;
+			sprite.params.pos.h = sprite.image.subtex->height;
+		}
+
+		void setup(std::function<void(C2D_Sprite&, u32)> get_cb, u32 data = 0);
 
 		bool render(const ui::Keys&) override;
 		float height() override;
@@ -533,15 +562,20 @@ namespace ui
 		void set_y(float y) override;
 		void set_z(float z) override;
 
-		void set_sprite(const C2D_Sprite& sprite);
 		void set_center(float x, float y);
+		void set_data(u32 data);
 		void rotate(float degs);
 
 		inline C2D_Sprite& get_sprite() { return this->sprite; }
 
+		bool supports_theme_hook() override { return true; }
+		void update_theme_hook() override;
+
 
 	private:
+		std::function<void(C2D_Sprite&, u32)> get_sprite_func;
 		C2D_Sprite sprite;
+		u32 unspecified_data;
 
 
 	};
@@ -552,9 +586,8 @@ namespace ui
 	public:
 		using click_cb_t = std::function<bool()>;
 
+		void setup(std::function<void(C2D_Sprite&, u32)> get_image_cb, u32 data);
 		void setup(const std::string& label);
-		void setup(const C2D_Sprite& sprite);
-		void setup(const C2D_Image& image);
 		void destroy() override;
 		void setup();
 

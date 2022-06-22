@@ -210,7 +210,7 @@ static void error(const std::string& msg)
 	queue.render_finite_button(KEY_A);
 }
 
-static void show_searchbar_search()
+static bool show_searchbar_search()
 {
 	SwkbdResult res;
 	SwkbdButton btn;
@@ -221,29 +221,29 @@ static void show_searchbar_search()
 	}, &btn, &res);
 
 	if(btn != SWKBD_BUTTON_CONFIRM)
-		return;
+		return true;
 
 	if(query.size() < 3 || res == SWKBD_INVALID_INPUT || res == SWKBD_OUTOFMEM || res == SWKBD_BANNED_INPUT)
 	{
 		error(STRING(invalid_query));
-		return;
+		return true;
 	}
 
 	std::vector<hsapi::Title> titles;
 	Result rres = hsapi::call<std::vector<hsapi::Title>&, const std::unordered_map<std::string, std::string>&>(hsapi::search, titles, { { "q", query } });
-	if(R_FAILED(rres)) return;
+	if(R_FAILED(rres)) return true;
 
 	if(titles.size() == 0)
 	{
 		error(STRING(search_zero_results));
-		return;
+		return true;
 	}
 
 	next::maybe_install_gam(titles);
-	return;
+	return true;
 }
 
-static void show_id_search()
+static bool show_id_search()
 {
 	SwkbdResult res;
 	SwkbdButton btn;
@@ -253,17 +253,18 @@ static void show_id_search()
 	}, &btn, &res, 16);
 
 	if(btn != SWKBD_BUTTON_CONFIRM || res == SWKBD_INVALID_INPUT || res == SWKBD_OUTOFMEM || res == SWKBD_BANNED_INPUT)
-		return;
+		return true;
 
 	hsapi::FullTitle title;
 	Result rres = hsapi::call<hsapi::FullTitle&, hsapi::hid>(hsapi::title_meta, title, id);
-	if(R_FAILED(rres)) return;
+	if(R_FAILED(rres)) return true;
 
 	if(show_extmeta(title))
 		install::gui::hs_cia(title);
+	return true;
 }
 
-static void show_tid_search()
+static bool show_tid_search()
 {
 	SwkbdResult res;
 	SwkbdButton btn;
@@ -273,36 +274,36 @@ static void show_tid_search()
 	}, &btn, &res, 16);
 
 	if(btn != SWKBD_BUTTON_CONFIRM || res == SWKBD_INVALID_INPUT || res == SWKBD_OUTOFMEM || res == SWKBD_BANNED_INPUT)
-		return;
+		return true;
 
 	if(!is_tid(title_id))
 	{
 		error(STRING(invalid_tid));
-		return;
+		return true;
 	}
 
 	if(title_id == "0004000001111100")
 	{
 		error(STRING(theme_installer_tid_bad));
-		return;
+		return true;
 	}
 
 	std::vector<hsapi::Title> titles;
 	Result rres = hsapi::call<std::vector<hsapi::Title>&, const std::string&>(hsapi::get_by_title_id, titles, title_id);
 	if(R_FAILED(rres))
-		return;
+		return true;
 
 	if(titles.size() == 0)
 	{
 		error(STRING(search_zero_results));
-		return;
+		return true;
 	}
 
 	next::maybe_install_gam(titles);
-	return;
+	return true;
 }
 
-void legacy_search()
+static bool legacy_search()
 {
 	SwkbdResult res;
 	SwkbdButton btn;
@@ -312,7 +313,7 @@ void legacy_search()
 	}, &btn, &res, 1024);
 
 	if(btn != SWKBD_BUTTON_CONFIRM || res == SWKBD_INVALID_INPUT || res == SWKBD_OUTOFMEM || res == SWKBD_BANNED_INPUT)
-		return;
+		return true;
 
 	std::unordered_map<std::string, std::string> params;
 	std::vector<std::string> parts;
@@ -344,19 +345,19 @@ void legacy_search()
 	if(has_tid && params.size() > 1)
 	{
 		error(STRING(no_other_params_tid));
-		return;
+		return true;
 	}
 
 	if(has_tid && !is_tid(params["t"]))
 	{
 		error(STRING(invalid_tid));
-		return;
+		return true;
 	}
 
 	if(!has_tid && query.size() < 3)
 	{
 		error(STRING(invalid_query));
-		return;
+		return true;
 	}
 
 	bool has_sb = has_key(params, "sb");
@@ -367,7 +368,7 @@ void legacy_search()
 	if((has_sb && !has_sd) || (has_sd && !has_sb))
 	{
 		error(STRING(both_sd_and_sb));
-		return;
+		return true;
 	}
 
 	if(has_sb)
@@ -375,7 +376,7 @@ void legacy_search()
 		if(!has_key(sort_by, params["sb"]))
 		{
 			error(STRING(invalid_sb));
-			return;
+			return true;
 		}
 		params["sb"] = sort_by.at(params["sb"]);
 	}
@@ -385,7 +386,7 @@ void legacy_search()
 		if(!has_key(sort_direction, params["sd"]))
 		{
 			error(STRING(invalid_sd));
-			return;
+			return true;
 		}
 		params["sd"] = sort_direction.at(params["sd"]);
 	}
@@ -393,7 +394,7 @@ void legacy_search()
 	if(has_key(params, "p") && (params["p"] != "legit" && params["p"] != "piratelegit" && params["p"] != "standard"))
 	{
 		error(STRING(invalid_content_type));
-		return;
+		return true;
 	}
 
 	std::string includes, excludes;
@@ -402,13 +403,13 @@ void legacy_search()
 	if(has_i && !parse_filters(includes, include_cats, params["i"]))
 	{
 		error(STRING(invalid_includes));
-		return;
+		return true;
 	}
 
 	if(has_e && !parse_filters(excludes, exclude_cats, params["e"]))
 	{
 		error(STRING(invalid_excludes));
-		return;
+		return true;
 	}
 
 	if(!includes.empty()) params["i"] = includes;
@@ -419,21 +420,21 @@ void legacy_search()
 			if(include_cat == exclude_cat)
 			{
 				error(STRING(filter_overlap));
-				return;
+				return true;
 			}
 
 	std::vector<hsapi::Title> titles;
 	Result rres = hsapi::call<std::vector<hsapi::Title>&, const std::unordered_map<std::string, std::string>&>(hsapi::search, titles, params);
-	if(R_FAILED(rres)) return;
+	if(R_FAILED(rres)) return true;
 
 	if(titles.size() == 0)
 	{
 		error(STRING(search_zero_results));
-		return;
+		return true;
 	}
 
 	next::maybe_install_gam(titles);
-	return;
+	return true;
 }
 
 void show_search()

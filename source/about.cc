@@ -33,10 +33,10 @@ void show_about()
 		.wrap()
 		.add_to(queue);
 	ui::Sprite *sprite;
-	ui::builder<ui::Sprite>(ui::Screen::top, ui::SpriteStore::get_by_id(ui::sprite::logo))
+	ui::builder<ui::Sprite>(ui::Screen::top, ui::Sprite::spritesheet, (u32) ui::sprite::logo)
 		.under(queue.back())
 		.add_to(&sprite, queue);
-	ui::builder<ui::Sprite>(ui::Screen::top, ui::SpriteStore::get_by_id(ui::sprite::gplv3))
+	ui::builder<ui::Sprite>(ui::Screen::top, ui::Sprite::spritesheet, (u32) ui::sprite::gplv3)
 		.align_y_center(queue.back())
 		.next_center(queue.back(), 15.0f)
 		.add_to(queue);

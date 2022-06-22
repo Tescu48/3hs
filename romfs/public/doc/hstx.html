@@ -278,12 +278,12 @@ let TargetVersion = ($Major &lt;&lt; 20) | ($Minor &lt;&lt; 10) | ($Patch)
 			</tr>
 			<tr>
 				<td>LED_RED_CLR</td>
-				<td>0x1013</td>
+				<td>0x1014</td>
 				<td>Color (RGB)</td>
 			</tr>
 			<tr>
 				<td>SMDH_BORDER_CLR</td>
-				<td>0x1014</td>
+				<td>0x1015</td>
 				<td>Color (RGBA)</td>
 			</tr>
 			<tr>
@@ -315,6 +315,27 @@ let TargetVersion = ($Major &lt;&lt; 20) | ($Minor &lt;&lt; 10) | ($Patch)
 				<td>RANDOM_IMG</td>
 				<td>0x2006</td>
 				<td>Raw image data (RGBA)</td>
+			</tr>
+		</table>
+		<h3 id="Section_Blob">Section_Blob</h3>
+		<table border=1>
+			<tr>
+				<td>Offset</td>
+				<td>Size</td>
+				<td>Name</td>
+				<td>Description</td>
+			</tr>
+			<tr>
+				<td>0x00</td>
+				<td>0x01</td>
+				<td>nullp</td>
+				<td>Always 0</td>
+			</tr>
+			<tr>
+				<td>0x01</td>
+				<td>blob_size - 1</td>
+				<td>data</td>
+				<td>Data blob, no specific format is required</td>
 			</tr>
 		</table>
 	</body>

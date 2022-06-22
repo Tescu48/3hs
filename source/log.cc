@@ -132,6 +132,8 @@ void log_delete_invalid()
 
 void log_init()
 {
+	/* already initialized */
+	if(log_file) return;
 #ifndef RELEASE
 	consoleDebugInit(debugDevice_SVC);
 #endif

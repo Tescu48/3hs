@@ -408,7 +408,6 @@ static Result i_install_hs_cia(const hsapi::FullTitle& meta, prog_func prog, boo
 		std::string ret;
 		if(R_FAILED(res = hsapi::get_download_link(ret, meta)))
 			return "";
-		ilog("Requested token: %s", ret.c_str());
 		return ret;
 	}, meta.tid, reinstallable, prog, data);
 }

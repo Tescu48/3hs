@@ -18,6 +18,7 @@
 
 #include <widgets/indicators.hh>
 
+#include <ui/menuselect.hh>
 #include <ui/selector.hh>
 #include <ui/confirm.hh>
 #include <ui/swkbd.hh>
@@ -25,6 +26,7 @@
 #include <ui/list.hh>
 
 #include <sys/stat.h>
+#include <dirent.h>
 #include <unistd.h>
 #include <stdio.h>
 
@@ -35,7 +37,10 @@
 #include "log.hh"
 
 #define SETTINGS_LOCATION "/3ds/3hs/settings"
+#define THEMES_DIR        "/3ds/3hs/themes/"
+#define THEMES_EXT        ".hstx"
 
+static std::vector<ui::Theme> g_avail_themes;
 static bool g_loaded = false;
 static Settings g_settings;
 
@@ -105,6 +110,43 @@ void ensure_settings()
 
 	g_loaded = true;
 }
+
+void cleanup_themes()
+{
+	for(ui::Theme& theme : g_avail_themes)
+		theme.cleanup();
+}
+
+void load_themes()
+{
+	ui::Theme cthem;
+	panic_assert(cthem.open("romfs:/light.hstx", nullptr), "failed to parse built-in theme");
+	g_avail_themes.push_back(cthem);
+	cthem.clear();
+	panic_assert(cthem.open("romfs:/dark.hstx", nullptr), "failed to parse built-in theme");
+	g_avail_themes.push_back(cthem);
+
+	DIR *d = opendir(THEMES_DIR);
+	/* not having a themes directory is fine as well */
+	if(d)
+	{
+		struct dirent *ent;
+		constexpr size_t dirname_len = strlen(THEMES_DIR);
+		char fname[dirname_len + sizeof(ent->d_name)] = THEMES_DIR;
+		while((ent = readdir(d)))
+		{
+			if(ent->d_type != DT_REG) continue;
+			strcpy(fname + dirname_len, ent->d_name);
+			if(cthem.open(fname, &g_avail_themes.front()))
+				g_avail_themes.push_back(cthem);
+		}
+		closedir(d);
+	}
+	cthem.clear();
+}
+
+std::vector<ui::Theme>& themes()
+{ return g_avail_themes; }
 
 enum SettingsId
 {
@@ -437,6 +479,22 @@ SortMethod settings_sort_switch()
 	return ret;
 }
 
+static void show_langs()
+{
+	ui::RenderQueue queue;
+	ui::MenuSelect *ms;
+
+	ui::builder<ui::MenuSelect>(ui::Screen::bottom)
+		.add_to(&ms, queue);
+
+#define ITER(name, id) \
+	ms->add_row(name, []() -> bool { g_settings.language = id; return false; });
+	I18N_ALL_LANG_ITER(ITER)
+#undef ITER
+
+	queue.render_finite_button(KEY_B);
+}
+
 static void update_settings_ID(SettingsId ID)
 {
 	switch(ID)
@@ -483,10 +541,7 @@ static void update_settings_ID(SettingsId ID)
 		);
 		break;
 	case ID_Language:
-		read_set_enum<lang::type>(
-			{ I18N_ALL_NAMES }, { I18N_ALL_IDS },
-			g_settings.language
-		);
+		show_langs();
 		break;
 	case ID_Localemode:
 		read_set_enum<LumaLocaleMode>(
@@ -656,5 +711,49 @@ void show_settings()
 	log_delete_invalid();
 	save_settings();
 	proxy::write();
+}
+
+void show_theme_menu()
+{
+	ui::RenderQueue queue;
+	ui::MenuSelect *ms;
+	ui::Text *author, *name;
+
+	bool focus = set_focus(true);
+
+	ui::builder<ui::Text>(ui::Screen::top, ui::Theme::global()->name)
+		.x(ui::layout::center_x)
+		.y(40.0f)
+		.wrap()
+		.add_to(&name, queue);
+
+	ui::builder<ui::Text>(ui::Screen::top, PSTRING(made_by, ui::Theme::global()->author))
+		.x(ui::layout::center_x)
+		.under(queue.back())
+		.size(0.45f, 0.45f)
+		.wrap()
+		.add_to(&author, queue);
+
+	ui::builder<ui::MenuSelect>(ui::Screen::bottom)
+		.connect(ui::MenuSelect::on_select, [&ms]() -> bool {
+			ui::Theme::global()->replace_with(g_avail_themes[ms->pos()]);
+			ui::ThemeManager::global()->reget();
+			return true;
+		})
+		.connect(ui::MenuSelect::on_move, [&ms, author, name]() -> bool {
+			ui::Theme& theme = g_avail_themes[ms->pos()];
+			author->set_text(PSTRING(made_by, theme.author));
+			name->set_text(theme.name);
+
+			author->set_y(ui::under(name, author));
+			return true;
+		})
+		.add_to(&ms, queue);
+
+	for(ui::Theme& theme : g_avail_themes)
+		ms->add_row(theme.name);
+
+	queue.render_finite_button(KEY_B);
+	set_focus(focus);
 }
 

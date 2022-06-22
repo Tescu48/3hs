@@ -70,7 +70,9 @@ void queue_process(size_t index)
 
 void queue_process_all()
 {
-	bool hasLock = R_SUCCEEDED(ctr::lockNDM());
+	Result res = ctr::lockNDM();
+	bool hasLock = R_SUCCEEDED(res);
+	if(!hasLock) elog("failed to acquire NDM lock: %08lX", res);
 
 	struct errvec {
 		Result res;
@@ -86,13 +88,15 @@ void queue_process_all()
 	for(hsapi::FullTitle& meta : g_queue)
 	{
 		ilog("Processing title with id=%llu", meta.id);
-		Result res = install::gui::hs_cia(meta, false);
+		res = install::gui::hs_cia(meta, false);
 		ilog("Finished processing, res=%016lX", res);
 		if(R_FAILED(res))
 		{
 			errvec ev;
 			ev.res = res; ev.meta = &meta;
 			errs.push_back(ev);
+			if(res == APPERR_CANCELLED)
+				break; /* finished */
 		}
 		else
 		{
@@ -111,6 +115,10 @@ void queue_process_all()
 
 	if(errs.size() != 0)
 	{
+		ui::LED::ClearTimeout();
+		install::gui::ErrorLED();
+		if(hasLock) ctr::unlockNDM();
+
 		ui::notice(STRING(replaying_errors));
 		for(errvec& ev : errs)
 		{
@@ -118,8 +126,13 @@ void queue_process_all()
 			handle_error(err, &ev.meta->name);
 		}
 	}
+	else
+	{
+		ui::LED::ClearTimeout();
+		install::gui::SuccessLED();
+		if(hasLock) ctr::unlockNDM();
+	}
 
-	if(hasLock) ctr::unlockNDM();
 	/* TODO: Only clear successful installs */
 	queue_clear();
 }

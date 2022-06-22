@@ -17,19 +17,28 @@
 #include <ui/menuselect.hh>
 #include "panic.hh"
 
+#define MAX_PER_PAGE 8
+#define MIN(a,b) ((a)>(b)?(b):(a))
+
 
 void ui::MenuSelect::setup()
 {
 	this->w = ui::screen_width(this->screen) - 10.0f;
 	this->h = 20.0f;
+
+	constexpr float y = 20.0f + (20.0f + 5.0f) * MAX_PER_PAGE;
+	this->hint.setup(this->screen, STRING(hint_navigate));
+	this->hint->set_x(5.0f);
+	this->hint->set_y(y);
+	this->hint->resize(0.4f, 0.4f);
 }
 
-void ui::MenuSelect::add_row(const std::string& s, callback_t c)
+void ui::MenuSelect::push_button(const std::string& label)
 {
-	u32 myi = this->funcs.size();
-	this->funcs.push_back(c);
-	ui::Button *b = ui::builder<ui::Button>(this->screen, s)
+	u32 myi = this->btns.size();
+	ui::Button *b = ui::builder<ui::Button>(this->screen, label)
 		.connect(ui::Button::click, [this, myi]() -> bool {
+			if(this->cursor_move_callback) this->cursor_move_callback();
 			this->btns[this->i]->set_border(false);
 			this->btns[myi]->set_border(true);
 			this->i = myi;
@@ -39,23 +48,49 @@ void ui::MenuSelect::add_row(const std::string& s, callback_t c)
 		.size(this->w, this->h)
 		.x(ui::layout::center_x)
 		.finalize();
-	if(myi == 0)
-		b->set_y(20.0f);
-	else
-		b->set_y(ui::under(this->q.back(), b, 5.0f));
+	if(myi == 0) b->set_border(true);
+	if((myi % MAX_PER_PAGE) == 0) b->set_y(20.0f);
+	else                          b->set_y(ui::under(this->btns.back(), b, 5.0f));
 	this->btns.push_back(b);
-	this->q.push(b);
+}
+
+void ui::MenuSelect::add_row(const std::string& s, callback_t c)
+{
+	panic_assert(!this->main_callback, "attempt to add callback row with main callback enabled");
+	this->funcs.push_back(c);
+	this->push_button(s);
+}
+
+void ui::MenuSelect::add_row(const std::string& label)
+{
+	panic_assert(this->main_callback, "attempt to add callback-less row without main callback");
+	this->push_button(label);
 }
 
 void ui::MenuSelect::connect(connect_type t, const std::string& s, callback_t c)
 {
-	if(t != ui::MenuSelect::add) panic("EINVAL");
+	panic_assert(t == ui::MenuSelect::add, "expected ::add");
 	this->add_row(s, c);
+}
+
+void ui::MenuSelect::connect(connect_type t, callback_t c)
+{
+	switch(t)
+	{
+	case ui::MenuSelect::on_select:
+		this->main_callback = c;
+		break;
+	case ui::MenuSelect::on_move:
+		this->cursor_move_callback = c;
+		break;
+	default:
+		panic("EINVAL");
+	}
 }
 
 float ui::MenuSelect::height()
 {
-	size_t s = this->funcs.size();
+	size_t s = this->btns.size();
 	if(s == 0) return 0.0f;
 	return s * this->h + (s - 1) * 5.0f;
 }
@@ -67,23 +102,39 @@ float ui::MenuSelect::width()
 
 bool ui::MenuSelect::render(const ui::Keys& k)
 {
-	panic_assert(this->funcs.size() != 0, "Empty menuselect");
-	this->btns[this->i]->set_border(false);
+	panic_assert(this->btns.size() != 0, "Empty menuselect");
 
-	if((k.kDown & KEY_UP) && this->i > 0) --this->i;
-	if((k.kDown & KEY_DOWN) && this->i < this->btns.size() - 1) ++this->i;
+#define MOVE(with) do { this->btns[this->i]->set_border(false); with; if(this->cursor_move_callback) this->cursor_move_callback(); this->btns[this->i]->set_border(true); } while(0)
+	if((k.kDown & KEY_UP) && this->i > 0) MOVE(--this->i);
+	if((k.kDown & KEY_DOWN) && this->i < this->btns.size() - 1) MOVE(++this->i);
+	if(k.kDown & KEY_LEFT)
+	{
+		if(this->i >= MAX_PER_PAGE) MOVE(this->i -= MAX_PER_PAGE);
+		else                        MOVE(this->i = 0);
+	}
+	if(k.kDown & KEY_RIGHT)
+	{
+		if(this->i + MAX_PER_PAGE < this->btns.size()) MOVE(this->i += MAX_PER_PAGE);
+		else if(this->i < this->btns.size())           MOVE(this->i = this->btns.size() - 1);
+	}
+#undef MOVE
 	if(k.kDown & KEY_A) this->call_current();
 
-	this->btns[this->i]->set_border(true);
-	this->q.render_screen(k, this->screen);
+	/* aka u32 i = start_of_page */
+	u32 start = this->i - (this->i % MAX_PER_PAGE);
+	u32 end = MIN(start + MAX_PER_PAGE, this->btns.size());
+	for(u32 i = start; i < end; ++i)
+		this->btns[i]->render(k);
+	this->hint->render(k);
+
 	return true;
 }
 
 void ui::MenuSelect::call_current()
 {
 	ui::RenderQueue::global()->render_and_then((std::function<bool()>) [this]() -> bool {
-		this->funcs[this->i]();
-		return true;
+		if(this->main_callback) return this->main_callback();
+		else                    return this->funcs[this->i]();
 	});
 }
 

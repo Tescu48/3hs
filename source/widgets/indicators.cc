@@ -196,7 +196,7 @@ void ui::BatteryIndicator::setup()
 		.y(5.0f)
 		.tag(TAG_PERC)
 		.add_to(this->queue);
-	ui::builder<ui::Sprite>(this->screen, *ui::Theme::global()->get_image(ui::theme::battery_image))
+	ui::builder<ui::Sprite>(this->screen, ui::Sprite::theme, ui::theme::battery_image)
 		.x(ui::screen_width(ui::Screen::top) - 37.0f)
 		.y(5.0f)
 		.tag(TAG_FG)
@@ -247,7 +247,7 @@ bool ui::BatteryIndicator::render(const ui::Keys& keys)
 
 void ui::NetIndicator::setup()
 {
-	this->sprite.setup(ui::Screen::top, ui::SpriteStore::get_by_id(ui::sprite::net_discon));
+	this->sprite.setup(ui::Screen::top, ui::Sprite::spritesheet, (u32) ui::sprite::net_discon);
 	this->sprite->set_x(ui::screen_width(ui::Screen::top) - 27.0f);
 	this->sprite->set_y(ui::screen_height() - 11.0f);
 
@@ -276,19 +276,19 @@ void ui::NetIndicator::update()
 	switch(this->status)
 	{
 	case -1: /* disconnected */
-		this->sprite->set_sprite(ui::SpriteStore::get_by_id(ui::sprite::net_discon));
+		this->sprite->set_data((u32) ui::sprite::net_discon);
 		break;
 	case 0: /* terrible */
-		this->sprite->set_sprite(ui::SpriteStore::get_by_id(ui::sprite::net_0));
+		this->sprite->set_data((u32) ui::sprite::net_0);
 		break;
 	case 1: /* bad */
-		this->sprite->set_sprite(ui::SpriteStore::get_by_id(ui::sprite::net_1));
+		this->sprite->set_data((u32) ui::sprite::net_1);
 		break;
 	case 2: /* decent */
-		this->sprite->set_sprite(ui::SpriteStore::get_by_id(ui::sprite::net_2));
+		this->sprite->set_data((u32) ui::sprite::net_2);
 		break;
 	case 3: /* good */
-		this->sprite->set_sprite(ui::SpriteStore::get_by_id(ui::sprite::net_3));
+		this->sprite->set_data((u32) ui::sprite::net_3);
 		break;
 	default:
 		panic("EINVAL");

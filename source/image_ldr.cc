@@ -99,10 +99,21 @@ void rgba_to_abgr(u32 *data, u16 w, u16 h)
 		data[i] = __builtin_bswap32(data[i]);
 }
 
-void load_rgba8(C2D_Image *image, u32 *data, u16 w, u16 h)
+void load_rgba8(C2D_Image *image, u32 *data, u16 w, u16 h, bool allocStructs)
 {
-	Tex3DS_SubTexture *subtex = new Tex3DS_SubTexture;
-	C3D_Tex *tex = new C3D_Tex;
+	Tex3DS_SubTexture *subtex;
+	C3D_Tex *tex;
+	if(allocStructs)
+	{
+		subtex = new Tex3DS_SubTexture;
+		tex = new C3D_Tex;
+	}
+	else
+	{
+		/* we want to modify not have a const ptr... */
+		subtex = (Tex3DS_SubTexture *) image->subtex;
+		tex = image->tex;
+	}
 
 	u32 w_pow2 = next_pow2(w);
 	u32 h_pow2 = next_pow2(h);
@@ -132,6 +143,7 @@ void load_rgba8(C2D_Image *image, u32 *data, u16 w, u16 h)
 
 void delete_image(C2D_Image icon)
 {
+	C3D_TexDelete(icon.tex);
 	delete icon.subtex;
 	delete icon.tex;
 }

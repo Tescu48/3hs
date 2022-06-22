@@ -32,6 +32,8 @@ my @languages = qw(
 	latvian
 	jp_osaka
 	moldovan
+	schinese
+	tchinese
 );
 
 # Strings never to put between quotes
@@ -44,7 +46,14 @@ my @preserve_keywords = qw(
 	UI_GLYPH_Y
 	UI_GLYPH_L
 	UI_GLYPH_R
-	UI_GLYPH_DPAD
+	UI_GLYPH_CPAD
+	UI_GLYPH_DPAD_CLEAR
+	UI_GLYPH_DPAD_UP
+	UI_GLYPH_DPAD_DOWN
+	UI_GLYPH_DPAD_LEFT
+	UI_GLYPH_DPAD_RIGHT
+	UI_GLYPH_DPAD_HORIZONTAL
+	UI_GLYPH_DPAD_VERTICAL
 );
 
 # ====================== #
@@ -75,6 +84,8 @@ sub parse_lang_file {
 
 	while(($line = <$fh>)) {
 		chomp $line;
+		# Remove CR.......................
+		$line =~ s/\r//g;
 		if ($line =~ /^\s*#/) {
 			next;
 		} elsif($line =~ /^- /) {
@@ -304,6 +315,18 @@ EOF
 
 foreach my $id (@lang_names) {
 	$header_file .= "\tlang::$id, \\\n";
+}
+
+$header_file .= <<EOF;
+
+// A(name_string, name_id)
+#define I18N_ALL_LANG_ITER(A) \\
+EOF
+
+for my $i (0..$#lang_names) {
+	my $id = $lang_names[$i];
+	my $name = $names_ids[$i];
+	$header_file .= "\tA($name, lang::$id) \\\n";
 }
 
 $header_file .= <<EOF;

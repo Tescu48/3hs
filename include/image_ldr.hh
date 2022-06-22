@@ -28,7 +28,7 @@ enum class SMDHIconType
 
 void load_smdh_icon(C2D_Image *ret, const ctr::TitleSMDH& smdh, SMDHIconType type,
 	unsigned int *chosenDimensions = nullptr);
-void load_rgba8(C2D_Image *image, u32 *data, u16 w, u16 h);
+void load_rgba8(C2D_Image *image, u32 *data, u16 w, u16 h, bool allocStructs = true);
 void rgba_to_abgr(u32 *data, u16 w, u16 h);
 void delete_image_data(C2D_Image icon);
 void delete_image(C2D_Image icon);

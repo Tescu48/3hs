@@ -47,7 +47,7 @@ void ui::KonamiListner::show_bunny()
 {
 	ui::RenderQueue queue;
 
-	ui::builder<ui::Sprite>(ui::Screen::top, ui::SpriteStore::get_by_id(ui::sprite::bun))
+	ui::builder<ui::Sprite>(ui::Screen::top, ui::Sprite::spritesheet, (u32) ui::sprite::bun)
 		.x(ui::layout::center_x).y(ui::layout::center_y)
 		.add_to(queue);
 

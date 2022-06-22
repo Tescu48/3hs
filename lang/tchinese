@@ -1,0 +1,548 @@
+
+# The name of the language this file is for in that language (i.e. Español for Spanish)
+- native_name
+繁體中文
+
+# shown at the top of the screen during loading (the spinner)
+- loading
+載入中...
+
+- luma_not_installed
+檢測到不支持的韌體。
+
+# displayed under above string
+- install_luma
+3hs 不能在此系統使用。
+
+# button, button on bottom of screen to enter queue
+- queue
+佇列
+
+# networking means network libraries, may be translated as "failed to start application" if there exists no good translation for networking
+- fail_init_networking
+初始化網路連接失敗
+
+# PAGE_3HS expands to the 3hs page on hShop
+- credits_thanks
+感謝你使用 3hs 這是 hShop 在 3DS 上的客戶端軟件。
+本軟體可以在以下連結免費下載：
+PAGE_3HS
+
+- press_to_install
+按 UI_GLYPH_A 安裝此內容。
+按 UI_GLYPH_B 返回。
+
+# nowrap, used for title version, bottom screen metadata when you press A on a list item
+- version
+版本
+
+# nowrap, used for title product code, same location as above string
+- prodcode
+產品代號
+
+# nowrap, used for title size, (sub)category size, displayed on bottom screen in the main list, sort method in switcher in settings
+- size
+大小
+
+# nowrap, used for title name, (sub)category name, see above for location
+- name
+名稱
+
+# nowrap, used for title id, extmeta & main list, sort method in switcher in settings
+- tid
+Title ID
+
+# nowrap, used for content category, extmeta & main list
+- category
+類別
+
+# nowrap, hShop ID used for searching, previously known as landing ID, sort method in switcher in settings
+- landing_id
+hShop ID
+
+# nowrap, used for category description
+- description
+資訊
+
+# nowrap, shown on bottom screen category selection
+- total_titles
+全部內容
+
+# nowrap, shown top screen category selection
+- select_cat
+選擇類別
+
+# nowrap, shown top screen subcategory selection
+- select_subcat
+選擇子類別
+
+# nowrap, shown top screen title selection
+- select_title
+選擇一個項目 
+
+# the time format (15:00)
+- fmt_24h
+24 小時製
+
+# time time format (3 PM)
+- fmt_12h
+12 小時製
+
+# unknown setting value
+- unknown
+未知
+
+# setting is set to ON
+- btrue
+是
+
+# setting is set to OFF
+- bfalse
+否
+
+# top screen in progress bar location settings switcher
+- top
+頂部
+
+# bottom screen in progress bar location settings switcher
+- bottom
+底部
+
+# scroll, setting title
+- light_mode
+亮色模式
+
+# scroll, setting title
+- resume_dl
+恢復下載
+
+# scroll, setting title
+- load_space
+顯示剩余空間
+
+# scroll, setting title
+- show_battery
+顯示電池狀態
+
+# scroll, setting title
+- time_format
+時鐘格式
+
+# scroll, setting title
+- progbar_screen
+進度列顯示位置
+
+# scroll, setting title
+- language
+語言
+
+# value of setting
+- value_x
+值: %1
+
+# back button
+- back
+返回
+
+# invalid option
+- invalid
+無效值
+
+# %1 = title id
+- title_doesnt_exist
+此項目不存在: %1
+
+# %1 = error code
+# $t = seconds remaining
+- netcon_lost
+連線丟失 (%1)。
+ $t 秒後重試...
+
+# nowrap, burger (three lines) menu entry
+- about_app
+關於
+
+# nowrap, burger (three lines) menu entry
+- help_manual
+幫助/手冊
+
+# nowrap, burger (three lines) menu entry
+- find_missing_content
+搜尋缺失內容
+
+# exit menu and sometimes application
+- press_a_exit
+按 UI_GLYPH_A 退出。
+
+# can also be translated as fatal error
+- fatal_panic
+發生致命錯誤(fatal error)。
+
+# failed to open romfs file, may be translated as "failed to start application"
+- failed_open_seeddb
+打開 seeddb.bin 失敗。
+
+# %1 = new version, i.e. 1.0.2
+- update_to
+你想升級到 %1 嗎？
+
+# nowrap, top screen while searching
+- search_content
+查找內容
+
+# keyboard hint while searching, apparently this has a maximum length
+- search_content_action
+查找內容...
+
+# used for displaying error codes
+# %1 = result code (0x...)
+- result_code
+Result code: %1
+
+# used for displaying error codes
+# %1 = level name
+- level
+Level: %1
+
+# used for displaying error codes
+# %1 = summary name
+- summary
+Summary: %1
+
+# used for displaying error codes
+# %1 = module name
+- module
+Module: %1
+
+# easter egg, see also: gfx/img/bun.png
+- hs_bunny_found
+祝賀！你找到 hShop 兔女郎了！
+
+- already_installed_reinstall
+內容已經安裝，要重新安裝嗎？
+
+- queue_empty
+佇列無內容
+按 UI_GLYPH_A 返回。
+提示：按 UI_GLYPH_Y 可以把內容加入下載佇列。
+
+# button, yes/no prompt "no" option
+- cancel
+取消
+
+# button, yes/no prompt "yes" option
+- confirm
+確認
+
+# proxy settings are checked at startup for obvious errors (user tampering), if bad, it errors with this message
+- invalid_proxy
+代理設置無效
+
+# nowrap, shown in top when clicking on extended meta
+- more_about_content
+此內容的詳細資訊
+
+# scroll, setting title
+- lumalocalemode
+LumaLocale 模式
+
+# selector, lumalocale mode setting
+- automatic
+自動
+
+# selector, lumalocale mode setting
+- manual
+手動
+
+# selector, lumalocale mode setting
+- disabled
+停用
+
+- patching_reboot
+Luma3DS 修補檔已生效。
+你必須重啟系統程式以生效。
+
+- reboot_now
+現在就重啟？
+
+# %1 = version int "version desc" (i.e. 1.2.0 "cotidie morimur")
+- this_version
+現在的 3hs 版本是 %1
+
+# request = API HTTP request, may be translated as "failed to access API"
+- retry_req
+請求失敗，重試？
+
+- search_zero_results
+沒有搜尋到內容
+按 UI_GLYPH_A 返回。
+
+# Shown in the "About" burger option
+- credits
+製作小組
+
+# scroll, setting title, i.e. DLC/Updates
+- check_extra
+尋找額外內容
+
+# request = request for the 3DS to do something, like a command
+- no_req
+當前無請求
+
+# invalid search query
+- invalid_query
+無效的佇列
+按 UI_GLYPH_A 返回。
+
+# %1 = current version
+# %2 = minimum required version
+- min_constraint
+當前的 3hs 版本 %1 低於需求版本 %2
+
+# scroll, setting title
+- proxy
+代理
+
+# used for "no proxy is set"
+- none
+(無)
+
+# view proxy settings
+- press_a_to_view
+按 UI_GLYPH_A 查看。
+
+# proxy host
+- host
+主機
+
+# proxy port
+- port
+埠
+
+# proxy username
+- username
+用戶名
+
+# proxy password
+- password
+密碼
+
+# clear all proxy field
+- clear
+清除
+
+# setting description
+- progbar_screen_desc
+選擇進度列的位置。
+
+# setting description
+- light_mode_desc
+啟用/停用亮色模式。該項目影響大部分 UI 外觀。
+
+# setting description
+- resume_dl_desc
+在每次斷線後繼續嘗試重連下載。
+
+# setting description
+- load_space_desc
+切換剩余空間顯示。
+
+# setting description
+- show_battery_desc
+切換電池狀態顯示。
+
+# setting description
+- time_format_desc
+選擇時間格式。
+
+# setting description
+- language_desc
+選擇 3hs 語言。必須重啟本程式才能使選擇的語言完全生效。
+
+# setting description
+- lumalocalemode_desc
+選擇區域模式。「自動」將會自動選擇遊戲語言分區。若設定為「手動」，3hs 會在內容安裝完成後以你指定的語言分區對其進行修改。
+
+# setting description
+- check_extra_desc
+安裝後自動尋找額外內容（更新檔、DLC等）。
+
+# setting description
+- proxy_desc
+修改 3hs 的代理設置。此選項面向高級用戶。
+
+# install all from queue
+- install_all
+安裝全部
+
+- install_no_base
+你還沒有安裝基礎遊戲，仍要繼續嗎？
+
+# setting title
+- warn_no_base
+無遊戲本體警告
+
+# setting description
+- warn_no_base_desc
+安裝更新檔、DLC 之前，如果你還沒有安裝遊戲本體，是否發出警告。
+
+# if an error occurs while installing all titles from the queue, this message is displayed before showing each one
+- replaying_errors
+處理佇列時遇到了復現錯誤。
+
+# may also be translated as "manage logs"
+- log
+日誌
+
+- upload_logs
+上傳日誌
+
+- clear_logs
+清除日誌
+
+# %1 = amount of titles found
+- found_missing
+找到 %1 個缺失的內容。
+查看佇列來安裝它們。
+
+- found_0_missing
+沒有發現缺失內容。
+
+# setting title
+- max_elogs
+最大歷史日誌數量
+
+# setting description
+- max_elogs_desc
+設置日誌文件的保存數量，可以從 0 到 255 調節，選擇 0 時則不會產生額外的日誌文件。
+
+# keyboard hint for max old log files, apparently has a maximum amount of characters
+- elogs_hint
+從 0 到 255 的數值
+
+# %1 = id
+- log_id
+使用此 ID 來獲取支持:
+%1
+
+# Nintendo blocks, use official Nintendo translation if available
+- block
+格
+
+# see above, just in plural this time
+- blocks
+格
+
+# nowrap, search menu item
+- search_text
+文字搜尋
+
+# nowrap, search menu item
+- search_id
+hShop ID 搜尋
+
+# nowrap, search menu item
+- search_tid
+Title ID 搜尋
+
+# invalid title id specified during legacy search
+- invalid_tid
+無效 Title ID
+
+- theme_installer_tid_bad
+請手動瀏覽主題類別來查找主題
+
+# this is displayed in transparent letters on the keyboard
+- enter_lgy_query
+請輸入傳統搜尋序列
+
+- no_other_params_tid
+在指定 Title ID 時，不能指定任何其他參數
+
+- both_sd_and_sb
+在對搜尋結果進行排序時，你必須指定一個排序方法和一個排序順序
+
+# i.e. sort by title_id, size, category, subcategory, etc
+- invalid_sb
+排序方法無效
+
+# i.e. ascending/descending
+- invalid_sd
+排序順序無效
+
+# include legacy filter, includes a (sub)category, like a coffee filter
+- invalid_includes
+無效的包含過濾
+
+# exclude legacy filter, excludes a (sub)category, like a coffee filter
+- invalid_excludes
+無效的除外過濾
+
+# overlapping filters in legacy search, i.e. include:games exclude:games
+- filter_overlap
+包含與除外過濾器矛盾
+
+# nowrap, search menu item, "legacy" may be translated as "traditional", "old-school", "classic", you name it
+- lgy_search
+傳統搜尋
+
+- sure_reset
+你確定要重置設置嗎？
+
+# sort direction
+- ascending
+升序
+
+# sort direction
+- descending
+降序
+
+# sort method
+- alphabetical
+按名稱
+
+# sort method
+- downloads
+按下載數
+
+# setting title
+- def_sort_meth
+預設排序方式
+
+# setting description
+- def_sort_meth_desc
+指定在瀏覽內容列表時使用的排序方式。
+
+# setting title
+- def_sort_dir
+預設排序順序
+
+# setting description
+- def_sort_dir_desc
+指定在瀏覽內容列表時使用的排序順序。
+
+# legacy search content type (see p: documentation on site)
+- invalid_content_type
+無效的內容類型
+
+# shown after installation of anything in the themes category, PAGE_THEMES links to the theme installer wiki page
+- theme_installed
+安裝了一個主題，詳情請見 PAGE_THEMES
+
+# shown after a file forwarder is installed that's not a theme, just here for future proofing
+- file_installed
+安裝了一個文件，此文件並不顯示在 HOME 菜單
+
+# setting title
+- allow_led
+啟用 LED 指示燈提示
+
+# setting description
+- allow_led_desc
+啟用此項將會使 LED 指示燈在一些情況發生時閃爍，比如當一個內容安裝完畢時。
+
+# don't translate "Enable developer UNITINFO", ENVINFO may be translated as configuration, retail may be translated as normal, unit may be translated as variant
+- dev_unitinfo
+根據本機的 ENVINFO，這可能是一部 3DS 開發機。
+3hs 將不會在此系統上正確運行。
+如果你的 3DS 確實是常規機型，請去 Luma3DS 設置中停用 "Enable developer UNITINFO"。

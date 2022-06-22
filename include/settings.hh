@@ -75,15 +75,20 @@ typedef struct Settings
 	bool allowLEDChange = true;
 } Settings;
 
-
 SortMethod settings_sort_switch();
 bool settings_are_ready();
 Settings *get_settings();
 void ensure_settings();
+void show_theme_menu();
 void reset_settings();
+void cleanup_themes();
 void save_settings();
 void show_settings();
 void log_settings();
+void load_themes();
+
+namespace ui { class Theme; }
+std::vector<ui::Theme>& themes();
 
 #endif
 

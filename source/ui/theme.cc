@@ -23,6 +23,8 @@
 #include "panic.hh"
 #include "log.hh"
 
+#define BASE_THEME "romfs:/light.hstx"
+
 #define VERSION_INT ((VERSION_MAJOR << 20) | (VERSION_MINOR << 10) | (VERSION_PATCH))
 /* 3DS is Little Endian ... */
 #define U16(a) (__builtin_bswap16(a))
@@ -91,10 +93,39 @@ ui::Theme *ui::Theme::global()
 void ui::Theme::cleanup_images()
 {
 	for(u32 i = ui::theme::max_color + 1; i < ui::theme::max; ++i)
-		delete_image(this->descriptors[i].image);
+		if(this->descriptors[i].image.actual_image.tex && this->descriptors[i].image.isOwn)
+			delete_image(this->descriptors[i].image.actual_image);
+	this->clear();
 }
 
-bool ui::Theme::parse(const char *filename)
+bool ui::Theme::open(const char *filename, ui::Theme *base, u8 flags)
+{
+	this->cleanup_images();
+	if(base) this->replace_without_meta(*base);
+	return this->parse(filename, flags);
+}
+
+void ui::Theme::clear()
+{
+	memset(this->descriptors, 0, sizeof(this->descriptors));
+}
+
+void ui::Theme::replace_with(ui::Theme& other)
+{
+	this->replace_without_meta(other);
+	this->author = other.author;
+	this->name = other.name;
+}
+
+void ui::Theme::replace_without_meta(ui::Theme& other)
+{
+	/* this memcpy will only copy the images as a reference, and colors entirely */
+	memcpy(this->descriptors, other.descriptors, sizeof(this->descriptors));
+	for(u32 i = ui::theme::max_color + 1; i < ui::theme::max; ++i)
+		this->descriptors[i].image.isOwn = false;
+}
+
+bool ui::Theme::parse(const char *filename, u8 flags)
 {
 #define EXIT_LOG(...) do { elog(__VA_ARGS__); goto out; } while(0)
 	FILE *f = fopen(filename, "r");
@@ -103,33 +134,20 @@ bool ui::Theme::parse(const char *filename)
 	fseek(f, 0, SEEK_END);
 	size_t size = ftell(f);
 	fseek(f, 0, SEEK_SET);
-	u8 *contents = (u8 *) malloc(size + 1), *blob_addr, *blob_base;
+	u8 *foot = NULL, head[0x30], *blob_addr, *blob_base;
 	u32 format_version, target_version, blob_size, num_descriptors, blob_rel_addr;
 	hstx_descriptor *descriptors;
 	hstx_header *hdr;
-	if(!contents) EXIT_LOG("theme parser: failed to allocate %u", size);
-	if(fread(contents, 1, size, f) != size) EXIT_LOG("theme parser: failed to read %u from %s", size, filename);
-	contents[size] = '\0';
+	bool isReplacing;
+	if(fread(head, 0x30, 1, f) != 1) EXIT_LOG("theme parser: failed to read 0x30 from %s", filename);
 
-	hdr         =     (hstx_header *) &contents[0x00];
-	descriptors = (hstx_descriptor *) &contents[0x30];
+	hdr = (hstx_header *) &head[0x00];
 	format_version = U32(hdr->format_version);
 	target_version = U32(hdr->target_version);
 	blob_size = U32(hdr->blob_size);
 	num_descriptors = U32(hdr->num_descriptors);
-	blob_base = &contents[0x30 + 0x10 * num_descriptors];
-
-#define GETBLOBADDR(offset) (offset ? offset > blob_size ? NULL : &blob_base[offset] : NULL)
-
-	blob_rel_addr = U32(hdr->name_offset);
-	if((blob_addr = GETBLOBADDR(blob_rel_addr)))
-		this->name = std::string((char *) blob_addr);
-	blob_rel_addr = U32(hdr->author_offset);
-	if((blob_addr = GETBLOBADDR(blob_rel_addr)))
-		this->author = std::string((char *) blob_addr);
 
 	if(format_version != 0) EXIT_LOG("theme parser: unknown/unsupported version %lu", format_version);
-
 	if(num_descriptors > DESCRIPTOR_MAX) EXIT_LOG("too many descriptors %lu", num_descriptors);
 	/* this check should probably be done before we read the entire file */
 	if(size != 0x30 + 0x10 * num_descriptors + blob_size) EXIT_LOG("theme parser: file size as expected");
@@ -140,6 +158,36 @@ bool ui::Theme::parse(const char *filename)
 			: target_version > VERSION_INT ? "greater than"
 				: "lesser than", target_version, VERSION_INT, format_version);
 
+	size -= 0x30;
+	foot = (u8 *) malloc(size + 1);
+	if(!foot) EXIT_LOG("theme parser: failed to allocate %u", size + 1);
+	if(fread(foot, 1, size, f) != size) EXIT_LOG("theme parser: failed to read %u from %s", size, filename);
+	foot[size] = '\0';
+
+	descriptors = (hstx_descriptor *) &foot[0x0];
+	blob_base = &foot[0x10 * num_descriptors];
+
+#define GETBLOBADDR(offset) (offset ? offset > blob_size ? NULL : &blob_base[offset] : NULL)
+
+	if(flags & ui::Theme::load_meta)
+	{
+		blob_rel_addr = U32(hdr->name_offset);
+		if((blob_addr = GETBLOBADDR(blob_rel_addr)))
+			this->name = std::string((char *) blob_addr);
+		else this->name = "Unknown";
+		blob_rel_addr = U32(hdr->author_offset);
+		if((blob_addr = GETBLOBADDR(blob_rel_addr)))
+			this->author = std::string((char *) blob_addr);
+		else this->author = "Unknown";
+	}
+
+	/* if we don't want to actually load any data but just metadata we're done now */
+	if(!(flags & ui::Theme::load_data))
+	{
+		ret = true;
+		goto out;
+	}
+
 	u32 ident, offset, isize;
 	u32 *ptr;
 	u16 w, h;
@@ -148,6 +196,7 @@ bool ui::Theme::parse(const char *filename)
 		ident = U32(descriptors[i].ident);
 		switch(ident)
 		{
+                                                                           /* We want AGBR: do not byteswap */
 #define CVAL(fid, iid) case fid: this->descriptors[ui::theme::iid].color = (descriptors[i].data.color.value); break
 		CVAL(ID_BG_CLR, background_color);
 		CVAL(ID_TEXT_CLR, text_color);
@@ -175,9 +224,10 @@ bool ui::Theme::parse(const char *filename)
 		continue; \
 	} \
 	rgba_to_abgr(ptr, w, h); \
-	if(this->descriptors[ui::theme::iid].image.tex) \
-		delete_image_data(this->descriptors[ui::theme::iid].image); \
-	load_rgba8(&this->descriptors[ui::theme::iid].image, ptr, w, h); \
+	isReplacing = this->descriptors[ui::theme::iid].image.actual_image.tex != NULL && this->descriptors[ui::theme::iid].image.isOwn; \
+	if(isReplacing) delete_image_data(this->descriptors[ui::theme::iid].image.actual_image); \
+	load_rgba8(&this->descriptors[ui::theme::iid].image.actual_image, ptr, w, h, !isReplacing); \
+	this->descriptors[ui::theme::iid].image.isOwn = true; \
 	break
 		IVAL(ID_MORE_IMG, more_image);
 		IVAL(ID_BATTERY_IMG, battery_image);
@@ -194,7 +244,7 @@ bool ui::Theme::parse(const char *filename)
 
 	ret = true;
 out:
-	free((void *) contents);
+	free((void *) foot);
 	fclose(f);
 	return ret;
 #undef GETBLOBADDR
@@ -211,7 +261,8 @@ static void fill_colors_(u32 *colors, const ui::slot_color_getter *getters, size
 ui::ThemeManager::~ThemeManager()
 {
 	for(auto it : this->slots)
-		free(it.second.colors);
+		if(it.second.len)
+			free(it.second.colors);
 }
 
 ui::ThemeManager *ui::ThemeManager::global()
@@ -219,18 +270,24 @@ ui::ThemeManager *ui::ThemeManager::global()
 
 ui::SlotManager ui::ThemeManager::get_slots(ui::BaseWidget *that, const char *id, size_t count, const slot_color_getter *getters)
 {
-	(void) that; /* unused for now */
 	auto it = this->slots.find(id);
 	if(it != this->slots.end())
 	{
+		if(that && that->supports_theme_hook())
+			it->second.slaves.push_back(that); 
 		return ui::SlotManager(it->second.colors);
 	}
 
 	slot_data slot;
-	slot.colors = (u32 *) malloc(sizeof(u32) * count);
-	slot.getters = getters;
+	if(that && that->supports_theme_hook())
+		slot.slaves = { that };
 	slot.len = count;
-	fill_colors(slot);
+	if(count)
+	{
+		slot.colors = (u32 *) malloc(sizeof(u32) * count);
+		slot.getters = getters;
+		fill_colors(slot);
+	}
 
 	this->slots[id] = slot;
 	return ui::SlotManager(slot.colors);
@@ -241,12 +298,33 @@ void ui::ThemeManager::reget(const char *id)
 	auto it = this->slots.find(id);
 	if(it == this->slots.end())
 		panic(std::string(id) + ": not found");
-	fill_colors(it->second);
+	if(it->second.len)
+		fill_colors(it->second);
+	for(ui::BaseWidget *w : it->second.slaves)
+		w->update_theme_hook(); 
 }
 
 void ui::ThemeManager::reget()
 {
 	for(auto& it : this->slots)
-		fill_colors(it.second);
+	{
+		if(it.second.len)
+
+			fill_colors(it.second);
+		for(size_t i = 0; i < it.second.slaves.size(); ++i)
+			it.second.slaves[i]->update_theme_hook(); 
+	}
 }
+
+void ui::ThemeManager::unregister(ui::BaseWidget *w)
+{
+	for(auto& it : this->slots)
+		for(size_t i = 0; i < it.second.slaves.size(); ++i)
+			if(it.second.slaves[i] == w)
+			{
+				it.second.slaves.erase(it.second.slaves.begin() + i);
+				return;
+			}
+}
+
 

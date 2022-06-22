@@ -139,7 +139,7 @@ static const std::unordered_map<Result, std::unordered_map<Result, const char *>
 		RM_APPLICATION, {
 			{ 0 , "Can't install n3ds exclusive games on an o3ds" },
 			{ 1 , "Cancelled"                                     },
-			{ 2 , "Too little free space on your SD Card"         },
+			{ 2 , "Too little free space on your SD Card or NAND" },
 			{ 3 , "Can't reinstall title unless asked"            },
 			{ 4 , "Title count and list mismatch"                 },
 			{ 5 , "Server doesn't support range"                  },

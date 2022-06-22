@@ -41,8 +41,10 @@ static ui::SlotManager slotmgr { nullptr };
 enum LEDFlags_V {
 	LED_NONE          = 0,
 	LED_RESET_SLEEP   = 1,
+	LED_TIMEOUT       = 2,
 };
 static u8 LEDFlags = LED_NONE;
+static time_t LEDExpireTime;
 
 
 UI_CTHEME_GETTER(color_toggle_green, ui::theme::toggle_green_color)
@@ -162,7 +164,8 @@ static ui::slot_color_getter slotmgr_getters[] = {
 static void common_init()
 {
 	g_spritestore.open(SPRITESHEET_PATH);
-	panic_assert(ui::Theme::global()->parse(THEME_PATH), "failed to parse default theme");
+	/* TODO: Select correct theme */
+	ui::Theme::global()->replace_with(themes().front());
 	slotmgr = ui::ThemeManager::global()->get_slots(nullptr, "__global_slot_manager", 1, slotmgr_getters);
 }
 
@@ -230,6 +233,15 @@ ui::Keys ui::RenderQueue::get_keys()
 	return keys;
 }
 
+void ui::maybe_end_frame()
+{
+	if(g_inRender)
+	{
+		C3D_FrameEnd(0);
+		g_inRender = false;
+	}
+}
+
 bool ui::RenderQueue::render_frame(const ui::Keys& keys)
 {
 	if(this->signalBit & ui::RenderQueue::signal_cancel)
@@ -239,11 +251,17 @@ bool ui::RenderQueue::render_frame(const ui::Keys& keys)
 		::exit(0); /* finish */
 	if(g_inRender)
 	{
-		elog("illegal double render");
-		C3D_FrameEnd(0); /* we first need to finish because panic() will render */
+		C3D_FrameEnd(0);
 		g_inRender = false;
 		panic("illegal double render");
 	}
+
+	if(LEDFlags & LED_TIMEOUT)
+		if(time(NULL) > LEDExpireTime)
+		{
+			ui::LED::ResetPattern();
+			LEDFlags = LED_NONE;
+		}
 
 	bool isOpen;
 	if(R_SUCCEEDED(ui::shell_is_open(&isOpen)) && isOpen)
@@ -655,28 +673,19 @@ void ui::Text::set_text(const std::string& label)
 
 /* core widget class Sprite */
 
-void ui::Sprite::setup(const C2D_Sprite& sprite)
+void ui::Sprite::setup(std::function<void(C2D_Sprite&, u32)> get_cb, u32 data)
 {
+	ui::ThemeManager::global()->get_slots(this, "Sprite", 0, nullptr);
 	memset(&this->sprite.params, 0, sizeof(C2D_DrawParams));
-	this->sprite = sprite;
-	this->set_center(0.0f, 0.0f);
+	this->unspecified_data = data;
+	this->get_sprite_func = get_cb;
+	this->update_theme_hook();
 }
 
-void ui::Sprite::setup(const C2D_Image& img)
+void ui::Sprite::set_data(u32 data)
 {
-	memset(&this->sprite.params, 0, sizeof(C2D_DrawParams));
-	this->sprite.params.pos.w = img.subtex->width;
-	this->sprite.params.pos.h = img.subtex->height;
-	this->sprite.image = img;
-	this->set_center(0.0f, 0.0f);
-}
-
-void ui::Sprite::set_sprite(const C2D_Sprite& sprite)
-{
-	C2D_DrawParams params = this->sprite.params;
-	this->sprite = sprite;
-	/* copy config */
-	this->sprite.params = params;
+	this->unspecified_data = data;
+	this->update_theme_hook();
 }
 
 float ui::Sprite::height()
@@ -724,6 +733,12 @@ void ui::Sprite::set_center(float x, float y)
 	C2D_SpriteSetCenter(&this->sprite, x, y);
 }
 
+void ui::Sprite::update_theme_hook()
+{
+	this->get_sprite_func(this->sprite, this->unspecified_data);
+	this->set_center(0.0f, 0.0f);
+}
+
 /* core widget class Button */
 
 UI_SLOTS(ui::Button_colors, color_button_border, color_button)
@@ -734,21 +749,10 @@ void ui::Button::setup(const std::string& text)
 	this->set_label(text);
 }
 
-void ui::Button::setup(const C2D_Sprite& sprite)
+void ui::Button::setup(std::function<void(C2D_Sprite&, u32)> get_image_cb, u32 data)
 {
 	ui::Sprite *label = new ui::Sprite(this->screen);
-	label->setup(sprite);
-	label->set_z(1.0f);
-	label->finalize();
-
-	this->widget = label;
-	this->readjust();
-}
-
-void ui::Button::setup(const C2D_Image& sprite)
-{
-	ui::Sprite *label = new ui::Sprite(this->screen);
-	label->setup(sprite);
+	label->setup(get_image_cb, data);
 	label->set_z(1.0f);
 	label->finalize();
 
@@ -999,6 +1003,17 @@ Result ui::LED::SetSleepPattern(ui::LED::Pattern *info)
 	if(R_SUCCEEDED(res = ui::LED::SetPattern(info)))
 		LEDFlags |= LED_RESET_SLEEP;
 	return res;
+}
+
+void ui::LED::SetTimeout(time_t newTime)
+{
+	LEDFlags |= LED_TIMEOUT;
+	LEDExpireTime = newTime;
+}
+
+void ui::LED::ClearTimeout(void)
+{
+	LEDFlags &= ~LED_TIMEOUT;
 }
 
 Result ui::LED::ResetPattern()

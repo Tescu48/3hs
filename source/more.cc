@@ -20,6 +20,7 @@
 
 #include "find_missing.hh"
 #include "log_view.hh"
+#include "settings.hh"
 #include "hsapi.hh"
 #include "about.hh"
 #include "panic.hh"
@@ -49,11 +50,12 @@ void show_more()
 
 	ui::RenderQueue queue;
 	ui::builder<ui::MenuSelect>(ui::Screen::bottom)
-		.connect(ui::MenuSelect::add, STRING(about_app), show_about)
-		.connect(ui::MenuSelect::add, STRING(find_missing_content), show_find_missing_all)
-		.connect(ui::MenuSelect::add, STRING(log), show_logs_menu)
+		.connect(ui::MenuSelect::add, STRING(about_app), []() -> bool { show_about(); return true; })
+		.connect(ui::MenuSelect::add, STRING(find_missing_content), []() -> bool { show_find_missing_all(); return true; })
+		.connect(ui::MenuSelect::add, STRING(log), []() -> bool { show_logs_menu(); return true; })
+		.connect(ui::MenuSelect::add, STRING(themes), []() -> bool { show_theme_menu(); return true; })
 #ifndef RELEASE
-		.connect(ui::MenuSelect::add, "hLink", show_hlink)
+		.connect(ui::MenuSelect::add, "hLink", []() -> bool { show_hlink(); return true; })
 #endif
 		.add_to(queue);
 	ui::builder<ui::ButtonCallback>(ui::Screen::top, KEY_START)

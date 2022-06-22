@@ -110,13 +110,13 @@ lang::type i18n::default_lang()
 	case CFG_LANGUAGE_DE: return lang::german;
 	case CFG_LANGUAGE_IT: return lang::italian;
 	case CFG_LANGUAGE_ES: return lang::spanish;
+	case CFG_LANGUAGE_ZH: return lang::schinese;
 	case CFG_LANGUAGE_KO: return lang::korean;
 	case CFG_LANGUAGE_NL: return lang::dutch;
 	case CFG_LANGUAGE_PT: return lang::portuguese;
 	case CFG_LANGUAGE_RU: return lang::russian;
+	case CFG_LANGUAGE_TW: return lang::tchinese;
 	case CFG_LANGUAGE_EN: // fallthrough
-	case CFG_LANGUAGE_ZH: // fallthrough
-	case CFG_LANGUAGE_TW: // fallthrough
 	default: return lang::english;
 	}
 }
