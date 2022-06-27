@@ -36,7 +36,7 @@
 
 const char *i18n::getstr(str::type id)
 {
-	return RAW(get_settings()->language, id);
+	return RAW(get_nsettings()->lang, id);
 }
 
 const char *i18n::getstr(str::type sid, lang::type lid)
@@ -47,7 +47,7 @@ const char *i18n::getstr(str::type sid, lang::type lid)
 const char *i18n::getsurestr(str::type sid)
 {
 	ensure_settings();
-	return RAW(get_settings()->language, sid);
+	return RAW(get_nsettings()->lang, sid);
 }
 
 // https://www.3dbrew.org/wiki/Country_Code_List

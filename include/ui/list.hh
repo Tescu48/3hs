@@ -61,9 +61,9 @@ namespace ui
 			this->sx = ui::screen_width(this->screen) - scrollbar_width - 5.0f;
 
 			static ui::slot_color_getter getters[] = {
-				color_bg, color_text, color_scrollbar
+				color_text, color_scrollbar
 			};
-			this->slots = ui::ThemeManager::global()->get_slots(this, "List", 3, getters);
+			this->slots = ui::ThemeManager::global()->get_slots(this, "List", 2, getters);
 		}
 
 		void destroy()
@@ -148,10 +148,18 @@ namespace ui
 
 builtin_controls_done:
 
+			/* render scrollbar */
+			if(this->lines.size() > this->amountRows)
+			{
+				ui::background_rect(this->screen, this->sx - 1.0f, 0.0f, this->z + 0.1f, ui::screen_width(this->screen) - this->sx + 1.0f, ui::screen_height());
+				C2D_DrawRectSolid(this->sx, this->sy, this->z + 0.1f, 5.0f, this->sh,
+					this->slots.get(1));
+			}
+
 			/* render the on-screen elements */
 			size_t end = this->view + (this->lines.size() > this->amountRows
 				? this->amountRows - 1 : this->lines.size());
-			u32 color = this->slots.get(1);
+			u32 color = this->slots.get(0);
 			for(size_t i = this->view, j = 0; i < end; ++i, ++j)
 			{
 				float ofs = 0;
@@ -162,8 +170,7 @@ builtin_controls_done:
 					if(this->scrolldata.shouldScroll)
 					{
 						ofs = this->scrolldata.xof;
-						C2D_DrawRectSolid(0, ypos - 5.0f, this->z + 0.1f, this->x + text_offset,
-							this->selh + 1.0f, this->slots.get(0));
+						ui::background_rect(this->screen, 0.0f, ypos - 5.0f, this->z + 0.1f, this->x + text_offset, this->selh + 1.0f);
 						if(this->scrolldata.framecounter <= 60)
 							++this->scrolldata.framecounter;
 						else if(ui::screen_width(this->screen) - this->x - text_offset + ofs > this->selw + 10.0f)
@@ -185,15 +192,6 @@ builtin_controls_done:
 				C2D_DrawText(&this->lines[i], C2D_WithColor, this->x + text_offset - ofs,
 					this->y + text_spacing * j, this->z, text_size, text_size,
 					color);
-			}
-
-			/* render scrollbar */
-			if(this->lines.size() > this->amountRows)
-			{
-				C2D_DrawRectSolid(this->sx - 1.0f, 0.0f, this->z, ui::screen_width(this->screen) - this->sx + 1.0f,
-					ui::screen_height(), this->slots.get(0));
-				C2D_DrawRectSolid(this->sx, this->sy, this->z, 5.0f, this->sh,
-					this->slots.get(2));
 			}
 
 			if(keys.kDown & this->keys)
@@ -400,7 +398,6 @@ builtin_controls_done:
 
 		UI_CTHEME_GETTER(color_scrollbar, ui::theme::scrollbar_color)
 		UI_CTHEME_GETTER(color_text, ui::theme::text_color)
-		UI_CTHEME_GETTER(color_bg, ui::theme::background_color)
 
 
 	};

@@ -145,7 +145,7 @@ static sort_callback<hsapi::Title> get_sort_callback(SortDirection dir, SortMeth
 {
 	switch(dir)
 	{
-	case SortDirection::asc:
+	case SortDirection::ascending:
 		switch(method)
 		{
 		case SortMethod::alpha: return sort_alpha_asc;
@@ -155,7 +155,7 @@ static sort_callback<hsapi::Title> get_sort_callback(SortDirection dir, SortMeth
 		case SortMethod::id: return sort_id_asc;
 		}
 		break;
-	case SortDirection::desc:
+	case SortDirection::descending:
 		switch(method)
 		{
 		case SortMethod::alpha: return sort_alpha_desc;
@@ -178,8 +178,8 @@ hsapi::hid next::sel_gam(std::vector<hsapi::Title>& titles, size_t *cursor)
 	bool focus = set_focus(false);
 	hsapi::hid ret = next_gam_back;
 
-	SortDirection dir = get_settings()->defaultSortDirection;
-	SortMethod sortm = get_settings()->defaultSortMethod;
+	SortDirection dir = SETTING_DEFAULT_SORTDIRECTION;
+	SortMethod sortm = SETTING_DEFAULT_SORTMETHOD;
 	std::sort(titles.begin(), titles.end(), get_sort_callback(dir, sortm));
 
 	ui::RenderQueue queue;
@@ -237,7 +237,7 @@ hsapi::hid next::sel_gam(std::vector<hsapi::Title>& titles, size_t *cursor)
 	ui::builder<ui::ButtonCallback>(ui::Screen::top, KEY_R)
 		.connect(ui::ButtonCallback::kdown, [list, &dir, &sortm, &titles, meta](u32) -> bool {
 			ui::RenderQueue::global()->render_and_then([list, &dir, &sortm, &titles, meta]() -> void {
-				dir = dir == SortDirection::asc ? SortDirection::desc : SortDirection::asc;
+				dir = dir == SortDirection::ascending ? SortDirection::descending : SortDirection::ascending;
 #if 0
 				hsapi::hid curId = titles[list->get_pos()].id;
 #endif

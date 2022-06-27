@@ -214,7 +214,7 @@ static void i_install_loop_thread_cb(Result& res, get_url_func get_url, cia_net_
 {
 	std::string url;
 
-	if(!get_settings()->resumeDownloads)
+	if(!ISET_RESUME_DOWNLOADS)
 	{
 		if((url = get_url(res)) == "")
 		{

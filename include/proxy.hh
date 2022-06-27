@@ -23,23 +23,21 @@
 
 namespace proxy
 {
-	typedef struct Params
+	namespace legacy
 	{
-		std::string host;
-		u16 port = 0;
+		typedef struct Params
+		{
+			std::string host;
+			u16 port = 0;
 
-		std::string username;
-		std::string password;
-	} Params;
+			std::string username;
+			std::string password;
+		} Params;
+		void parse(Params& p);
+		void del();
+	}
 
 	Result apply(httpcContext *context);
-	void init();
-
-	bool validate(const Params& p);
-	Params& proxy();
-	bool is_set();
-	void write();
-	void clear();
 }
 
 

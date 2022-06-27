@@ -185,7 +185,7 @@ void luma::maybe_set_gamepatching()
 	/* disabled due to luma v11.0, may be re-implemented for config.ini at some point. */
 	return;
 
-	if(get_settings()->lumalocalemode == LumaLocaleMode::disabled)
+	if(SETTING_LUMALOCALE == LumaLocaleMode::disabled)
 		return;
 
 	// We should prompt for reboot...
@@ -200,7 +200,8 @@ void luma::maybe_set_gamepatching()
 bool luma::set_locale(u64 tid)
 {
 	// we don't want to set a locale
-	if(get_settings()->lumalocalemode == LumaLocaleMode::disabled)
+	LumaLocaleMode mode = SETTING_LUMALOCALE;
+	if(mode == LumaLocaleMode::disabled)
 		return false;
 
 	ctr::TitleSMDH *smdh = ctr::smdh::get(tid);
@@ -235,13 +236,13 @@ bool luma::set_locale(u64 tid)
 	if(has_region(smdh, region)) goto del_smdh;
 	regstr = get_region_str(smdh);
 
-	if(get_settings()->lumalocalemode == LumaLocaleMode::automatic)
+	if(mode == LumaLocaleMode::automatic)
 	{
 		langstr = get_auto_lang_str(smdh);
 		if(!langstr) goto del_smdh; /* shouldn't happen */
 		ilog("(lumalocale) Automatically deduced %s %s", regstr, langstr);
 	}
-	else if(get_settings()->lumalocalemode == LumaLocaleMode::manual)
+	else if(mode == LumaLocaleMode::manual)
 	{
 		langstr = get_manual_lang_str(smdh);
 		/* cancelled the selection */

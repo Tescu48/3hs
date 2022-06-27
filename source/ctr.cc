@@ -241,6 +241,11 @@ u16 ctr::get_tid_cat(u64 tid)
 	return (tid >> 32) & 0xFFFF;
 }
 
+u32 ctr::get_tid_unique(u64 tid)
+{
+	return (tid >> 8) & 0xFFFFFF;
+}
+
 Result ctr::lockNDM()
 {
 	/* basically ensures that we can use the network during sleep

@@ -20,72 +20,81 @@
 #include <3ds/types.h>
 #include "i18n.hh"
 
-// 24h is superior but we'll allow 12h
-// because we care about customizability
-enum class Timefmt
-{
-	good = 24,
-	bad = 12
-};
 
-enum class ProgressBarLocation
-{
-	top, bottom
+enum class LumaLocaleMode {
+	disabled  = 0,
+	automatic = 1,
+	manual    = 2,
 };
-
-enum class LumaLocaleMode
-{
-	disabled, automatic, manual,
-};
-
-enum class SortMethod {
-	alpha,
-	tid,
-	size,
-	downloads,
-	id,
-//	added,
-//	updated,
-};
-
+#define LUMALOCALE_SHIFT 6
 enum class SortDirection {
-	asc,
-	desc,
+	ascending  = 0,
+	descending = 1,
+};
+#define SORTDIRECTION_SHIFT 8
+enum class SortMethod {
+	alpha     = 0,
+	tid       = 1,
+	size      = 2,
+	downloads = 3,
+	id        = 4,
+};
+#define SORTMETHOD_SHIFT 9
+
+struct NewSettings {
+	u64 flags0;
+	lang::type lang;
+	u8 max_elogs;
+	std::string theme_path;
+	u16 proxy_port;
+	std::string proxy_host;
+	std::string proxy_username;
+	std::string proxy_password;
 };
 
+enum NewSettings_flags0 {
+	FLAG0_RESUME_DOWNLOADS = 0x1,
+	FLAG0_LOAD_FREE_SPACE  = 0x2,
+	FLAG0_SHOW_BATTERY     = 0x4,
+	FLAG0_SHOW_NET         = 0x8,
+	FLAG0_BAD_TIME_FORMAT  = 0x10,
+	FLAG0_PROGBAR_TOP      = 0x20,
+	FLAG0_LUMALOCALE0      = 0x40,
+	FLAG0_LUMALOCALE1      = 0x80,
+	FLAG0_SORTDIRECTION0   = 0x100,
+	FLAG0_SORTMETHOD0      = 0x200,
+	FLAG0_SORTMETHOD1      = 0x400,
+	FLAG0_SORTMETHOD2      = 0x800,
+	FLAG0_SORTMETHOD3      = 0x1000,
+	FLAG0_SEARCH_ECONTENT  = 0x2000,
+	FLAG0_WARN_NO_BASE     = 0x4000,
+	FLAG0_ALLOW_LED        = 0x8000,
+};
 
-typedef struct Settings
-{
-	char magic[4] = { '3', 'H', 'S', 'S' };
-	bool isLightMode = true;
-	bool resumeDownloads = true;
-	bool loadFreeSpace = true;
-	bool showBattery = true;
-	bool showNet = true;
-	Timefmt timeFormat = Timefmt::good;
-	bool unused0 = true; /* used to be: firstRun */
-	ProgressBarLocation progloc = ProgressBarLocation::bottom;
-	lang::type language = lang::english;
-	LumaLocaleMode lumalocalemode = LumaLocaleMode::automatic;
-	bool checkForExtraContent = true;
-	bool warnNoBase = true;
-	u8 maxExtraLogs = 3;
-	SortMethod defaultSortMethod = SortMethod::alpha;
-	SortDirection defaultSortDirection = SortDirection::asc;
-	bool allowLEDChange = true;
-} Settings;
+#define ISET_RESUME_DOWNLOADS (get_nsettings()->flags0 & FLAG0_RESUME_DOWNLOADS)
+#define ISET_LOAD_FREE_SPACE (get_nsettings()->flags0 & FLAG0_LOAD_FREE_SPACE)
+#define ISET_SHOW_BATTERY (get_nsettings()->flags0 & FLAG0_SHOW_BATTERY)
+#define ISET_SHOW_NET (get_nsettings()->flags0 & FLAG0_SHOW_NET)
+#define ISET_BAD_TIME_FORMAT (get_nsettings()->flags0 & FLAG0_BAD_TIME_FORMAT)
+#define ISET_PROGBAR_TOP (get_nsettings()->flags0 & FLAG0_PROGBAR_TOP)
+#define SETTING_LUMALOCALE ((LumaLocaleMode) ((get_nsettings()->flags0 & (FLAG0_LUMALOCALE0 | FLAG0_LUMALOCALE1)) >> LUMALOCALE_SHIFT))
+#define SETTING_DEFAULT_SORTDIRECTION ((SortDirection) ((get_nsettings()->flags0 & FLAG0_SORTDIRECTION0) >> SORTDIRECTION_SHIFT))
+#define SETTING_DEFAULT_SORTMETHOD ((SortMethod) ((get_nsettings()->flags0 & (FLAG0_SORTMETHOD0 | FLAG0_SORTMETHOD1 | FLAG0_SORTMETHOD2 | FLAG0_SORTMETHOD3)) >> SORTMETHOD_SHIFT))
+#define ISET_SEARCH_ECONTENT (get_nsettings()->flags0 & FLAG0_SEARCH_ECONTENT)
+#define ISET_WARN_NO_BASE (get_nsettings()->flags0 & FLAG0_WARN_NO_BASE)
+#define ISET_ALLOW_LED (get_nsettings()->flags0 & FLAG0_ALLOW_LED)
 
+
+void reset_settings(bool set_default_lang = false);
 SortMethod settings_sort_switch();
+NewSettings *get_nsettings();
 bool settings_are_ready();
-Settings *get_settings();
+void load_current_theme();
 void ensure_settings();
 void show_theme_menu();
-void reset_settings();
 void cleanup_themes();
-void save_settings();
 void show_settings();
 void log_settings();
-void load_themes();
 
 namespace ui { class Theme; }
 std::vector<ui::Theme>& themes();

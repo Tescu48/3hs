@@ -137,7 +137,7 @@ top
 - bottom
 bottom
 
-# scroll, setting title
+# scroll, setting title, unused
 - light_mode
 Light mode
 
@@ -364,7 +364,7 @@ Clear
 - progbar_screen_desc
 Select the position of the progress bar.
 
-# setting description
+# setting description, unused
 - light_mode_desc
 Enable/disable light mode. This will change the way most UI elements look.
 

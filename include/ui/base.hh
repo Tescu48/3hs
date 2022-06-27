@@ -159,6 +159,9 @@ namespace ui
 	/* do not use */
 	void maybe_end_frame();
 
+	/* is there a way we can avoid doing this entirely? */
+	void background_rect(ui::Screen scr, float x, float y, float z, float w, float h);
+
 	/* gets the width of a screen */
 	constexpr inline float screen_width(ui::Screen scr)
 	{ return scr == ui::Screen::top ? ui::dimensions::width_top : ui::dimensions::width_bottom; }
@@ -548,8 +551,11 @@ namespace ui
 		static void theme(C2D_Sprite& sprite, u32 data)
 		{
 			sprite.image = *ui::Theme::global()->get_image(data);
-			sprite.params.pos.w = sprite.image.subtex->width;
-			sprite.params.pos.h = sprite.image.subtex->height;
+			if(sprite.image.subtex) /* this may be false for an optional image (and then has_image() would return false) */
+			{
+				sprite.params.pos.w = sprite.image.subtex->width;
+				sprite.params.pos.h = sprite.image.subtex->height;
+			}
 		}
 
 		void setup(std::function<void(C2D_Sprite&, u32)> get_cb, u32 data = 0);
@@ -570,6 +576,9 @@ namespace ui
 
 		bool supports_theme_hook() override { return true; }
 		void update_theme_hook() override;
+
+		inline bool has_image() { return this->sprite.image.tex != NULL; }
+		inline C2D_Image *get_image() { return &this->sprite.image; }
 
 
 	private:

@@ -135,13 +135,19 @@ static int make_hstx_impl(FILE *out, char *in_buf, struct dynbuf *blob, const ch
 		ID_SETTINGS_IMG      = 0x2004,
 		ID_SPINNER_IMG       = 0x2005,
 		ID_RANDOM_IMG        = 0x2006,
+		ID_BG_TOP_IMG        = 0x2007,
+		ID_BG_BOT_IMG        = 0x2008,
 	};
-
 
 	memset(descriptors, 0, sizeof(descriptors));
 
 	header.name_offset = U32(0);
 	header.author_offset = U32(0);
+
+	char *slash = strrchr(inpath, '/');
+	int inpath_len = 1;
+	if(slash) inpath_len = slash - inpath;
+	else      inpath = "./";
 
 	u32 num_descriptors = 0;
 	char *next_nl = NULL;
@@ -194,11 +200,8 @@ static int make_hstx_impl(FILE *out, char *in_buf, struct dynbuf *blob, const ch
 				fprintf(stderr, "failed to allocate memory for path!\n"); \
 				return 1; \
 			} \
-			char *slash = strrchr(inpath, '/'); \
-			int len = 1; \
-			if(slash) len = slash - inpath; \
-			else      inpath = "./"; \
-			sprintf(path, "%.*s/%s", len, inpath, value); \
+			if(*value == '/') strcpy(path, value); \
+			else              sprintf(path, "%.*s/%s", inpath_len, inpath, value); \
 			u32 *data = (u32 *) stbi_load(path, &w, &h, NULL, 4); \
 			if(!data) \
 			{ \
@@ -263,6 +266,8 @@ static int make_hstx_impl(FILE *out, char *in_buf, struct dynbuf *blob, const ch
 		DEFIDESC("settings_image", ID_SETTINGS_IMG)
 		DEFIDESC("spinner_image", ID_SPINNER_IMG)
 		DEFIDESC("random_image", ID_RANDOM_IMG)
+		DEFIDESC("background_top_image", ID_BG_TOP_IMG)
+		DEFIDESC("background_bottom_image", ID_BG_BOT_IMG)
 #undef DEFCDESC
 #undef DEFIDESC
 	else

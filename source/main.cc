@@ -33,7 +33,6 @@
 #include "queue.hh"
 #include "panic.hh"
 #include "about.hh"
-#include "proxy.hh"
 #include "hsapi.hh"
 #include "more.hh"
 #include "next.hh"
@@ -127,7 +126,7 @@ int main(int argc, char* argv[])
 	panic_assert(R_SUCCEEDED(res),
 		"init_services() failed, this should **never** happen (0x" + pad8code(res) + ")");
 	atexit(exit_services);
-	load_themes();
+	load_current_theme();
 	atexit(cleanup_themes);
 	panic_assert(themes().size() > 0, "failed to load any themes");
 	panic_assert(ui::init(), "ui::init() failed, this should **never** happen");
@@ -164,7 +163,6 @@ int main(int argc, char* argv[])
 	if(!(ENVINFO & 1)) ui::notice(STRING(dev_unitinfo), 40.0f);
 
 	init_seeddb();
-	proxy::init();
 
 	osSetSpeedupEnable(true); // speedup for n3dses
 

@@ -60,7 +60,7 @@ void ui::FreeSpaceIndicator::setup()
 
 void ui::FreeSpaceIndicator::update()
 {
-	if(get_settings()->loadFreeSpace)
+	if(ISET_LOAD_FREE_SPACE)
 	{
 		u64 nandt, nandc, sdmc;
 
@@ -85,7 +85,7 @@ void ui::FreeSpaceIndicator::update()
 
 bool ui::FreeSpaceIndicator::render(const ui::Keys& keys)
 {
-	return get_settings()->loadFreeSpace
+	return ISET_LOAD_FREE_SPACE
 		? this->queue.render_screen(keys, this->screen)
 		: true;
 }
@@ -130,7 +130,7 @@ std::string ui::TimeIndicator::time(time_t now)
 		return "00:00:00";
 
 	// 24h aka good
-	if(get_settings()->timeFormat == Timefmt::good)
+	if(!ISET_BAD_TIME_FORMAT)
 	{
 		constexpr int size = 3 /* hh: */ + 3 /* mm: */ + 2 /* ss */ + 1 /* NULL term */;
 		char str[size];
@@ -227,7 +227,7 @@ static u8 lvl2batlvl(u8 lvl)
 bool ui::BatteryIndicator::render(const ui::Keys& keys)
 {
 #ifdef RELEASE
-	if(get_settings()->showBattery)
+	if(ISET_SHOW_BATTERY)
 	{
 		this->update();
 

@@ -37,6 +37,8 @@ static ui::SpriteStore g_spritestore;
 static bool g_inRender = false;
 
 static ui::SlotManager slotmgr { nullptr };
+static ui::ScopedWidget<ui::Sprite> top_background;
+static ui::ScopedWidget<ui::Sprite> bottom_background;
 
 enum LEDFlags_V {
 	LED_NONE          = 0,
@@ -51,8 +53,7 @@ UI_CTHEME_GETTER(color_toggle_green, ui::theme::toggle_green_color)
 UI_CTHEME_GETTER(color_toggle_red, ui::theme::toggle_red_color)
 UI_CTHEME_GETTER(color_toggle_slider, ui::theme::toggle_slider_color)
 UI_CTHEME_GETTER(color_button_border, ui::theme::button_border_color)
-UI_CTHEME_GETTER(color_button, ui::theme::button_background_color)
-UI_CTHEME_GETTER(color_bg, ui::theme::background_color)
+UI_CTHEME_GETTER(color_button, ui::theme::button_background_color) UI_CTHEME_GETTER(color_bg, ui::theme::background_color)
 UI_CTHEME_GETTER(color_text, ui::theme::text_color)
 
 /* helpers */
@@ -166,6 +167,12 @@ static void common_init()
 	g_spritestore.open(SPRITESHEET_PATH);
 	/* TODO: Select correct theme */
 	ui::Theme::global()->replace_with(themes().front());
+	top_background.setup(ui::Screen::top, ui::Sprite::theme, ui::theme::background_top_image);
+	top_background->set_x(0.0f);
+	top_background->set_y(0.0f);
+	bottom_background.setup(ui::Screen::bottom, ui::Sprite::theme, ui::theme::background_bottom_image);
+	bottom_background->set_x(0.0f);
+	bottom_background->set_y(0.0f);
 	slotmgr = ui::ThemeManager::global()->get_slots(nullptr, "__global_slot_manager", 1, slotmgr_getters);
 }
 
@@ -242,6 +249,28 @@ void ui::maybe_end_frame()
 	}
 }
 
+void ui::background_rect(ui::Screen scr, float x, float y, float z, float w, float h)
+{
+	ui::ScopedWidget<ui::Sprite> *bg = scr == ui::Screen::top ? &top_background : &bottom_background;
+	if((*bg)->has_image())
+	{
+		/* cursed */
+		C2D_Image img = *(*bg)->get_image();
+		u16 wu = w, hu = h;
+		Tex3DS_SubTexture subtex = {
+			wu, hu,
+			0, 0, 0, 0
+		};
+		img.subtex = &subtex;
+		C2D_DrawImageAt(img, x, y, z);
+	}
+	else
+	{
+		/* slightly less cursed */
+		C2D_DrawRectSolid(x, y, z, w, h, slotmgr.get(0));
+	}
+}
+
 bool ui::RenderQueue::render_frame(const ui::Keys& keys)
 {
 	if(this->signalBit & ui::RenderQueue::signal_cancel)
@@ -287,11 +316,15 @@ bool ui::RenderQueue::render_frame(const ui::Keys& keys)
 	bool ret = true;
 
 	C2D_SceneBegin(g_top);
+	if(top_background->has_image())
+		top_background->render(keys);
 	for(ui::BaseWidget *wid : this->top)
 		if(!wid->is_hidden()) ret &= wid->render(keys);
 	ret &= g_renderqueue.render_top(keys);
 
 	C2D_SceneBegin(g_bot);
+	if(bottom_background->has_image())
+		bottom_background->render(keys);
 	for(ui::BaseWidget *wid : this->bot)
 		if(!wid->is_hidden()) ret &= wid->render(keys);
 	ret &= g_renderqueue.render_bottom(keys);
@@ -977,7 +1010,7 @@ void ui::LED::Solid(ui::LED::Pattern *info, u32 animation, u8 r, u8 g, u8 b)
 
 Result ui::LED::SetPattern(ui::LED::Pattern *info)
 {
-	if(!get_settings()->allowLEDChange)
+	if(!ISET_ALLOW_LED)
 		return 0; /* no-op is success */
 
 	Result res;

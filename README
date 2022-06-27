@@ -2,6 +2,11 @@
 
 Blobfrii 3ds client for erista's hShop.
 3hs is licensed under GPLv3 (see: LICENSE).
+Also included is a copy of the "file_forwarder" project, which is the source
+for the applications labelled as "installer" on the hShop website. It is also subject to the GPLv3.
+There are 2 official distributions of this code, one is on the hShop website (main source), another
+is hosted on github (mirror source), at https://github.com/MyPasswordIsWeak/3hs.
+
 
   = = Special thanks to = =
 
@@ -14,6 +19,8 @@ and Cremè, for making some nice art.
       = = Building = =
 
 Requirements:
+ - mbedtls (for nnc, which is bundled)
+ - perl (to generate language file)
  - devkitarm
  - libctru
  - citro2d
@@ -41,5 +48,3 @@ Additionally you need a file called source/hsapi_auth.c with the following conte
  const char *hsapi_user = "<api-user>";
  const int hsapi_password_length = <password-length-int>;
  void hsapi_password(char *ret) { memcpy(ret, "<api-password>", hsapi_password_length); }
-An (obfuscated) password is provided.
-

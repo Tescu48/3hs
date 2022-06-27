@@ -29,8 +29,7 @@ namespace ui
 {
 	static inline ui::Screen progloc()
 	{
-		return get_settings()->progloc == ProgressBarLocation::bottom
-			? ui::Screen::bottom : ui::Screen::top;
+		return ISET_PROGBAR_TOP ? ui::Screen::top : ui::Screen::bottom;
 	}
 
 	std::string up_to_mib_serialize(u64, u64);

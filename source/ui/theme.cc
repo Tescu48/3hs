@@ -81,6 +81,8 @@ enum hstx_ident {
 	ID_SETTINGS_IMG      = 0x2004,
 	ID_SPINNER_IMG       = 0x2005,
 	ID_RANDOM_IMG        = 0x2006,
+	ID_BG_TOP_IMG        = 0x2007,
+	ID_BG_BOT_IMG        = 0x2008,
 };
 
 static ui::ThemeManager manager;
@@ -100,9 +102,43 @@ void ui::Theme::cleanup_images()
 
 bool ui::Theme::open(const char *filename, ui::Theme *base, u8 flags)
 {
-	this->cleanup_images();
-	if(base) this->replace_without_meta(*base);
-	return this->parse(filename, flags);
+	if(base != this)
+	{
+		this->cleanup_images();
+		if(base) this->replace_without_meta(*base);
+	}
+	this->id = filename;
+
+	FILE *f = fopen(filename, "r");
+	if(!f) { elog("theme parser: failed to open %s", filename); return false; }
+	fseek(f, 0, SEEK_END);
+	size_t size = ftell(f);
+	fseek(f, 0, SEEK_SET);
+	bool ret = this->parse([f](u8 *out, u32 size) -> bool {
+		return fread(out, size, 1, f) == 1;
+	}, size, flags);
+	fclose(f);
+
+	return ret;
+}
+
+bool ui::Theme::open(const u8 *data, u32 size, const std::string& id, ui::Theme *base, u8 flags)
+{
+	if(base != this)
+	{
+		this->cleanup_images();
+		if(base) this->replace_without_meta(*base);
+	}
+	this->id = id;
+
+	u32 pos = 0;
+	return this->parse([data, size, &pos](u8 *out, u32 rsize) -> bool {
+		u32 new_pos = pos + rsize;
+		if(new_pos > size) return false;
+		memcpy(out, &data[pos], rsize);
+		pos = new_pos;
+		return true;
+	}, size, flags);
 }
 
 void ui::Theme::clear()
@@ -115,6 +151,7 @@ void ui::Theme::replace_with(ui::Theme& other)
 	this->replace_without_meta(other);
 	this->author = other.author;
 	this->name = other.name;
+	this->id = other.id;
 }
 
 void ui::Theme::replace_without_meta(ui::Theme& other)
@@ -125,21 +162,16 @@ void ui::Theme::replace_without_meta(ui::Theme& other)
 		this->descriptors[i].image.isOwn = false;
 }
 
-bool ui::Theme::parse(const char *filename, u8 flags)
+bool ui::Theme::parse(std::function<bool(u8 *, u32)> read_data, size_t size, u8 flags)
 {
-#define EXIT_LOG(...) do { elog(__VA_ARGS__); goto out; } while(0)
-	FILE *f = fopen(filename, "r");
-	if(!f) { elog("theme parser: failed to open %s", filename); return false; }
 	bool ret = false;
-	fseek(f, 0, SEEK_END);
-	size_t size = ftell(f);
-	fseek(f, 0, SEEK_SET);
+#define EXIT_LOG(...) do { elog(__VA_ARGS__); goto out; } while(0)
 	u8 *foot = NULL, head[0x30], *blob_addr, *blob_base;
 	u32 format_version, target_version, blob_size, num_descriptors, blob_rel_addr;
 	hstx_descriptor *descriptors;
 	hstx_header *hdr;
 	bool isReplacing;
-	if(fread(head, 0x30, 1, f) != 1) EXIT_LOG("theme parser: failed to read 0x30 from %s", filename);
+	if(!read_data(head, 0x30)) EXIT_LOG("theme parser: failed to read 0x30");
 
 	hdr = (hstx_header *) &head[0x00];
 	format_version = U32(hdr->format_version);
@@ -161,7 +193,7 @@ bool ui::Theme::parse(const char *filename, u8 flags)
 	size -= 0x30;
 	foot = (u8 *) malloc(size + 1);
 	if(!foot) EXIT_LOG("theme parser: failed to allocate %u", size + 1);
-	if(fread(foot, 1, size, f) != size) EXIT_LOG("theme parser: failed to read %u from %s", size, filename);
+	if(!read_data(foot, size)) EXIT_LOG("theme parser: failed to read %u", size);
 	foot[size] = '\0';
 
 	descriptors = (hstx_descriptor *) &foot[0x0];
@@ -235,6 +267,8 @@ bool ui::Theme::parse(const char *filename, u8 flags)
 		IVAL(ID_SETTINGS_IMG, settings_image);
 		IVAL(ID_SPINNER_IMG, spinner_image);
 		IVAL(ID_RANDOM_IMG, random_image);
+		IVAL(ID_BG_TOP_IMG, background_top_image);
+		IVAL(ID_BG_BOT_IMG, background_bottom_image);
 #undef IVAL
 		default:
 			elog("theme parser: unknown identifier %lu", ident);
@@ -245,7 +279,6 @@ bool ui::Theme::parse(const char *filename, u8 flags)
 	ret = true;
 out:
 	free((void *) foot);
-	fclose(f);
 	return ret;
 #undef GETBLOBADDR
 #undef EXIT_LOG
@@ -274,7 +307,7 @@ ui::SlotManager ui::ThemeManager::get_slots(ui::BaseWidget *that, const char *id
 	if(it != this->slots.end())
 	{
 		if(that && that->supports_theme_hook())
-			it->second.slaves.push_back(that); 
+			it->second.slaves.push_back(that);
 		return ui::SlotManager(it->second.colors);
 	}
 
@@ -287,6 +320,11 @@ ui::SlotManager ui::ThemeManager::get_slots(ui::BaseWidget *that, const char *id
 		slot.colors = (u32 *) malloc(sizeof(u32) * count);
 		slot.getters = getters;
 		fill_colors(slot);
+	}
+	else
+	{
+		slot.colors = NULL;
+		slot.getters = NULL;
 	}
 
 	this->slots[id] = slot;

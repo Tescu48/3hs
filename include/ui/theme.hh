@@ -19,6 +19,7 @@
 
 #include <unordered_map>
 #include <3ds/types.h>
+#include <functional>
 #include <citro2d.h>
 #include <stddef.h>
 #include <string>
@@ -75,6 +76,8 @@ namespace ui
 			settings_image,
 			spinner_image,
 			random_image,
+			background_top_image,
+			background_bottom_image,
 			max,
 		};
 		constexpr u32 max_color = smdh_icon_border_color;
@@ -97,6 +100,7 @@ namespace ui
 
 		std::string author;
 		std::string name;
+		std::string id; /* usually file path */
 
 		enum flags_field {
 			load_data = 1,
@@ -104,6 +108,7 @@ namespace ui
 		};
 
 		bool open(const char *filename, ui::Theme *base, u8 flags = ui::Theme::load_data | ui::Theme::load_meta);
+		bool open(const u8 *data, u32 size, const std::string& id, ui::Theme *base, u8 flags = ui::Theme::load_data | ui::Theme::load_meta);
 		/* creates a reference to images, copy of colors */
 		void replace_without_meta(ui::Theme& other);
 		void replace_with(ui::Theme& other);
@@ -113,7 +118,7 @@ namespace ui
 			ThemeDescriptorColor color;
 			ThemeDescriptorImage image;
 		} descriptors[theme::max];
-		bool parse(const char *filename, u8 flags);
+		bool parse(std::function<bool(u8 *, u32)> read_data, size_t size, u8 flags);
 		void cleanup_images();
 
 	};

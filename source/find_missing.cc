@@ -24,6 +24,7 @@
 
 #include <ui/loading.hh>
 
+#include <unordered_set>
 #include <algorithm>
 
 
@@ -52,6 +53,20 @@ ssize_t show_find_missing(hsapi::htid tid)
 
 		std::vector<hsapi::htid> installedGames;
 		std::copy_if(doCheckOn.begin(), doCheckOn.end(), std::back_inserter(installedGames), tid_can_have_missing);
+		/* deduplicate installedGames based on unique id */
+		std::unordered_set<u32> dedupe;
+		for(size_t i = 0; i < installedGames.size(); ++i)
+		{
+			u32 unique = ctr::get_tid_unique(installedGames[i]);
+			if(dedupe.find(unique) == dedupe.end())
+				dedupe.insert(unique);
+			else /* duplicate detected */
+			{
+				installedGames.erase(installedGames.begin() + i);
+				/* reset i to account for erasure */
+				--i;
+			}
+		}
 
 		hsapi::BatchRelated related;
 		if(R_FAILED(hsapi::batch_related(related, installedGames)))

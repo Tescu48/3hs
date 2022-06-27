@@ -42,7 +42,7 @@ static void reserve_main_log()
 
 	static char path1[] = F ".XXX";
 	static char path2[] = F ".XXX";
-	u8 max = get_settings()->maxExtraLogs;
+	u8 max = get_nsettings()->max_elogs;
 	u8 val;
 
 	if(max == 0) /* always override; nothing to do */
@@ -119,7 +119,7 @@ static void clear_all_logs()
 
 void log_delete_invalid()
 {
-	u8 max = get_settings()->maxExtraLogs;
+	u8 max = get_nsettings()->max_elogs;
 	LOGS_ITER(path, ent,
 		char *start = ent->d_name + sizeof("3hs.log.") - 1;
 		char *end;

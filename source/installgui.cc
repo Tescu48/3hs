@@ -58,7 +58,7 @@ static void finalize_install(u64 tid, bool interactive)
 	ui::RenderQueue::global()->find_tag<ui::FreeSpaceIndicator>(ui::tag::free_indicator)->update();
 
 	// Prompt to ask for extra content
-	if(interactive && tid_can_have_missing(tid) && get_settings()->checkForExtraContent)
+	if(interactive && tid_can_have_missing(tid) && ISET_SEARCH_ECONTENT)
 	{
 		ssize_t added = show_find_missing(tid);
 		if(added > 0) ui::notice(PSTRING(found_missing, added));
@@ -72,7 +72,7 @@ static void finalize_install(u64 tid, bool interactive)
 /* returns if the user wants to continue */
 static bool maybe_warn_already_installed(u64 tid, bool interactive)
 {
-	if(!interactive || !get_settings()->warnNoBase || ctr::is_base_tid(tid) || ctr::title_exists(ctr::get_base_tid(tid), ctr::to_mediatype(ctr::detect_dest(tid))))
+	if(!interactive || !ISET_WARN_NO_BASE || ctr::is_base_tid(tid) || ctr::title_exists(ctr::get_base_tid(tid), ctr::to_mediatype(ctr::detect_dest(tid))))
 		return true;
 
 	/* we need to warn the user and ask if he wants to continue now */
