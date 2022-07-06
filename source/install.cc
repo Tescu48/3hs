@@ -239,16 +239,12 @@ static void i_install_loop_thread_cb(Result& res, get_url_func get_url, cia_net_
 			// Does the user want to stop?
 
 			data.itc = ITC::timeoutscr;
-			if(ui::timeoutscreen(PSTRING(netcon_lost, "0x" + pad8code(res)), 10))
-			{
-				// this signals that we want to cancel the installation later on
-				res = APPERR_CANCELLED;
-				break;
-			}
-
-			data.itc = ITC::normal;
-			/* we want to redraw screen */
 			svcSignalEvent(data.eventHandle);
+			/* other thread wakes up */
+			svcWaitSynchronization(data.eventHandle, U64_MAX);
+			data.itc = ITC::normal;
+			if(res == APPERR_CANCELLED)
+				break; /* finished */
 			continue;
 		}
 
@@ -265,7 +261,7 @@ static Result i_install_resume_loop(get_url_func get_url, prog_func prog, cia_ne
 	Result res;
 	data->buffer = new u8[BUFSIZE];
 
-	if(R_FAILED(res = svcCreateEvent(&data->eventHandle, RESET_STICKY)))
+	if(R_FAILED(res = svcCreateEvent(&data->eventHandle, RESET_ONESHOT)))
 		return res;
 
 	httpcContext hctx;
@@ -284,7 +280,6 @@ static Result i_install_resume_loop(get_url_func get_url, prog_func prog, cia_ne
 	while(data->itc != ITC::exit)
 	{
 		svcWaitSynchronizationN(&outhandle, handles, 6, false, U64_MAX);
-		svcClearEvent(handles[outhandle]);
 		/* other thread signals state update */
 		if(outhandle == 0)
 		{
@@ -292,7 +287,17 @@ static Result i_install_resume_loop(get_url_func get_url, prog_func prog, cia_ne
 				break;
 			/* we want to actually cancel the handle so lets not exit() here already */
 			if(!aptMainLoop()) break;
-			if(data->itc != ITC::timeoutscr)
+			if(data->itc == ITC::timeoutscr)
+			{
+				/* we need to display a timeout screen */
+				bool wantsQuit = ui::timeoutscreen(PSTRING(netcon_lost, "0x" + pad8code(res)), 10);
+				if(wantsQuit) res = APPERR_CANCELLED;
+				prog(data->index, data->totalSize);
+				/* signal that other thread can wake up again */
+				svcSignalEvent(data->eventHandle);
+				if(wantsQuit) break;
+			}
+			else
 				prog(data->index, data->totalSize);
 		}
 		/* hid event */

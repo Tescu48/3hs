@@ -38,6 +38,8 @@
 
 #define SETTINGS_LOCATION "/3ds/3hs/settings"
 #define THEMES_DIR        "/3ds/3hs/themes/"
+#define SPECIAL_LIGHT     "special:light"
+#define SPECIAL_DARK      "special:dark"
 #define THEMES_EXT        ".hstx"
 
 static std::vector<ui::Theme> g_avail_themes;
@@ -134,7 +136,7 @@ static void migrate_settings(u8 *buf)
 		| (settings->allowLEDChange ? FLAG0_ALLOW_LED : 0);
 	g_nsettings.lang = settings->language;
 	g_nsettings.max_elogs = settings->maxExtraLogs;
-	g_nsettings.theme_path = settings->isLightMode ? "special:light" : "special:dark";
+	g_nsettings.theme_path = settings->isLightMode ? SPECIAL_LIGHT : SPECIAL_DARK;
 
 	proxy::legacy::Params p;
 	proxy::legacy::parse(p);
@@ -169,7 +171,7 @@ void reset_settings(bool set_default_lang)
 	                   | FLAG0_ALLOW_LED;
 
 	g_nsettings.max_elogs = 3;
-	g_nsettings.theme_path = "special:light";
+	g_nsettings.theme_path = SPECIAL_LIGHT;
 	g_nsettings.proxy_port = 0; /* disable port by default */
 
 	write_settings();
@@ -909,14 +911,14 @@ void show_settings()
 void load_current_theme()
 {
 	ui::Theme cthem;
-	if(g_nsettings.theme_path == "special:dark")
+	if(g_nsettings.theme_path == SPECIAL_DARK)
 	{
-		cthem.open(dark_hstx, dark_hstx_size, "special:dark", nullptr);
+		cthem.open(dark_hstx, dark_hstx_size, SPECIAL_DARK, nullptr);
 	}
 	else
 	{
-		cthem.open(light_hstx, light_hstx_size, "special:light", nullptr);
-		if(g_nsettings.theme_path != "special:light")
+		cthem.open(light_hstx, light_hstx_size, SPECIAL_LIGHT, nullptr);
+		if(g_nsettings.theme_path != SPECIAL_LIGHT)
 		{
 			/* it's fine if this fails, we'll just take special:light in that case */
 			cthem.open(g_nsettings.theme_path.c_str(), &cthem);
@@ -929,15 +931,15 @@ void load_current_theme()
 static void load_themes()
 {
 	ui::Theme cthem;
-	if(ui::Theme::global()->id != "special:light")
+	if(ui::Theme::global()->id != SPECIAL_LIGHT)
 	{
-		panic_assert(cthem.open(light_hstx, light_hstx_size, "special:light", nullptr), "failed to parse built-in theme");
+		panic_assert(cthem.open(light_hstx, light_hstx_size, SPECIAL_LIGHT, nullptr), "failed to parse built-in theme");
 		g_avail_themes.push_back(cthem);
 		cthem.clear();
 	}
-	if(ui::Theme::global()->id != "special:dark")
+	if(ui::Theme::global()->id != SPECIAL_DARK)
 	{
-		panic_assert(cthem.open(dark_hstx, dark_hstx_size, "special:dark", nullptr), "failed to parse built-in theme");
+		panic_assert(cthem.open(dark_hstx, dark_hstx_size, SPECIAL_DARK, nullptr), "failed to parse built-in theme");
 		g_avail_themes.push_back(cthem);
 	}
 
