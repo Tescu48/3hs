@@ -426,3 +426,12 @@ Potrivit ENVINFO-ului al acestei console, aceasta este o unitate de dezvoltare.
 3hs nu va funcționa corect pe acest sistem.
 În cazul în care aveți un 3DS comercial, asigurați-vă că opțiunea "Enable developer UNITINFO" în Luma3DS este oprită.
 
+- hint_navigate
+UI_GLYPH_DPAD_CLEAR/UI_GLYPH_CPAD: navigați
+
+- made_by
+de %1
+
+- themes
+Teme
+

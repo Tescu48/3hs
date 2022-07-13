@@ -69,6 +69,8 @@ namespace ui
 			led_green_color,
 			led_red_color,
 			smdh_icon_border_color,
+			checkbox_border_color,
+			checkbox_check_color,
 			/* don't forget to update max_color when adding a color! */
 			more_image,
 			battery_image,
@@ -132,6 +134,7 @@ namespace ui
 			: colors(nullptr) { }
 		/* no bounds checking! */
 		constexpr u32 get(size_t i) { return this->colors[i]; }
+		constexpr u32 operator [] (size_t i) { return this->get(i); }
 		constexpr bool is_initialized() { return this->colors != nullptr; }
 	private:
 		const u32 *colors;

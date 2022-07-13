@@ -19,6 +19,7 @@
 #include <widgets/meta.hh>
 
 #include <ui/menuselect.hh>
+#include <ui/checkbox.hh>
 #include <ui/loading.hh>
 #include <ui/swkbd.hh>
 #include <ui/base.hh>
@@ -437,6 +438,77 @@ static bool legacy_search()
 	return true;
 }
 
+#ifndef RELEASE
+static bool show_normal_search()
+{
+	ui::RenderQueue queue;
+
+	ui::CheckBox *nonOfficial, *games, *updates, *dlc;
+	ui::Text *csect, *last = nullptr;
+	ui::Button *search;
+	ui::Text *hint;
+
+#define ITEM(label, ptr_add, default_val) \
+	ui::builder<ui::CheckBox>(ui::Screen::bottom, default_val).size(8.0f).align_x(csect, 3.0f).add_to(&ptr_add, queue); \
+	ui::builder<ui::Text>(ui::Screen::bottom, label).size(0.5f).under(last ? last : csect, last ? -2.0f : 1.0f).right(queue.back()).omiddle(queue.back(), 0.0f).add_to(&last, queue);
+#define SECTION(label, set_x, set_y) \
+	ui::builder<ui::Text>(ui::Screen::bottom, label).size(0.6f) .set_y .set_x .add_to(&csect, queue);
+
+	/* search bar */
+	ui::builder<ui::Button>(ui::Screen::bottom, "")
+		.size(ui::screen_width(ui::Screen::bottom), 20.0f)
+		.y(30.0f)
+		.x(ui::layout::center_x)
+		.connect(ui::Button::click, [&hint, &search]() -> bool { ui::RenderQueue::global()->render_and_then([hint, search]() -> void  {
+			SwkbdResult res;
+			SwkbdButton btn;
+
+			std::string query = ui::keyboard([](ui::AppletSwkbd *swkbd) -> void {
+				swkbd->hint(STRING(search_content_action));
+			}, &btn, &res);
+
+			if(btn != SWKBD_BUTTON_CONFIRM || res == SWKBD_INVALID_INPUT || res == SWKBD_OUTOFMEM || res == SWKBD_BANNED_INPUT)
+				return;
+
+			if(query.size() == 0)
+			{
+				hint->set_text("Click to enter a query");
+				search->set_label("");
+				return;
+			}
+
+			if(query.size() < 3)
+				return;
+
+			search->set_label(query);
+			hint->set_text("");
+		});return true;})
+		.add_to(&search, queue);
+	ui::builder<ui::Text>(ui::Screen::bottom, "Click to enter a query")
+		.size(0.4f)
+		.middle(search)
+		.x(ui::layout::center_x)
+		.add_to(&hint, queue);
+
+	/* Section "include" */
+	SECTION("Include", x(7.0f), y(60.0f))
+		ITEM("Non-official content", nonOfficial, true)
+		ITEM("Games", games, true)
+		ITEM("Updates", updates, true)
+		ITEM("DLC", dlc, true)
+
+	ui::builder<ui::Text>(ui::Screen::bottom, "Filters")
+		.size(0.6f)
+		.y(60.0f)
+		.x(ui::screen_width(ui::Screen::bottom) / 2.0f)
+		.add_to(queue);
+
+
+	queue.render_finite_button(KEY_B);
+	return true;
+}
+#endif
+
 void show_search()
 {
 	static bool in_search = false;
@@ -449,6 +521,9 @@ void show_search()
 
 	ui::RenderQueue queue;
 	ui::builder<ui::MenuSelect>(ui::Screen::bottom)
+#ifndef RELEASE
+		.connect(ui::MenuSelect::add, "Normal search", show_normal_search)
+#endif
 		.connect(ui::MenuSelect::add, STRING(search_text), show_searchbar_search)
 		.connect(ui::MenuSelect::add, STRING(search_id), show_id_search)
 		.connect(ui::MenuSelect::add, STRING(search_tid), show_tid_search)

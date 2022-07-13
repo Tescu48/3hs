@@ -414,3 +414,17 @@ LEDステータスインジケータを有効にする
 - allow_led_desc
 これにより、LEDライトが点滅し、タイトルのインストールが完了したときやら、さまざまなステータスの変更を通知する。
 
+- hint_navigate
+UI_GLYPH_DPAD_CLEAR/UI_GLYPH_CPAD: ナビゲート
+
+- made_by
+%1
+
+- themes
+テーマ
+
+- dev_unitinfo
+このコンソールのENVINFOによると、こら開発ユニットです。
+このシステムでは3hsは正しゅう機能しまへん。
+リテール3DSを使用してる場合は、Luma3DS構成の「Enable developer UNITINFO」が無効になってること確認してくれへん。
+

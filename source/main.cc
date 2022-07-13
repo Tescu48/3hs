@@ -103,6 +103,8 @@ private:
 };
 #endif
 
+#include <ui/checkbox.hh>
+
 int main(int argc, char* argv[])
 {
 	((void) argc);

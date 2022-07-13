@@ -414,3 +414,21 @@ Włącz wskaźniki stanu LED
 - allow_led_desc
 Spowoduje to miganie diody LED, aby poinformować Cię o różnych zmianach stanu, na przykład po zakończeniu instalacji tytułu
 
+# don't translate "Enable developer UNITINFO", ENVINFO may be translated as configuration, retail may be translated as normal, unit may be translated as variant
+# If you've already translated this string you don't have to again
+- dev_unitinfo
+Według ENVINFO tej konsoli to jest jednostka programistyczna.
+3hs nie będzie działać poprawnie w tym systemie.
+Jeśli masz detaliczną wersję 3DS, upewnij się, że opcja „Włącz programistę UNITINFO” w konfiguracji Luma3DS jest wyłączona.
+
+# nowrap, used in for examples language select
+- hint_navigate
+UI_GLYPH_DPAD_CLEAR/UI_GLYPH_CPAD: nawigować
+
+# %1 = theme author
+- made_by
+przez %1
+
+# nowrap, burger menu item
+- themes
+motyw

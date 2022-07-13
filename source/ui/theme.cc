@@ -74,6 +74,8 @@ enum hstx_ident {
 	ID_LED_GREEN_CLR     = 0x1013,
 	ID_LED_RED_CLR       = 0x1014,
 	ID_SMDH_BORDER_CLR   = 0x1015,
+	ID_CHKBX_BORDER_CLR  = 0x1016,
+	ID_CHKBX_CHK_CLR     = 0x1017,
 
 	ID_MORE_IMG          = 0x2001,
 	ID_BATTERY_IMG       = 0x2002,
@@ -245,6 +247,8 @@ bool ui::Theme::parse(std::function<bool(u8 *, u32)> read_data, size_t size, u8 
 		CVAL(ID_LED_GREEN_CLR, led_green_color);
 		CVAL(ID_LED_RED_CLR, led_red_color);
 		CVAL(ID_SMDH_BORDER_CLR, smdh_icon_border_color);
+		CVAL(ID_CHKBX_BORDER_CLR, checkbox_border_color);
+		CVAL(ID_CHKBX_CHK_CLR, checkbox_check_color);
 #undef CVAL
 #define IVAL(fid, iid) case fid: \
 	offset = U32(descriptors[i].data.image.img_ptr); \

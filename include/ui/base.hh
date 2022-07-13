@@ -182,6 +182,8 @@ namespace ui
 	float under(BaseWidget *from, BaseWidget *newel, float pad = 3.0f);
 	/* get the y position above `from' for `newel' */
 	float above(BaseWidget *from, BaseWidget *newel, float pad = 3.0f);
+	/* Gets the center y position for owid in wid */
+	float ycenter_rel(ui::BaseWidget *wid, ui::BaseWidget *owid);
 
 	/* centers both `first' and `second' */
 	void set_double_center(BaseWidget *first, BaseWidget *second, float pad = 3.0f);
@@ -400,10 +402,14 @@ namespace ui
 		ui::builder<TWidget>& next_center(ui::BaseWidget *w, float pad = 3.0f) { ui::set_double_center(w, this->el, pad); return *this; }
 		/* positions the widget left from another widget */
 		ui::builder<TWidget>& left(ui::BaseWidget *w, float pad = 3.0f) { this->el->set_x(ui::left(w, this->el, pad)); return *this; }
+		/* sets the y position to the center of w relative to the y-axis */
+		ui::builder<TWidget>& middle(ui::BaseWidget *w, float offset = -1.0f) { this->el->set_y(ui::ycenter_rel(w, this->el) - offset); return *this; }
+		/* sets the y position of the OTHER widget to the center of this relative to the y-axis */
+		ui::builder<TWidget>& omiddle(ui::BaseWidget *w, float offset = -1.0f) { w->set_y(ui::ycenter_rel(this->el, w) - offset); return *this; }
 		/* sets the y of the building widget to that of another one */
-		ui::builder<TWidget>& align_y(ui::BaseWidget *w) { this->el->set_y(w->get_y()); return *this; }
+		ui::builder<TWidget>& align_y(ui::BaseWidget *w, float offset = 0.0f) { this->el->set_y(w->get_y() - offset); return *this; }
 		/* sets the x of the building widget to that of another one */
-		ui::builder<TWidget>& align_x(ui::BaseWidget *w) { this->el->set_x(w->get_x()); return *this; }
+		ui::builder<TWidget>& align_x(ui::BaseWidget *w, float offset = 0.0f) { this->el->set_x(w->get_x() + offset); return *this; }
 		/* sets the y of the building widget to the center of another one */
 		ui::builder<TWidget>& align_y_center(ui::BaseWidget *w) { this->el->set_y(ui::center_align_y(w, this->el)); return *this; }
 

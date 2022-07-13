@@ -420,3 +420,11 @@ Gemäß der ENVINFO dieses Geräts wurde festgestellt, dass dies ein Entwicklerm
 3hs wird auf diesem Gerät nicht korrekt funktionieren.
 Falls dieses Gerät kein Entwicklermodell ist, stelle sicher, dass "Enable developer UNITINFO" in der Luma3DS-Konfiguration ausgeschaltet ist.
 
+- hint_navigate
+UI_GLYPH_DPAD_CLEAR/UI_GLYPH_CPAD: navigieren
+
+- made_by
+Von %1
+
+- themes
+Designs

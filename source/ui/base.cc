@@ -73,7 +73,13 @@ Result ui::shell_is_open(bool *is_open)
 
 static inline float center_pos(float max, float width)
 {
-	return max / 2.0f - width / 2.0f;
+	return (max / 2.0f) - (width / 2.0f);
+}
+
+float ui::ycenter_rel(ui::BaseWidget *wid, ui::BaseWidget *owid)
+{
+	/* this probably doesn't work for all widgets, oh well, it works for ui::CheckBox, it's purpose */
+	return wid->get_y() + center_pos(wid->height(), owid->height());
 }
 
 float ui::transform(ui::BaseWidget *wid, float v)
@@ -693,6 +699,11 @@ void ui::Text::resize(float x, float y)
 {
 	this->xsiz = x;
 	this->ysiz = y;
+	if(this->lines.size())
+	{
+		C2D_TextGetDimensions(&this->lines.front(), this->xsiz, this->ysiz, nullptr,
+			&this->lineHeight);
+	}
 }
 
 const std::string& ui::Text::get_text()

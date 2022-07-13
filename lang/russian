@@ -414,3 +414,13 @@ LumaLocate: Авто - выберает регион автоматически,
 - allow_led_desc
 Светодиодная индикация различных событий, например после завершения установки игры.
 
+- hint_navigate
+UI_GLYPH_DPAD_CLEAR/UI_GLYPH_CPAD: навигация
+
+# %1 = автор темы
+- made_by
+от %1
+
+# nowrap, burger menu item
+- themes
+Тема

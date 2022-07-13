@@ -419,3 +419,11 @@ Title ID инвалид
 3hs ну ва функциона корект пе ачест систем.
 Ын казул ын каре авець ун 3DS комерчал, асигураци-вэ кэ опцюня "Enable developer UNITINFO" ын Luma3DS йесте опритэ.
 
+- hint_navigate
+UI_GLYPH_DPAD_CLEAR/UI_GLYPH_CPAD: навигаць
+
+- made_by
+де %1
+
+- themes
+Теме

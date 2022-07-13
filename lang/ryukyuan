@@ -414,3 +414,17 @@ LEDステータスインジケータ有効なすん
 - allow_led_desc
 くりにゆり、LEDライトぬ点滅しー、タイトルぬインストールぬしーうわたるとぅちんでー、さまざまなステータスぬ変更しらさびーん。
 
+- hint_navigate
+UI_GLYPH_DPAD_CLEAR/UI_GLYPH_CPAD: ナビゲート
+
+- made_by
+%1
+
+- themes
+テーマ
+
+- dev_unitinfo
+くぬコンソールぬENVINFOんかいゆいねー、くれー開発ユニットやいびーん。
+くぬシステムっしぇー3hsー正しく機能さびらん。
+リテール3DS使用そーるばーや、Luma3DS構成ぬ「Enable developer UNITINFO」が無効なとーるくとぅ確認しくぃみそーれー。
+

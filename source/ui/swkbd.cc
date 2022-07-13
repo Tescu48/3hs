@@ -22,6 +22,8 @@ void ui::AppletSwkbd::setup(std::string *ret, int maxLen, SwkbdType type,
 	int numBtns)
 {
 	swkbdInit(&this->state, type, numBtns, maxLen);
+	/* Let's always enable this... on JPN, this is required for Kanji input */
+	swkbdSetFeatures(&this->state, SWKBD_PREDICTIVE_INPUT);
 	this->len = maxLen;
 	this->ret = ret;
 }

@@ -205,7 +205,13 @@ void ui::BatteryIndicator::setup()
 
 void ui::BatteryIndicator::update()
 {
+	static time_t lastcheck = 0;
 	u8 nlvl = 0;
+
+	time_t now = time(NULL);
+	if(lastcheck && lastcheck - now <= 5)
+		return; /* don't want to update too often, let's just update every 5 seconds */
+	lastcheck = now;
 
 	if(R_FAILED(MCUHWC_GetBatteryLevel(&nlvl)) || this->level == nlvl)
 		return;

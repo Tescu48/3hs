@@ -128,6 +128,8 @@ static int make_hstx_impl(FILE *out, char *in_buf, struct dynbuf *blob, const ch
 		ID_LED_GREEN_CLR     = 0x1013,
 		ID_LED_RED_CLR       = 0x1014,
 		ID_SMDH_BORDER_CLR   = 0x1015,
+		ID_CHKBX_BORDER_CLR  = 0x1016,
+		ID_CHKBX_CHK_CLR     = 0x1017,
 
 		ID_MORE_IMG          = 0x2001,
 		ID_BATTERY_IMG       = 0x2002,
@@ -259,6 +261,9 @@ static int make_hstx_impl(FILE *out, char *in_buf, struct dynbuf *blob, const ch
 		DEFCDESC("scrollbar_color", ID_SCROLLBAR_CLR)
 		DEFCDESC("led_success", ID_LED_GREEN_CLR)
 		DEFCDESC("led_failure", ID_LED_RED_CLR)
+		DEFCDESC("checkbox_border_color", ID_CHKBX_BORDER_CLR)
+		DEFCDESC("checkbox_check_color", ID_CHKBX_CHK_CLR)
+		/* */
 		DEFCDESC("smdh_icon_border_color", ID_SMDH_BORDER_CLR)
 		DEFIDESC("more_image", ID_MORE_IMG)
 		DEFIDESC("battery_image", ID_BATTERY_IMG)

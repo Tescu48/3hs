@@ -414,3 +414,16 @@ LED 상태 표시
 - allow_led_desc
 타이틀 설치 완료 등의 상태를 LED로 신호
 
+- dev_unitinfo
+ENVINFO에 의하면 이 3DS는 개발자기기이므로, 3hs가 효환되지 않습니다
+이 기기가 정품 3DS일 경우, Luma3DS에서 "Enable developer UNITINFO"가 꺼져있는지 확인하세요
+
+- hint_navigate
+UI_GLYPH_DPAD_CLEAR/UI_GLYPH_CPAD: 검색
+
+- made_by
+제작자: %1
+
+- themes
+테마
+

@@ -414,3 +414,21 @@ Activar indicador de estados de LED
 - allow_led_desc
 Esto permitirá que la luz LED cambie para notificar cambios de estado, como la instalación de contenido.
 
+# don't translate "Enable developer UNITINFO", ENVINFO may be translated as configuration, retail may be translated as normal, unit may be translated as variant
+- dev_unitinfo
+Acorde al ENVINFO de la consola, esta es una unidad de desarrollo.
+3hs no va a funcionar correctamente en este sistema.
+En caso que tengas una 3DS comercial, asegúrate de que "Enable developer UNITINFO" en la configuración de Luma3DS esté desactivado.
+
+# nowrap, used in for examples language select
+- hint_navigate
+UI_GLYPH_DPAD_CLEAR/UI_GLYPH_CPAD: navegar
+
+# %1 = theme author
+- made_by
+hecho por %1
+
+# nowrap, burger menu item
+- themes
+Temas
+

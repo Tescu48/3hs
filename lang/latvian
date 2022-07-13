@@ -414,3 +414,17 @@ Iespējot LED statusa indikatorus
 - allow_led_desc
 Tas LED indikators mirgos, lai informētu jūs par dažādām statusa izmaiņām piemēram, kad ir pabeigta aplikācijas instalēšana.
 
+- dev_unitinfo
+Saskaņā ar šīs konsoles konfigurācijas, šī ir izstrādes vienība.
+3hs šajā sistēmā nedarbosies pareizi.
+Ja jums ir mazumtirdzniecības 3DS, pārliecinieties, ka Luma3DS konfigurācijā ir atspējota opcija “Enable developer UNITINFO”.
+
+- hint_navigate
+UI_GLYPH_DPAD_CLEAR/UI_GLYPH_CPAD: pārvietoties
+
+- made_by
+autors %1
+
+- themes
+motīvi
+

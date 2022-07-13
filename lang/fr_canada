@@ -414,3 +414,17 @@ Active les status d'indicators de LED
 - allow_led_desc
 Ceci va flasher la lumière LED pour t'informer de plusieurs changements de status, comme quand un jeu fini de télécharger
 
+- dev_unitinfo
+Cette console a été détecté en tant qu'unité de développement.
+3hs risque de ne pas fonctionner correctement.
+Si vous avez une 3ds normale, soyez sûr d'avoir désactivé "Enable developer UNITINFO" dans le menu de configuration luma.
+
+- hint_navigate
+UI_GLYPH_DPAD_CLEAR/UI_GLYPH_CPAD: sélectionner
+
+- made_by
+par %1
+
+- themes
+Thèmes
+

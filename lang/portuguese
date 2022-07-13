@@ -414,3 +414,17 @@ Ligar indicador de estado LED
 - allow_led_desc
 Isto vai piscar a luz LED para te informar das variadas mudanças de estado, por exemplo quando um jogo acaba de instalar.
 
+- dev_unitinfo
+Segundo a ENVINFO desta consola isto é uma development unit.
+A 3hs não vai funcionar correctamente neste sistema.
+No caso de teres um 3ds de varejo assegura-te que "Enable developer UNITINFO" nas settings da Luma3DS está desligado.
+
+- hint_navigate
+UI_GLYPH_DPAD_CLEAR/UI_GLYPH_CPAD: navegar
+
+- made_by
+por %1
+
+- themes
+Temas
+

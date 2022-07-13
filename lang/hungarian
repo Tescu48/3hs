@@ -422,3 +422,14 @@ A konzolod az ENVINFO konfigurációk alapján egy fejlesztői modell.
 3hs nem fog helyesen futni ezen a rendszeren.
 Ha a 3DS konzolod egy rendes modell, a Luma3DS konfigurációkban az "Enable developer UNITINFO" opciót hagyd kikapcsolva.
 
+# nowrap, used in for examples language select
+- hint_navigate
+UI_GLYPH_DPAD_CLEAR/UI_GLYPH_CPAD: navigálás
+
+# %1 = theme author
+- made_by
+Készítette: %1
+
+# nowrap, burger menu item
+- themes
+Kinézetek
