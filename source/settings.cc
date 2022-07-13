@@ -200,7 +200,7 @@ lumalocale_e : u8 {
 }
 
 enum sortmethod_e : u8 {
-
+	// ...
 }
 
 enum sortdirection_e : u8 {
@@ -760,6 +760,15 @@ static void update_settings_ID(SettingsId ID)
 		show_elogs();
 		break;
 	}
+}
+
+void fix_sort_settings()
+{
+	g_nsettings.flags0 = (g_nsettings.flags0 & ~(FLAG0_SORTDIRECTION0))
+	                   | ((u64) SortDirection::ascending << SORTDIRECTION_SHIFT);
+	g_nsettings.flags0 = (g_nsettings.flags0 & ~(FLAG0_SORTMETHOD0 | FLAG0_SORTMETHOD1 | FLAG0_SORTMETHOD2 | FLAG0_SORTMETHOD3))
+	                   | ((u64) SortMethod::alpha << SORTMETHOD_SHIFT);
+	write_settings();
 }
 
 void log_settings()

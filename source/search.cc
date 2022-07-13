@@ -446,6 +446,7 @@ static bool show_normal_search()
 	ui::CheckBox *nonOfficial, *games, *updates, *dlc;
 	ui::Text *csect, *last = nullptr;
 	ui::Button *search;
+	ui::Button *ctype;
 	ui::Text *hint;
 
 #define ITEM(label, ptr_add, default_val) \
@@ -497,11 +498,13 @@ static bool show_normal_search()
 		ITEM("Updates", updates, true)
 		ITEM("DLC", dlc, true)
 
+/*
 	ui::builder<ui::Text>(ui::Screen::bottom, "Filters")
 		.size(0.6f)
 		.y(60.0f)
 		.x(ui::screen_width(ui::Screen::bottom) / 2.0f)
 		.add_to(queue);
+*/
 
 
 	queue.render_finite_button(KEY_B);

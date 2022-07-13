@@ -166,7 +166,10 @@ static sort_callback<hsapi::Title> get_sort_callback(SortDirection dir, SortMeth
 		}
 		break;
 	}
-	panic("invalid sort method/direction");
+	/* how does this happen */
+	fix_sort_settings();
+	return sort_alpha_asc;
+//	panic("invalid sort method/direction");
 }
 
 hsapi::hid next::sel_gam(std::vector<hsapi::Title>& titles, size_t *cursor)

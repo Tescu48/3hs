@@ -96,6 +96,8 @@ void cleanup_themes();
 void show_settings();
 void log_settings();
 
+void fix_sort_settings();
+
 namespace ui { class Theme; }
 std::vector<ui::Theme>& themes();
 

@@ -68,8 +68,8 @@ namespace ui
 
 		void destroy()
 		{
-			if(this->buf != nullptr)
-				C2D_TextBufDelete(this->buf);
+			/* always allocated in setup() */
+			C2D_TextBufDelete(this->buf);
 		}
 
 		void finalize() override { this->update(); }

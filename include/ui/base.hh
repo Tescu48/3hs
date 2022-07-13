@@ -515,7 +515,7 @@ namespace ui
 
 
 	private:
-		UI_SLOTS_PROTO(Text_color, 2)
+		UI_SLOTS_PROTO(Text_color, 1)
 
 		void push_str(const std::string& str);
 		void prepare_arrays();
@@ -622,6 +622,8 @@ namespace ui
 		void autowrap();
 		/* update the label or set one */
 		void set_label(const std::string& v);
+		/* get the label, if the subwidget is not a ui::Text this probably crashes */
+		const std::string& get_label();
 
 		enum connect_type { click, nobg };
 		/* click */

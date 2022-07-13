@@ -464,7 +464,7 @@ C2D_Sprite ui::SpriteStore::get_by_id(ui::sprite id)
 
 #define TEXT_MAXLINES 16
 
-UI_SLOTS(ui::Text_color, color_bg, color_text)
+UI_SLOTS(ui::Text_color, color_text)
 
 void ui::Text::setup(const std::string& label)
 { this->set_text(label); }
@@ -619,7 +619,7 @@ bool ui::Text::render(const ui::Keys& keys)
 		}
 		else ++this->sctx.timing;
 
-		C2D_DrawRectSolid(0, this->y, 0.1f, this->x, this->sctx.height, this->slots.get(0));
+		ui::background_rect(this->screen, 0, this->y, 0.1f, this->x, this->sctx.height);
 	}
 
 	for(size_t i = 0; i < this->lines.size(); ++i)
@@ -630,17 +630,17 @@ bool ui::Text::render(const ui::Keys& keys)
 				this->screen);
 
 			C2D_DrawText(&this->lines[i], C2D_WithColor, center,
-				this->y + (this->lineHeight * i), this->z, this->xsiz, this->ysiz, this->slots.get(1));
+				this->y + (this->lineHeight * i), this->z, this->xsiz, this->ysiz, this->slots[0]);
 		}
 		else if(this->doScroll)
 		{
 			C2D_DrawText(&this->lines[i], C2D_WithColor, this->sctx.rx,
-				this->y + (this->lineHeight * i), this->z, this->xsiz, this->ysiz, this->slots.get(1));
+				this->y + (this->lineHeight * i), this->z, this->xsiz, this->ysiz, this->slots[0]);
 		}
 		else
 		{
 			C2D_DrawText(&this->lines[i], C2D_WithColor, this->x,
-				this->y + (this->lineHeight * i), this->z, this->xsiz, this->ysiz, this->slots.get(1));
+				this->y + (this->lineHeight * i), this->z, this->xsiz, this->ysiz, this->slots[0]);
 		}
 	}
 
@@ -821,6 +821,11 @@ void ui::Button::set_label(const std::string& v)
 
 	this->widget = label;
 	this->readjust();
+}
+
+const std::string& ui::Button::get_label()
+{
+	return ((ui::Text *) this->widget)->get_text();
 }
 
 void ui::Button::destroy()
@@ -1029,7 +1034,7 @@ Result ui::LED::SetPattern(ui::LED::Pattern *info)
 
 	cmdbuf[0] = 0x08010640; // https://www.3dbrew.org/wiki/PTMSYSM:SetInfoLEDPattern
 	cmdbuf[1] = info->animation;
-	memcpy(&cmdbuf[2],  info->red_pattern,   32);
+	memcpy(&cmdbuf[ 2],  info->red_pattern,  32);
 	memcpy(&cmdbuf[10], info->green_pattern, 32);
 	memcpy(&cmdbuf[18], info->blue_pattern , 32);
 
