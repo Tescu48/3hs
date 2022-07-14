@@ -126,7 +126,9 @@ static Result basereq(const std::string& url, std::string& data, HTTPC_RequestMe
 			{
 				httpcCancelConnection(&ctx);
 				httpcCloseContext(&ctx);
-				panic(PSTRING(min_constraint, VVERSION, buffer));
+				ui::RenderQueue::terminate_render();
+				ui::notice(PSTRING(min_constraint, VVERSION, buffer));
+				exit(1);
 			}
 		}
 #endif

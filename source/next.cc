@@ -166,7 +166,7 @@ static sort_callback<hsapi::Title> get_sort_callback(SortDirection dir, SortMeth
 		}
 		break;
 	}
-	/* how does this happen */
+	/* how does this happen, all i know is it does */
 	fix_sort_settings();
 	return sort_alpha_asc;
 //	panic("invalid sort method/direction");

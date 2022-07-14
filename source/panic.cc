@@ -133,7 +133,6 @@ void handle_error(const error_container& err, const std::string *label)
 	elog("Caller is %s", caller.c_str());
 	aptSetHomeAllowed(true); /* these might be set otherwise in other parts of the code */
 	C3D_FrameRate(60.0f);
-	ui::maybe_end_frame();
 
 	ui::Text *action = ui::RenderQueue::global()->find_tag<ui::Text>(ui::tag::action);
 	/* panic may be called before core ui is set-up so we can't be sure
@@ -161,6 +160,7 @@ void handle_error(const error_container& err, const std::string *label)
 		.wrap()
 		.add_to(queue);
 
+	ui::RenderQueue::terminate_render();
 	queue.render_finite_button(KEY_A);
 
 	exit(0);

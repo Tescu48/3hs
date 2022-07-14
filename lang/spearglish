@@ -415,3 +415,21 @@ enable hath led status indicat'rs
 - allow_led_desc
 This shall flasheth the hath led lighteth to inf'rm thee of various status changes, such as at which hour a title finishes installing.
 
+# don't translate "Enable developer UNITINFO", ENVINFO may be translated as configuration, retail may be translated as normal, unit may be translated as variant
+# If you've already translated this string you don't have to again
+- dev_unitinfo
+According to this console's ENVINFO, this is a development unit.
+3hs will not function correctly on this system.
+In case you have a retail 3DS, ensure "Enable developer UNITINFO" in the Luma3DS configuration is disabled.
+
+# nowrap, used in for examples language select
+- hint_navigate
+UI_GLYPH_DPAD_CLEAR/UI_GLYPH_CPAD: navigateth
+
+# %1 = theme author
+- made_by
+by %1
+
+# nowrap, burger menu item
+- themes
+Themes

@@ -172,7 +172,7 @@ void reset_settings(bool set_default_lang)
 
 	g_nsettings.max_elogs = 3;
 	g_nsettings.theme_path = SPECIAL_LIGHT;
-	g_nsettings.proxy_port = 0; /* disable port by default */
+	g_nsettings.proxy_port = 0; /* disable proxy by default */
 
 	write_settings();
 	g_loaded = true;
@@ -764,9 +764,9 @@ static void update_settings_ID(SettingsId ID)
 
 void fix_sort_settings()
 {
-	g_nsettings.flags0 = (g_nsettings.flags0 & ~(FLAG0_SORTDIRECTION0))
-	                   | ((u64) SortDirection::ascending << SORTDIRECTION_SHIFT);
-	g_nsettings.flags0 = (g_nsettings.flags0 & ~(FLAG0_SORTMETHOD0 | FLAG0_SORTMETHOD1 | FLAG0_SORTMETHOD2 | FLAG0_SORTMETHOD3))
+	/* basically just set sort settings to default, why is this necessairy sometimes? */
+	g_nsettings.flags0 = (g_nsettings.flags0 & ~(FLAG0_SORTDIRECTION0 | FLAG0_SORTMETHOD0 | FLAG0_SORTMETHOD1 | FLAG0_SORTMETHOD2 | FLAG0_SORTMETHOD3))
+	                   | ((u64) SortDirection::ascending << SORTDIRECTION_SHIFT)
 	                   | ((u64) SortMethod::alpha << SORTMETHOD_SHIFT);
 	write_settings();
 }

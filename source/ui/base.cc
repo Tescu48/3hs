@@ -277,9 +277,18 @@ void ui::background_rect(ui::Screen scr, float x, float y, float z, float w, flo
 	}
 }
 
+void ui::RenderQueue::terminate_render()
+{
+	/* works by telling the global render queue to stop signaling other threads to stop
+	 * and then wait 0.1 seconds so the currently being rendered frame is for sure done */
+	ui::RenderQueue::global()->signal(ui::RenderQueue::signal_cancel);
+	while(g_inRender) svcSleepThread(100000000ULL); /* 0.1 seconds */
+	ui::RenderQueue::global()->unsignal(ui::RenderQueue::signal_cancel);
+}
+
 bool ui::RenderQueue::render_frame(const ui::Keys& keys)
 {
-	if(this->signalBit & ui::RenderQueue::signal_cancel)
+	if((this->signalBit | g_renderqueue.signalBit) & ui::RenderQueue::signal_cancel)
 		return false;
 
 	if(!aptMainLoop())

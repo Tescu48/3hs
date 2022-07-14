@@ -268,6 +268,10 @@ namespace ui
 	public:
 		~RenderQueue();
 
+		/* ensure all RenderQueue's will stop rendering on all threads, if this is called
+		 * this function may deadlock, be careful */
+		static void terminate_render();
+
 		/* push a new widget into the queue */
 		void push(ui::BaseWidget *wid);
 		/* render forever */
